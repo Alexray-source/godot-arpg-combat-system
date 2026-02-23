@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://bf315smdjou75"]
+
+[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
+[ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="7_8o3yo"]
+[ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="8_8y5mx"]
+[ext_resource type="Script" uid="uid://vdew5e7fo8rv" path="res://Scripts/RefCounted/State/PlrChrGroundMovementState.gd" id="9_jah6w"]
+[ext_resource type="Script" uid="uid://bqvwftrl6gg12" path="res://Scripts/RefCounted/State/PlrChrAttackState.gd" id="11_w7dut"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_lvb5c"]
+sky_material = SubResource("ProceduralSkyMaterial_yx20t")
+
+[sub_resource type="Environment" id="Environment_dorj5"]
+background_mode = 2
+sky = SubResource("Sky_lvb5c")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rnym6"]
+size = Vector2(25, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrd4j"]
+albedo_color = Color(0.57421875, 0.57421875, 0.57421875, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrd4j"]
+size = Vector3(25, 0.001, 25)
+
+[node name="Node3D" type="Node3D" unique_id=569510052]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675439066]
+environment = SubResource("Environment_dorj5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1900089673]
+mesh = SubResource("PlaneMesh_rnym6")
+surface_material_override/0 = SubResource("StandardMaterial3D_wrd4j")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=53632611]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1020486155]
+shape = SubResource("BoxShape3D_wrd4j")
+
+[node name="Enemy" type="Node3D" parent="." unique_id=1695774442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36944485, 0)
+
+[node name="BaseCharacter" parent="Enemy" unique_id=1058693826 instance=ExtResource("6_o1aaj")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1349019239]
+transform = Transform3D(0.8876965, -0.40178144, -0.22487022, 0, -0.4883927, 0.872624, -0.4604291, -0.7746252, -0.43354452, -5.022839, 1.7740419, 1.2192998)
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1910115083 node_paths=PackedStringArray("character", "plr_state_machine")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6427264, 8.258239)
+script = ExtResource("7_8o3yo")
+character = NodePath("BaseCharacter")
+plr_state_machine = NodePath("PlrCharacterStateMachine")
+
+[node name="BaseCharacter" parent="Node3D" unique_id=34493895 instance=ExtResource("6_o1aaj")]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Node3D" unique_id=386934923]
+transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
+spring_length = 3.0
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D" unique_id=1662915467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.045907, 3.3696733, -13.005961)
+
+[node name="PlrCharacterStateMachine" type="Node" parent="Node3D" unique_id=1990049720 node_paths=PackedStringArray("character", "states")]
+script = ExtResource("8_8y5mx")
+character = NodePath("../BaseCharacter")
+states = {
+"movement": NodePath("Movement"),
+"primary_atk": NodePath("PrimaryAttack")
+}
+metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
+
+[node name="Movement" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=1099747568]
+script = ExtResource("9_jah6w")
+
+[node name="PrimaryAttack" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=704904040]
+script = ExtResource("11_w7dut")

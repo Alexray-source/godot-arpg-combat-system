@@ -1,0 +1,35 @@
+class_name StateMachine extends Node
+
+@export var states : Dictionary[String, State]
+@export var debug : bool = false
+
+var current_state : State
+
+#func _ready() -> void:
+func state_machine_setup():
+	pass
+
+func _process(delta: float) -> void:
+	if current_state != null:
+		current_state.state_process(delta)
+
+func _physics_process(delta: float) -> void:
+	if current_state != null:
+		current_state.state_physics_process(delta)
+
+func get_state_by_key(state_key : String):
+	return states.get(state_key)
+
+func transition_to_state(new_state : State):
+	#if new_state == current_state:
+		#return
+
+	if current_state != null:
+		current_state.on_exit()
+	
+	current_state = new_state
+	new_state.on_enter()
+	
+	if debug == true:
+		print("New State: " + str(new_state.name))
+	

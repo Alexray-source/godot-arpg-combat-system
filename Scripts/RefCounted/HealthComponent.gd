@@ -1,0 +1,38 @@
+class_name HealthComponent extends RefCounted
+
+
+@export var max_health : int = 100
+@export var health : int = 100:
+	get():
+		return health
+	set(value):
+		health = value
+		health_changed.emit()
+var dead : bool = false
+
+signal health_changed
+signal died
+
+func _init(_start_health : int, _max_health : int) -> void:
+	health = _start_health
+	max_health = _max_health
+
+func take_damage(dmg : int, bypass_cooldown : bool = false):
+	if health <= 0:
+		return
+	
+	#print("taking damage")
+	
+	health -= dmg
+	health_changed.emit()
+	#print(health)
+	if health <= 0:
+		health = 0
+		died.emit()
+		dead = true
+
+func heal(hp : int):
+	if dead == true:
+		return
+		
+	health += hp
