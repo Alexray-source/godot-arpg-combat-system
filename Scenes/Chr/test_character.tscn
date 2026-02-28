@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://cs3yp1n338c54" path="res://Scripts/RefCounted/State/ChrGroundMovement.gd" id="4_fvx1v"]
 [ext_resource type="Script" uid="uid://dl0ii18msr523" path="res://Scripts/RefCounted/State/ChrAirMovement.gd" id="5_ehw7o"]
 [ext_resource type="Script" uid="uid://cnmb7cn67m01k" path="res://Scripts/RefCounted/State/ChrAttackChainState.gd" id="6_rqp8f"]
+[ext_resource type="Script" uid="uid://bjgao5obr0l82" path="res://Scripts/RefCounted/State/ChrStaggerState.gd" id="7_efloy"]
+[ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/NodeBased/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/NodeBased/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/NodeBased/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
 
@@ -39,11 +41,25 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.26666668, 0.46666667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"melee_dash"
+"args": [2.0],
+"method": &"dash"
 }, {
 "args": [],
 "method": &"end_attack_debounce"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
 }]
 }
 
@@ -68,11 +84,25 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.3341682, 0.43333334),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"melee_dash"
+"args": [2.0],
+"method": &"dash"
 }, {
 "args": [],
 "method": &"end_attack_debounce"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.40000004),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
 }]
 }
 
@@ -97,11 +127,25 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0.146708, 0.43333334),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [],
-"method": &"melee_dash"
+"args": [10.0],
+"method": &"dash"
 }, {
 "args": [],
 "method": &"end_attack_debounce"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.40000004),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack"
 }]
 }
 
@@ -111,6 +155,27 @@ _data = {
 &"atk_primary2_function": SubResource("Animation_f4dah"),
 &"atk_primary3_function": SubResource("Animation_w7dut")
 }
+
+[sub_resource type="Animation" id="Animation_4ty7g"]
+length = 0.5
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("stagger"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qyh0"]
+_data = {
+&"stagger": SubResource("Animation_4ty7g")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
+radius = 25.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o1aaj"]
 
@@ -158,19 +223,32 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.13333334, 1, 0, -0.29381573, 0.015594076, 0.23333333, 1, 0, 2.0266895, -0.3001824, 0.3, 1, 0, 2.139576, -0.5029244, 0.4, 1, 0, -0.040218115, -1.139488, 0.73333335, 1, 0, -0.040218115, -1.1974877, 1, 1, 0, 0, 0.019471765)
 
+[sub_resource type="Animation" id="Animation_efloy"]
+resource_name = "stagger"
+length = 0.5
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666668, 1, 0.1134295, 0, 0, 0.99354607, 0.5, 1, 0, 0, 0, 1)
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jah6w"]
 _data = {
 &"RESET": SubResource("Animation_wrd4j"),
 &"atk_primary1": SubResource("Animation_o1aaj"),
 &"atk_primary2": SubResource("Animation_8o3yo"),
-&"atk_primary3": SubResource("Animation_8y5mx")
+&"atk_primary3": SubResource("Animation_8y5mx"),
+&"stagger": SubResource("Animation_efloy")
 }
 
-[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("primary_attack_component", "hurt_box", "dash_component", "state_machine")]
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("primary_attack_component", "hurt_box", "dash_component", "stagger_component", "state_machine")]
 script = ExtResource("1_bqqcw")
 primary_attack_component = NodePath("MeleeAttackPrimary")
 hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
+stagger_component = NodePath("StaggerComponent")
 combat_stats = SubResource("Resource_u1pys")
 move_speed = 25.0
 state_machine = NodePath("CharacterStateMachine")
@@ -186,7 +264,8 @@ character = NodePath("..")
 states = {
 "air_movement": NodePath("CharacterAirState"),
 "attack": NodePath("Attack"),
-"ground_movement": NodePath("CharacterGroundState")
+"ground_movement": NodePath("CharacterGroundState"),
+"stagger": NodePath("ChrStaggerState")
 }
 debug = true
 metadata/_custom_type_script = "uid://8k8ew07c3gmb"
@@ -203,13 +282,28 @@ metadata/_custom_type_script = "uid://dl0ii18msr523"
 script = ExtResource("6_rqp8f")
 metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
 
+[node name="ChrStaggerState" type="Node" parent="CharacterStateMachine" unique_id=1328469256]
+script = ExtResource("7_efloy")
+metadata/_custom_type_script = "uid://bjgao5obr0l82"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047610304]
 libraries/primary_attacks = SubResource("AnimationLibrary_06c0b")
+libraries/staggers = SubResource("AnimationLibrary_7qyh0")
+
+[node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("8_4ty7g")
+animation_library = "staggers"
+anim_player = NodePath("../AnimationPlayer")
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ju3pqhikphx7"
 
 [node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("11_4ty7g")
+targeting_range = 4.0
 animation_library = "primary_attacks"
 anim_player = NodePath("../AnimationPlayer")
+hit_shape = SubResource("SphereShape3D_4ty7g")
+local_offset = Vector3(0, 0, -2)
 hostile_mask = 2
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
@@ -222,6 +316,7 @@ character = NodePath("..")
 metadata/_custom_type_script = "uid://v1xgi18be404"
 
 [node name="Visual" type="Node3D" parent="." unique_id=1082354825]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual" unique_id=865252864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

@@ -3,6 +3,7 @@ class_name CombatCharacter extends BaseCharacter
 @export var primary_attack_component : AttackComponent
 @export var hurt_box : HurtBox
 @export var dash_component : DashComponent
+@export var stagger_component : StaggerComponent
 
 @export_subgroup("Stats")
 @export var start_health : int = 100
@@ -12,6 +13,7 @@ class_name CombatCharacter extends BaseCharacter
 
 var debounces : Debounces
 var health_component : HealthComponent
+var stagger_state : ChrStaggerState
 
 func _ready() -> void:
 	super()
@@ -22,6 +24,9 @@ func _ready() -> void:
 	
 	health_component = HealthComponent.new(start_health, max_health)
 	debounces = Debounces.new()
+	
+	stagger_state = state_machine.get_state_by_key("stagger")
+	stagger_state.state_end.connect(rescan_ground_state)
 
 func primary_attack():
 	state_machine.transition_to_state(state_machine.get_state_by_key("attack"))
@@ -39,7 +44,13 @@ func end_attack_debounce():
 func on_atk_hit(atk_info : AtkInfo):
 	health_component.take_damage(atk_info.dmg)
 	print(health_component.health)
+	state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
 
-func melee_dash():
+func stagger():
+	stagger_component.action()
+	debounces.remove_debounce("primary_atk")
+
+func dash(dash_power : float = 2.0):
+	dash_component.dash_intensity = dash_power
 	dash_component.dash_dir = -global_basis.z
 	dash_component.action()
