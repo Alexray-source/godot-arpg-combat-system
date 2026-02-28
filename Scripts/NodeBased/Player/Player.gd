@@ -15,7 +15,7 @@ func _ready() -> void:
 	
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	
-	character.primary_attack_component.atk_anim_finished.connect(on_atk_anim_end)
+	character.primary_attack_component.atk_finished.connect(on_atk_anim_end)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 

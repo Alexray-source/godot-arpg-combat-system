@@ -46,6 +46,7 @@ shape = SubResource("BoxShape3D_wrd4j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36944485, 0)
 
 [node name="BaseCharacter" parent="Enemy" unique_id=1058693826 instance=ExtResource("6_o1aaj")]
+mask = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1349019239]
 transform = Transform3D(0.8876965, -0.40178144, -0.22487022, 0, -0.4883927, 0.872624, -0.4604291, -0.7746252, -0.43354452, -5.022839, 1.7740419, 1.2192998)
@@ -58,6 +59,7 @@ character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 
 [node name="BaseCharacter" parent="Node3D" unique_id=34493895 instance=ExtResource("6_o1aaj")]
+hostile_mask = 2
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Node3D" unique_id=386934923]
 transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)

@@ -6,3 +6,6 @@ func on_enter() -> void:
 		
 		var combat_chr : CombatCharacter = character as CombatCharacter
 		combat_chr.primary_attack_component.action()
+
+func state_physics_process(_delta : float) -> void:
+	character.move_and_slide()

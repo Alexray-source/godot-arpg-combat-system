@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b5fn5x1kkfn3f" path="res://Scripts/NodeBased/Characters/CombatCharacter.gd" id="1_bqqcw"]
 [ext_resource type="Script" uid="uid://xo7cr35aaie1" path="res://Scripts/Resources/ChrCombatStats.gd" id="2_0o5qm"]
-[ext_resource type="Script" uid="uid://bawbmygrjcusg" path="res://Scripts/NodeBased/CharacterComponents/AttackAnimationChainer.gd" id="2_f04ns"]
-[ext_resource type="Script" uid="uid://dvt87355cywkn" path="res://Scripts/NodeBased/CharacterComponents/MeleeHitbox.gd" id="3_0o5qm"]
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/NodeBased/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="4_f04ns"]
 [ext_resource type="Script" uid="uid://cs3yp1n338c54" path="res://Scripts/RefCounted/State/ChrGroundMovement.gd" id="4_fvx1v"]
 [ext_resource type="Script" uid="uid://dl0ii18msr523" path="res://Scripts/RefCounted/State/ChrAirMovement.gd" id="5_ehw7o"]
 [ext_resource type="Script" uid="uid://cnmb7cn67m01k" path="res://Scripts/RefCounted/State/ChrAttackChainState.gd" id="6_rqp8f"]
+[ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/NodeBased/CharacterComponents/DashComponent.gd" id="9_efloy"]
+[ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/NodeBased/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -32,27 +32,16 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeHitbox")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.26666668, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"action"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.46666667),
-"transitions": PackedFloat32Array(1),
-"values": [{
+"method": &"melee_dash"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -72,27 +61,16 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeHitbox")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.3341682, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"action"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.43333334),
-"transitions": PackedFloat32Array(1),
-"values": [{
+"method": &"melee_dash"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -112,27 +90,16 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeHitbox")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.40699393),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.146708, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"action"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.43333334),
-"transitions": PackedFloat32Array(1),
-"values": [{
+"method": &"melee_dash"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -144,9 +111,6 @@ _data = {
 &"atk_primary2_function": SubResource("Animation_f4dah"),
 &"atk_primary3_function": SubResource("Animation_w7dut")
 }
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_8y5mx"]
-radius = 2.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o1aaj"]
 
@@ -202,15 +166,19 @@ _data = {
 &"atk_primary3": SubResource("Animation_8y5mx")
 }
 
-[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("primary_attack_component", "melee_hitbox", "hurt_box", "state_machine")]
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("primary_attack_component", "hurt_box", "dash_component", "state_machine")]
 script = ExtResource("1_bqqcw")
-primary_attack_component = NodePath("AttackAnimationChainer")
-melee_hitbox = NodePath("MeleeHitbox")
+primary_attack_component = NodePath("MeleeAttackPrimary")
 hurt_box = NodePath("HurtBox")
+dash_component = NodePath("DashComponent")
 combat_stats = SubResource("Resource_u1pys")
 move_speed = 25.0
 state_machine = NodePath("CharacterStateMachine")
 metadata/_custom_type_script = "uid://83mneuiydchi"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=945293395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_8y5mx")
 
 [node name="CharacterStateMachine" type="Node" parent="." unique_id=1195978914 node_paths=PackedStringArray("character", "states")]
 script = ExtResource("3_u1pys")
@@ -235,24 +203,23 @@ metadata/_custom_type_script = "uid://dl0ii18msr523"
 script = ExtResource("6_rqp8f")
 metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=945293395]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_8y5mx")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047610304]
 libraries/primary_attacks = SubResource("AnimationLibrary_06c0b")
 
-[node name="AttackAnimationChainer" type="Node" parent="." unique_id=412074962 node_paths=PackedStringArray("anim_player")]
-script = ExtResource("2_f04ns")
+[node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("11_4ty7g")
+animation_library = "primary_attacks"
 anim_player = NodePath("../AnimationPlayer")
-attacks_library_name = "primary_attacks"
-metadata/_custom_type_script = "uid://bawbmygrjcusg"
+hostile_mask = 2
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
-[node name="MeleeHitbox" type="Node" parent="." unique_id=1563391074 node_paths=PackedStringArray("node_origin")]
-script = ExtResource("3_0o5qm")
-hit_shape = SubResource("SphereShape3D_8y5mx")
-node_origin = NodePath("../Visual/MeshInstance3D2")
-local_offset = Vector3(0, 0, -3)
+[node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
+script = ExtResource("9_efloy")
+dash_time = 0.25
+dash_intensity = 2.0
+character = NodePath("..")
+metadata/_custom_type_script = "uid://v1xgi18be404"
 
 [node name="Visual" type="Node3D" parent="." unique_id=1082354825]
 
