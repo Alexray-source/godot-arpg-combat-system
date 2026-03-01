@@ -3,7 +3,7 @@ class_name BaseCharacter extends CharacterBody3D
 const GRAVITY_DIR : Vector3 = Vector3.DOWN
 
 @export var move_speed : float = 10.0
-@export var gravity_scale : float = 4.0
+@export var gravity_scale : float = 2.0
 @export var state_machine : CharacterStateMachine
 
 var move_dir : Vector3

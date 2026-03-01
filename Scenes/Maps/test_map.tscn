@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://bf315smdjou75"]
 
 [ext_resource type="Script" uid="uid://kcwptoxteen1" path="res://Scripts/NodeBased/Enemies/MeleeEnemy.gd" id="1_rnym6"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_8y5mx"]
 [ext_resource type="Script" uid="uid://efa80oanjed8" path="res://Scripts/NodeBased/State/EnemyMeleeStateMachine.gd" id="3_wrd4j"]
+[ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/NodeBased/Player/ChrCamArm.gd" id="5_8y5mx"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="7_8o3yo"]
+[ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
 [ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="8_8y5mx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
@@ -28,6 +31,11 @@ albedo_color = Color(0.57421875, 0.57421875, 0.57421875, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrd4j"]
 points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
 
+[sub_resource type="Resource" id="Resource_jah6w"]
+script = ExtResource("3_8y5mx")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
 [node name="Node3D" type="Node3D" unique_id=569510052]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675439066]
@@ -48,7 +56,7 @@ script = ExtResource("1_rnym6")
 state_machine = NodePath("EnemyStateMachine")
 
 [node name="BaseCharacter" parent="Enemy" unique_id=1058693826 instance=ExtResource("6_o1aaj")]
-mask = 2
+chr_layer = SubResource("Resource_jah6w")
 
 [node name="EnemyStateMachine" type="Node" parent="Enemy" unique_id=737690929 node_paths=PackedStringArray("character")]
 script = ExtResource("3_wrd4j")
@@ -58,22 +66,37 @@ character = NodePath("../BaseCharacter")
 transform = Transform3D(0.8876965, -0.40178144, -0.22487022, 0, -0.4883927, 0.872624, -0.4604291, -0.7746252, -0.43354452, -5.022839, 1.7740419, 1.2192998)
 shadow_enabled = true
 
-[node name="Node3D" type="Node3D" parent="." unique_id=1910115083 node_paths=PackedStringArray("character", "plr_state_machine")]
+[node name="Player" type="Node3D" parent="." unique_id=1910115083 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6427264, 8.258239)
 script = ExtResource("7_8o3yo")
 character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
+camera_arm = NodePath("SpringArm3D")
 
-[node name="BaseCharacter" parent="Node3D" unique_id=34493895 instance=ExtResource("6_o1aaj")]
+[node name="BaseCharacter" parent="Player" unique_id=34493895 instance=ExtResource("6_o1aaj")]
+collision_layer = 0
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Node3D" unique_id=386934923]
+[node name="SpringArm3D" type="SpringArm3D" parent="Player" unique_id=386934923 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
 spring_length = 5.0
+script = ExtResource("5_8y5mx")
+target = NodePath("../BaseCharacter")
+target_offset_pos = Vector3(0, 2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Node3D/SpringArm3D" unique_id=1662915467]
+[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D" unique_id=1662915467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.045907, 3.3696733, -13.005961)
 
-[node name="PlrCharacterStateMachine" type="Node" parent="Node3D" unique_id=1990049720 node_paths=PackedStringArray("character")]
+[node name="PlrCharacterStateMachine" type="Node" parent="Player" unique_id=1990049720 node_paths=PackedStringArray("character")]
 script = ExtResource("8_8y5mx")
 character = NodePath("../BaseCharacter")
 metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
+
+[node name="ThrowableCube" parent="." unique_id=554461063 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.8951305, 0, 0.44580415, 0, 1, 0, -0.44580415, 0, 0.8951305, 4.7681246, 1, 8.00894)
+accepted_atk_types = Array[int]([1])
+
+[node name="ThrowableCube2" parent="." unique_id=890698652 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -12.651601, 1, 3.4641418)
+
+[node name="ThrowableCube3" parent="." unique_id=460223719 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 6.1582575, 1, -7.017789)

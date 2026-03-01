@@ -5,8 +5,8 @@ class_name MeleeAttack extends AttackComponent
 @export var anim_player : AnimationPlayer
 @export var hit_shape : Shape3D
 @export var local_offset : Vector3
-@export var hostile_mask : int = 1
 @export var dmg : int = 10
+@export var atk_type : AtkInfo.AtkType = AtkInfo.AtkType.MELEE
 
 var animation_chainer : AnimationChainer
 var melee_hitbox : MeleeHitbox
@@ -23,7 +23,6 @@ func _ready() -> void:
 	melee_hitbox = MeleeHitbox.new()
 	melee_hitbox.direct_space_state = get_viewport().world_3d.direct_space_state
 	melee_hitbox.hit_shape = hit_shape
-	melee_hitbox.scan_mask = hostile_mask
 	
 	animation_chainer = AnimationChainer.new()
 	animation_chainer.anim_player = anim_player
@@ -33,9 +32,10 @@ func _ready() -> void:
 
 func on_animation_finish():
 	atk_finished.emit()
+	animation_chainer.reset_chain()
 
 func action() -> void:
-	var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, get_viewport().world_3d.direct_space_state, target_scan_shape, character.global_transform, hostile_mask)
+	var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, get_viewport().world_3d.direct_space_state, target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
 	
 	if closest_hurtbox != null:
 		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
@@ -46,7 +46,8 @@ func action() -> void:
 	animation_chainer.resume_chain()
 
 func attack_event() -> void:
-	melee_hitbox.atk_info = AtkInfo.new(dmg, AtkInfo.AtkType.MELEE, character, -character.global_basis.z.normalized())
+	melee_hitbox.scan_mask = chr_layer.get_enemy_layer()
+	melee_hitbox.atk_info = AtkInfo.new(dmg, atk_type, character, -character.global_basis.z.normalized())
 	melee_hitbox.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position + (character.global_basis.orthonormalized() * local_offset))
 	
 	melee_hitbox.attack()

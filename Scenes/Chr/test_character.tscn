@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5fn5x1kkfn3f" path="res://Scripts/NodeBased/Characters/CombatCharacter.gd" id="1_bqqcw"]
 [ext_resource type="Script" uid="uid://xo7cr35aaie1" path="res://Scripts/Resources/ChrCombatStats.gd" id="2_0o5qm"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_ehw7o"]
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/NodeBased/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="4_f04ns"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/NodeBased/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
@@ -11,6 +12,10 @@
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
 metadata/_custom_type_script = "uid://xo7cr35aaie1"
+
+[sub_resource type="Resource" id="Resource_rqp8f"]
+script = ExtResource("3_ehw7o")
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
 
@@ -185,11 +190,11 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.93333334),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [1],
-"method": &"end_special_attack_debounce"
+"args": [],
+"method": &"end_attack_debounce"
 }]
 }
 
@@ -217,6 +222,13 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
+radius = 2.0
+
+[sub_resource type="Resource" id="Resource_ehw7o"]
+script = ExtResource("3_ehw7o")
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ehw7o"]
 radius = 5.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o1aaj"]
@@ -296,6 +308,8 @@ _data = {
 }
 
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "primary_attack_component", "special_attack1_component", "special_attack2_component", "special_attack3_component", "state_machine")]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_bqqcw")
 hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
@@ -305,7 +319,8 @@ special_attack1_component = NodePath("MeleeAttackSpecial1")
 special_attack2_component = NodePath("MeleeAttackSpecial2")
 special_attack3_component = NodePath("MeleeAttackSpecial3")
 combat_stats = SubResource("Resource_u1pys")
-move_speed = 25.0
+chr_layer = SubResource("Resource_rqp8f")
+move_speed = 50.0
 state_machine = NodePath("CharacterStateMachine")
 metadata/_custom_type_script = "uid://83mneuiydchi"
 
@@ -316,13 +331,19 @@ shape = SubResource("CapsuleShape3D_8y5mx")
 [node name="CharacterStateMachine" type="Node" parent="." unique_id=1195978914 node_paths=PackedStringArray("character")]
 script = ExtResource("3_u1pys")
 character = NodePath("..")
-debug = true
 metadata/_custom_type_script = "uid://8k8ew07c3gmb"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047610304]
 libraries/primary_attacks = SubResource("AnimationLibrary_06c0b")
 libraries/specials = SubResource("AnimationLibrary_smxw8")
 libraries/staggers = SubResource("AnimationLibrary_7qyh0")
+
+[node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
+script = ExtResource("9_efloy")
+dash_time = 0.25
+dash_intensity = 2.0
+character = NodePath("..")
+metadata/_custom_type_script = "uid://v1xgi18be404"
 
 [node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("8_4ty7g")
@@ -338,6 +359,7 @@ animations = Array[StringName]([&"primary_attacks/atk_primary1_function", &"prim
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
+chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -346,9 +368,9 @@ script = ExtResource("11_4ty7g")
 targeting_range = 4.0
 animations = Array[StringName]([&"specials/atk1"])
 anim_player = NodePath("../AnimationPlayer")
-hit_shape = SubResource("SphereShape3D_4ty7g")
-local_offset = Vector3(0, 0, -2)
-hostile_mask = 2
+hit_shape = SubResource("SphereShape3D_ehw7o")
+atk_type = 3
+chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -358,7 +380,7 @@ targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
-hostile_mask = 2
+chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -368,16 +390,9 @@ targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
-hostile_mask = 2
+chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
-
-[node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
-script = ExtResource("9_efloy")
-dash_time = 0.25
-dash_intensity = 2.0
-character = NodePath("..")
-metadata/_custom_type_script = "uid://v1xgi18be404"
 
 [node name="Visual" type="Node3D" parent="." unique_id=1082354825]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)

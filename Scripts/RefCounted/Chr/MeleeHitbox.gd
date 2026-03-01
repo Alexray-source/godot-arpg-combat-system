@@ -13,7 +13,7 @@ func attack() -> void:
 	shape_cast_params.collision_mask = scan_mask
 	shape_cast_params.collide_with_areas = true
 	shape_cast_params.collide_with_bodies = false
-	
+	print(shape_cast_params.collision_mask)
 	#var sphere = SphereMesh.new()
 	#sphere.height = hit_shape.radius * 2.0
 	#sphere.radius = hit_shape.radius

@@ -14,7 +14,7 @@ class_name CombatCharacter extends BaseCharacter
 @export var start_health : int = 100
 @export var max_health : int = 100
 @export var combat_stats : ChrCombatStats
-@export var mask : int = 1
+@export var chr_layer : CharacterLayer
 
 var debounces : Debounces
 var health_component : HealthComponent
@@ -24,13 +24,19 @@ var prev_hit_info : AtkInfo
 
 func _ready() -> void:
 	super()
-	hurt_box.collision_layer = mask
+	hurt_box.collision_layer = chr_layer.get_collision_layer()
 	hurt_box.hit.connect(on_atk_hit)
+	hurt_box.throwable_hit.connect(on_throwable_hit)
 	
-	primary_attack_component.atk_finished.connect(rescan_ground_state)
-	special_attack1_component.atk_finished.connect(rescan_ground_state)
-	special_attack2_component.atk_finished.connect(rescan_ground_state)
-	special_attack3_component.atk_finished.connect(rescan_ground_state)
+	primary_attack_component.atk_finished.connect(on_atk_finished)
+	special_attack1_component.atk_finished.connect(on_atk_finished)
+	special_attack2_component.atk_finished.connect(on_atk_finished)
+	special_attack3_component.atk_finished.connect(on_atk_finished)
+	
+	primary_attack_component.chr_layer = chr_layer
+	special_attack1_component.chr_layer = chr_layer
+	special_attack2_component.chr_layer = chr_layer
+	special_attack3_component.chr_layer = chr_layer
 	
 	health_component = HealthComponent.new(start_health, max_health)
 	debounces = Debounces.new()
@@ -40,17 +46,18 @@ func _ready() -> void:
 
 func primary_attack():
 	state_machine.transition_to_state(state_machine.get_state_by_key("attack"))
-	debounces.add_debounce("primary_atk")
+	debounces.add_debounce("attack")
 
-func get_special_atk_debounce_string(atk_index : int):
-	return "attack" + str(atk_index)
+func is_attack_debounce_active():
+	return debounces.is_debounce_active("attack")
+
+func on_atk_finished():
+	end_attack_debounce()
+	rescan_ground_state()
 
 func special_attack(atk_index : int):
-	var debounce_string = get_special_atk_debounce_string(atk_index)
-	
-	if debounces.is_debounce_active(debounce_string) == false:
-		state_machine.transition_to_state(state_machine.get_state_by_key("sp_attack" + str(atk_index)))
-		debounces.add_debounce(debounce_string)
+	debounces.add_debounce("attack")
+	state_machine.transition_to_state(state_machine.get_state_by_key("sp_attack" + str(atk_index)))
 
 func rescan_ground_state():
 	if is_on_floor():
@@ -59,11 +66,11 @@ func rescan_ground_state():
 		state_machine.transition_to_state(state_machine.get_state_by_key("air_movement"))
 
 func end_attack_debounce():
-	debounces.remove_debounce("primary_atk")
+	debounces.remove_debounce("attack")
 
-func end_special_attack_debounce(atk_index : int):
-	var debounce_string = get_special_atk_debounce_string(atk_index)
-	debounces.remove_debounce(debounce_string)
+#func end_special_attack_debounce(atk_index : int):
+	#var debounce_string = get_special_atk_debounce_string(atk_index)
+	#debounces.remove_debounce(debounce_string)
 
 func on_atk_hit(atk_info : AtkInfo):
 	prev_hit_info = atk_info
@@ -71,11 +78,15 @@ func on_atk_hit(atk_info : AtkInfo):
 	print(health_component.health)
 	state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
 
+func on_throwable_hit(throwable : Throwable):
+	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
+	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length() * 2.0)
+
 func stagger():
 	velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
 	stagger_component.action()
-	debounces.remove_debounce("primary_atk")
+	debounces.remove_debounce("attack")
 
 func dash(dash_power : float = 2.0):
 	dash_component.dash_intensity = dash_power

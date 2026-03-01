@@ -1,8 +1,15 @@
 class_name CharacterGroundState extends CharacterState
 
+var smoothed_move_dir : Vector3
+
+func on_enter() -> void:
+	smoothed_move_dir = character.move_dir
+
 func state_physics_process(delta : float) -> void:
+	smoothed_move_dir = smoothed_move_dir.lerp(character.move_dir, delta * 14.0).normalized()
+	
 	if character.move_dir.length() > 0.0:
-		character.move_velocity = character.move_dir.normalized() * character.move_speed * delta * 10.0
+		character.move_velocity = smoothed_move_dir * character.move_speed * delta * 10.0
 	else:
 		character.move_velocity = Vector3.ZERO
 	

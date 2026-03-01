@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b37tiutqxvxg7"]
+
+[ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/NodeBased/Environment/Throwable.gd" id="1_ifau6"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="2_fb08b"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wrd4j"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o1aaj"]
+size = Vector3(2, 2, 2)
+
+[node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
+freeze = true
+script = ExtResource("1_ifau6")
+hurtbox = NodePath("HurtBox")
+accepted_atk_types = Array[int]([3])
+allowed_target_hits = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
+mesh = SubResource("BoxMesh_wrd4j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1236279868]
+shape = SubResource("BoxShape3D_o1aaj")
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
+collision_layer = 15
+collision_mask = 0
+script = ExtResource("2_fb08b")
+metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1752552509]
+shape = SubResource("BoxShape3D_o1aaj")

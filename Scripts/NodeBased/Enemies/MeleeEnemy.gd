@@ -10,7 +10,7 @@ var timeline : Dictionary[float, Callable] = {
 }
 
 var time_passed = 0.0
-var max_time : float = 5.0
+var max_time : float = 2.5
 
 func _ready() -> void:
 	state_machine.state_machine_setup()
