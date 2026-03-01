@@ -1,4 +1,4 @@
-class_name PlrAttackState extends PlrCharacterState
+class_name EnemyNPCPrimaryAttackState extends EnemyNPCState
 
 func on_enter() -> void:
 	if character is CombatCharacter:

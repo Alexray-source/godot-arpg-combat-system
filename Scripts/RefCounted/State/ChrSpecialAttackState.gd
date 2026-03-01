@@ -1,4 +1,4 @@
-extends CharacterState
+class_name CharacterSpecialAttackState extends CharacterState
 
 @export var special_atk_index : int = 1
 

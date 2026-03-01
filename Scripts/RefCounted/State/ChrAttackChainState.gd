@@ -1,4 +1,4 @@
-extends CharacterState
+class_name CharacterPrimaryAttackState extends CharacterState
 
 func on_enter() -> void:
 	if character is CombatCharacter:

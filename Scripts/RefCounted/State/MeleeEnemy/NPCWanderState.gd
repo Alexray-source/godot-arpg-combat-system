@@ -1,4 +1,4 @@
-class_name ChrWanderState extends CharacterState
+class_name NPCWanderState extends EnemyNPCState
 
 var time_passed : float = 0.0
 var wander_dir : Vector3 = Vector3.FORWARD

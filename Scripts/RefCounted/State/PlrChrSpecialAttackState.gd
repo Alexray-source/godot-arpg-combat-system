@@ -1,4 +1,4 @@
-extends PlrCharacterState
+class_name PlrSpecialAtkState extends PlrCharacterState
 
 @export var special_atk_index : int = 1
 

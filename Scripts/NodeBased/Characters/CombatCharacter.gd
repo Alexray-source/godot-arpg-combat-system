@@ -72,6 +72,7 @@ func on_atk_hit(atk_info : AtkInfo):
 	state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
 
 func stagger():
+	velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
 	stagger_component.action()
 	debounces.remove_debounce("primary_atk")

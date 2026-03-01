@@ -1,6 +1,6 @@
 class_name StateMachine extends Node
 
-@export var states : Dictionary[String, State]
+var states : Dictionary[String, State]
 @export var debug : bool = false
 
 var current_state : State
@@ -31,5 +31,5 @@ func transition_to_state(new_state : State):
 	new_state.on_enter()
 	
 	if debug == true:
-		print("New State: " + str(new_state.name))
+		print("New State: " + str(new_state))
 	

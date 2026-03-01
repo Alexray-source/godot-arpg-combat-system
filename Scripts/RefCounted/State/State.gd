@@ -1,4 +1,4 @@
-class_name State extends Node
+class_name State extends RefCounted
 
 #@export var transitions : Dictionary[String, Node]
 signal state_end()

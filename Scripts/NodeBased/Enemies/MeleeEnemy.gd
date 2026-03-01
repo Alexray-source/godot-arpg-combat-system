@@ -1,16 +1,16 @@
 extends Node
 
-@export var state_machine : CharacterStateMachine
+@export var state_machine : EnemyMeleeStateMachine
 
 var current_callable : Callable
 var timeline : Dictionary[float, Callable] = {
 	0.0 : idle,
-	5.0 : wander,
-	9.0 : attack
+	#5.0 : wander,
+	2.0 : attack
 }
 
 var time_passed = 0.0
-var max_time : float = 10.0
+var max_time : float = 5.0
 
 func _ready() -> void:
 	state_machine.state_machine_setup()
@@ -29,8 +29,8 @@ func _physics_process(delta: float) -> void:
 func idle():
 	state_machine.transition_to_state(state_machine.states.get("idle"))
 
-func wander():
-	state_machine.transition_to_state(state_machine.states.get("wander"))
+#func wander():
+	#state_machine.transition_to_state(state_machine.states.get("wander"))
 
 func attack():
 	state_machine.transition_to_state(state_machine.states.get("primary_atk"))

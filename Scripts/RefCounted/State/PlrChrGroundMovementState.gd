@@ -1,10 +1,10 @@
-extends PlrCharacterState
+class_name PlrGroundMovement extends PlrCharacterState
 
 var current_camera : Camera3D
 
 func on_enter() -> void:
 	input_events.jump_input.connect(character.jump)
-	current_camera = get_viewport().get_camera_3d()
+	current_camera = character.get_viewport().get_camera_3d()
 
 func on_exit() -> void:
 	if input_events.jump_input.is_connected(character.jump) == true:
