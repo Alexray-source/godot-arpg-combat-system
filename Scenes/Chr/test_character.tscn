@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cs3yp1n338c54" path="res://Scripts/RefCounted/State/ChrGroundMovement.gd" id="4_fvx1v"]
 [ext_resource type="Script" uid="uid://dl0ii18msr523" path="res://Scripts/RefCounted/State/ChrAirMovement.gd" id="5_ehw7o"]
 [ext_resource type="Script" uid="uid://cnmb7cn67m01k" path="res://Scripts/RefCounted/State/ChrAttackChainState.gd" id="6_rqp8f"]
+[ext_resource type="Script" uid="uid://2bf76ntc2ww8" path="res://Scripts/RefCounted/State/ChrSpecialAttackState.gd" id="7_7qyh0"]
 [ext_resource type="Script" uid="uid://bjgao5obr0l82" path="res://Scripts/RefCounted/State/ChrStaggerState.gd" id="7_efloy"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/NodeBased/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/NodeBased/CharacterComponents/DashComponent.gd" id="9_efloy"]
@@ -59,7 +60,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"attack_event"
 }]
 }
 
@@ -102,7 +103,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"attack_event"
 }]
 }
 
@@ -145,7 +146,7 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"attack"
+"method": &"attack_event"
 }]
 }
 
@@ -154,6 +155,52 @@ _data = {
 &"atk_primary1_function": SubResource("Animation_jah6w"),
 &"atk_primary2_function": SubResource("Animation_f4dah"),
 &"atk_primary3_function": SubResource("Animation_w7dut")
+}
+
+[sub_resource type="Animation" id="Animation_7qyh0"]
+resource_name = "atk1"
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("atk_special1"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeleeAttackSpecial1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_event"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1],
+"method": &"end_special_attack_debounce"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_smxw8"]
+_data = {
+&"atk1": SubResource("Animation_7qyh0")
 }
 
 [sub_resource type="Animation" id="Animation_4ty7g"]
@@ -175,7 +222,7 @@ _data = {
 }
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
-radius = 25.0
+radius = 5.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o1aaj"]
 
@@ -223,6 +270,15 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.13333334, 1, 0, -0.29381573, 0.015594076, 0.23333333, 1, 0, 2.0266895, -0.3001824, 0.3, 1, 0, 2.139576, -0.5029244, 0.4, 1, 0, -0.040218115, -1.139488, 0.73333335, 1, 0, -0.040218115, -1.1974877, 1, 1, 0, 0, 0.019471765)
 
+[sub_resource type="Animation" id="Animation_3m4by"]
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.23333333, 1, 0, -0.17302047, 0.019471765, 0.4, 1, 0, 3.0807624, 0.019471765, 0.6666667, 1, 0, 3.8038256, 0.019471765, 0.8, 1, 0, -0.17302047, 0.019471765, 0.93333334, 1, 0, -0.031870127, 0.019471765, 1, 1, 0, -0.17302047, 0.019471765)
+
 [sub_resource type="Animation" id="Animation_efloy"]
 resource_name = "stagger"
 length = 0.5
@@ -240,15 +296,19 @@ _data = {
 &"atk_primary1": SubResource("Animation_o1aaj"),
 &"atk_primary2": SubResource("Animation_8o3yo"),
 &"atk_primary3": SubResource("Animation_8y5mx"),
+&"atk_special1": SubResource("Animation_3m4by"),
 &"stagger": SubResource("Animation_efloy")
 }
 
-[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("primary_attack_component", "hurt_box", "dash_component", "stagger_component", "state_machine")]
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "primary_attack_component", "special_attack1_component", "special_attack2_component", "special_attack3_component", "state_machine")]
 script = ExtResource("1_bqqcw")
-primary_attack_component = NodePath("MeleeAttackPrimary")
 hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
+primary_attack_component = NodePath("MeleeAttackPrimary")
+special_attack1_component = NodePath("MeleeAttackSpecial1")
+special_attack2_component = NodePath("MeleeAttackSpecial2")
+special_attack3_component = NodePath("MeleeAttackSpecial3")
 combat_stats = SubResource("Resource_u1pys")
 move_speed = 25.0
 state_machine = NodePath("CharacterStateMachine")
@@ -265,6 +325,9 @@ states = {
 "air_movement": NodePath("CharacterAirState"),
 "attack": NodePath("Attack"),
 "ground_movement": NodePath("CharacterGroundState"),
+"sp_attack1": NodePath("SP_Attack1"),
+"sp_attack2": NodePath("SP_Attack2"),
+"sp_attack3": NodePath("SP_Attack3"),
 "stagger": NodePath("ChrStaggerState")
 }
 debug = true
@@ -282,12 +345,27 @@ metadata/_custom_type_script = "uid://dl0ii18msr523"
 script = ExtResource("6_rqp8f")
 metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
 
+[node name="SP_Attack1" type="Node" parent="CharacterStateMachine" unique_id=1346970256]
+script = ExtResource("7_7qyh0")
+metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
+
+[node name="SP_Attack2" type="Node" parent="CharacterStateMachine" unique_id=1923441324]
+script = ExtResource("7_7qyh0")
+special_atk_index = 2
+metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
+
+[node name="SP_Attack3" type="Node" parent="CharacterStateMachine" unique_id=1215589833]
+script = ExtResource("7_7qyh0")
+special_atk_index = 3
+metadata/_custom_type_script = "uid://b7mxlpgoy3wsg"
+
 [node name="ChrStaggerState" type="Node" parent="CharacterStateMachine" unique_id=1328469256]
 script = ExtResource("7_efloy")
 metadata/_custom_type_script = "uid://bjgao5obr0l82"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047610304]
 libraries/primary_attacks = SubResource("AnimationLibrary_06c0b")
+libraries/specials = SubResource("AnimationLibrary_smxw8")
 libraries/staggers = SubResource("AnimationLibrary_7qyh0")
 
 [node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_player", "character")]
@@ -300,7 +378,38 @@ metadata/_custom_type_script = "uid://ju3pqhikphx7"
 [node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
-animation_library = "primary_attacks"
+animations = Array[StringName]([&"primary_attacks/atk_primary1_function", &"primary_attacks/atk_primary2_function", &"primary_attacks/atk_primary3_function"])
+anim_player = NodePath("../AnimationPlayer")
+hit_shape = SubResource("SphereShape3D_4ty7g")
+local_offset = Vector3(0, 0, -2)
+hostile_mask = 2
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ctkikwm1phcu2"
+
+[node name="MeleeAttackSpecial1" type="Node" parent="." unique_id=1052011916 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("11_4ty7g")
+targeting_range = 4.0
+animations = Array[StringName]([&"specials/atk1"])
+anim_player = NodePath("../AnimationPlayer")
+hit_shape = SubResource("SphereShape3D_4ty7g")
+local_offset = Vector3(0, 0, -2)
+hostile_mask = 2
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ctkikwm1phcu2"
+
+[node name="MeleeAttackSpecial2" type="Node" parent="." unique_id=1367569396 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("11_4ty7g")
+targeting_range = 4.0
+anim_player = NodePath("../AnimationPlayer")
+hit_shape = SubResource("SphereShape3D_4ty7g")
+local_offset = Vector3(0, 0, -2)
+hostile_mask = 2
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ctkikwm1phcu2"
+
+[node name="MeleeAttackSpecial3" type="Node" parent="." unique_id=1164184962 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("11_4ty7g")
+targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)

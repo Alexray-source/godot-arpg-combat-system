@@ -5,11 +5,16 @@ var block_move_input : bool = false
 
 signal jump_input
 signal primary_atk_input
-signal special_atk_input
+signal special_atk1_input
+signal special_atk2_input
+signal special_atk3_input
 
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
-	"chr_primary_atk" : primary_atk_input
+	"chr_primary_atk" : primary_atk_input,
+	"chr_special_atk1" : special_atk1_input,
+	"chr_special_atk2" : special_atk2_input,
+	"chr_special_atk3" : special_atk3_input
 }
 
 func input_pressed(input : InputEvent):

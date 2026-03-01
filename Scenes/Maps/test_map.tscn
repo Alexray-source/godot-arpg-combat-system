@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bf315smdjou75"]
 
+[ext_resource type="Script" uid="uid://dqqsp7ntauwfk" path="res://Scripts/RefCounted/State/PlrChrSpecialAttackState.gd" id="6_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="7_8o3yo"]
 [ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="8_8y5mx"]
@@ -59,7 +60,6 @@ character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 
 [node name="BaseCharacter" parent="Node3D" unique_id=34493895 instance=ExtResource("6_o1aaj")]
-hostile_mask = 2
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Node3D" unique_id=386934923]
 transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
@@ -73,7 +73,10 @@ script = ExtResource("8_8y5mx")
 character = NodePath("../BaseCharacter")
 states = {
 "movement": NodePath("Movement"),
-"primary_atk": NodePath("PrimaryAttack")
+"primary_atk": NodePath("PrimaryAttack"),
+"special_atk1": NodePath("SpecialAttack1"),
+"special_atk2": NodePath("SpecialAttack2"),
+"special_atk3": NodePath("SpecialAttack3")
 }
 metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
 
@@ -82,3 +85,14 @@ script = ExtResource("9_jah6w")
 
 [node name="PrimaryAttack" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=704904040]
 script = ExtResource("11_w7dut")
+
+[node name="SpecialAttack1" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=1188870745]
+script = ExtResource("6_8o3yo")
+
+[node name="SpecialAttack2" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=1440074807]
+script = ExtResource("6_8o3yo")
+special_atk_index = 2
+
+[node name="SpecialAttack3" type="Node" parent="Node3D/PlrCharacterStateMachine" unique_id=93170783]
+script = ExtResource("6_8o3yo")
+special_atk_index = 3
