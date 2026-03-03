@@ -5,9 +5,12 @@ class_name DashComponent extends CharacterComponent
 @export var dash_dir : Vector3
 var timer : SceneTreeTimer
 
+signal dash_ended
+
 func stop_dash() -> void:
 	character.velocity = Vector3.ZERO
 	timer = null
+	dash_ended.emit()
 
 func action() -> void:
 	character.velocity = dash_dir * dash_intensity

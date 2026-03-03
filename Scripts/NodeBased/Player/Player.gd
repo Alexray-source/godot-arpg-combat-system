@@ -31,18 +31,19 @@ func _ready() -> void:
 	
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	
-	character.primary_attack_component.atk_finished.connect(on_atk_anim_end)
-	character.special_attack1_component.atk_finished.connect(on_atk_anim_end)
+	character.primary_attack_component.atk_finished.connect(return_to_movement_state)
+	character.special_attack1_component.atk_finished.connect(return_to_movement_state)
+	character.dash_component.dash_ended.connect(return_to_movement_state)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 	input_events.special_atk1_input.connect(on_special_atk.bind(1))
-	input_events.dash_input.connect(on_dash)
+	input_events.dash_input.connect(on_dodge_dash)
 
 
 func get_special_atk_debounce_string(atk_index : int):
 	return "attack" + str(atk_index)
 
-func on_atk_anim_end():
+func return_to_movement_state():
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 
 func on_primary_atk() -> void:
@@ -56,15 +57,14 @@ func on_special_atk(atk_index : int) -> void:
 	if character is CombatCharacter and plr_debounces.is_debounce_active(debounce_string) == false and character.debounces.is_debounce_active("attack") == false:
 		plr_debounces.add_debounce(debounce_string)
 		plr_debounces.remove_debounce_delayed(debounce_string, 2.0)
-
 		
 		plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("special_atk" + str(atk_index)))
 
-func on_dash() -> void:
-	if plr_debounces.is_debounce_active("dash") == false: 
-		plr_debounces.add_debounce("dash")
-		plr_debounces.remove_debounce_delayed("dash", 1.0)
-		character.dash(24.0)
+func on_dodge_dash() -> void:
+	if plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger"): 
+		plr_debounces.add_debounce("dodge_dash")
+		plr_debounces.remove_debounce_delayed("dodge_dash", 1.0)
+		plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("dodge_dash"))
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)

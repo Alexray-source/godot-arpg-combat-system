@@ -1,14 +1,16 @@
 class_name HealthComponent extends RefCounted
 
 
-@export var max_health : int = 100
-@export var health : int = 100:
+var max_health : int = 100
+var health : int = 100:
 	get():
 		return health
 	set(value):
 		health = value
 		health_changed.emit()
+		
 var dead : bool = false
+var debug : bool = false
 
 signal health_changed
 signal died
@@ -25,7 +27,9 @@ func take_damage(dmg : int, bypass_cooldown : bool = false):
 	
 	health -= dmg
 	health_changed.emit()
-	#print(health)
+	if debug == true:
+		print(health)
+	
 	if health <= 0:
 		health = 0
 		died.emit()

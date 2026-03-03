@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://obgfjc23nva"]
+
+[ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/NodeBased/Environment/Throwable.gd" id="1_3suhi"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="2_sk64v"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_w4rr8"]
+radius = 0.7
+height = 1.4
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ifau6"]
+albedo_color = Color(0, 0.4140625, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_smnle"]
+radius = 0.7
+
+[node name="ThrowableBall" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
+freeze = true
+script = ExtResource("1_3suhi")
+hurtbox = NodePath("HurtBox")
+accepted_atk_types = Array[int]([3, 1])
+allowed_target_hits = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
+mesh = SubResource("SphereMesh_w4rr8")
+surface_material_override/0 = SubResource("ORMMaterial3D_ifau6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1236279868]
+shape = SubResource("SphereShape3D_smnle")
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
+collision_layer = 15
+collision_mask = 0
+script = ExtResource("2_sk64v")
+metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1752552509]
+shape = SubResource("SphereShape3D_smnle")

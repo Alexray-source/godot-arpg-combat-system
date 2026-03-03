@@ -1,36 +1,42 @@
 extends Node
 
+@export var character : CombatCharacter
+@export var detect_range : float = 30.0
+@export var forced_attack_range : float = 4.0
+
 @export var state_machine : EnemyMeleeStateMachine
 
+var hurtbox_scanner : HurtBoxScanner
+var scan_shape : SphereShape3D
+var closest_hurtbox : HurtBox
+var scan_timer : Timer
+
+var timeline : Dictionary[float, Callable]
 var current_callable : Callable
-var timeline : Dictionary[float, Callable] = {
-	0.0 : idle,
-	#5.0 : wander,
-	2.0 : attack
-}
 
 var time_passed = 0.0
-var max_time : float = 2.5
+var max_time : float = 6.0
+
 
 func _ready() -> void:
+	scan_shape = SphereShape3D.new()
+	scan_shape.radius = detect_range
+	
+	hurtbox_scanner = HurtBoxScanner.new()
+	
 	state_machine.state_machine_setup()
-
-func _physics_process(delta: float) -> void:
-	time_passed += delta
-	var nearest_callable_on_timeline = timeline.get(floor(time_passed))
 	
-	if nearest_callable_on_timeline != null and nearest_callable_on_timeline != current_callable:
-		current_callable = nearest_callable_on_timeline
-		current_callable.call()
-	
-	if time_passed > max_time:
-		time_passed = 0.0
+	scan_timer = Timer.new()
+	scan_timer.one_shot = false
+	scan_timer.timeout.connect(scan_timer_tick)
+	add_child(scan_timer)
+	scan_timer.start(0.25)
 
-func idle():
-	state_machine.transition_to_state(state_machine.states.get("idle"))
+func scan_timer_tick() -> void:
+	closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
 
-#func wander():
-	#state_machine.transition_to_state(state_machine.states.get("wander"))
+func far_range_logic():
+	state_machine.transition_to_state(state_machine.get_state_by_key("chase_attack"))
 
-func attack():
-	state_machine.transition_to_state(state_machine.states.get("primary_atk"))
+func close_range_logic():
+	state_machine.transition_to_state(state_machine.get_state_by_key("strafe"))

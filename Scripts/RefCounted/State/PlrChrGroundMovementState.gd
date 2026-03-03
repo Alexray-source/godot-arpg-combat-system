@@ -10,7 +10,6 @@ func on_exit() -> void:
 	if input_events.jump_input.is_connected(character.jump) == true:
 		input_events.jump_input.disconnect(character.jump)
 
-
 func state_physics_process(delta : float) -> void:
 	input_events.process(delta)
 	

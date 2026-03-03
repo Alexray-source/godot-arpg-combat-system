@@ -12,3 +12,13 @@ func get_closest_hurtbox_to_position(origin : Vector3, direct_space_state, hit_s
 				closest_hurtbox = found_hurtbox
 	
 	return closest_hurtbox
+
+func get_nearby_hurtboxes_from_position(direct_space_state, hit_shape, hitbox_transform, scan_mask):
+	var results = scan(direct_space_state, hit_shape, hitbox_transform, scan_mask)
+	var hurtboxes_found : Array[HurtBox]
+	
+	for result in results:
+		if result.get("collider") is HurtBox:
+			hurtboxes_found.append(result.get("collider"))
+	
+	return hurtboxes_found

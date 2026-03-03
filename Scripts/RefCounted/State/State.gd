@@ -14,3 +14,8 @@ func state_process(_delta : float) -> void:
 
 func state_physics_process(_delta : float) -> void:
 	pass
+
+func disconnect_all_end_signals() -> void:
+	for connection_data in state_end.get_connections():
+		var connected_callable : Callable = connection_data.get("callable")
+		state_end.disconnect(connected_callable)

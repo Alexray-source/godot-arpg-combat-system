@@ -5,7 +5,8 @@ class_name EnemyMeleeStateMachine extends StateMachine
 func _ready() -> void:
 	states = {
 		"idle" : NPCIdleState.new(),
-		#"wander" : NPCWanderState.new(),
+		"strafe" : NPCAgroStrafeState.new(),
+		"chase_attack" : NPCChaseState.new(),
 		"primary_atk" : EnemyNPCPrimaryAttackState.new(),
 	}
 	

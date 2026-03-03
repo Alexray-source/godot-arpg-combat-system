@@ -13,6 +13,7 @@ class_name CombatCharacter extends BaseCharacter
 @export_subgroup("Stats")
 @export var start_health : int = 100
 @export var max_health : int = 100
+@export var debug_health : bool = false
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
@@ -21,6 +22,9 @@ var health_component : HealthComponent
 var stagger_state : ChrStaggerState
 
 var prev_hit_info : AtkInfo
+var invincible : bool = false
+
+signal damage_hit()
 
 func _ready() -> void:
 	super()
@@ -38,7 +42,12 @@ func _ready() -> void:
 	special_attack2_component.chr_layer = chr_layer
 	special_attack3_component.chr_layer = chr_layer
 	
+	dash_component.dash_ended.connect(rescan_ground_state)
+	
 	health_component = HealthComponent.new(start_health, max_health)
+	health_component.debug = debug_health
+	health_component.died.connect(func():
+		visible = false, CONNECT_ONE_SHOT)
 	debounces = Debounces.new()
 	
 	stagger_state = state_machine.get_state_by_key("stagger")
@@ -74,9 +83,11 @@ func end_attack_debounce():
 
 func on_atk_hit(atk_info : AtkInfo):
 	prev_hit_info = atk_info
-	health_component.take_damage(atk_info.dmg)
-	print(health_component.health)
-	state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
+	if invincible == false:
+		health_component.take_damage(atk_info.dmg)
+		damage_hit.emit()
+		#print(health_component.health)
+		state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
 
 func on_throwable_hit(throwable : Throwable):
 	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
@@ -88,7 +99,11 @@ func stagger():
 	stagger_component.action()
 	debounces.remove_debounce("attack")
 
-func dash(dash_power : float = 2.0):
+func dodge_dash():
+	state_machine.transition_to_state(state_machine.get_state_by_key("dodge_dash"))
+
+func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
 	dash_component.dash_intensity = dash_power
-	dash_component.dash_dir = -global_basis.z
+	dash_component.dash_time = duration
+	dash_component.dash_dir = direction
 	dash_component.action()

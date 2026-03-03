@@ -7,6 +7,7 @@ func _ready() -> void:
 	states = {
 		"movement" : PlrGroundMovement.new(),
 		"primary_atk" : PlrAttackState.new(),
+		"dodge_dash" : PlrDodgeState.new()
 	}
 	
 	for i in range(3):

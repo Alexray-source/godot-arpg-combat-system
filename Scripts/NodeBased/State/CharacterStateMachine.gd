@@ -7,6 +7,7 @@ func _ready() -> void:
 		"ground_movement" : CharacterGroundState.new(),
 		"air_movement" : CharacterAirState.new(),
 		"attack" : CharacterPrimaryAttackState.new(),
+		"dodge_dash" : CharacterDashState.new(),
 		#"sp_attack1" : CharacterSpecialAttackState.new(),
 		#"sp_attack2" : CharacterSpecialAttackState.new(),
 		#"sp_attack3" : CharacterSpecialAttackState.new(),

@@ -31,5 +31,5 @@ func transition_to_state(new_state : State):
 	new_state.on_enter()
 	
 	if debug == true:
-		print("New State: " + str(new_state))
+		print("New State: " + str(new_state.get_script().get_global_name()))
 	
