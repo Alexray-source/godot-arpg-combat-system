@@ -25,6 +25,7 @@ var prev_hit_info : AtkInfo
 var invincible : bool = false
 
 signal damage_hit()
+signal chr_died()
 
 func _ready() -> void:
 	super()
@@ -47,7 +48,8 @@ func _ready() -> void:
 	health_component = HealthComponent.new(start_health, max_health)
 	health_component.debug = debug_health
 	health_component.died.connect(func():
-		visible = false, CONNECT_ONE_SHOT)
+		chr_died.emit(),
+	CONNECT_ONE_SHOT)
 	debounces = Debounces.new()
 	
 	stagger_state = state_machine.get_state_by_key("stagger")

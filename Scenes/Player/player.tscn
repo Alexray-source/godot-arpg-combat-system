@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bw0n7uqams2ij"]
+
+[ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="1_mtuoh"]
+[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_htcer"]
+[ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/NodeBased/Player/ChrCamArm.gd" id="3_dd0ac"]
+[ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="4_0u5uq"]
+
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm")]
+script = ExtResource("1_mtuoh")
+character = NodePath("BaseCharacter")
+plr_state_machine = NodePath("PlrCharacterStateMachine")
+camera_arm = NodePath("SpringArm3D")
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_htcer")]
+collision_layer = 0
+debug_health = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
+spring_length = 5.0
+script = ExtResource("3_dd0ac")
+target = NodePath("../BaseCharacter")
+target_offset_pos = Vector3(0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959]
+
+[node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828 node_paths=PackedStringArray("character")]
+script = ExtResource("4_0u5uq")
+character = NodePath("../BaseCharacter")
+metadata/_custom_type_script = "uid://cxdaamgqtbdpf"

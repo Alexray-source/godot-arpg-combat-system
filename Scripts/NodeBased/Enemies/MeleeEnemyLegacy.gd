@@ -38,6 +38,10 @@ func _ready() -> void:
 		current_callable = attack
 		current_callable.call()
 		)
+	
+	character.chr_died.connect(func():
+		queue_free()
+	, CONNECT_ONE_SHOT)
 
 
 func scan_timer_tick() -> void:

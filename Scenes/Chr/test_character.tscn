@@ -225,10 +225,6 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
 radius = 2.0
 
-[sub_resource type="Resource" id="Resource_ehw7o"]
-script = ExtResource("3_ehw7o")
-metadata/_custom_type_script = "uid://cgg8sloxa71el"
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_ehw7o"]
 radius = 5.0
 
@@ -379,7 +375,6 @@ animations = Array[StringName]([&"primary_attacks/atk_primary1_function", &"prim
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
-chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -390,7 +385,6 @@ animations = Array[StringName]([&"specials/atk1"])
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_ehw7o")
 atk_type = 3
-chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -400,7 +394,6 @@ targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
-chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -410,7 +403,6 @@ targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
-chr_layer = SubResource("Resource_ehw7o")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 

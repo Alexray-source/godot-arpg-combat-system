@@ -1,14 +1,9 @@
 [gd_scene format=3 uid="uid://bf315smdjou75"]
 
-[ext_resource type="Script" uid="uid://kcwptoxteen1" path="res://Scripts/NodeBased/Enemies/MeleeEnemyLegacy.gd" id="1_rnym6"]
-[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_8y5mx"]
-[ext_resource type="Script" uid="uid://efa80oanjed8" path="res://Scripts/NodeBased/State/EnemyMeleeStateMachine.gd" id="3_wrd4j"]
-[ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/NodeBased/Player/ChrCamArm.gd" id="5_8y5mx"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="1_wrd4j"]
+[ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="5_jah6w"]
-[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
-[ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="8_8y5mx"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/NodeBased/DebugUI/button_press.gd" id="10_f4dah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
@@ -33,11 +28,6 @@ albedo_color = Color(0.57421875, 0.57421875, 0.57421875, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrd4j"]
 points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
 
-[sub_resource type="Resource" id="Resource_jah6w"]
-script = ExtResource("3_8y5mx")
-hostility = 1
-metadata/_custom_type_script = "uid://cgg8sloxa71el"
-
 [node name="Node3D" type="Node3D" unique_id=569510052]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675439066]
@@ -52,63 +42,21 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wrd4j")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=2075971799]
 shape = SubResource("ConvexPolygonShape3D_wrd4j")
 
-[node name="Enemy" type="Node3D" parent="." unique_id=1695774442 node_paths=PackedStringArray("character", "state_machine")]
+[node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("1_wrd4j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8159227, 0.36944485, -5.6937265)
-script = ExtResource("1_rnym6")
-character = NodePath("BaseCharacter")
-state_machine = NodePath("EnemyStateMachine")
 
-[node name="BaseCharacter" parent="Enemy" unique_id=1058693826 instance=ExtResource("6_o1aaj")]
-chr_layer = SubResource("Resource_jah6w")
+[node name="Enemy2" parent="." unique_id=734459720 instance=ExtResource("1_wrd4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.339822, 0.36944485, 9.815381)
 
-[node name="EnemyStateMachine" type="Node" parent="Enemy" unique_id=737690929 node_paths=PackedStringArray("character")]
-script = ExtResource("3_wrd4j")
-character = NodePath("../BaseCharacter")
-debug = true
-
-[node name="Enemy2" type="Node3D" parent="." unique_id=450596001 node_paths=PackedStringArray("character", "state_machine")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.397566, 0.36944485, -4.337359)
-script = ExtResource("1_rnym6")
-character = NodePath("BaseCharacter")
-state_machine = NodePath("EnemyStateMachine")
-
-[node name="BaseCharacter" parent="Enemy2" unique_id=959910848 instance=ExtResource("6_o1aaj")]
-chr_layer = SubResource("Resource_jah6w")
-
-[node name="EnemyStateMachine" type="Node" parent="Enemy2" unique_id=1196620407 node_paths=PackedStringArray("character")]
-script = ExtResource("3_wrd4j")
-character = NodePath("../BaseCharacter")
-debug = true
+[node name="Enemy3" parent="." unique_id=743356631 instance=ExtResource("1_wrd4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.986266, 0.36944485, -11.307572)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1349019239]
 transform = Transform3D(0.8876965, -0.40178144, -0.22487022, 0, -0.4883927, 0.872624, -0.4604291, -0.7746252, -0.43354452, -5.022839, 1.7740419, 1.2192998)
 shadow_enabled = true
 
-[node name="Player" type="Node3D" parent="." unique_id=1910115083 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6427264, 8.258239)
-script = ExtResource("7_8o3yo")
-character = NodePath("BaseCharacter")
-plr_state_machine = NodePath("PlrCharacterStateMachine")
-camera_arm = NodePath("SpringArm3D")
-
-[node name="BaseCharacter" parent="Player" unique_id=34493895 instance=ExtResource("6_o1aaj")]
-collision_layer = 0
-debug_health = true
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Player" unique_id=386934923 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
-spring_length = 5.0
-script = ExtResource("5_8y5mx")
-target = NodePath("../BaseCharacter")
-target_offset_pos = Vector3(0, 2, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/SpringArm3D" unique_id=1662915467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.045907, 3.3696733, -13.005961)
-
-[node name="PlrCharacterStateMachine" type="Node" parent="Player" unique_id=1990049720 node_paths=PackedStringArray("character")]
-script = ExtResource("8_8y5mx")
-character = NodePath("../BaseCharacter")
-metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
+[node name="Player" parent="." unique_id=513661283 instance=ExtResource("2_o1aaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.4634495)
 
 [node name="ThrowableCube2" parent="." unique_id=890698652 instance=ExtResource("7_8y5mx")]
 transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -12.651601, 1, 3.4641418)
@@ -116,7 +64,10 @@ transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.9899
 [node name="ThrowableCube3" parent="." unique_id=460223719 instance=ExtResource("7_8y5mx")]
 transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 6.1582575, 1, -7.017789)
 
-[node name="ThrowableBall" parent="." unique_id=554461063 instance=ExtResource("5_jah6w")]
+[node name="ThrowableCube4" parent="." unique_id=554461063 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 16.430418, 1, -16.50803)
+
+[node name="ThrowableBall" parent="." unique_id=1154101426 instance=ExtResource("5_jah6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.999392, 0.5, -0.5642538)
 
 [node name="ThrowableBall2" parent="." unique_id=1116100622 instance=ExtResource("5_jah6w")]

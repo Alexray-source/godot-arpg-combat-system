@@ -28,7 +28,6 @@ func _ready() -> void:
 	
 	plr_state_machine.input_events = input_events
 	plr_state_machine.state_machine_setup()
-	
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	
 	character.primary_attack_component.atk_finished.connect(return_to_movement_state)
@@ -56,7 +55,7 @@ func on_special_atk(atk_index : int) -> void:
 	
 	if character is CombatCharacter and plr_debounces.is_debounce_active(debounce_string) == false and character.debounces.is_debounce_active("attack") == false:
 		plr_debounces.add_debounce(debounce_string)
-		plr_debounces.remove_debounce_delayed(debounce_string, 2.0)
+		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
 		
 		plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("special_atk" + str(atk_index)))
 
