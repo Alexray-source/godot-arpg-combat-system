@@ -6,8 +6,10 @@
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
+[ext_resource type="Script" uid="uid://khk6q8dm3m35" path="res://Scripts/Node/Attacks/AoeAttack.gd" id="8_7qyh0"]
 [ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="8_rqp8f"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
+[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AoeAttackData.gd" id="9_smxw8"]
 [ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/Node/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
@@ -225,8 +227,11 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
 radius = 2.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ehw7o"]
-radius = 5.0
+[sub_resource type="Resource" id="Resource_3m4by"]
+script = ExtResource("9_smxw8")
+hit_shape = SubResource("SphereShape3D_4ty7g")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efloy"]
 emission_enabled = true
@@ -302,6 +307,42 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.1, 1, -0.016839717, 0, 0, 0.99985814, 0.2, 1, -0.028063843, 0, 0, 0.99960613, 0.26666668, 1, 0.73538476, 0, 0, 0.6776497, 0.33333334, 1, 0.73538476, 0, 0, 0.6776497, 0.43333334, 1, 0.9981476, 0, 0, -0.060837626, 0.6666667, 1, -0.025963245, 0, 0, 0.9996629, 0.8, 1, 0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_smxw8"]
+resource_name = "grapple"
+length = 0.2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.033333335, 1, 1.184238e-14, -0.07423292, 0.4506501, 0.13333334, 1, 0, 0, 0.019471765)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.0056134737, 0, 0, 0.99998415, 0.13333334, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_pq3w2"]
+resource_name = "grapple_grab"
+length = 0.3
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.06666667, 1, 5.92119e-15, -0.03711646, -0.3898003, 0.13333334, 1, 1.184238e-14, -0.07423292, 0.4506501, 0.3, 1, 0, 0, 0.019471765)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, -0.06744177, 0, 0, 0.9977231, 0.13333334, 1, 0.118918106, 0, 0, 0.99290395, 0.3, 1, 0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_efloy"]
 resource_name = "stagger"
 length = 0.5
@@ -320,6 +361,8 @@ _data = {
 &"atk_primary2": SubResource("Animation_8o3yo"),
 &"atk_primary3": SubResource("Animation_8y5mx"),
 &"atk_special1": SubResource("Animation_3m4by"),
+&"grapple": SubResource("Animation_smxw8"),
+&"grapple_grab": SubResource("Animation_pq3w2"),
 &"stagger": SubResource("Animation_efloy")
 }
 
@@ -368,32 +411,39 @@ anim_player = NodePath("../AnimationPlayer")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ju3pqhikphx7"
 
-[node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "character")]
+[node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "attack", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
 animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
 anim_player = NodePath("../AnimationPlayer")
-hit_shape = SubResource("SphereShape3D_4ty7g")
-local_offset = Vector3(0, 0, -2)
+attack = NodePath("AoeAttack")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
-[node name="MeleeAttackSpecial1" type="Node" parent="." unique_id=1052011916 node_paths=PackedStringArray("anim_player", "character")]
+[node name="AoeAttack" type="Node" parent="MeleeAttackPrimary" unique_id=1513888460]
+script = ExtResource("8_7qyh0")
+attack_data = SubResource("Resource_3m4by")
+metadata/_custom_type_script = "uid://khk6q8dm3m35"
+
+[node name="MeleeAttackSpecial1" type="Node" parent="." unique_id=1052011916 node_paths=PackedStringArray("anim_player", "attack", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
 animations = Array[String](["specials/atk1"])
 anim_player = NodePath("../AnimationPlayer")
-hit_shape = SubResource("SphereShape3D_ehw7o")
 atk_type = 3
+attack = NodePath("AoeAttack")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
+
+[node name="AoeAttack" type="Node" parent="MeleeAttackSpecial1" unique_id=1739120929]
+script = ExtResource("8_7qyh0")
+attack_data = SubResource("Resource_3m4by")
+metadata/_custom_type_script = "uid://khk6q8dm3m35"
 
 [node name="MeleeAttackSpecial2" type="Node" parent="." unique_id=1367569396 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
-hit_shape = SubResource("SphereShape3D_4ty7g")
-local_offset = Vector3(0, 0, -2)
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
@@ -401,13 +451,11 @@ metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
 anim_player = NodePath("../AnimationPlayer")
-hit_shape = SubResource("SphereShape3D_4ty7g")
-local_offset = Vector3(0, 0, -2)
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 
 [node name="Visual" type="Node3D" parent="." unique_id=1082354825 node_paths=PackedStringArray("combat_character", "mesh_instance")]
-transform = Transform3D(1, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999996, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9999995, 0, 0, 0, 0.9999995, 0, 0, 0)
 script = ExtResource("8_rqp8f")
 combat_character = NodePath("..")
 mesh_instance = NodePath("MeshInstance3D2")

@@ -1,0 +1,3 @@
+@abstract class_name Attack extends Node
+
+@abstract func attack(instigator : Node3D, atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType)

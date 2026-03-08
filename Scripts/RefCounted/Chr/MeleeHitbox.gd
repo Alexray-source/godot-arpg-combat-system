@@ -1,4 +1,4 @@
-class_name MeleeHitbox extends RefCounted
+class_name AoeHitbox extends RefCounted
 
 var hitbox_transform : Transform3D
 var hit_shape : Shape3D
