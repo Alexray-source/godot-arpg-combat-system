@@ -3,7 +3,7 @@ class_name AnimationChainer extends RefCounted
 var anim_player : AnimationPlayer
 #var attacks_library_name : String
 
-var animations : Array[StringName]
+var animations : Array[String]
 var current_anim_index : int = 0
 
 signal animation_finished

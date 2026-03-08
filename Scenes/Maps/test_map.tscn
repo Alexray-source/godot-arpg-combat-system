@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="5_jah6w"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/NodeBased/DebugUI/button_press.gd" id="10_f4dah"]
+[ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

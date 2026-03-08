@@ -43,7 +43,7 @@ func _ready() -> void:
 	special_attack2_component.chr_layer = chr_layer
 	special_attack3_component.chr_layer = chr_layer
 	
-	dash_component.dash_ended.connect(rescan_ground_state)
+	dash_component.dash_ended.connect(on_dash_end)
 	
 	health_component = HealthComponent.new(start_health, max_health)
 	health_component.debug = debug_health
@@ -94,6 +94,12 @@ func on_atk_hit(atk_info : AtkInfo):
 func on_throwable_hit(throwable : Throwable):
 	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
 	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length() * 2.0)
+
+func on_dash_end():
+	if state_machine.current_state == state_machine.get_state_by_key("attack") or state_machine.current_state == state_machine.get_state_by_key("sp_attack"):
+		return
+	
+	rescan_ground_state()
 
 func stagger():
 	velocity = Vector3.ZERO

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bw0n7uqams2ij"]
 
-[ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/NodeBased/Player/Player.gd" id="1_mtuoh"]
+[ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/Node/Player/Player.gd" id="1_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_htcer"]
-[ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/NodeBased/Player/ChrCamArm.gd" id="3_dd0ac"]
-[ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/NodeBased/State/PlrCharacterStateMachine.gd" id="4_0u5uq"]
+[ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/Node/Player/ChrCamArm.gd" id="3_dd0ac"]
+[ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/Node/State/PlrCharacterStateMachine.gd" id="4_0u5uq"]
 
 [node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm")]
 script = ExtResource("1_mtuoh")

@@ -1,7 +1,7 @@
 class_name MeleeAttack extends AttackComponent
 
 @export var targeting_range : float = 10.0
-@export var animations : Array[StringName]
+@export var animations : Array[String]
 @export var anim_player : AnimationPlayer
 @export var hit_shape : Shape3D
 @export var local_offset : Vector3
@@ -29,6 +29,8 @@ func _ready() -> void:
 	animation_chainer.animations = animations
 	animation_chainer.animation_finished.connect(on_animation_finish)
 	animation_chainer.setup()
+	
+	print(animation_chainer.animations)
 
 func on_animation_finish():
 	atk_finished.emit()

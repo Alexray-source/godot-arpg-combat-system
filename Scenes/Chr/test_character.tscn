@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://8dpovvpgxje5"]
 
-[ext_resource type="Script" uid="uid://b5fn5x1kkfn3f" path="res://Scripts/NodeBased/Characters/CombatCharacter.gd" id="1_bqqcw"]
+[ext_resource type="Script" uid="uid://b5fn5x1kkfn3f" path="res://Scripts/Node/Characters/CombatCharacter.gd" id="1_bqqcw"]
 [ext_resource type="Script" uid="uid://xo7cr35aaie1" path="res://Scripts/Resources/ChrCombatStats.gd" id="2_0o5qm"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_ehw7o"]
-[ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/NodeBased/State/CharacterStateMachine.gd" id="3_u1pys"]
-[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="4_f04ns"]
-[ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/NodeBased/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
-[ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/NodeBased/Characters/CharacterVisual.gd" id="8_rqp8f"]
-[ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/NodeBased/CharacterComponents/DashComponent.gd" id="9_efloy"]
-[ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/NodeBased/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
+[ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
+[ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
+[ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="8_rqp8f"]
+[ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
+[ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/Node/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -371,7 +371,7 @@ metadata/_custom_type_script = "uid://ju3pqhikphx7"
 [node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
-animations = Array[StringName]([&"primary_attacks/atk_primary1_function", &"primary_attacks/atk_primary2_function", &"primary_attacks/atk_primary3_function"])
+animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_4ty7g")
 local_offset = Vector3(0, 0, -2)
@@ -381,7 +381,7 @@ metadata/_custom_type_script = "uid://ctkikwm1phcu2"
 [node name="MeleeAttackSpecial1" type="Node" parent="." unique_id=1052011916 node_paths=PackedStringArray("anim_player", "character")]
 script = ExtResource("11_4ty7g")
 targeting_range = 4.0
-animations = Array[StringName]([&"specials/atk1"])
+animations = Array[String](["specials/atk1"])
 anim_player = NodePath("../AnimationPlayer")
 hit_shape = SubResource("SphereShape3D_ehw7o")
 atk_type = 3

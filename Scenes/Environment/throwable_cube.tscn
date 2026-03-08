@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b37tiutqxvxg7"]
 
-[ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/NodeBased/Environment/Throwable.gd" id="1_ifau6"]
-[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/NodeBased/Combat/HurtBox.gd" id="2_fb08b"]
+[ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/Node/Environment/Throwable.gd" id="1_ifau6"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="2_fb08b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrd4j"]
 size = Vector3(2, 2, 2)

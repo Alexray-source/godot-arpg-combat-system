@@ -16,8 +16,9 @@ func state_physics_process(delta : float) -> void:
 	
 	if velocity_xz_plane.length() > 0.0:
 		character.global_basis = Basis.looking_at(velocity_xz_plane, -character.GRAVITY_DIR)
-	
-	smoothed_move_dir = smoothed_move_dir.lerp(character.move_dir, delta * 10.0).normalized()
+		
+	var move_dir_xz_plane = Vector3(character.move_dir.x, 0.0, character.move_dir.z)
+	smoothed_move_dir = smoothed_move_dir.lerp(move_dir_xz_plane, delta * 10.0).normalized()
 
 	if character.move_dir.length() > 0.0:
 		character.move_velocity = smoothed_move_dir * character.move_speed * delta * 10.0
