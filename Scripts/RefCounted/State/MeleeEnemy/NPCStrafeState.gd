@@ -18,6 +18,8 @@ func on_enter() -> void:
 	#time_passed = 0.0
 
 func state_physics_process(_delta : float) -> void:
+	if character.state_machine.get_state_by_key("knockback") == character.state_machine.current_state:
+		return
 	#time_passed += _delta
 	wander_dir = character.global_basis.x
 	target = get_closest_combat_enemy(scan_radius)

@@ -16,6 +16,8 @@ signal primary_atk_input
 signal special_atk1_input
 signal special_atk2_input
 signal special_atk3_input
+signal grapple_input
+signal grapple_mode_toggle
 
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
@@ -23,7 +25,9 @@ var signal_mapping : Dictionary[String, Signal] = {
 	"chr_primary_atk" : primary_atk_input,
 	"chr_special_atk1" : special_atk1_input,
 	"chr_special_atk2" : special_atk2_input,
-	"chr_special_atk3" : special_atk3_input
+	"chr_special_atk3" : special_atk3_input,
+	"chr_grapple" : grapple_input,
+	"grapple_toggle_mode" : grapple_mode_toggle
 }
 
 func input_pressed(input : InputEvent):

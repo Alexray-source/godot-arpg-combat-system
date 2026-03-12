@@ -4,8 +4,8 @@ var stagger_time : float = 0.0
 
 func on_enter() -> void:
 	stagger_time = 0.0
-	if character is CombatCharacter:
-		character.stagger()
+	#if character is CombatCharacter:
+		#character.stagger()
 
 func on_exit() -> void:
 	stagger_time = 0.0

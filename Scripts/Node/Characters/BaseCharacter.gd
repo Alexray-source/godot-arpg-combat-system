@@ -59,3 +59,6 @@ func jump():
 		up_velocity = Vector3.ZERO
 		velocity.y = 15.0
 		move_and_slide()
+
+func set_state(state_name : String):
+	state_machine.transition_to_state(state_machine.get_state_by_key(state_name))

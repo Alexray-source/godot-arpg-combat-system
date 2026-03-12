@@ -30,12 +30,23 @@ func _ready() -> void:
 	plr_state_machine.state_machine_setup()
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	
-	character.primary_attack_component.atk_finished.connect(return_to_movement_state)
-	character.special_attack1_component.atk_finished.connect(return_to_movement_state)
+	character.primary_attack_component.ability_finished.connect(return_to_movement_state)
+	character.special_attack1_component.ability_finished.connect(return_to_movement_state)
+	character.special_attack2_component.ability_finished.connect(return_to_movement_state)
+	character.special_attack3_component.ability_finished.connect(return_to_movement_state)
+	
 	character.dash_component.dash_ended.connect(return_to_movement_state)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 	input_events.special_atk1_input.connect(on_special_atk.bind(1))
+	input_events.special_atk2_input.connect(on_special_atk.bind(2))
+	input_events.special_atk3_input.connect(on_special_atk.bind(3))
+	
+	input_events.grapple_input.connect(on_grapple)
+	input_events.grapple_mode_toggle.connect(func():
+		character.grapple_component.should_target_characters = not character.grapple_component.should_target_characters
+	)
+	
 	input_events.dash_input.connect(on_dodge_dash)
 
 
@@ -46,7 +57,7 @@ func return_to_movement_state():
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 
 func on_primary_atk() -> void:
-	print(character.debounces.is_debounce_active("attack"))
+	#print(character.debounces.is_debounce_active("attack"))
 	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false:
 		plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("primary_atk"))
 
@@ -58,6 +69,10 @@ func on_special_atk(atk_index : int) -> void:
 		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
 		
 		plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("special_atk" + str(atk_index)))
+
+func on_grapple() -> void:
+	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false:
+		character.grapple()
 
 func on_dodge_dash() -> void:
 	if plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger"): 

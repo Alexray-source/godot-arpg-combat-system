@@ -16,6 +16,7 @@ character = NodePath("BaseCharacter")
 state_machine = NodePath("EnemyStateMachine")
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_d40jh")]
+collision_layer = 10
 chr_layer = SubResource("Resource_jah6w")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=905334435 node_paths=PackedStringArray("character")]

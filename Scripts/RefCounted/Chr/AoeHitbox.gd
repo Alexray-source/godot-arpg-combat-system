@@ -5,6 +5,7 @@ var hit_shape : Shape3D
 var atk_info : AtkInfo
 var scan_mask : int = 1
 var direct_space_state : PhysicsDirectSpaceState3D
+var atk_dir_from_aoe_center : bool = false
 
 func attack() -> void:
 	var shape_cast_params = PhysicsShapeQueryParameters3D.new()
@@ -28,4 +29,10 @@ func attack() -> void:
 	for hit in results:
 		var collider = hit.get("collider")
 		if collider is HurtBox:
-			collider.hit.emit(atk_info)
+			var current_atk_info = atk_info
+			
+			if atk_dir_from_aoe_center == true:
+				var atk_dir = hitbox_transform.origin.direction_to(collider.global_position)
+				current_atk_info = AtkInfo.new(atk_info.dmg, atk_info.atk_type, atk_info.instigator, atk_dir)
+			
+			collider.hit.emit(current_atk_info)

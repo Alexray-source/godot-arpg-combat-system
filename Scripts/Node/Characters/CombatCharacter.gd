@@ -5,10 +5,13 @@ class_name CombatCharacter extends BaseCharacter
 @export var stagger_component : StaggerComponent
 
 @export_subgroup("Attack Components")
-@export var primary_attack_component : AttackComponent
-@export var special_attack1_component : AttackComponent
-@export var special_attack2_component : AttackComponent
-@export var special_attack3_component : AttackComponent
+@export var primary_attack_component : AbilityComponent
+@export var special_attack1_component : AbilityComponent
+@export var special_attack2_component : AbilityComponent
+@export var special_attack3_component : AbilityComponent
+
+@export var grapple_component : GrappleComponent
+
 
 @export_subgroup("Stats")
 @export var start_health : int = 100
@@ -33,15 +36,20 @@ func _ready() -> void:
 	hurt_box.hit.connect(on_atk_hit)
 	hurt_box.throwable_hit.connect(on_throwable_hit)
 	
-	primary_attack_component.atk_finished.connect(on_atk_finished)
-	special_attack1_component.atk_finished.connect(on_atk_finished)
-	special_attack2_component.atk_finished.connect(on_atk_finished)
-	special_attack3_component.atk_finished.connect(on_atk_finished)
+	primary_attack_component.ability_finished.connect(on_atk_finished)
+	special_attack1_component.ability_finished.connect(on_atk_finished)
+	special_attack2_component.ability_finished.connect(on_atk_finished)
+	special_attack3_component.ability_finished.connect(on_atk_finished)
+	
+	grapple_component.ability_finished.connect(on_atk_finished)
+	
 	
 	primary_attack_component.chr_layer = chr_layer
 	special_attack1_component.chr_layer = chr_layer
 	special_attack2_component.chr_layer = chr_layer
 	special_attack3_component.chr_layer = chr_layer
+	
+	grapple_component.chr_layer = chr_layer
 	
 	dash_component.dash_ended.connect(on_dash_end)
 	
@@ -55,26 +63,43 @@ func _ready() -> void:
 	stagger_state = state_machine.get_state_by_key("stagger")
 	stagger_state.state_end.connect(rescan_ground_state)
 
+func on_floor_changed(is_floored) -> void:
+	if is_floored == false and state_machine.current_state == state_machine.get_state_by_key("knockback"):
+		return
+	super(is_floored)
+
 func primary_attack():
-	state_machine.transition_to_state(state_machine.get_state_by_key("attack"))
+	if not (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")):
+		return
+	
+	set_state("attack")
 	debounces.add_debounce("attack")
 
 func is_attack_debounce_active():
 	return debounces.is_debounce_active("attack")
 
 func on_atk_finished():
+	debounces.remove_debounce_delayed("grapple", 0.6)
 	end_attack_debounce()
 	rescan_ground_state()
 
 func special_attack(atk_index : int):
-	debounces.add_debounce("attack")
-	state_machine.transition_to_state(state_machine.get_state_by_key("sp_attack" + str(atk_index)))
+	#debounces.add_debounce("attack")
+	set_state("sp_attack" + str(atk_index))
+
+func grapple():
+	if debounces.is_debounce_active("grapple") == true:
+		return
+	
+	debounces.add_debounce("grapple")
+	set_state("custom_movement")
+	grapple_component.action()
 
 func rescan_ground_state():
 	if is_on_floor():
-		state_machine.transition_to_state(state_machine.get_state_by_key("ground_movement"))
+		set_state("ground_movement")
 	else:
-		state_machine.transition_to_state(state_machine.get_state_by_key("air_movement"))
+		set_state("air_movement")
 
 func end_attack_debounce():
 	debounces.remove_debounce("attack")
@@ -89,11 +114,16 @@ func on_atk_hit(atk_info : AtkInfo):
 		health_component.take_damage(atk_info.dmg)
 		damage_hit.emit()
 		#print(health_component.health)
-		state_machine.transition_to_state(state_machine.get_state_by_key("stagger"))
+		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE:
+			knockback()
+		elif state_machine.current_state != state_machine.get_state_by_key("knockback") and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE:
+			stagger()
 
 func on_throwable_hit(throwable : Throwable):
+	set_state("knockback")
 	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
-	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length() * 2.0)
+	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
+	
 
 func on_dash_end():
 	if state_machine.current_state == state_machine.get_state_by_key("attack") or state_machine.current_state == state_machine.get_state_by_key("sp_attack"):
@@ -105,10 +135,17 @@ func stagger():
 	velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
 	stagger_component.action()
+	set_state("stagger")
+	debounces.remove_debounce("attack")
+
+func knockback():
+	velocity = Vector3.ZERO
+	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
+	set_state("knockback")
 	debounces.remove_debounce("attack")
 
 func dodge_dash():
-	state_machine.transition_to_state(state_machine.get_state_by_key("dodge_dash"))
+	set_state("dodge_dash")
 
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
 	dash_component.dash_intensity = dash_power

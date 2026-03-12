@@ -14,6 +14,9 @@ func on_enter() -> void:
 	#state_end.emit()
 
 func state_physics_process(_delta : float) -> void:
+	if character.state_machine.get_state_by_key("knockback") == character.state_machine.current_state:
+		return
+	
 	target = get_closest_combat_enemy(scan_radius)
 	
 	if target != null:

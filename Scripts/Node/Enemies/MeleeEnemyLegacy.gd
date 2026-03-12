@@ -91,7 +91,7 @@ func chase_attack() -> void:
 	state_machine.transition_to_state(state_machine.states.get("chase_attack"))
 
 func reset_timeline() -> void:
-	print("reset")
+	#print("reset")
 	time_passed = 0.0
 
 func attack() -> void:

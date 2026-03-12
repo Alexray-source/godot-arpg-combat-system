@@ -2,7 +2,7 @@ class_name AoeAttack extends Attack
 
 @export var attack_data : AoeAttackData
 
-func attack(instigator : Node3D, atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType):
+func attack(instigator : Node3D, atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType, _atk_dir : Vector3):
 	var melee_hitbox = AoeHitbox.new()
 	melee_hitbox.direct_space_state = instigator.get_world_3d().direct_space_state
 	melee_hitbox.hit_shape = attack_data.hit_shape

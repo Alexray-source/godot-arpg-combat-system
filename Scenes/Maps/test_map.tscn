@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="1_wrd4j"]
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="5_jah6w"]
+[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 
@@ -28,6 +30,11 @@ albedo_color = Color(0.57421875, 0.57421875, 0.57421875, 1)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrd4j"]
 points = PackedVector3Array(-25, 0, -25, -25, 0, 25, 25, 0, -25, 25, 0, 25)
 
+[sub_resource type="Resource" id="Resource_8y5mx"]
+script = ExtResource("7_8o3yo")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
 [node name="Node3D" type="Node3D" unique_id=569510052]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675439066]
@@ -43,13 +50,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wrd4j")
 shape = SubResource("ConvexPolygonShape3D_wrd4j")
 
 [node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("1_wrd4j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8159227, 0.36944485, -5.6937265)
-
-[node name="Enemy2" parent="." unique_id=734459720 instance=ExtResource("1_wrd4j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.339822, 0.36944485, 9.815381)
-
-[node name="Enemy3" parent="." unique_id=743356631 instance=ExtResource("1_wrd4j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.986266, 0.36944485, -11.307572)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.394844, 0.36944485, -12.7825365)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1349019239]
 transform = Transform3D(0.8876965, -0.40178144, -0.22487022, 0, -0.4883927, 0.872624, -0.4604291, -0.7746252, -0.43354452, -5.022839, 1.7740419, 1.2192998)
@@ -58,13 +59,34 @@ shadow_enabled = true
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("2_o1aaj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.4634495)
 
-[node name="ThrowableCube2" parent="." unique_id=890698652 instance=ExtResource("7_8y5mx")]
-transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -12.651601, 1, 3.4641418)
+[node name="ThrowableCube6" parent="." unique_id=554461063 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -1.1373476, 0.9868636, 4.087154)
+
+[node name="ThrowableCube7" parent="." unique_id=131259639 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -1.6781862, 2.8750544, 4.087154)
+
+[node name="ThrowableCube12" parent="." unique_id=779256258 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -5.4222136, 0.9868636, 3.8260665)
+
+[node name="ThrowableCube13" parent="." unique_id=1393086552 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -5.963052, 2.8750544, 3.8260665)
+
+[node name="ThrowableCube8" parent="." unique_id=2072195274 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -2.785996, 4.8822, 4.087154)
+
+[node name="ThrowableCube10" parent="." unique_id=167389214 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -0.72958136, 4.8822, 3.9667306)
+
+[node name="ThrowableCube11" parent="." unique_id=621820312 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -6.925095, 4.8822, 3.375392)
+
+[node name="ThrowableCube9" parent="." unique_id=170631849 instance=ExtResource("7_8y5mx")]
+transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, -4.8048, 4.8803153, 3.8727274)
 
 [node name="ThrowableCube3" parent="." unique_id=460223719 instance=ExtResource("7_8y5mx")]
 transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 6.1582575, 1, -7.017789)
 
-[node name="ThrowableCube4" parent="." unique_id=554461063 instance=ExtResource("7_8y5mx")]
+[node name="ThrowableCube4" parent="." unique_id=1649598834 instance=ExtResource("7_8y5mx")]
 transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 16.430418, 1, -16.50803)
 
 [node name="ThrowableBall" parent="." unique_id=1154101426 instance=ExtResource("5_jah6w")]
@@ -119,3 +141,7 @@ action_name = "chr_special_atk1"
 layout_mode = 2
 text = "KeyOne"
 horizontal_alignment = 1
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("6_o1aaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4810505, 3.999999, 13.793129)
+chr_layer = SubResource("Resource_8y5mx")

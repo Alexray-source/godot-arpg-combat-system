@@ -15,18 +15,48 @@ func _ready() -> void:
 	target_hit.connect(on_target_hit)
 
 func throw(direction : Vector3, power : float) -> void:
-	freeze = false
+	linear_velocity = Vector3.ZERO
 	apply_central_impulse(direction * power)
+	apply_torque_impulse(direction.rotated(Vector3.UP, PI*0.5) * randf_range(2.0, 6.0))
+
+func throw_to_position(target_position : Vector3) -> void:
+	var g = get_gravity()
+	var x0 = global_position
+	var end_pos = target_position
+		
+	var t = 1.0
+	var v0 = (end_pos - x0 - 0.5*g*t*t)/t
+	throw(v0.normalized(), v0.length())
 
 func on_hit(atk_info : AtkInfo) -> void:
 	if atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE:
 		return
+		
+	var scan_layer = 2
+	
+	if atk_info.instigator is CombatCharacter:
+		scan_layer = atk_info.instigator.chr_layer.get_enemy_layer()
 	
 	if accepted_atk_types.find(atk_info.atk_type) != -1:
-		throw((atk_info.atk_dir + Vector3(0,0.5,0.0)).normalized(), atk_info.dmg * mass * 2.0)
+		var throw_dir = atk_info.atk_dir
+		var scan_shape : BoxShape3D = BoxShape3D.new()
+		scan_shape.size = Vector3(15.0, 15.0, 100.0)
+		
+		var scan_transform = Transform3D(Basis.looking_at(atk_info.atk_dir), atk_info.instigator.global_position + (atk_info.atk_dir * scan_shape.size.z * 0.5))
+		
+		var hurtbox_scanner = HurtBoxScanner.new()
+		hurtbox_scanner.blacklist.append(hurtbox)
+		var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(atk_info.instigator.global_position, get_world_3d().direct_space_state, scan_shape, scan_transform, scan_layer)
+		
+		if closest_hurtbox != null:
+			throw_dir = global_position.direction_to(closest_hurtbox.global_position)
+			#throw_to_position(closest_hurtbox.global_position)
+		#else:
+		throw((throw_dir+ Vector3(0,0.5,0.0)).normalized(), atk_info.dmg * mass * 2.0)
+
 		
 func on_target_hit() -> void:
 	total_target_hits += 1
 	
-	if total_target_hits >= allowed_target_hits:
+	if allowed_target_hits > 0 and total_target_hits >= allowed_target_hits:
 		queue_free()

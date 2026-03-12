@@ -14,7 +14,7 @@ albedo_color = Color(0, 0.4140625, 1, 1)
 radius = 0.7
 
 [node name="ThrowableBall" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
-freeze = true
+linear_damp_mode = 1
 script = ExtResource("1_3suhi")
 hurtbox = NodePath("HurtBox")
 accepted_atk_types = Array[int]([3, 1])
@@ -28,8 +28,8 @@ surface_material_override/0 = SubResource("ORMMaterial3D_ifau6")
 shape = SubResource("SphereShape3D_smnle")
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
-collision_layer = 15
-collision_mask = 0
+collision_layer = 2
+collision_mask = 14
 script = ExtResource("2_sk64v")
 metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 

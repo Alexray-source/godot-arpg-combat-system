@@ -13,11 +13,11 @@ albedo_color = Color(1, 0.75, 0, 1)
 size = Vector3(2, 2, 2)
 
 [node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
-freeze = true
+angular_damp_mode = 1
 script = ExtResource("1_ifau6")
 hurtbox = NodePath("HurtBox")
 accepted_atk_types = Array[int]([3])
-allowed_target_hits = 3
+allowed_target_hits = 25
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
 mesh = SubResource("BoxMesh_wrd4j")
@@ -27,8 +27,8 @@ surface_material_override/0 = SubResource("ORMMaterial3D_ifau6")
 shape = SubResource("BoxShape3D_o1aaj")
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
-collision_layer = 15
-collision_mask = 2
+collision_layer = 2
+collision_mask = 14
 script = ExtResource("2_fb08b")
 metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 
