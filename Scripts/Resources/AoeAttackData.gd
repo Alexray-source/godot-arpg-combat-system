@@ -1,4 +1,11 @@
-class_name AoeAttackData extends Resource
+class_name AoeAttackData extends AttackData
 
 @export var hit_shape : Shape3D
 @export var local_offset : Vector3
+
+func create_attack() -> Attack:
+	var attack = AoeAttack.new()
+	attack.hit_shape = hit_shape
+	attack.local_offset = local_offset
+	
+	return attack

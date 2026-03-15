@@ -3,15 +3,7 @@ class_name CombatCharacter extends BaseCharacter
 @export var hurt_box : HurtBox
 @export var dash_component : DashComponent
 @export var stagger_component : StaggerComponent
-
-@export_subgroup("Attack Components")
-@export var primary_attack_component : AbilityComponent
-@export var special_attack1_component : AbilityComponent
-@export var special_attack2_component : AbilityComponent
-@export var special_attack3_component : AbilityComponent
-
-@export var grapple_component : GrappleComponent
-
+@export var character_abilities : CharacterAbilities
 
 @export_subgroup("Stats")
 @export var start_health : int = 100
@@ -36,20 +28,24 @@ func _ready() -> void:
 	hurt_box.hit.connect(on_atk_hit)
 	hurt_box.throwable_hit.connect(on_throwable_hit)
 	
-	primary_attack_component.ability_finished.connect(on_atk_finished)
-	special_attack1_component.ability_finished.connect(on_atk_finished)
-	special_attack2_component.ability_finished.connect(on_atk_finished)
-	special_attack3_component.ability_finished.connect(on_atk_finished)
+	character_abilities.chr_layer = chr_layer
+	character_abilities.ability_finished.connect(on_atk_finished)
 	
-	grapple_component.ability_finished.connect(on_atk_finished)
+	character_abilities.setup()
+	#primary_attack_component.ability_finished.connect(on_atk_finished)
+	#special_attack1_component.ability_finished.connect(on_atk_finished)
+	#special_attack2_component.ability_finished.connect(on_atk_finished)
+	#special_attack3_component.ability_finished.connect(on_atk_finished)
+	#
+	#grapple_component.ability_finished.connect(on_atk_finished)
 	
 	
-	primary_attack_component.chr_layer = chr_layer
-	special_attack1_component.chr_layer = chr_layer
-	special_attack2_component.chr_layer = chr_layer
-	special_attack3_component.chr_layer = chr_layer
-	
-	grapple_component.chr_layer = chr_layer
+	#primary_attack_component.chr_layer = chr_layer
+	#special_attack1_component.chr_layer = chr_layer
+	#special_attack2_component.chr_layer = chr_layer
+	#special_attack3_component.chr_layer = chr_layer
+	#
+	#grapple_component.chr_layer = chr_layer
 	
 	dash_component.dash_ended.connect(on_dash_end)
 	
@@ -93,13 +89,7 @@ func grapple():
 	
 	debounces.add_debounce("grapple")
 	set_state("custom_movement")
-	grapple_component.action()
-
-func rescan_ground_state():
-	if is_on_floor():
-		set_state("ground_movement")
-	else:
-		set_state("air_movement")
+	#grapple_component.action()
 
 func end_attack_debounce():
 	debounces.remove_debounce("attack")

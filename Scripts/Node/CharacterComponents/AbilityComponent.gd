@@ -1,8 +1,13 @@
-@abstract class_name AbilityComponent extends CharacterComponent
+@abstract class_name AbilityComponent extends RefCounted
 
 signal ability_finished
 
-@export var chr_layer : CharacterLayer
+var chr_layer : CharacterLayer
+var character : BaseCharacter
+var anim_player : AnimationPlayer
 
-@abstract func action() -> void
-@abstract func ability_event() -> void
+func setup() -> void:
+	pass
+
+@abstract func _action() -> void
+@abstract func _ability_event() -> void

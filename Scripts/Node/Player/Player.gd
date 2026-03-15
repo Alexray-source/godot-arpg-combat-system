@@ -30,22 +30,19 @@ func _ready() -> void:
 	plr_state_machine.state_machine_setup()
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	
-	character.primary_attack_component.ability_finished.connect(return_to_movement_state)
-	character.special_attack1_component.ability_finished.connect(return_to_movement_state)
-	character.special_attack2_component.ability_finished.connect(return_to_movement_state)
-	character.special_attack3_component.ability_finished.connect(return_to_movement_state)
+	character.character_abilities.ability_finished.connect(return_to_movement_state)
 	
 	character.dash_component.dash_ended.connect(return_to_movement_state)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
-	input_events.special_atk1_input.connect(on_special_atk.bind(1))
-	input_events.special_atk2_input.connect(on_special_atk.bind(2))
-	input_events.special_atk3_input.connect(on_special_atk.bind(3))
+	#input_events.special_atk1_input.connect(on_special_atk.bind(1))
+	#input_events.special_atk2_input.connect(on_special_atk.bind(2))
+	#input_events.special_atk3_input.connect(on_special_atk.bind(3))
 	
-	input_events.grapple_input.connect(on_grapple)
-	input_events.grapple_mode_toggle.connect(func():
-		character.grapple_component.should_target_characters = not character.grapple_component.should_target_characters
-	)
+	#input_events.grapple_input.connect(on_grapple)
+	#input_events.grapple_mode_toggle.connect(func():
+		#character.grapple_component.should_target_characters = not character.grapple_component.should_target_characters
+	#)
 	
 	input_events.dash_input.connect(on_dodge_dash)
 

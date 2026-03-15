@@ -6,16 +6,12 @@
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
-[ext_resource type="Script" uid="uid://khk6q8dm3m35" path="res://Scripts/Node/Attacks/AoeAttack.gd" id="8_7qyh0"]
 [ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="8_rqp8f"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AoeAttackData.gd" id="9_smxw8"]
-[ext_resource type="Script" uid="uid://bsdukt1xr0htk" path="res://Scripts/Node/CharacterComponents/GrappleComponent.gd" id="10_7qyh0"]
-[ext_resource type="Script" uid="uid://5mspnjfmj2l4" path="res://Scripts/Node/Attacks/ProjectileAttack.gd" id="10_smxw8"]
-[ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="11_3m4by"]
-[ext_resource type="Script" uid="uid://ctkikwm1phcu2" path="res://Scripts/Node/CharacterComponents/MeleeAttack.gd" id="11_4ty7g"]
-[ext_resource type="Script" uid="uid://b2ulqsun2mxys" path="res://Scripts/Node/Attacks/GenericSceneAttack.gd" id="13_pq3w2"]
-[ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="14_g2834"]
+[ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
+[ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData.gd" id="18_172ob"]
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AnimationAttackData.gd" id="19_jb0u1"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -60,15 +56,15 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/path = NodePath("CharacterAbilities")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"ability_event"
+"args": [&"primary_atk"],
+"method": &"ability_animation_event"
 }]
 }
 
@@ -103,15 +99,15 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/path = NodePath("CharacterAbilities")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
+"times": PackedFloat32Array(0.20000002),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"ability_event"
+"args": [&"primary_atk"],
+"method": &"ability_animation_event"
 }]
 }
 
@@ -147,15 +143,15 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MeleeAttackPrimary")
+tracks/2/path = NodePath("CharacterAbilities")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.26666668),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"ability_event"
+"args": [&"primary_atk"],
+"method": &"ability_animation_event"
 }]
 }
 
@@ -181,24 +177,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeAttackSpecial1")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ability_event"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.43333334),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -223,24 +205,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeAttackSpecial2")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ability_event"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.16666669),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -265,24 +233,10 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MeleeAttackSpecial3")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ability_event"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.16666669),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -317,20 +271,6 @@ tracks/1/keys = {
 "method": &"end_attack_debounce"
 }]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GrappleComponent")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.033333335),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ability_event"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_smxw8"]
 _data = {
@@ -357,23 +297,6 @@ tracks/0/keys = {
 _data = {
 &"stagger": SubResource("Animation_4ty7g")
 }
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_4ty7g"]
-radius = 2.0
-
-[sub_resource type="Resource" id="Resource_3m4by"]
-script = ExtResource("9_smxw8")
-hit_shape = SubResource("SphereShape3D_4ty7g")
-local_offset = Vector3(0, 0, -2)
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_smxw8"]
-radius = 25.0
-
-[sub_resource type="Resource" id="Resource_pq3w2"]
-script = ExtResource("9_smxw8")
-hit_shape = SubResource("SphereShape3D_smxw8")
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efloy"]
 emission_enabled = true
@@ -548,18 +471,32 @@ _data = {
 &"stagger": SubResource("Animation_efloy")
 }
 
-[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "primary_attack_component", "special_attack1_component", "special_attack2_component", "special_attack3_component", "grapple_component", "state_machine")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ffspy"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Resource" id="Resource_8m6ks"]
+script = ExtResource("9_smxw8")
+hit_shape = SubResource("BoxShape3D_ffspy")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_72lp5"]
+script = ExtResource("19_jb0u1")
+dmg = 10
+animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
+atk_type = 1
+atk_data = SubResource("Resource_8m6ks")
+targeting_range = 15.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_bqqcw")
 hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
-primary_attack_component = NodePath("MeleeAttackPrimary")
-special_attack1_component = NodePath("MeleeAttackSpecial1")
-special_attack2_component = NodePath("MeleeAttackSpecial2")
-special_attack3_component = NodePath("MeleeAttackSpecial3")
-grapple_component = NodePath("GrappleComponent")
+character_abilities = NodePath("CharacterAbilities")
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
 move_speed = 50.0
@@ -594,75 +531,6 @@ anim_player = NodePath("../AnimationPlayer")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ju3pqhikphx7"
 
-[node name="MeleeAttackPrimary" type="Node" parent="." unique_id=604730767 node_paths=PackedStringArray("anim_player", "attack", "character")]
-script = ExtResource("11_4ty7g")
-targeting_range = 4.0
-animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
-anim_player = NodePath("../AnimationPlayer")
-attack = NodePath("AoeAttack")
-character = NodePath("..")
-metadata/_custom_type_script = "uid://ctkikwm1phcu2"
-
-[node name="AoeAttack" type="Node" parent="MeleeAttackPrimary" unique_id=1513888460]
-script = ExtResource("8_7qyh0")
-attack_data = SubResource("Resource_3m4by")
-metadata/_custom_type_script = "uid://khk6q8dm3m35"
-
-[node name="MeleeAttackSpecial1" type="Node" parent="." unique_id=1052011916 node_paths=PackedStringArray("anim_player", "attack", "character")]
-script = ExtResource("11_4ty7g")
-targeting_range = 4.0
-animations = Array[String](["specials/atk1"])
-anim_player = NodePath("../AnimationPlayer")
-atk_type = 3
-attack = NodePath("AoeAttack")
-character = NodePath("..")
-metadata/_custom_type_script = "uid://ctkikwm1phcu2"
-
-[node name="AoeAttack" type="Node" parent="MeleeAttackSpecial1" unique_id=1739120929]
-script = ExtResource("8_7qyh0")
-attack_data = SubResource("Resource_3m4by")
-metadata/_custom_type_script = "uid://khk6q8dm3m35"
-
-[node name="MeleeAttackSpecial2" type="Node" parent="." unique_id=1577484404 node_paths=PackedStringArray("anim_player", "attack", "character")]
-script = ExtResource("11_4ty7g")
-targeting_range = 25.0
-animations = Array[String](["specials/atk2"])
-anim_player = NodePath("../AnimationPlayer")
-attack = NodePath("ProjectileAttack")
-character = NodePath("..")
-metadata/_custom_type_script = "uid://ctkikwm1phcu2"
-
-[node name="ProjectileAttack" type="Node" parent="MeleeAttackSpecial2" unique_id=983722717 node_paths=PackedStringArray("projectile_origin")]
-script = ExtResource("10_smxw8")
-projectile_scene = ExtResource("11_3m4by")
-projectile_origin = NodePath("../../Visual/MeshInstance3D2")
-metadata/_custom_type_script = "uid://5mspnjfmj2l4"
-
-[node name="GrappleComponent" type="Node" parent="." unique_id=911367549 node_paths=PackedStringArray("anim_player", "character")]
-script = ExtResource("10_7qyh0")
-attack_data = SubResource("Resource_pq3w2")
-animations = Array[String](["specials/grapple"])
-anim_player = NodePath("../AnimationPlayer")
-should_target_characters = true
-character = NodePath("..")
-metadata/_custom_type_script = "uid://bsdukt1xr0htk"
-
-[node name="MeleeAttackSpecial3" type="Node" parent="." unique_id=1164184962 node_paths=PackedStringArray("anim_player", "attack", "character")]
-script = ExtResource("11_4ty7g")
-targeting_range = 15.0
-animations = Array[String](["specials/atk3"])
-anim_player = NodePath("../AnimationPlayer")
-atk_type = 3
-attack = NodePath("GenericSceneAttack")
-character = NodePath("..")
-metadata/_custom_type_script = "uid://ctkikwm1phcu2"
-
-[node name="GenericSceneAttack" type="Node" parent="MeleeAttackSpecial3" unique_id=417208828]
-script = ExtResource("13_pq3w2")
-scene = ExtResource("14_g2834")
-local_spawn_offset = Vector3(0, 0, -1)
-metadata/_custom_type_script = "uid://b2ulqsun2mxys"
-
 [node name="Visual" type="Node3D" parent="." unique_id=1082354825 node_paths=PackedStringArray("combat_character", "mesh_instance")]
 transform = Transform3D(1, 0, 0, 0, 0.99999946, 0, 0, 0, 0.99999946, 0, 0, 0)
 script = ExtResource("8_rqp8f")
@@ -688,3 +556,12 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1607205754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8y5mx")
+
+[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("17_7ch4d")
+anim_player = NodePath("../AnimationPlayer")
+character = NodePath("..")
+abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
+&"primary_atk": SubResource("Resource_72lp5")
+})
+metadata/_custom_type_script = "uid://dah4aaqqbvgen"

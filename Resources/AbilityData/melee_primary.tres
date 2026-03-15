@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="AnimationAttackData" format=3 uid="uid://foylhd8mo2jr"]
+
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AnimationAttackData.gd" id="1_clla8"]
+
+[resource]
+script = ExtResource("1_clla8")
+dmg = 15
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
