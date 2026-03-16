@@ -5,13 +5,18 @@
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_ehw7o"]
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
+[ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="6_g2834"]
+[ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="7_7ch4d"]
+[ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="8_3m4by"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
 [ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="8_rqp8f"]
+[ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="8_smxw8"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
-[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AoeAttackData.gd" id="9_smxw8"]
+[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="9_smxw8"]
+[ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="12_7ch4d"]
 [ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
-[ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData.gd" id="18_172ob"]
-[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AnimationAttackData.gd" id="19_jb0u1"]
+[ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="18_172ob"]
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -20,6 +25,83 @@ metadata/_custom_type_script = "uid://xo7cr35aaie1"
 [sub_resource type="Resource" id="Resource_rqp8f"]
 script = ExtResource("3_ehw7o")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="Resource" id="Resource_qbr8q"]
+script = ExtResource("7_7ch4d")
+scene = ExtResource("6_g2834")
+local_spawn_offset = Vector3(0, 0, -1)
+metadata/_custom_type_script = "uid://buegejwwr60aa"
+
+[sub_resource type="Resource" id="Resource_3m4by"]
+script = ExtResource("19_jb0u1")
+dmg = 10
+animations = Array[String](["specials/atk3"])
+atk_type = 3
+atk_data = SubResource("Resource_qbr8q")
+targeting_range = 20.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Resource" id="Resource_jb0u1"]
+script = ExtResource("9_smxw8")
+hit_shape = SubResource("BoxShape3D_7ch4d")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_7qyh0"]
+script = ExtResource("19_jb0u1")
+dmg = 15
+animations = Array[String](["specials/atk1"])
+atk_type = 3
+atk_data = SubResource("Resource_jb0u1")
+targeting_range = 25.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3m4by"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Resource" id="Resource_8m6ks"]
+script = ExtResource("9_smxw8")
+hit_shape = SubResource("BoxShape3D_3m4by")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_72lp5"]
+script = ExtResource("19_jb0u1")
+dmg = 10
+animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
+atk_type = 1
+atk_data = SubResource("Resource_8m6ks")
+targeting_range = 15.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="Resource" id="Resource_7ch4d"]
+script = ExtResource("12_7ch4d")
+animations = Array[String](["specials/grapple_enemy"])
+target_characters = true
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
+[sub_resource type="Resource" id="Resource_172ob"]
+script = ExtResource("12_7ch4d")
+animations = Array[String](["specials/grapple_object"])
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
+[sub_resource type="Resource" id="Resource_pq3w2"]
+script = ExtResource("8_smxw8")
+projectile_scene = ExtResource("8_3m4by")
+projectile_origin_path = NodePath("Visual/MeshInstance3D2")
+metadata/_custom_type_script = "uid://b1stykuxcqnl5"
+
+[sub_resource type="Resource" id="Resource_smxw8"]
+script = ExtResource("19_jb0u1")
+dmg = 10
+animations = Array[String](["specials/atk2"])
+atk_type = 2
+atk_data = SubResource("Resource_pq3w2")
+targeting_range = 50.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
 
@@ -43,28 +125,17 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.3333333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.13333334, 0.20022626, 0.3333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [2.0],
 "method": &"dash"
 }, {
+"args": [&"primary_atk"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterAbilities")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"primary_atk"],
-"method": &"ability_animation_event"
 }]
 }
 
@@ -86,28 +157,17 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.26666665),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.13333334, 0.20000002, 0.26666665),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [2.0],
 "method": &"dash"
 }, {
+"args": [&"primary_atk"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterAbilities")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.20000002),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"primary_atk"],
-"method": &"ability_animation_event"
 }]
 }
 
@@ -130,28 +190,17 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.099999994, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.099999994, 0.26666668, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [10.0, 0.3],
 "method": &"dash"
 }, {
+"args": [&"primary_atk"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CharacterAbilities")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.26666668),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"primary_atk"],
-"method": &"ability_animation_event"
 }]
 }
 
@@ -164,6 +213,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_7qyh0"]
 resource_name = "atk1"
+length = 0.6
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -181,9 +231,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.43333334),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.13333334, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [&"kick_atk"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -209,9 +262,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.16666669),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.16666669),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [&"secondary_atk"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -237,9 +293,46 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.16666669),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.06666667, 0.16666669),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": [-7.0, 0.2],
+"method": &"dash"
+}, {
+"args": [&"bomb_atk"],
+"method": &"ability_event_trigger"
+}, {
+"args": [],
+"method": &"end_attack_debounce"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ffspy"]
+resource_name = "grapple_enemy"
+length = 0.2
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual/AnimationPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("grapple"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.023798667, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [&"grapple_enemy"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -264,9 +357,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.03333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.023798667, 0.03333333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [&"grapple_object"],
+"method": &"ability_event_trigger"
+}, {
 "args": [],
 "method": &"end_attack_debounce"
 }]
@@ -277,7 +373,8 @@ _data = {
 &"atk1": SubResource("Animation_7qyh0"),
 &"atk2": SubResource("Animation_qbr8q"),
 &"atk3": SubResource("Animation_jb0u1"),
-&"grapple": SubResource("Animation_g2834")
+&"grapple_enemy": SubResource("Animation_ffspy"),
+&"grapple_object": SubResource("Animation_g2834")
 }
 
 [sub_resource type="Animation" id="Animation_4ty7g"]
@@ -471,24 +568,6 @@ _data = {
 &"stagger": SubResource("Animation_efloy")
 }
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ffspy"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="Resource" id="Resource_8m6ks"]
-script = ExtResource("9_smxw8")
-hit_shape = SubResource("BoxShape3D_ffspy")
-local_offset = Vector3(0, 0, -2)
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
-
-[sub_resource type="Resource" id="Resource_72lp5"]
-script = ExtResource("19_jb0u1")
-dmg = 10
-animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
-atk_type = 1
-atk_data = SubResource("Resource_8m6ks")
-targeting_range = 15.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
 collision_mask = 3
@@ -499,9 +578,29 @@ stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
+ability_slots = Dictionary[String, StringName]({
+"special1": &"kick_atk",
+"special2": &"secondary_atk",
+"special3": &"bomb_atk",
+"special4": &""
+})
 move_speed = 50.0
 state_machine = NodePath("CharacterStateMachine")
 metadata/_custom_type_script = "uid://83mneuiydchi"
+
+[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_player", "character")]
+script = ExtResource("17_7ch4d")
+anim_player = NodePath("../AnimationPlayer")
+character = NodePath("..")
+abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
+&"bomb_atk": SubResource("Resource_3m4by"),
+&"grapple_enemy": SubResource("Resource_7ch4d"),
+&"grapple_object": SubResource("Resource_172ob"),
+&"kick_atk": SubResource("Resource_7qyh0"),
+&"primary_atk": SubResource("Resource_72lp5"),
+&"secondary_atk": SubResource("Resource_smxw8")
+})
+metadata/_custom_type_script = "uid://dah4aaqqbvgen"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=945293395]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -556,12 +655,3 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1607205754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_8y5mx")
-
-[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_player", "character")]
-script = ExtResource("17_7ch4d")
-anim_player = NodePath("../AnimationPlayer")
-character = NodePath("..")
-abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
-&"primary_atk": SubResource("Resource_72lp5")
-})
-metadata/_custom_type_script = "uid://dah4aaqqbvgen"

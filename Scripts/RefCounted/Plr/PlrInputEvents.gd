@@ -12,22 +12,31 @@ var camera_move_dir : Vector2
 
 signal jump_input
 signal dash_input
+
 signal primary_atk_input
+signal secondary_atk_input
 signal special_atk1_input
 signal special_atk2_input
 signal special_atk3_input
-signal grapple_input
-signal grapple_mode_toggle
+
+signal grapple_object_input
+signal grapple_enemy_input
+
+signal target_lock
+signal target_next
 
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
 	"chr_dash" : dash_input,
 	"chr_primary_atk" : primary_atk_input,
+	"chr_secondary_atk" : secondary_atk_input,
 	"chr_special_atk1" : special_atk1_input,
 	"chr_special_atk2" : special_atk2_input,
 	"chr_special_atk3" : special_atk3_input,
-	"chr_grapple" : grapple_input,
-	"grapple_toggle_mode" : grapple_mode_toggle
+	"chr_grapple_object" : grapple_object_input,
+	"chr_grapple_enemy" : grapple_enemy_input,
+	"plr_target_lock" : target_lock,
+	"plr_target_next" : target_next
 }
 
 func input_pressed(input : InputEvent):

@@ -7,4 +7,4 @@ func on_enter() -> void:
 		character.move_dir = Vector3(0.0,0.0,0.0)
 		
 		var combat_chr : CombatCharacter = character as CombatCharacter
-		combat_chr.special_attack(special_atk_index)
+		combat_chr.perform_ability_slot(special_atk_index)

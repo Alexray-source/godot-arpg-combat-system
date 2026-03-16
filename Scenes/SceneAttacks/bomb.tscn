@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c4ije16dpmddk" path="res://Scripts/Node/SceneAttackInstance/Bomb.gd" id="1_8h1cb"]
 [ext_resource type="Script" uid="uid://csxxgs4jvoidk" path="res://Scripts/Node/Environment/Explosion.gd" id="2_8h1cb"]
 [ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/Node/Environment/Throwable.gd" id="2_d8coc"]
-[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AoeAttackData.gd" id="3_d8coc"]
+[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="3_d8coc"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="5_m5a65"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_pr0ch"]

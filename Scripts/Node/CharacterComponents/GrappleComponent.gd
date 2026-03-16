@@ -1,42 +1,48 @@
 class_name GrappleComponent extends AbilityComponent
 
-@export var attack_data : AoeAttackData
-@export var targeting_range : float = 10.0
-@export var animations : Array[String]
-@export var should_target_characters : bool = false
+var targeting_range : float = 20.0
+var animations : Array[String]
+var should_target_characters : bool = false
 
-var animation_chainer : AnimationChainer
-var aoe_grapple : AoeGrapple
+var _animation_chainer : AnimationChainer
+var _aoe_grapple : AoeGrapple
+var _scan_shape : SphereShape3D
 
-func _init(_character : BaseCharacter, _anim_player : AnimationPlayer) -> void:
-	aoe_grapple = AoeGrapple.new()
-	aoe_grapple.hit_shape = attack_data.hit_shape
-	aoe_grapple.direct_space_state = character.get_world_3d().direct_space_state
-	aoe_grapple.grapple_finished.connect(on_grapple_finished)
+func setup() -> void:
+	_scan_shape = SphereShape3D.new()
+	_scan_shape.radius = targeting_range
 	
-	animation_chainer = AnimationChainer.new()
-	animation_chainer.anim_player = _anim_player
-	animation_chainer.animations = animations
-	animation_chainer.setup()
+	_aoe_grapple = AoeGrapple.new()
+	_aoe_grapple.hit_shape = _scan_shape
+	_aoe_grapple.direct_space_state = character.get_world_3d().direct_space_state
+	_aoe_grapple.grapple_finished.connect(on_grapple_finished)
+	_aoe_grapple.setup()
+	
+	_animation_chainer = AnimationChainer.new()
+	_animation_chainer.anim_player = anim_player
+	_animation_chainer.animations = animations
+	_animation_chainer.setup()
+	
 
-func _physics_process(delta: float) -> void:
-	aoe_grapple.physics_process(delta)
+func physics_process(delta: float) -> void:
+	_aoe_grapple.physics_process(delta)
 
 func on_grapple_finished():
 	ability_finished.emit()
 
-func action() -> void:
-	aoe_grapple.instigator = character
+func _action() -> void:
+	_aoe_grapple.instigator = character
 	
 	if should_target_characters == true:
-		aoe_grapple.scan_mask = 2 + chr_layer.get_enemy_layer()
+		_aoe_grapple.scan_mask = 2 + chr_layer.get_enemy_layer()
 	else:
-		aoe_grapple.scan_mask = 1
+		_aoe_grapple.scan_mask = 1
 	
-	aoe_grapple.scan_only_in_camera_frustum = true
-	aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position + (character.global_basis.orthonormalized() * attack_data.local_offset))
+	_aoe_grapple.scan_only_in_camera_frustum = true
+	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
+	#+ (character.global_basis.orthonormalized() * attack_data.local_offset))
 	
-	var closest_grapple_object = aoe_grapple.get_closest_grapple_object()
+	var closest_grapple_object = _aoe_grapple.get_closest_grapple_object()
 	if closest_grapple_object != null:
 		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
 		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(closest_grapple_object.global_position.x, 0.0, closest_grapple_object.global_position.z)
@@ -46,10 +52,10 @@ func action() -> void:
 	if closest_grapple_object == null:
 		on_grapple_finished()
 	else:
-		animation_chainer.resume_chain()
+		_animation_chainer.resume_chain()
 
 	
-func ability_event() -> void:
-	aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position + (character.global_basis.orthonormalized() * attack_data.local_offset))
+func _ability_event() -> void:
+	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	
-	aoe_grapple.attempt_grapple_to_closest_object()
+	_aoe_grapple.attempt_grapple_to_closest_object()

@@ -3,10 +3,15 @@
 signal ability_finished
 
 var chr_layer : CharacterLayer
-var character : BaseCharacter
+var character : Node3D
 var anim_player : AnimationPlayer
+var target_override : Node3D
+
 
 func setup() -> void:
+	pass
+
+func physics_process(delta : float) -> void:
 	pass
 
 @abstract func _action() -> void

@@ -4,25 +4,40 @@
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_htcer"]
 [ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/Node/Player/ChrCamArm.gd" id="3_dd0ac"]
 [ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/Node/State/PlrCharacterStateMachine.gd" id="4_0u5uq"]
+[ext_resource type="Script" uid="uid://cydyfmt81qssv" path="res://Scripts/Node/Player/PlrCamera.gd" id="4_htcer"]
 
-[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]
+points = PackedVector3Array(0, 0, 0, -0.7344628, 0.4131353, -0.53840834, -0.7344628, -0.4131353, -0.53840834, 0.7344628, 0.4131353, -0.53840834, 0.7344628, -0.4131353, -0.53840834)
+
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm", "target_tracking_camera")]
 script = ExtResource("1_mtuoh")
 character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 camera_arm = NodePath("SpringArm3D")
+target_tracking_camera = NodePath("SpringArm3D/Camera3D")
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_htcer")]
 collision_layer = 6
 debug_health = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908 node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.983515, 0.18082641, 0, -0.18082641, 0.983515, 0, 1.3716063, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3716063, 0)
 spring_length = 5.0
 script = ExtResource("3_dd0ac")
 target = NodePath("../BaseCharacter")
-target_offset_pos = Vector3(0, 2, 0)
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959]
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959 node_paths=PackedStringArray("camera_scan_area", "camera_frustum_shape")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1281606)
+script = ExtResource("4_htcer")
+camera_scan_area = NodePath("Area3D")
+camera_frustum_shape = NodePath("Area3D/CollisionShape3D")
+camera_scan_radius = 50.0
+
+[node name="Area3D" type="Area3D" parent="SpringArm3D/Camera3D" unique_id=1485957566]
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpringArm3D/Camera3D/Area3D" unique_id=896652275]
+shape = SubResource("ConvexPolygonShape3D_htcer")
 
 [node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828 node_paths=PackedStringArray("character")]
 script = ExtResource("4_0u5uq")

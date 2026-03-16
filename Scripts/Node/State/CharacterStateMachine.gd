@@ -7,16 +7,17 @@ func _ready() -> void:
 		"ground_movement" : CharacterGroundState.new(),
 		"air_movement" : CharacterAirState.new(),
 		"attack" : CharacterPrimaryAttackState.new(),
+		"sp_attack" : CharacterSpecialAttackState.new(),
 		"dodge_dash" : CharacterDashState.new(),
 		"stagger" : ChrStaggerState.new(),
 		"knockback" : ChrKnockbackState.new(),
 		"custom_movement" : CharacterCustomMovementState.new()
 	}
-	
-	for i in range(3):
-		var sp_attack_state = CharacterSpecialAttackState.new()
-		sp_attack_state.special_atk_index = i+1
-		states["sp_attack" + str(i+1)] = sp_attack_state
+
+func enter_special_atk_state(_special_atk_name) -> void:
+	var sp_attack_state = states.get("sp_attack")
+	sp_attack_state.ability_name = _special_atk_name
+	transition_to_state(sp_attack_state)
 
 func state_machine_setup() -> void:
 	for state_key in states:

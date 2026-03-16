@@ -12,12 +12,21 @@ class_name CombatCharacter extends BaseCharacter
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
+@export_subgroup("Plr ability slots")
+@export var ability_slots : Dictionary[String, StringName] = {
+		"special1" : "",
+		"special2" : "",
+		"special3" : "",
+		"special4" : "",
+	}
+
 var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
 
 var prev_hit_info : AtkInfo
 var invincible : bool = false
+var combat_target_override : Node3D
 
 signal damage_hit()
 signal chr_died()
@@ -59,6 +68,10 @@ func _ready() -> void:
 	stagger_state = state_machine.get_state_by_key("stagger")
 	stagger_state.state_end.connect(rescan_ground_state)
 
+func lock_to_target(target : Node3D) -> void:
+	combat_target_override = target
+	character_abilities.target_override = target
+
 func on_floor_changed(is_floored) -> void:
 	if is_floored == false and state_machine.current_state == state_machine.get_state_by_key("knockback"):
 		return
@@ -79,9 +92,22 @@ func on_atk_finished():
 	end_attack_debounce()
 	rescan_ground_state()
 
-func special_attack(atk_index : int):
+func perform_ability_slot(atk_index : int):
 	#debounces.add_debounce("attack")
-	set_state("sp_attack" + str(atk_index))
+	var ability_name = ability_slots.get("special" + str(atk_index))
+	if ability_name == null:
+		push_warning("Ability could not be found in abilitiy slots")
+	
+	state_machine.enter_special_atk_state(ability_name)
+
+func perform_ability(ability_name : StringName):
+	state_machine.enter_special_atk_state(ability_name)
+
+func ability_action(ability_name : StringName):
+	character_abilities.perform_ability(ability_name)
+
+func ability_event_trigger(ability_name : StringName):
+	character_abilities.ability_animation_event(ability_name)
 
 func grapple():
 	if debounces.is_debounce_active("grapple") == true:
@@ -106,7 +132,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		#print(health_component.health)
 		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE:
 			knockback()
-		elif state_machine.current_state != state_machine.get_state_by_key("knockback") and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE:
+		else:
 			stagger()
 
 func on_throwable_hit(throwable : Throwable):

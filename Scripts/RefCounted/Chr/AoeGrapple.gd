@@ -17,6 +17,11 @@ var class_grapple_callbacks : Dictionary[String, Callable] = {
 	"CombatCharacter" : character_grapple_to_target
 }
 
+func setup() -> void:
+	grapple_finished.connect(func():
+		current_target = null
+	)
+
 func get_closest_grapple_object() -> Throwable:
 	var shape_cast_params = PhysicsShapeQueryParameters3D.new()
 	shape_cast_params.shape = hit_shape
@@ -63,14 +68,16 @@ func throwable_grapple(target_node : Throwable):
 
 func character_grapple_to_target(target_node : Node3D):
 	#if target_node is CombatCharacter:
-		#target_node.set_state("custom_movement")
-		#target_node.velocity = Vector3.ZERO
+		##target_node.set_state("custom_movement")
+		##target_node.velocity = Vector3.ZERO
+		#target_node.stagger()
 	
 	instigator.set_state("custom_movement")
 	current_target = target_node
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
-	#instigator.get_tree().create_timer(0.5).timeout.connect(func():
-		#grapple_finished.emit(), CONNECT_ONE_SHOT)
+	instigator.get_tree().create_timer(0.5).timeout.connect(func():
+		grapple_finished.emit()
+		, CONNECT_ONE_SHOT)
 
 func physics_process(delta : float):
 	if current_target != null:
@@ -80,5 +87,12 @@ func physics_process(delta : float):
 		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius:
 			instigator.velocity = Vector3.ZERO
 			instigator.move_and_slide()
+			print("finished reeling to target")
+			
+			if current_target is CombatCharacter:
+				#target_node.set_state("custom_movement")
+				#target_node.velocity = Vector3.ZERO
+				current_target.stagger()
+			
 			current_target = null
 			grapple_finished.emit()

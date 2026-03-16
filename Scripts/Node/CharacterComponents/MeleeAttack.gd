@@ -4,7 +4,6 @@ var targeting_range : float = 10.0
 var animations : Array[String]
 var dmg : int = 10
 var atk_type : AtkInfo.AtkType = AtkInfo.AtkType.MELEE
-var target_override : Node3D
 var attack_data : AttackData
 
 var _animation_chainer : AnimationChainer
@@ -52,4 +51,4 @@ func _action() -> void:
 
 func _ability_event() -> void:
 	var attack = attack_data.create_attack()
-	attack.attack(character, 2 + character.chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir)
+	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir)

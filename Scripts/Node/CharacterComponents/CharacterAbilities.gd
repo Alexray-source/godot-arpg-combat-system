@@ -5,7 +5,7 @@ class_name CharacterAbilities extends Node
 @export var abilities_data : Dictionary[StringName, AbilityData]
 var abilities : Dictionary[StringName, AbilityComponent]
 var chr_layer : CharacterLayer
-
+var target_override : Node3D
 
 signal ability_finished
 
@@ -27,6 +27,7 @@ func setup() -> void:
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)
+	ability.target_override = target_override
 	
 	if ability != null:
 		ability._action()
@@ -36,3 +37,8 @@ func ability_animation_event(ability_key : StringName):
 	
 	if ability != null:
 		ability._ability_event()
+
+func _physics_process(delta: float) -> void:
+	for ability_key in abilities:
+		var ability : AbilityComponent = abilities.get(ability_key)
+		ability.physics_process(delta)
