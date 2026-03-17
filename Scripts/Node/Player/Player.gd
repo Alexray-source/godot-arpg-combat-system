@@ -28,6 +28,8 @@ var plr_debounces : Debounces
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	input_events = PlrInputEvents.new()
+	input_events.setup()
+	
 	plr_debounces = Debounces.new()
 	
 	plr_state_machine.input_events = input_events
@@ -77,12 +79,16 @@ func on_special_atk(atk_index : int) -> void:
 		plr_state_machine.transition_to_state_by_key("special_atk" + str(atk_index))
 
 func on_grapple(targets_characters : bool) -> void:
-	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false:
+	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("grapple") == false:
 		#character.grapple()
+		plr_debounces.add_debounce("grapple")
+		plr_debounces.remove_debounce_delayed("grapple", 0.5)
+		
 		if targets_characters == true:
 			character.perform_ability("grapple_enemy")
 		else:
 			character.perform_ability("grapple_object")
+		
 
 func on_dodge_dash() -> void:
 	if plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger"): 
@@ -165,7 +171,7 @@ func _process(delta: float) -> void:
 		
 		var target_to_chr_distance = current_target.global_position.distance_to(character.global_position)
 		
-		camera_center_offset = camera_arm_center_rest_offset + ((current_target.global_position - character.global_position) * 0.75) + (target_to_camera_dir * -target_to_chr_distance)
+		camera_center_offset = camera_arm_center_rest_offset + ((current_target.global_position - character.global_position) * 0.8) + (target_to_camera_dir * -target_to_chr_distance)
 		
 		if current_target.global_position.distance_to(character.global_position) > targeting_cancel_distance_treshold:
 			#current_target = null

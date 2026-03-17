@@ -27,7 +27,7 @@ func state_physics_process(_delta : float) -> void:
 		
 		if ((character.global_position - target.global_position).length() < attack_radius):
 			state_end.emit()
-	else:
-		state_end.emit()
+	#else:
+		#state_end.emit()
 	
 	character.move_dir = wander_dir

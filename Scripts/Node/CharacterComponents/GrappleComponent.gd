@@ -62,7 +62,7 @@ func _action() -> void:
 func _ability_event() -> void:
 	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	
-	if target_override != null:
+	if target_override != null and should_target_characters == true:
 		_aoe_grapple.perform_grapple(target_override)
 	else:
 		_aoe_grapple.attempt_grapple_to_closest_object()

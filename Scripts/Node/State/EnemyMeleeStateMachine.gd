@@ -6,7 +6,7 @@ func _ready() -> void:
 	states = {
 		"idle" : NPCIdleState.new(),
 		"strafe" : NPCAgroStrafeState.new(),
-		"chase_attack" : NPCChaseState.new(),
+		"chase" : NPCChaseState.new(),
 		"primary_atk" : EnemyNPCPrimaryAttackState.new(),
 	}
 	

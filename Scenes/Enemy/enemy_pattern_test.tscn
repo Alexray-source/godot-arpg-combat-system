@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cw7cxdwia6qs0"]
 
-[ext_resource type="Script" uid="uid://kcwptoxteen1" path="res://Scripts/Node/Enemies/MeleeEnemyLegacy.gd" id="1_xt0b2"]
+[ext_resource type="Script" uid="uid://cwxu3ojltigre" path="res://Scripts/Node/Enemies/MeleeEnemy.gd" id="1_xt0b2"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_tg8h4"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_i0eg3"]
 [ext_resource type="Script" uid="uid://efa80oanjed8" path="res://Scripts/Node/State/EnemyMeleeStateMachine.gd" id="4_vugv4"]

@@ -5,14 +5,17 @@ class_name CombatCharacter extends BaseCharacter
 @export var stagger_component : StaggerComponent
 @export var character_abilities : CharacterAbilities
 
+@export var debug_health : bool = false
+@export var debug_state: bool = false
+
 @export_subgroup("Stats")
 @export var start_health : int = 100
 @export var max_health : int = 100
-@export var debug_health : bool = false
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
+@export var max_stagger_count : int = 6
 
-@export_subgroup("bility slots")
+@export_subgroup("Ability slots")
 @export var ability_slots : Dictionary[String, StringName] = {
 		"special1" : "",
 		"special2" : "",
@@ -28,6 +31,10 @@ var prev_hit_info : AtkInfo
 var invincible : bool = false
 var combat_target_override : Node3D
 
+var _stagger_count : int = 0
+var _stagger_count_reset_timer : SceneTreeTimer
+
+signal interupt_atks()
 signal damage_hit()
 signal chr_died()
 signal atk_debounce_ended()
@@ -44,20 +51,6 @@ func _ready() -> void:
 	character_abilities.ability_finished.connect(on_atk_finished)
 	
 	character_abilities.setup()
-	#primary_attack_component.ability_finished.connect(on_atk_finished)
-	#special_attack1_component.ability_finished.connect(on_atk_finished)
-	#special_attack2_component.ability_finished.connect(on_atk_finished)
-	#special_attack3_component.ability_finished.connect(on_atk_finished)
-	#
-	#grapple_component.ability_finished.connect(on_atk_finished)
-	
-	
-	#primary_attack_component.chr_layer = chr_layer
-	#special_attack1_component.chr_layer = chr_layer
-	#special_attack2_component.chr_layer = chr_layer
-	#special_attack3_component.chr_layer = chr_layer
-	#
-	#grapple_component.chr_layer = chr_layer
 	
 	dash_component.dash_ended.connect(on_dash_end)
 	
@@ -68,8 +61,10 @@ func _ready() -> void:
 	CONNECT_ONE_SHOT)
 	debounces = Debounces.new()
 	
+	state_machine.debug = debug_state
+	
 	stagger_state = state_machine.get_state_by_key("stagger")
-	stagger_state.state_end.connect(rescan_ground_state)
+	stagger_state.state_end.connect(on_stagger_end)
 
 func lock_to_target(target : Node3D) -> void:
 	combat_target_override = target
@@ -124,16 +119,11 @@ func end_attack_debounce():
 	debounces.remove_debounce("attack")
 	atk_debounce_ended.emit()
 
-#func end_special_attack_debounce(atk_index : int):
-	#var debounce_string = get_special_atk_debounce_string(atk_index)
-	#debounces.remove_debounce(debounce_string)
-
 func on_atk_hit(atk_info : AtkInfo):
 	prev_hit_info = atk_info
 	if invincible == false:
 		health_component.take_damage(atk_info.dmg)
 		damage_hit.emit()
-		#print(health_component.health)
 		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE:
 			knockback()
 		else:
@@ -146,23 +136,44 @@ func on_throwable_hit(throwable : Throwable):
 	
 
 func on_dash_end():
-	if state_machine.current_state == state_machine.get_state_by_key("attack") or state_machine.current_state == state_machine.get_state_by_key("sp_attack"):
+	if state_machine.current_state == state_machine.get_state_by_key("attack") or state_machine.current_state == state_machine.get_state_by_key("sp_attack") or state_machine.current_state == state_machine.get_state_by_key("knockback"):
 		return
 	
 	rescan_ground_state()
 
+func on_stagger_end():
+	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
+		return
+	
+	rescan_ground_state()
+
+func increment_stagger_count():
+	_stagger_count += 1
+	
+	if _stagger_count_reset_timer != null:
+		_stagger_count_reset_timer.time_left = 5.0
+	else:
+		_stagger_count_reset_timer = get_tree().create_timer(5.0)
+		_stagger_count_reset_timer.timeout.connect(func():
+			_stagger_count = 0
+		,CONNECT_ONE_SHOT)
+
 func stagger():
-	velocity = Vector3.ZERO
-	up_velocity = Vector3.ZERO
-	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
-	stagger_component.action()
-	set_state("stagger")
-	end_attack_debounce()
+	increment_stagger_count()
+	if _stagger_count <= max_stagger_count or is_on_floor() == false:
+		velocity = Vector3.ZERO
+		up_velocity = Vector3.ZERO
+		global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
+		stagger_component.action()
+		set_state("stagger")
+		end_attack_debounce()
+		interupt_atks.emit()
 
 func knockback():
 	velocity = Vector3.ZERO
 	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
+	interupt_atks.emit()
 	set_state("knockback")
 	end_attack_debounce()
 

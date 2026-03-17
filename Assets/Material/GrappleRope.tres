@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://kik42uyn1u8p"]
+
+[ext_resource type="Shader" uid="uid://fhspgo8xpq3l" path="res://Shaders/line_3d.gdshader" id="1_wnibl"]
+
+[sub_resource type="Gradient" id="Gradient_wnibl"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_msh1j"]
+gradient = SubResource("Gradient_wnibl")
+fill_from = Vector2(1, 1)
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wnibl")
+shader_parameter/softness = 0.0
+shader_parameter/albedo_texture = SubResource("GradientTexture2D_msh1j")
+shader_parameter/uv_scale = Vector2(1, 0.5)
+shader_parameter/uv_offset = Vector2(0, 0.5)
+shader_parameter/uv_time_scale = Vector2(0, 0)

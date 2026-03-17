@@ -10,7 +10,7 @@ var grapple_finish_radius : float = 1.0
 var grapple_reel_in_speed : float = 3000.0
 
 var _current_target : Node3D
-
+var _grapple_line : GrappleLine
 
 signal grapple_finished
 
@@ -65,7 +65,24 @@ func perform_grapple(target_node : Node3D):
 		grapple_finished.emit()
 		return
 	
-	class_callback.call(target_node)
+	_grapple_line = GrappleLine.new()
+	_grapple_line.start_node = instigator
+	_grapple_line.top_level = true
+	_grapple_line.use_global_space = true
+	target_node.get_tree().current_scene.add_child(_grapple_line)
+	_grapple_line.global_position = Vector3.ZERO
+
+	
+	_grapple_line.set_end_node_animated(target_node)
+	_grapple_line.grapple_anim_finished.connect(func():
+		class_callback.call(target_node)
+		_grapple_line.set_end_node_animated(instigator)
+		
+		#_grapple_line.grapple_anim_finished.connect(func():
+			#_grapple_line.queue_free()
+			#_grapple_line = null
+		#, CONNECT_ONE_SHOT)
+	, CONNECT_ONE_SHOT)
 
 func throwable_grapple(target_node : Throwable):
 	target_node.throw_to_position(instigator.global_position + (-instigator.global_basis.z * 2))
@@ -87,7 +104,7 @@ func character_grapple_to_target(target_node : Node3D):
 
 func physics_process(delta : float):
 	if _current_target != null:
-		var target_pos = _current_target.global_position + (instigator.global_basis.z * 1.0)
+		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
 		
 		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
 		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius:

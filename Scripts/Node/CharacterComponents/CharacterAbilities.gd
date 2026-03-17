@@ -29,7 +29,7 @@ func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)
 	
 	if ability != null:
-		print(target_override)
+		#print(target_override)
 		ability.target_override = target_override
 		ability._action()
 

@@ -52,7 +52,7 @@ func on_hit(atk_info : AtkInfo) -> void:
 			throw_dir = global_position.direction_to(closest_hurtbox.global_position)
 			#throw_to_position(closest_hurtbox.global_position)
 		#else:
-		throw((throw_dir+ Vector3(0,0.5,0.0)).normalized(), atk_info.dmg * mass * 2.0)
+		throw((throw_dir + Vector3(0,0.1,0.0)).normalized(), atk_info.dmg * mass * 2.0)
 
 		
 func on_target_hit() -> void:
