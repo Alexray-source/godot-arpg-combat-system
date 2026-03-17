@@ -17,7 +17,10 @@ func state_physics_process(_delta : float) -> void:
 	if character.state_machine.get_state_by_key("knockback") == character.state_machine.current_state:
 		return
 	
-	target = get_closest_combat_enemy(scan_radius)
+	target = character.combat_target_override
+	
+	if target == null:
+		get_closest_combat_enemy(scan_radius)
 	
 	if target != null:
 		wander_dir = (target.global_position - character.global_position).normalized()

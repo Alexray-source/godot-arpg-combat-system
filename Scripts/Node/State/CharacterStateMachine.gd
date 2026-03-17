@@ -6,6 +6,7 @@ func _ready() -> void:
 	states = {
 		"ground_movement" : CharacterGroundState.new(),
 		"air_movement" : CharacterAirState.new(),
+		"fly_movement" : CharacterFlyState.new(),
 		"attack" : CharacterPrimaryAttackState.new(),
 		"sp_attack" : CharacterSpecialAttackState.new(),
 		"dodge_dash" : CharacterDashState.new(),

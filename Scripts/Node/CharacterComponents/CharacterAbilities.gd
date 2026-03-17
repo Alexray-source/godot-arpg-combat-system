@@ -27,9 +27,10 @@ func setup() -> void:
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)
-	ability.target_override = target_override
 	
 	if ability != null:
+		print(target_override)
+		ability.target_override = target_override
 		ability._action()
 
 func ability_animation_event(ability_key : StringName):

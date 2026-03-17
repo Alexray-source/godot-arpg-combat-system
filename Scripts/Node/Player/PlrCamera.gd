@@ -8,8 +8,8 @@ var targets_in_view : Array[Node3D]
 
 func _ready() -> void:
 	recalculate_perspective_shape()
-	camera_scan_area.area_entered.connect(on_area_camera_view_entered)
-	camera_scan_area.area_exited.connect(on_area_camera_view_exited)
+	camera_scan_area.body_entered.connect(on_body_camera_view_entered)
+	camera_scan_area.body_exited.connect(on_body_camera_view_exited)
 
 func recalculate_perspective_shape() -> void:
 	var pyramid_shape_rid : RID = get_pyramid_shape_rid()
@@ -25,13 +25,13 @@ func recalculate_perspective_shape() -> void:
 	
 	camera_frustum_shape.shape = convex_shape
 
-func on_area_camera_view_entered(entered_area : Area3D):
-	if entered_area is HurtBox:
+func on_body_camera_view_entered(entered_area : Node3D):
+	if entered_area is CombatCharacter:
 		targets_in_view.append(entered_area)
 		cleanup_invalid_targets()
 
-func on_area_camera_view_exited(exited_area : Area3D):
-	if exited_area is HurtBox and targets_in_view.find(exited_area) != -1:
+func on_body_camera_view_exited(exited_area : Node3D):
+	if exited_area is CombatCharacter and targets_in_view.find(exited_area) != -1:
 		targets_in_view.erase(exited_area)
 		cleanup_invalid_targets()
 

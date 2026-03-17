@@ -1,6 +1,6 @@
 class_name EnemyNPCState extends State
 
-var target : CombatCharacter
+var target : Node3D
 var character : CombatCharacter
 
 func get_closest_combat_enemy(scan_radius : float) -> CombatCharacter:

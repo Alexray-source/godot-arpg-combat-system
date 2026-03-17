@@ -33,7 +33,7 @@ func on_animation_finish():
 
 func _action() -> void:
 	var closest_target = target_override
-	
+	print(closest_target)
 	if closest_target == null:
 		closest_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
 	

@@ -104,7 +104,9 @@ func on_target_next() -> void:
 	if current_target != null:
 		current_index = target_tracking_camera.targets_in_view.find(current_target)
 		
-		if current_index == -1:
+		current_index += 1
+		
+		if current_index >= target_tracking_camera.targets_in_view.size():
 			current_index = 0
 	
 	#current_target = target_tracking_camera.targets_in_view.get(current_index)
@@ -112,7 +114,7 @@ func on_target_next() -> void:
 
 func set_lock_target(new_target : Node3D) -> void:
 	current_target = new_target
-	character.combat_target_override = new_target
+	character.lock_to_target(new_target)
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)
@@ -132,10 +134,10 @@ func handle_camera_rot(delta):
 		
 		var target_screen_pos : Vector2 = target_tracking_camera.unproject_position(current_target.global_position)
 		
-		var x_correction = -(target_screen_pos - viewport_center_pos).x
-		
-		if abs(x_correction) > 100.0:
-			camera_move_dir.x = (x_correction / viewport_size.x) * 15.0
+		var x_correction = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
+		#print(x_correction)
+		if abs(x_correction) > 0.1:
+			camera_move_dir.x = (x_correction / viewport_size.x) * 25000.0
 		
 	
 	camera_rot_y_accel = lerp(camera_rot_y_accel, camera_move_dir.x, delta * 10.0)

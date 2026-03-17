@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cw7cxdwia6qs0"]
+
+[ext_resource type="Script" uid="uid://kcwptoxteen1" path="res://Scripts/Node/Enemies/MeleeEnemyLegacy.gd" id="1_xt0b2"]
+[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_tg8h4"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_i0eg3"]
+[ext_resource type="Script" uid="uid://efa80oanjed8" path="res://Scripts/Node/State/EnemyMeleeStateMachine.gd" id="4_vugv4"]
+
+[sub_resource type="Resource" id="Resource_jah6w"]
+script = ExtResource("3_i0eg3")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[node name="Enemy" type="Node3D" unique_id=1147936652 node_paths=PackedStringArray("character", "state_machine")]
+script = ExtResource("1_xt0b2")
+character = NodePath("BaseCharacter")
+state_machine = NodePath("EnemyStateMachine")
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_tg8h4")]
+collision_layer = 10
+chr_layer = SubResource("Resource_jah6w")
+
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=905334435 node_paths=PackedStringArray("character")]
+script = ExtResource("4_vugv4")
+character = NodePath("../BaseCharacter")

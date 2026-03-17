@@ -18,7 +18,7 @@ var timeline : Dictionary[float, Callable] = {
 }
 
 var time_passed = 0.0
-var max_time : float = 8.0
+var max_time : float = 15.0
 
 func _ready() -> void:
 	scan_shape = SphereShape3D.new()
@@ -89,6 +89,7 @@ func faraway_chase() -> void:
 
 func chase_attack() -> void:
 	state_machine.transition_to_state(state_machine.states.get("chase_attack"))
+	
 
 func reset_timeline() -> void:
 	#print("reset")

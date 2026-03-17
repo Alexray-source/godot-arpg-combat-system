@@ -11,12 +11,7 @@ var scan_shape : SphereShape3D
 var closest_hurtbox : HurtBox
 var scan_timer : Timer
 
-var timeline : Dictionary[float, Callable]
-var current_callable : Callable
-
-var time_passed = 0.0
-var max_time : float = 6.0
-
+var attack_pattern : Array 
 
 func _ready() -> void:
 	scan_shape = SphereShape3D.new()
@@ -34,9 +29,5 @@ func _ready() -> void:
 
 func scan_timer_tick() -> void:
 	closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
-
-func far_range_logic():
-	state_machine.transition_to_state(state_machine.get_state_by_key("chase_attack"))
-
-func close_range_logic():
-	state_machine.transition_to_state(state_machine.get_state_by_key("strafe"))
+	
+	character.combat_target_override = closest_hurtbox

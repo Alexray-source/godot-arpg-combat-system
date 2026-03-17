@@ -41,6 +41,17 @@ atk_data = SubResource("Resource_qbr8q")
 targeting_range = 20.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
+[sub_resource type="Resource" id="Resource_7ch4d"]
+script = ExtResource("12_7ch4d")
+animations = Array[String](["specials/grapple_enemy"])
+target_characters = true
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
+[sub_resource type="Resource" id="Resource_172ob"]
+script = ExtResource("12_7ch4d")
+animations = Array[String](["specials/grapple_object"])
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
 size = Vector3(4, 4, 4)
 
@@ -76,17 +87,6 @@ atk_type = 1
 atk_data = SubResource("Resource_8m6ks")
 targeting_range = 15.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
-[sub_resource type="Resource" id="Resource_7ch4d"]
-script = ExtResource("12_7ch4d")
-animations = Array[String](["specials/grapple_enemy"])
-target_characters = true
-metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
-
-[sub_resource type="Resource" id="Resource_172ob"]
-script = ExtResource("12_7ch4d")
-animations = Array[String](["specials/grapple_object"])
-metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
 [sub_resource type="Resource" id="Resource_pq3w2"]
 script = ExtResource("8_smxw8")
@@ -568,6 +568,9 @@ _data = {
 &"stagger": SubResource("Animation_efloy")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
+size = Vector3(1.1096191, 2.0214844, 1.1064453)
+
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
 collision_mask = 3
@@ -654,4 +657,4 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1607205754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_8y5mx")
+shape = SubResource("BoxShape3D_qbr8q")

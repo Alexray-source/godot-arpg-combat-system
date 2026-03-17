@@ -6,9 +6,11 @@ var hit_shape : Shape3D
 var scan_mask : int = 1
 var direct_space_state : PhysicsDirectSpaceState3D
 var instigator : BaseCharacter
-var current_target : Node3D
 var grapple_finish_radius : float = 1.0
 var grapple_reel_in_speed : float = 3000.0
+
+var _current_target : Node3D
+
 
 signal grapple_finished
 
@@ -19,7 +21,7 @@ var class_grapple_callbacks : Dictionary[String, Callable] = {
 
 func setup() -> void:
 	grapple_finished.connect(func():
-		current_target = null
+		_current_target = null
 	)
 
 func get_closest_grapple_object() -> Throwable:
@@ -52,15 +54,18 @@ func attempt_grapple_to_closest_object():
 	
 	var attached_script = closest_body.get_script()
 	if attached_script != null:
-		var class_callback : Callable = class_grapple_callbacks.get(closest_body.get_script().get_global_name())
-		
-		if class_callback == null:
-			grapple_finished.emit()
-			return
-		
-		class_callback.call(closest_body)
+		perform_grapple(closest_body)
 	else:
 		grapple_finished.emit()
+
+func perform_grapple(target_node : Node3D):
+	var class_callback : Callable = class_grapple_callbacks.get(target_node.get_script().get_global_name())
+	
+	if class_callback == null:
+		grapple_finished.emit()
+		return
+	
+	class_callback.call(target_node)
 
 func throwable_grapple(target_node : Throwable):
 	target_node.throw_to_position(instigator.global_position + (-instigator.global_basis.z * 2))
@@ -73,26 +78,28 @@ func character_grapple_to_target(target_node : Node3D):
 		#target_node.stagger()
 	
 	instigator.set_state("custom_movement")
-	current_target = target_node
+	_current_target = target_node
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 	instigator.get_tree().create_timer(0.5).timeout.connect(func():
+		instigator.up_velocity = Vector3.ZERO
 		grapple_finished.emit()
 		, CONNECT_ONE_SHOT)
 
 func physics_process(delta : float):
-	if current_target != null:
-		var target_pos = current_target.global_position + (instigator.global_basis.z * 1.0)
+	if _current_target != null:
+		var target_pos = _current_target.global_position + (instigator.global_basis.z * 1.0)
 		
 		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
 		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius:
 			instigator.velocity = Vector3.ZERO
+			instigator.up_velocity = Vector3.ZERO
 			instigator.move_and_slide()
 			print("finished reeling to target")
 			
-			if current_target is CombatCharacter:
+			if _current_target is CombatCharacter:
 				#target_node.set_state("custom_movement")
 				#target_node.velocity = Vector3.ZERO
-				current_target.stagger()
+				_current_target.stagger()
 			
-			current_target = null
+			_current_target = null
 			grapple_finished.emit()

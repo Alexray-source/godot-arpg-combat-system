@@ -12,7 +12,7 @@ class_name CombatCharacter extends BaseCharacter
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
-@export_subgroup("Plr ability slots")
+@export_subgroup("bility slots")
 @export var ability_slots : Dictionary[String, StringName] = {
 		"special1" : "",
 		"special2" : "",
@@ -30,9 +30,12 @@ var combat_target_override : Node3D
 
 signal damage_hit()
 signal chr_died()
+signal atk_debounce_ended()
 
 func _ready() -> void:
 	super()
+	collision_layer = 2 + chr_layer.get_collision_layer()
+	
 	hurt_box.collision_layer = chr_layer.get_collision_layer()
 	hurt_box.hit.connect(on_atk_hit)
 	hurt_box.throwable_hit.connect(on_throwable_hit)
@@ -119,6 +122,7 @@ func grapple():
 
 func end_attack_debounce():
 	debounces.remove_debounce("attack")
+	atk_debounce_ended.emit()
 
 #func end_special_attack_debounce(atk_index : int):
 	#var debounce_string = get_special_atk_debounce_string(atk_index)
@@ -149,16 +153,18 @@ func on_dash_end():
 
 func stagger():
 	velocity = Vector3.ZERO
+	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
 	stagger_component.action()
 	set_state("stagger")
-	debounces.remove_debounce("attack")
+	end_attack_debounce()
 
 func knockback():
 	velocity = Vector3.ZERO
+	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(-prev_hit_info.atk_dir)
 	set_state("knockback")
-	debounces.remove_debounce("attack")
+	end_attack_debounce()
 
 func dodge_dash():
 	set_state("dodge_dash")
