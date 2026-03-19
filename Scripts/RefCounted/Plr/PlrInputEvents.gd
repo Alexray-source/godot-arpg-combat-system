@@ -69,9 +69,9 @@ func input_pressed(input : InputEvent):
 		if input_mode == InputMode.GAMEPAD:
 			if input.is_action_pressed(special_attack_action_name) and Input.is_action_pressed("gamepad_action_btn") == true:
 				special_atks[special_attack_action_name].emit()
-		#else:
-			#if input.is_action_pressed(special_attack_action_name):
-				#special_atks[special_attack_action_name].emit()
+		else:
+			if input.is_action_pressed(special_attack_action_name):
+				special_atks[special_attack_action_name].emit()
 	
 	if input_mode == InputMode.KEYBOARD and input is InputEventMouseMotion:
 		camera_move_dir = input.screen_relative
