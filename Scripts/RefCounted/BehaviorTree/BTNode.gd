@@ -1,4 +1,4 @@
-@abstract class_name BT_Node extends Resource
+@abstract class_name BT_Node extends RefCounted
 
 enum {
 	SUCCESS,

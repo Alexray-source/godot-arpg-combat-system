@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://m7eskb2chrks"]
+
+[ext_resource type="Script" uid="uid://c3ny4v8t2s8jb" path="res://addons/behavior_tree/Scripts/BT_NodeUI.gd" id="1_k8y06"]
+
+[node name="BtNodeDataUi" type="PanelContainer" unique_id=2059867320 node_paths=PackedStringArray("icon_rect", "name_label")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -11.5
+offset_right = 23.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k8y06")
+icon_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
+name_label = NodePath("MarginContainer/HBoxContainer/Label")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1248405972]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2006930553]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=787425634]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=403052678]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+autowrap_mode = 3

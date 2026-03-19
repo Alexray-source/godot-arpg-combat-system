@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dhdhawbmfly11"]
+
+[ext_resource type="Script" uid="uid://bpji8cnp6ay07" path="res://addons/behavior_tree/Scripts/BT_NodeChildrenUI.gd" id="1_i2b1o"]
+[ext_resource type="PackedScene" uid="uid://m7eskb2chrks" path="res://addons/behavior_tree/Scenes/bt_node_data_ui.tscn" id="1_mlglx"]
+
+[node name="BtNodeChildrenUi" type="VBoxContainer" unique_id=1908437802 node_paths=PackedStringArray("node_ui", "child_container")]
+theme_override_constants/separation = 50
+script = ExtResource("1_i2b1o")
+node_ui = NodePath("BtNodeDataUi")
+child_container = NodePath("ChildContainer")
+
+[node name="BtNodeDataUi" parent="." unique_id=2059867320 instance=ExtResource("1_mlglx")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ChildContainer" type="HBoxContainer" parent="." unique_id=2096182784]
+layout_mode = 2
+theme_override_constants/separation = 20

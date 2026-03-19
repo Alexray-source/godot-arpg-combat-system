@@ -1,9 +1,9 @@
 class_name BT_GetClosestCharacter extends BT_Node
 
-@export var origin_node_scan_key : String
-@export var found_character_target_key : String
-@export var scan_radius : float = 10.0
-@export_custom(PROPERTY_HINT_LAYERS_3D_PHYSICS, "") var scan_layer : int = 1
+var origin_node_scan_key : String
+var found_character_target_key : String
+var scan_radius : float = 10.0
+var scan_layer : int = 1
 
 func tick(blackboard : Dictionary):
 	var scan_shape : SphereShape3D = SphereShape3D.new()
