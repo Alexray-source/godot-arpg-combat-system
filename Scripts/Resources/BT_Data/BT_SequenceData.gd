@@ -1,3 +1,4 @@
+@tool
 class_name BT_SequenceData extends BT_CompositeData
 
 func create_node() -> BT_Node:
