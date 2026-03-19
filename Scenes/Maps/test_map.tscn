@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="PackedScene" uid="uid://cw7cxdwia6qs0" path="res://Scenes/Enemy/enemy_pattern_test.tscn" id="7_jah6w"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="7_jah6w"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
@@ -145,4 +145,4 @@ debug_state = true
 chr_layer = SubResource("Resource_8y5mx")
 
 [node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("7_jah6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.385079, 0, -10.8868885)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.160313, 0.00049972534, 5.9519234)

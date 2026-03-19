@@ -1,24 +1,103 @@
 [gd_scene format=3 uid="uid://dobbltvy06yps"]
 
-[ext_resource type="Script" uid="uid://kcwptoxteen1" path="res://Scripts/Node/Enemies/MeleeEnemyLegacy.gd" id="1_dmwl5"]
+[ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://Scripts/Resources/BehaviorTree/BTRoot.gd" id="1_2t2r4"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_d40jh"]
+[ext_resource type="Script" uid="uid://dwjw2cbxjiejd" path="res://Scripts/Resources/BehaviorTree/BTNode.gd" id="2_gx76c"]
+[ext_resource type="Script" uid="uid://bir5qyjnwq8k7" path="res://Scripts/Resources/BehaviorTree/General/BT_Wait.gd" id="3_4ad2a"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_gx76c"]
-[ext_resource type="Script" uid="uid://efa80oanjed8" path="res://Scripts/Node/State/EnemyMeleeStateMachine.gd" id="4_pqgp3"]
+[ext_resource type="Script" uid="uid://b0vj5bfp1ldgh" path="res://Scripts/Resources/BehaviorTree/BTSequence.gd" id="3_pqgp3"]
+[ext_resource type="Script" uid="uid://dagrkcw2ermhb" path="res://Scripts/Resources/BehaviorTree/Character/BT_GetClosestCharacter.gd" id="4_kiqm3"]
+[ext_resource type="Script" uid="uid://b0uwxjbxprd74" path="res://Scripts/Resources/BehaviorTree/Character/BT_MoveTo.gd" id="5_6j3ko"]
+[ext_resource type="Script" uid="uid://56rbgyhwo5i4" path="res://Scripts/Resources/BehaviorTree/CombatCharacter/BT_CombatCharacterAbility.gd" id="6_kiqm3"]
+
+[sub_resource type="Resource" id="Resource_beese"]
+script = ExtResource("4_kiqm3")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 100.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://dagrkcw2ermhb"
+
+[sub_resource type="Resource" id="Resource_1vi6b"]
+script = ExtResource("5_6j3ko")
+chr_bb_key = "character"
+target_node_bb_key = "enemy_character"
+target_success_radius = 2.0
+metadata/_custom_type_script = "uid://b0uwxjbxprd74"
+
+[sub_resource type="Resource" id="Resource_2chwy"]
+script = ExtResource("3_4ad2a")
+interval = 0.5
+metadata/_custom_type_script = "uid://bir5qyjnwq8k7"
+
+[sub_resource type="Resource" id="Resource_x4yp7"]
+script = ExtResource("6_kiqm3")
+chr_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://56rbgyhwo5i4"
+
+[sub_resource type="Resource" id="Resource_kiqm3"]
+script = ExtResource("3_4ad2a")
+interval = 0.8
+metadata/_custom_type_script = "uid://bir5qyjnwq8k7"
+
+[sub_resource type="Resource" id="Resource_tqvt7"]
+script = ExtResource("6_kiqm3")
+chr_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://56rbgyhwo5i4"
+
+[sub_resource type="Resource" id="Resource_r1w2j"]
+script = ExtResource("3_4ad2a")
+interval = 0.8
+metadata/_custom_type_script = "uid://bir5qyjnwq8k7"
+
+[sub_resource type="Resource" id="Resource_6j3ko"]
+script = ExtResource("6_kiqm3")
+chr_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://56rbgyhwo5i4"
+
+[sub_resource type="Resource" id="Resource_u4wq1"]
+script = ExtResource("3_4ad2a")
+metadata/_custom_type_script = "uid://bir5qyjnwq8k7"
+
+[sub_resource type="Resource" id="Resource_5luce"]
+script = ExtResource("6_kiqm3")
+chr_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "kick_atk"
+metadata/_custom_type_script = "uid://56rbgyhwo5i4"
+
+[sub_resource type="Resource" id="Resource_xmc1t"]
+script = ExtResource("3_pqgp3")
+children = Array[ExtResource("2_gx76c")]([SubResource("Resource_x4yp7"), SubResource("Resource_kiqm3"), SubResource("Resource_tqvt7"), SubResource("Resource_r1w2j"), SubResource("Resource_6j3ko"), SubResource("Resource_u4wq1"), SubResource("Resource_5luce")])
+metadata/_custom_type_script = "uid://b0vj5bfp1ldgh"
+
+[sub_resource type="Resource" id="Resource_d2jnu"]
+script = ExtResource("3_4ad2a")
+metadata/_custom_type_script = "uid://bir5qyjnwq8k7"
+
+[sub_resource type="Resource" id="Resource_4ad2a"]
+script = ExtResource("3_pqgp3")
+children = Array[ExtResource("2_gx76c")]([SubResource("Resource_beese"), SubResource("Resource_1vi6b"), SubResource("Resource_2chwy"), SubResource("Resource_xmc1t"), SubResource("Resource_d2jnu")])
+metadata/_custom_type_script = "uid://b0vj5bfp1ldgh"
 
 [sub_resource type="Resource" id="Resource_jah6w"]
 script = ExtResource("3_gx76c")
 hostility = 1
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
-[node name="Enemy" type="Node3D" unique_id=1147936652 node_paths=PackedStringArray("character", "state_machine")]
-script = ExtResource("1_dmwl5")
-character = NodePath("BaseCharacter")
-state_machine = NodePath("EnemyStateMachine")
+[node name="Enemy" type="Node3D" unique_id=1147936652]
+script = ExtResource("1_2t2r4")
+blackboard = Dictionary[String, Variant]({
+"character": NodePath("BaseCharacter")
+})
+child = SubResource("Resource_4ad2a")
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_d40jh")]
 collision_layer = 10
 chr_layer = SubResource("Resource_jah6w")
-
-[node name="EnemyStateMachine" type="Node" parent="." unique_id=905334435 node_paths=PackedStringArray("character")]
-script = ExtResource("4_pqgp3")
-character = NodePath("../BaseCharacter")
