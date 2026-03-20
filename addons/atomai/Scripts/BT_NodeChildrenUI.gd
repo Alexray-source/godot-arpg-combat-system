@@ -21,35 +21,35 @@ func _ready() -> void:
 		branch_root_node_selected.emit()
 	)
 	
-	child_container.resized.connect(redraw_lines)
+	#child_container.resized.connect(redraw_lines)
 	
 	populate_children_ui()
 
 func populate_children_ui() -> void:
 	for child_ui in bt_node_ui_children:
-		child_ui.resized.connect(redraw_lines)
+		#child_ui.resized.connect(redraw_lines)
 		child_container.add_child(child_ui)
 	
 	#redraw_lines()
 
-func redraw_lines() -> void:
-	print("redrawing lines")
-	for line in lines:
-		line.queue_free()
-	
-	lines.clear()
-	
-	for child_ui : BT_NodeDataUIWithChildren in child_container.get_children():
-		var line = Line2D.new()
-		line.width = 2.0
-		line.default_color = Color(0.406, 0.406, 0.406, 1.0)
-		line.antialiased = true
-		line.add_point(Vector2(node_ui.size.x*0.5, node_ui.size.y))
-		#print((node_ui.global_position - child_ui.global_position))
-		line.add_point((child_ui.global_position - node_ui.global_position) + Vector2(node_ui.size.x*0.5, 0.0))
-		
-		lines.append(line)
-		node_ui.add_child(line)
+#func redraw_lines() -> void:
+	#print("redrawing lines")
+	#for line in lines:
+		#line.queue_free()
+	#
+	#lines.clear()
+	#
+	#for child_ui : BT_NodeDataUIWithChildren in child_container.get_children():
+		#var line = Line2D.new()
+		#line.width = 2.0
+		#line.default_color = Color(0.406, 0.406, 0.406, 1.0)
+		#line.antialiased = true
+		#line.add_point(Vector2(node_ui.size.x*0.5, node_ui.size.y))
+		##print((node_ui.global_position - child_ui.global_position))
+		#line.add_point((child_ui.global_position - node_ui.global_position) + Vector2(node_ui.size.x*0.5, 0.0))
+		#
+		#lines.append(line)
+		#node_ui.add_child(line)
 		
 		#child_ui.redraw_lines()
 	

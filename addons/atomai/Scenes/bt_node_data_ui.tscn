@@ -1,20 +1,10 @@
 [gd_scene format=3 uid="uid://m7eskb2chrks"]
 
 [ext_resource type="Script" uid="uid://c3ny4v8t2s8jb" path="res://addons/atomai/Scripts/BT_NodeUI.gd" id="1_f30yb"]
+[ext_resource type="StyleBox" uid="uid://cme2hvq7fl6cx" path="res://addons/atomai/Styles/node_default.tres" id="1_w1jgv"]
+[ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="3_875id"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f30yb"]
-bg_color = Color(0.125, 0.125, 0.125, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.44140625, 0.44140625, 0.44140625, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[node name="BtNodeDataUi" type="PanelContainer" unique_id=2059867320 node_paths=PackedStringArray("icon_rect", "name_label")]
+[node name="BtNodeDataUi" type="PanelContainer" unique_id=2059867320 node_paths=PackedStringArray("node_container", "icon_rect", "name_label")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,8 +16,10 @@ offset_right = 23.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_f30yb")
+theme_override_styles/panel = ExtResource("1_w1jgv")
 script = ExtResource("1_f30yb")
+node_icon = ExtResource("3_875id")
+node_container = NodePath(".")
 icon_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
 name_label = NodePath("MarginContainer/HBoxContainer/Label")
 
@@ -42,17 +34,16 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=787425634]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=403052678]
-custom_minimum_size = Vector2(32, 0)
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "dgfdgdfgdgfdfgdfgdgfdfgdfg"
 vertical_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 text_overrun_behavior = 3
 max_lines_visible = 2

@@ -1,6 +1,9 @@
 @tool
 class_name BT_SequenceData extends BT_CompositeData
 
+func _init() -> void:
+	resource_name = "Sequence"
+
 func create_node() -> BT_Node:
 	var node : BT_Sequence = BT_Sequence.new()
 	var created_children : Array[BT_Node]

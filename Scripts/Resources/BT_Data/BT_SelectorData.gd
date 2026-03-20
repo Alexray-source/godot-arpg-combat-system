@@ -1,6 +1,9 @@
 @tool
 class_name BT_SelectorData extends BT_CompositeData
 
+func _init() -> void:
+	resource_name = "Selector"
+
 func create_node() -> BT_Node:
 	var node : BT_Selector = BT_Selector.new()
 	var created_children : Array[BT_Node]
