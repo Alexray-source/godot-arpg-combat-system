@@ -32,7 +32,7 @@ func _physics_process(delta: float) -> void:
 	var intersected_collider = result.get("collider")
 	if intersected_collider != null:
 		if intersected_collider is HurtBox:
-			print("hurtbox")
+			#print("hurtbox")
 			intersected_collider.hit.emit(atk_info)
 		else:
 			queue_free()

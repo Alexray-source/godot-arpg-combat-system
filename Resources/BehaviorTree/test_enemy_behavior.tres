@@ -1,11 +1,25 @@
-[gd_resource type="Resource" script_class="BT_SequenceData" format=3 uid="uid://bffeowxfoalrn"]
+[gd_resource type="Resource" script_class="BT_SelectorData" format=3 uid="uid://bffeowxfoalrn"]
 
 [ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="1_1kwgo"]
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_cxdt6"]
+[ext_resource type="Script" uid="uid://drdwdmew2dpjs" path="res://Scripts/Resources/BT_Data/BT_CharacterIsStaggeredData.gd" id="2_kytlo"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="3_kytlo"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="4_y5yte"]
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://Scripts/Resources/BT_Data/BT_WaitData.gd" id="5_j0s8k"]
 [ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://Scripts/Resources/BT_Data/BT_SequenceData.gd" id="6_4khnt"]
+[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://Scripts/Resources/BT_Data/BT_SelectorData.gd" id="8_y5yte"]
+
+[sub_resource type="Resource" id="Resource_pqgp3"]
+resource_name = "Is Character Staggered"
+script = ExtResource("2_kytlo")
+character_bb_key = "character"
+metadata/_custom_type_script = "uid://drdwdmew2dpjs"
+
+[sub_resource type="Resource" id="Resource_espkd"]
+resource_name = "Wait"
+script = ExtResource("5_j0s8k")
+interval = 0.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_2chwy"]
 resource_name = "Get Closest Chr."
@@ -63,8 +77,14 @@ script = ExtResource("5_j0s8k")
 interval = 2.0
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
-[resource]
+[sub_resource type="Resource" id="Resource_0nis0"]
 resource_name = "Sequence"
 script = ExtResource("6_4khnt")
-children = Array[ExtResource("1_1kwgo")]([SubResource("Resource_2chwy"), SubResource("Resource_beese"), SubResource("Resource_kytlo"), SubResource("Resource_4khnt")])
+children = Array[ExtResource("1_1kwgo")]([SubResource("Resource_espkd"), SubResource("Resource_2chwy"), SubResource("Resource_beese"), SubResource("Resource_kytlo"), SubResource("Resource_4khnt")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[resource]
+resource_name = "Selector"
+script = ExtResource("8_y5yte")
+children = Array[ExtResource("1_1kwgo")]([SubResource("Resource_pqgp3"), SubResource("Resource_0nis0")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"

@@ -160,14 +160,14 @@ func increment_stagger_count():
 
 func stagger():
 	increment_stagger_count()
-	if _stagger_count <= max_stagger_count or is_on_floor() == false:
-		velocity = Vector3.ZERO
-		up_velocity = Vector3.ZERO
-		global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
-		stagger_component.action()
-		set_state("stagger")
-		end_attack_debounce()
-		interupt_atks.emit()
+	#if _stagger_count <= max_stagger_count or is_on_floor() == false:
+	velocity = Vector3.ZERO
+	up_velocity = Vector3.ZERO
+	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
+	stagger_component.action()
+	set_state("stagger")
+	end_attack_debounce()
+	interupt_atks.emit()
 
 func knockback():
 	velocity = Vector3.ZERO

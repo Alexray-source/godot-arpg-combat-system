@@ -1,5 +1,7 @@
 @abstract class_name BT_Composite extends BT_Node
 
+var running_child : BT_Node
+
 var children : Array[BT_Node]
 
 func reset(blackboard : Dictionary):

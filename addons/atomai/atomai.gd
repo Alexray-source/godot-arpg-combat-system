@@ -39,11 +39,15 @@ func _exit_tree() -> void:
 	dock.queue_free()
 
 func _handles(object: Object) -> bool:
-	return object is BT_CompositeData
-
-func _edit(object: Object) -> void:
-	if object is not BT_CompositeData:
-		return
+	if object is BT_CompositeData:
+		tree_view.tree_data = object
+		make_bottom_panel_item_visible(tree_view)
 	
-	tree_view.tree_data = object
-	make_bottom_panel_item_visible(tree_view)
+	return false
+#
+#func _edit(object: Object) -> void:
+	#if object is not BT_CompositeData:
+		#return
+	#
+	#tree_view.tree_data = object
+	#make_bottom_panel_item_visible(tree_view)

@@ -11,7 +11,8 @@ const SELECTED_STYLE = preload("res://addons/atomai/Styles/node_selected.tres")
 @export var node_icon : Texture2D:
 	set(value):
 		node_icon = value
-		icon_rect.texture = value
+		if is_inside_tree() == true:
+			icon_rect.texture = value
 
 @export_subgroup("UI Nodes")
 @export var node_container : PanelContainer
@@ -27,8 +28,9 @@ func _ready() -> void:
 	update_style(false)
 
 func update_label(text_value : String):
-	name_label.custom_minimum_size = Vector2(clamp(text_value.length() * 8.0, 64.0, 128.0), 0.0)
-	name_label.text = text_value
+	if is_inside_tree() == true:
+		name_label.custom_minimum_size = Vector2(clamp(text_value.length() * 8.0, 64.0, 128.0), 0.0)
+		name_label.text = text_value
 
 func update_style(is_selected : bool):
 	if is_selected == true:

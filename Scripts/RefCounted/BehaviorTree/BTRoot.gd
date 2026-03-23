@@ -21,9 +21,21 @@ func _ready() -> void:
 	##Construct Behavior Tree from Behavior Tree Data
 	child = create_tree_branch(tree_data)
 
+func get_running_child(_child : BT_Node):
+	
+	if _child is BT_Composite:
+		return get_running_child(_child.running_child)
+	
+	return _child
+
 func _process(delta: float) -> void:
 	blackboard.set("delta", delta)
 	var result = child.tick(blackboard)
+	var running_node = get_running_child(child)
+	
+	if running_node != null:
+		print(running_node.get_script().get_global_name())
+	
 	if result == BT_Node.SUCCESS or result == BT_Node.FAILURE:
 		#print("Reseting Behavior Tree Root")
 		child.reset(blackboard)
