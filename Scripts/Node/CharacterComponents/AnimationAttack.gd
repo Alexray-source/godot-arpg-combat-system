@@ -5,6 +5,8 @@ var animations : Array[String]
 var dmg : int = 10
 var atk_type : AtkInfo.AtkType = AtkInfo.AtkType.MELEE
 var attack_data : AttackData
+var animation_node_name : String
+var oneshot_node_name : String
 
 var _animation_chainer : AnimationChainer
 var _hurtbox_scanner : HurtBoxScanner
@@ -20,7 +22,9 @@ func setup() -> void:
 	_target_scan_shape.radius = targeting_range
 	
 	_animation_chainer = AnimationChainer.new()
-	_animation_chainer.anim_player = anim_player
+	_animation_chainer.anim_tree = anim_tree
+	_animation_chainer.animation_node_name = animation_node_name
+	_animation_chainer.oneshot_node_name = oneshot_node_name
 	_animation_chainer.animations = animations
 	_animation_chainer.animation_finished.connect(on_animation_finish)
 	_animation_chainer.setup()

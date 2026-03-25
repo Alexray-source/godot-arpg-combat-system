@@ -9,13 +9,16 @@
 [ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="7_7ch4d"]
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="8_3m4by"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
-[ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="8_rqp8f"]
 [ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="8_smxw8"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="9_smxw8"]
 [ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="12_7ch4d"]
+[ext_resource type="AnimationLibrary" uid="uid://8ehkuiwucb7r" path="res://Assets/Animations/General/BaseAnimations.glb" id="14_qbr8q"]
+[ext_resource type="AnimationLibrary" uid="uid://c6pm07awpnnnr" path="res://Assets/Animations/NinjaPlayer/PlayerSwordAnims.glb" id="15_172ob"]
+[ext_resource type="AnimationLibrary" uid="uid://dbddrmfrxh0c8" path="res://Assets/Animations/NinjaPlayer/PlayerGrappleAnims.glb" id="15_jb0u1"]
 [ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
 [ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="18_172ob"]
+[ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_qbr8q"]
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
@@ -43,13 +46,13 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="Resource" id="Resource_7ch4d"]
 script = ExtResource("12_7ch4d")
-animations = Array[String](["specials/grapple_enemy"])
+animations = Array[String](["PlayerGrappleAnims/GrappleShoot"])
 target_characters = true
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
 [sub_resource type="Resource" id="Resource_172ob"]
 script = ExtResource("12_7ch4d")
-animations = Array[String](["specials/grapple_object"])
+animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
@@ -64,7 +67,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 [sub_resource type="Resource" id="Resource_7qyh0"]
 script = ExtResource("19_jb0u1")
 dmg = 15
-animations = Array[String](["specials/atk1"])
+animations = Array[String](["PlayerSwordAnims/KickAtk"])
 atk_type = 3
 atk_data = SubResource("Resource_jb0u1")
 targeting_range = 25.0
@@ -82,7 +85,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 [sub_resource type="Resource" id="Resource_72lp5"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["primary_attacks/atk_primary1_function", "primary_attacks/atk_primary2_function", "primary_attacks/atk_primary3_function"])
+animations = Array[String](["PlayerSwordAnims/NinjaPrimary1", "PlayerSwordAnims/NinjaPrimary2", "PlayerSwordAnims/NinjaPrimary3", "PlayerSwordAnims/NinjaPrimary4", "PlayerSwordAnims/NinjaPrimary5"])
 atk_type = 1
 atk_data = SubResource("Resource_8m6ks")
 targeting_range = 15.0
@@ -91,13 +94,13 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 [sub_resource type="Resource" id="Resource_pq3w2"]
 script = ExtResource("8_smxw8")
 projectile_scene = ExtResource("8_3m4by")
-projectile_origin_path = NodePath("Visual/MeshInstance3D2")
+projectile_origin_path = NodePath("MaleBaseRigV2")
 metadata/_custom_type_script = "uid://b1stykuxcqnl5"
 
 [sub_resource type="Resource" id="Resource_smxw8"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["specials/atk2"])
+animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot2", "PlayerSwordAnims/Shoot3"])
 atk_type = 2
 atk_data = SubResource("Resource_pq3w2")
 targeting_range = 50.0
@@ -105,471 +108,139 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
 
-[sub_resource type="Animation" id="Animation_jah6w"]
-resource_name = "atk_primary_functions"
-length = 1.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_primary1"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.20022626, 0.3333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [2.0],
-"method": &"dash"
-}, {
-"args": [&"primary_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_f4dah"]
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_primary2"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.20000002, 0.26666665),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [2.0],
-"method": &"dash"
-}, {
-"args": [&"primary_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_w7dut"]
-length = 0.9
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_primary3"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.099999994, 0.26666668, 0.85),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [10.0, 0.3],
-"method": &"dash"
-}, {
-"args": [&"primary_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_06c0b"]
-_data = {
-&"atk_primary1_function": SubResource("Animation_jah6w"),
-&"atk_primary2_function": SubResource("Animation_f4dah"),
-&"atk_primary3_function": SubResource("Animation_w7dut")
-}
-
-[sub_resource type="Animation" id="Animation_7qyh0"]
-resource_name = "atk1"
-length = 0.6
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_special1"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.13333334, 0.36666667),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"kick_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_qbr8q"]
-resource_name = "atk2"
-length = 0.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_special2"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16666669),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"secondary_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_jb0u1"]
-resource_name = "atk3"
-length = 0.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("atk_special3"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666669),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [-7.0, 0.2],
-"method": &"dash"
-}, {
-"args": [&"bomb_atk"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_ffspy"]
-resource_name = "grapple_enemy"
-length = 0.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("grapple"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.023798667, 0.03333333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"grapple_enemy"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_g2834"]
-length = 0.2
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("grapple"),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.023798667, 0.03333333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [&"grapple_object"],
-"method": &"ability_event_trigger"
-}, {
-"args": [],
-"method": &"end_attack_debounce"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_smxw8"]
-_data = {
-&"atk1": SubResource("Animation_7qyh0"),
-&"atk2": SubResource("Animation_qbr8q"),
-&"atk3": SubResource("Animation_jb0u1"),
-&"grapple_enemy": SubResource("Animation_ffspy"),
-&"grapple_object": SubResource("Animation_g2834")
-}
-
-[sub_resource type="Animation" id="Animation_4ty7g"]
-length = 0.5
-tracks/0/type = "animation"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Visual/AnimationPlayer")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"clips": PackedStringArray("stagger"),
-"times": PackedFloat32Array(0)
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7qyh0"]
-_data = {
-&"stagger": SubResource("Animation_4ty7g")
-}
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efloy"]
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 2.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_o1aaj"]
-
-[sub_resource type="PrismMesh" id="PrismMesh_8o3yo"]
-size = Vector3(0.697, 0.4505, 0.1335)
-
-[sub_resource type="Animation" id="Animation_wrd4j"]
-length = 0.001
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.99999994)
-
-[sub_resource type="Animation" id="Animation_o1aaj"]
-resource_name = "atk_primary1"
-length = 1.1
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.1, 1, 0, 0, 0.8678325, 0.13333334, 1, 0, 0, 1.2149656, 0.2, 1, 0, 0, -0.087601185, 0.43333334, 1, 0, 0, -0.087601185, 0.58366954, 1, 0, 0, 0, 1.0666667, 1, 0, 0, 0)
-
-[sub_resource type="Animation" id="Animation_8o3yo"]
-resource_name = "atk_primary2"
-length = 0.9
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.037731886, 0, -0.035539746, 0.06666667, 1, -0.85692984, 0, 2.9152129, 0.13333334, 1, 1.2240188, 0, 2.9152129, 0.2, 1, -0.037731886, 0, -0.035539746, 0.3333333, 1, -0.24429345, 0, -0.61649585, 0.6333334, 1, -0.037731886, 0, -0.035539746, 0.8333333, 1, -0.037731886, 0, -0.008375645)
-
-[sub_resource type="Animation" id="Animation_8y5mx"]
-resource_name = "atk_primary3"
-length = 0.9
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.06666667, 1, 0, -0.29381573, 0.015594076, 0.1, 1, 0, 2.0266895, -0.03832078, 0.16666669, 1, 0, 2.139576, 0.04265672, 0.26666668, 1, 0, -0.040218115, 0.0090351105, 0.6, 1, 0, -0.04021811, 0.03726816, 0.8666667, 1, 0, 0, 0.019471765)
-
-[sub_resource type="Animation" id="Animation_3m4by"]
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.03333334, 1, 3.552714e-14, -0.22269875, 1.3130068, 0.06666667, 1, 6.750156e-14, -0.22269885, 2.093494, 0.13333336, 1, 2.2331336e-14, 1.157475, -0.5204617, 0.20000002, 1, 1.7509799e-13, 1.0847514, -3.4286795, 0.26666668, 1, 1.7711087e-06, 3.0914526, -1.3534212, 0.36666667, 1, 4.2234092e-07, 3.3131905, 0.41002956, 0.45402676, 1, -4.76837e-07, 0.6726781, 0.05849743, 0.50805354, 1, 0, 0, 0.019471765)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.03333334, 1, -0.016839717, 0, 0, 0.99985814, 0.06666667, 1, -0.028063843, 0, 0, 0.99960613, 0.13333336, 1, 0.73538476, 0, 0, 0.6776497, 0.20000002, 1, 0.73538476, 0, 0, 0.6776497, 0.3, 1, 0.9981476, 0, 0, -0.060837626, 0.45402676, 1, -0.025963245, 0, 0, 0.9996629, 0.50805354, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_7ch4d"]
-resource_name = "atk_special2"
-length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.03333333, 1, 1.776357e-14, -0.111349374, 0.66623926, 0.2, 1, 0, 0, 0.019471765)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.2, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_172ob"]
-resource_name = "atk_special3"
-length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.033333335, 1, 8.881785e-15, 0.7803602, -0.10649723, 0.13333334, 1, 1.776357e-14, 1.5607204, -0.23246622, 0.2, 1, 0, 0, 0.019471765)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, 0.055317853, 0, 0, 0.99846864, 0.13333334, 1, 0.11046633, 0, 0, 0.99387974, 0.2, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_smxw8"]
-resource_name = "grapple"
-length = 0.2
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.033333335, 1, 1.184238e-14, -0.07423292, 0.4506501, 0.13333334, 1, 0, 0, 0.019471765)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.0056134737, 0, 0, 0.99998415, 0.13333334, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_pq3w2"]
-resource_name = "grapple_grab"
-length = 0.3
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0.019471765, 0.06666667, 1, 5.92119e-15, -0.03711646, -0.3898003, 0.13333334, 1, 1.184238e-14, -0.07423292, 0.4506501, 0.3, 1, 0, 0, 0.019471765)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, -0.06744177, 0, 0, 0.9977231, 0.13333334, 1, 0.118918106, 0, 0, 0.99290395, 0.3, 1, 0, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_efloy"]
-resource_name = "stagger"
-length = 0.5
-tracks/0/type = "rotation_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666668, 1, 0.1134295, 0, 0, 0.99354607, 0.5, 1, 0, 0, 0, 1)
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_jah6w"]
-_data = {
-&"RESET": SubResource("Animation_wrd4j"),
-&"atk_primary1": SubResource("Animation_o1aaj"),
-&"atk_primary2": SubResource("Animation_8o3yo"),
-&"atk_primary3": SubResource("Animation_8y5mx"),
-&"atk_special1": SubResource("Animation_3m4by"),
-&"atk_special2": SubResource("Animation_7ch4d"),
-&"atk_special3": SubResource("Animation_172ob"),
-&"grapple": SubResource("Animation_smxw8"),
-&"grapple_grab": SubResource("Animation_pq3w2"),
-&"stagger": SubResource("Animation_efloy")
-}
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
 size = Vector3(1.1096191, 2.0214844, 1.1064453)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7gae"]
+animation = &"BaseAnimations/Fall_Sword"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2ddvq"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Foot_L", "%GeneralSkeleton:Foot_R", "%GeneralSkeleton:KneeTwist_L", "%GeneralSkeleton:KneeTwist_R", "%GeneralSkeleton:LowerLeg_L", "%GeneralSkeleton:LowerLeg_R", "%GeneralSkeleton:Toes_L", "%GeneralSkeleton:Toes_R", "%GeneralSkeleton:UpperLeg_L", "%GeneralSkeleton:UpperLeg_R"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_172ob"]
+resource_local_to_scene = true
+fadein_time = 0.1
+fadeout_time = 0.25
+autorestart_delay = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
+resource_local_to_scene = true
+animation = &"PlayerSwordAnims/NinjaPrimary1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qbr8q"]
+animation = &"BaseAnimations/Fall_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_172ob"]
+animation = &"BaseAnimations/Idle_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jb0u1"]
+animation = &"BaseAnimations/Jog_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffspy"]
+animation = &"BaseAnimations/Jump_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72lp5"]
+animation = &"BaseAnimations/Knockback"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ps18"]
+animation = &"BaseAnimations/KnockbackRecover"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72lp5"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ps18"]
+advance_mode = 2
+advance_expression = "is_on_floor() == false and velocity.y > 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7gae"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ddvq"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qbr8q"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == true and (abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_172ob"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == true and (abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jb0u1"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == false and velocity.y < 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vucap"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bghwh"]
+advance_mode = 2
+advance_expression = "state_machine.current_state != state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f726w"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ffspy"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m23ht"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wml65"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8m6ks"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vucap"]
+resource_local_to_scene = true
+states/Start/position = Vector2(138, 124)
+states/base_falling/node = SubResource("AnimationNodeAnimation_qbr8q")
+states/base_falling/position = Vector2(304, 323)
+states/base_idle/node = SubResource("AnimationNodeAnimation_172ob")
+states/base_idle/position = Vector2(320, 140)
+states/base_jog/node = SubResource("AnimationNodeAnimation_jb0u1")
+states/base_jog/position = Vector2(492, 124)
+states/base_jump/node = SubResource("AnimationNodeAnimation_ffspy")
+states/base_jump/position = Vector2(492, 323)
+states/staggers_knockback/node = SubResource("AnimationNodeAnimation_72lp5")
+states/staggers_knockback/position = Vector2(845, 223)
+states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
+states/staggers_knockback_recover/position = Vector2(845, 351)
+transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_jog", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_idle", "base_jog", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_jog", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_jog", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "base_jog", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jog", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks")]
+graph_offset = Vector2(-48, 30)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bghwh"]
+resource_local_to_scene = true
+graph_offset = Vector2(-680.63495, -164.69557)
+nodes/output/position = Vector2(420, -100)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
+nodes/StateMachine/position = Vector2(-620, -140)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_172ob")
+nodes/OneShot/position = Vector2(-260, -100)
+nodes/OverrideAnimation/node = SubResource("AnimationNodeAnimation_8m6ks")
+nodes/OverrideAnimation/position = Vector2(-720, 60)
+nodes/LegsAir/node = SubResource("AnimationNodeBlend2_2ddvq")
+nodes/LegsAir/position = Vector2(200, -120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_u7gae")
+nodes/Animation/position = Vector2(-120, 140)
+node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"OverrideAnimation", &"LegsAir", 0, &"OneShot", &"LegsAir", 1, &"Animation"]
 
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
@@ -591,9 +262,9 @@ move_speed = 50.0
 state_machine = NodePath("CharacterStateMachine")
 metadata/_custom_type_script = "uid://83mneuiydchi"
 
-[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_player", "character")]
+[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_tree", "character")]
 script = ExtResource("17_7ch4d")
-anim_player = NodePath("../AnimationPlayer")
+anim_tree = NodePath("../AnimationTree")
 character = NodePath("..")
 abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
 &"bomb_atk": SubResource("Resource_3m4by"),
@@ -614,10 +285,13 @@ script = ExtResource("3_u1pys")
 character = NodePath("..")
 metadata/_custom_type_script = "uid://8k8ew07c3gmb"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2047610304]
-libraries/primary_attacks = SubResource("AnimationLibrary_06c0b")
-libraries/specials = SubResource("AnimationLibrary_smxw8")
-libraries/staggers = SubResource("AnimationLibrary_7qyh0")
+[node name="BaseAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248900169]
+root_node = NodePath("../MaleBaseRigV2")
+callback_mode_method = 1
+libraries/BaseAnimations = ExtResource("14_qbr8q")
+libraries/PlayerGrappleAnims = ExtResource("15_jb0u1")
+libraries/PlayerSwordAnims = ExtResource("15_172ob")
+playback_default_blend_time = 0.1
 
 [node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
 script = ExtResource("9_efloy")
@@ -626,30 +300,12 @@ dash_intensity = 2.0
 character = NodePath("..")
 metadata/_custom_type_script = "uid://v1xgi18be404"
 
-[node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_player", "character")]
+[node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_tree", "character")]
 script = ExtResource("8_4ty7g")
-animation_library = "staggers"
-anim_player = NodePath("../AnimationPlayer")
+anim_tree = NodePath("../AnimationTree")
+stagger_anims = Array[StringName]([&"BaseAnimations/Stagger1_Sword", &"BaseAnimations/Stagger2_Sword"])
 character = NodePath("..")
 metadata/_custom_type_script = "uid://ju3pqhikphx7"
-
-[node name="Visual" type="Node3D" parent="." unique_id=1082354825 node_paths=PackedStringArray("combat_character", "mesh_instance")]
-transform = Transform3D(1, 0, 0, 0, 0.99999946, 0, 0, 0, 0.99999946, 0, 0, 0)
-script = ExtResource("8_rqp8f")
-combat_character = NodePath("..")
-mesh_instance = NodePath("MeshInstance3D2")
-dmg_overlay_mat = SubResource("StandardMaterial3D_efloy")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visual" unique_id=865252864]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_o1aaj")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visual" unique_id=822261868]
-transform = Transform3D(1, 0, -4.371139e-08, 4.371139e-08, 1.9106855e-15, 1, 0, -1, 1.9106855e-15, 0, 0.17383337, -0.8330141)
-mesh = SubResource("PrismMesh_8o3yo")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual" unique_id=1248900169]
-libraries/ = SubResource("AnimationLibrary_jah6w")
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=109342970]
 script = ExtResource("4_f04ns")
@@ -658,3 +314,19 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1607205754]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_qbr8q")
+
+[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree") instance=ExtResource("18_qbr8q")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+combat_character = NodePath("..")
+anim_tree = NodePath("../AnimationTree")
+legs_air_blend_node_name = "LegsAir"
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
+root_node = NodePath("../MaleBaseRigV2")
+tree_root = SubResource("AnimationNodeBlendTree_bghwh")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../BaseAnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/LegsAir/blend_amount = 0.0

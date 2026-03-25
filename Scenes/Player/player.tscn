@@ -15,6 +15,7 @@ character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("SpringArm3D/Camera3D")
+camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_htcer")]
 collision_layer = 6
@@ -22,7 +23,7 @@ debug_health = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3716063, 0)
-spring_length = 5.0
+spring_length = 3.0
 script = ExtResource("3_dd0ac")
 target = NodePath("../BaseCharacter")
 

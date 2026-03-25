@@ -1,6 +1,8 @@
 class_name GrappleComponent extends AbilityComponent
 
 var targeting_range : float = 20.0
+var animation_node_name : String
+var oneshot_node_name : String
 var animations : Array[String]
 var should_target_characters : bool = false
 
@@ -13,13 +15,16 @@ func setup() -> void:
 	_scan_shape.radius = targeting_range
 	
 	_aoe_grapple = AoeGrapple.new()
+	_aoe_grapple.instigator = character
 	_aoe_grapple.hit_shape = _scan_shape
 	_aoe_grapple.direct_space_state = character.get_world_3d().direct_space_state
 	_aoe_grapple.grapple_finished.connect(on_grapple_finished)
 	_aoe_grapple.setup()
 	
 	_animation_chainer = AnimationChainer.new()
-	_animation_chainer.anim_player = anim_player
+	_animation_chainer.anim_tree = anim_tree
+	_animation_chainer.animation_node_name = animation_node_name
+	_animation_chainer.oneshot_node_name = oneshot_node_name
 	_animation_chainer.animations = animations
 	_animation_chainer.setup()
 	
@@ -31,8 +36,6 @@ func on_grapple_finished():
 	ability_finished.emit()
 
 func _action() -> void:
-	_aoe_grapple.instigator = character
-	
 	if should_target_characters == true:
 		_aoe_grapple.scan_mask = 2 + chr_layer.get_enemy_layer()
 	else:

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://eeb3go31mweg"]
+
+[ext_resource type="PackedScene" uid="uid://brfoxh8ybu1f2" path="res://Assets/Meshes/Characters/MaleBaseRigV2.glb" id="1_w5mna"]
+[ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="2_jlwqs"]
+[ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="3_jlwqs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_324pt"]
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+
+[node name="MaleBaseRigV2" unique_id=1179849529 node_paths=PackedStringArray("mesh_instance") instance=ExtResource("1_w5mna")]
+script = ExtResource("2_jlwqs")
+mesh_instance = NodePath("Armature_003/GeneralSkeleton/Cube_003")
+dmg_overlay_mat = SubResource("StandardMaterial3D_324pt")
+
+[node name="Cube_003" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(647401894) index="0" unique_id=1937837623]
+material_override = ExtResource("3_jlwqs")

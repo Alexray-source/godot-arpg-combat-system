@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://povq5qy1a6au"]
+
+[ext_resource type="Texture2D" uid="uid://b8tcdjcjhmmf5" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGrid.png" id="1_owx7v"]
+
+[resource]
+albedo_texture = ExtResource("1_owx7v")
+uv1_triplanar = true

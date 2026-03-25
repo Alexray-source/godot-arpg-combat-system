@@ -4,7 +4,7 @@ signal ability_finished
 
 var chr_layer : CharacterLayer
 var character : Node3D
-var anim_player : AnimationPlayer
+var anim_tree : AnimationTree
 var target_override : Node3D
 
 

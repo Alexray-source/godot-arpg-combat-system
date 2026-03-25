@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bf315smdjou75"]
 
+[ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_8y5mx"]
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="5_jah6w"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="7_jah6w"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="8_8y5mx"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
@@ -41,6 +42,7 @@ metadata/_custom_type_script = "uid://cgg8sloxa71el"
 environment = SubResource("Environment_dorj5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1900089673]
+material_override = ExtResource("1_8y5mx")
 mesh = SubResource("PlaneMesh_rnym6")
 surface_material_override/0 = SubResource("StandardMaterial3D_wrd4j")
 
@@ -144,5 +146,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4810505, 3.999999, 13.793
 debug_state = true
 chr_layer = SubResource("Resource_8y5mx")
 
-[node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("7_jah6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.160313, 0.00049972534, 5.9519234)
+[node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("8_8y5mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.61102, 0, 5.7631083)

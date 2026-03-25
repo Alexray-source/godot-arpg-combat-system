@@ -1,6 +1,6 @@
 class_name CharacterAbilities extends Node
 
-@export var anim_player : AnimationPlayer
+@export var anim_tree : AnimationTree
 @export var character : BaseCharacter
 @export var abilities_data : Dictionary[StringName, AbilityData]
 var abilities : Dictionary[StringName, AbilityComponent]
@@ -15,7 +15,7 @@ func setup() -> void:
 		
 		var ability_component = ability_data.create_ability_component()
 		ability_component.character = character
-		ability_component.anim_player = anim_player
+		ability_component.anim_tree = anim_tree
 		ability_component.chr_layer = chr_layer
 		ability_component.setup()
 		

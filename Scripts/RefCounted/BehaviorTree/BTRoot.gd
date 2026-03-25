@@ -2,6 +2,7 @@ class_name BT_Root extends Node
 
 @export var blackboard : Dictionary[String, Variant]
 @export var tree_data : BT_CompositeData
+@export var debug : bool = false
 
 var child : BT_Composite
 
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 	var result = child.tick(blackboard)
 	var running_node = get_running_child(child)
 	
-	if running_node != null:
+	if running_node != null and debug == true:
 		print(running_node.get_script().get_global_name())
 	
 	if result == BT_Node.SUCCESS or result == BT_Node.FAILURE:
