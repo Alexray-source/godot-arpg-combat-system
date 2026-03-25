@@ -1,5 +1,5 @@
 shader_type spatial;
-//render_mode ambient_light_disabled;
+render_mode ambient_light_disabled;
 
 //Color & Lighting Variables
 uniform vec3 BaseColor : source_color = vec3(1.0);
@@ -81,8 +81,8 @@ void light() {
 	float diff_factor = smoothstep(0.0, 0.001, diffuse - threshold);
 	float spec_factor = smoothstep(0.0, 0.001, diffuse - (threshold + SpecularOffset));
 
-	//vec3 diffuse_lighting = mix(ShadeColor, clamp(LIGHT_COLOR, ShadeColor, vec3(1.0)),diff_factor);
-	vec3 diffuse_lighting = clamp(LIGHT_COLOR/PI*0.5*diff_factor, vec3(0.0), vec3(1.0));
+	vec3 diffuse_lighting = mix(ShadeColor, clamp(LIGHT_COLOR, ShadeColor, vec3(1.0)),diff_factor);
+	//vec3 diffuse_lighting = clamp(LIGHT_COLOR/PI*0.5*diff_factor, vec3(0.0), vec3(1.0));
 
 	DIFFUSE_LIGHT = diffuse_lighting + mix(vec3(0.0), RimTint, rim);
 	//DIFFUSE_LIGHT *= 0.5;

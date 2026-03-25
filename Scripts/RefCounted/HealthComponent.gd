@@ -19,7 +19,7 @@ func _init(_start_health : int, _max_health : int) -> void:
 	health = _start_health
 	max_health = _max_health
 
-func take_damage(dmg : int, bypass_cooldown : bool = false):
+func take_damage(dmg : int):
 	if health <= 0:
 		return
 	

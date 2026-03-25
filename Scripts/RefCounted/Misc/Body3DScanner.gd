@@ -1,6 +1,6 @@
 class_name Body3DScanner extends RefCounted
 
-func scan(direct_space_state, hit_shape, hitbox_transform, scan_mask):
+func scan(direct_space_state : PhysicsDirectSpaceState3D, hit_shape : Shape3D, hitbox_transform : Transform3D, scan_mask : int):
 	var shape_cast_params = PhysicsShapeQueryParameters3D.new()
 	shape_cast_params.shape = hit_shape
 	shape_cast_params.transform = hitbox_transform
@@ -18,4 +18,4 @@ func scan(direct_space_state, hit_shape, hitbox_transform, scan_mask):
 	#add_child(mesh_inst)
 	#mesh_inst.global_position = shape_cast_params.transform.origin
 	
-	return direct_space_state.intersect_shape(shape_cast_params)
+	return direct_space_state.intersect_shape(shape_cast_params, 64)

@@ -20,7 +20,7 @@ func _ready() -> void:
 	
 	is_on_floor_changed.connect(on_floor_changed)
 
-func on_floor_changed(is_floored) -> void:
+func on_floor_changed(_is_floored) -> void:
 	rescan_ground_state()
 
 func rescan_ground_state():

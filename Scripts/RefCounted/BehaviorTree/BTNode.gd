@@ -8,5 +8,5 @@ enum {
 
 @abstract func tick(blackboard : Dictionary)
 
-func reset(blackboard : Dictionary):
+func reset(_blackboard : Dictionary):
 	pass

@@ -1,22 +1,50 @@
 [gd_scene format=3 uid="uid://dobbltvy06yps"]
 
 [ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://Scripts/RefCounted/BehaviorTree/BTRoot.gd" id="1_2t2r4"]
+[ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_d40jh"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_d40jh"]
-[ext_resource type="Resource" uid="uid://bffeowxfoalrn" path="res://Resources/BehaviorTree/test_enemy_behavior.tres" id="2_dmwl5"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_gx76c"]
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="5_kiqm3"]
+[ext_resource type="Script" uid="uid://drdwdmew2dpjs" path="res://Scripts/Resources/BT_Data/BT_CharacterIsStaggeredData.gd" id="6_6j3ko"]
+[ext_resource type="Resource" uid="uid://dbcdsjm2m27gt" path="res://Resources/BehaviorTree/StandardThrowableToPlayer.tres" id="7_2chwy"]
+[ext_resource type="Script" uid="uid://bvc8oipe7tv0h" path="res://Scripts/Resources/BT_Data/BT_InvertDecoratorData.gd" id="7_6j3ko"]
+[ext_resource type="Resource" uid="uid://dcvcav2v1dope" path="res://Resources/BehaviorTree/StandardEnemyAtkPattern.tres" id="8_beese"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://Scripts/Resources/BT_Data/BT_SequenceData.gd" id="9_1vi6b"]
 
 [sub_resource type="Resource" id="Resource_jah6w"]
 script = ExtResource("3_gx76c")
 hostility = 1
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
-[node name="Enemy" type="Node3D" unique_id=1147936652]
-script = ExtResource("1_2t2r4")
-blackboard = Dictionary[String, Variant]({
-"character": NodePath("BaseCharacter")
-})
-tree_data = ExtResource("2_dmwl5")
+[sub_resource type="Resource" id="Resource_2chwy"]
+resource_name = "Is Character Staggered"
+script = ExtResource("6_6j3ko")
+character_bb_key = "character"
+metadata/_custom_type_script = "uid://drdwdmew2dpjs"
+
+[sub_resource type="Resource" id="Resource_beese"]
+resource_name = "Invert Decorator"
+script = ExtResource("7_6j3ko")
+children = Array[ExtResource("5_kiqm3")]([SubResource("Resource_2chwy")])
+metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
+
+[sub_resource type="Resource" id="Resource_u4wq1"]
+resource_name = "Sequence"
+script = ExtResource("9_1vi6b")
+children = Array[ExtResource("5_kiqm3")]([SubResource("Resource_beese"), ExtResource("7_2chwy"), ExtResource("8_beese")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
+script = ExtResource("1_d40jh")
+character = NodePath("BaseCharacter")
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_d40jh")]
 collision_layer = 10
 chr_layer = SubResource("Resource_jah6w")
+
+[node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
+script = ExtResource("1_2t2r4")
+blackboard = Dictionary[String, Variant]({
+"character": NodePath("../BaseCharacter")
+})
+tree_data = SubResource("Resource_u4wq1")

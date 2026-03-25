@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="BT_SequenceData" format=3 uid="uid://dbcdsjm2m27gt"]
+
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="1_dddhl"]
+[ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_xr4vk"]
+[ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="3_7dnk6"]
+[ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="4_8ikxd"]
+[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_gq4s6"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://Scripts/Resources/BT_Data/BT_WaitData.gd" id="5_xr4vk"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://Scripts/Resources/BT_Data/BT_SequenceData.gd" id="6_acaa2"]
+
+[sub_resource type="Resource" id="Resource_t764m"]
+resource_name = "Get Closest Chr."
+script = ExtResource("2_xr4vk")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 25.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_h34gu"]
+resource_name = "Get Closest Throw Pos."
+script = ExtResource("3_7dnk6")
+origin_node_scan_key = "character"
+found_throw_pos_key = "throw_pos"
+throw_node_target_key = "enemy_character"
+metadata/_custom_type_script = "uid://u5sb7r7p12ev"
+
+[sub_resource type="Resource" id="Resource_n6u8u"]
+resource_name = "Chr. Teleport To Position"
+script = ExtResource("4_8ikxd")
+character_bb_key = "character"
+target_pos_bb_key = "throw_pos"
+randomnness_radius = 0.0
+metadata/_custom_type_script = "uid://c16m3e3f00l2d"
+
+[sub_resource type="Resource" id="Resource_7dnk6"]
+resource_name = "Wait"
+script = ExtResource("5_xr4vk")
+interval = 0.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_2mqpe"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("5_gq4s6")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "kick_atk"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[resource]
+resource_name = "Sequence"
+script = ExtResource("6_acaa2")
+children = Array[ExtResource("1_dddhl")]([SubResource("Resource_t764m"), SubResource("Resource_h34gu"), SubResource("Resource_n6u8u"), SubResource("Resource_7dnk6"), SubResource("Resource_2mqpe")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"

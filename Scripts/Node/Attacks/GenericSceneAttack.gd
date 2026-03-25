@@ -3,7 +3,7 @@ class_name GenericSceneAttack extends Attack
 var scene : PackedScene
 var local_spawn_offset : Vector3
 
-func attack(instigator : Node3D, atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType, attack_dir : Vector3):
+func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType, attack_dir : Vector3):
 	var scene_instance : SceneAttackInstance = scene.instantiate() as SceneAttackInstance
 	
 	scene_instance.atk_info = AtkInfo.new(dmg, atk_type, instigator, attack_dir)

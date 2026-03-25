@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ARPG Combat System"
-run/main_scene="uid://bf315smdjou75"
+run/main_scene="uid://b38qdar3spbj2"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

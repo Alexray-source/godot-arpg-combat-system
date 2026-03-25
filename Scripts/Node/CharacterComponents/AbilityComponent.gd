@@ -11,7 +11,7 @@ var target_override : Node3D
 func setup() -> void:
 	pass
 
-func physics_process(delta : float) -> void:
+func physics_process(_delta : float) -> void:
 	pass
 
 @abstract func _action() -> void

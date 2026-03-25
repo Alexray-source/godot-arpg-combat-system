@@ -13,5 +13,5 @@ func tick(blackboard : Dictionary):
 	
 	return RUNNING
 
-func reset(blackboard : Dictionary):
+func reset(_blackboard : Dictionary):
 	accumulated_time = 0.0

@@ -119,8 +119,19 @@ func on_target_next() -> void:
 	set_lock_target(target_tracking_camera.targets_in_view.get(current_index))
 
 func set_lock_target(new_target : Node3D) -> void:
+	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == true:
+		current_target.tree_exiting.disconnect(handle_target_tree_exit)
+	
 	current_target = new_target
 	character.lock_to_target(new_target)
+	
+	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == false:
+		current_target.tree_exiting.connect(handle_target_tree_exit.bind(current_target))
+
+func handle_target_tree_exit(_exiting_target : Node3D) -> void:
+	if current_target == _exiting_target:
+		#on_target_next()
+		set_lock_target(null)
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)

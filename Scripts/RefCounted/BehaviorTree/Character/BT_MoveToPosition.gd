@@ -1,7 +1,7 @@
-class_name BT_CharacterMoveTo extends BT_Node
+class_name BT_CharacterMoveToPosition extends BT_Node
 
 var character_bb_key : String
-var target_node_bb_key : String
+var target_position_bb_key : String
 var target_success_radius : float = 1.0
 var timeout_time : float = 5.0
 var accumulated_time : float = 0.0
@@ -13,7 +13,7 @@ func tick(blackboard : Dictionary):
 		return SUCCESS
 	
 	var base_chr : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
-	var target_node : Node3D = blackboard.get(target_node_bb_key) as Node3D
+	var target_position : Vector3 = blackboard.get(target_position_bb_key) as Vector3
 	
 	var delta = blackboard.get("delta")
 	
@@ -23,9 +23,9 @@ func tick(blackboard : Dictionary):
 	
 	accumulated_time += delta
 	
-	base_chr.move_dir = base_chr.global_position.direction_to(target_node.global_position)
+	base_chr.move_dir = base_chr.global_position.direction_to(target_position)
 	
-	if base_chr.global_position.distance_to(target_node.global_position) < target_success_radius:
+	if base_chr.global_position.distance_to(target_position) < target_success_radius:
 		_reached_target = true
 		base_chr.move_dir = Vector3.ZERO
 		return SUCCESS

@@ -17,5 +17,5 @@ func tick(blackboard : Dictionary):
 		_finished = true
 	return SUCCESS
 
-func reset(blackboard : Dictionary):
+func reset(_blackboard : Dictionary):
 	_finished = false
