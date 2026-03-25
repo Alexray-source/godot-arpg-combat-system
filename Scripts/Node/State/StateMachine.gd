@@ -5,6 +5,8 @@ var states : Dictionary[String, State]
 
 var current_state : State
 
+signal state_changed(new_state : State)
+
 #func _ready() -> void:
 func state_machine_setup():
 	pass
@@ -29,6 +31,7 @@ func transition_to_state(new_state : State):
 	
 	current_state = new_state
 	new_state.on_enter()
+	state_changed.emit(new_state)
 	
 	if debug == true:
 		print("New State: " + str(new_state.get_script().get_global_name()))

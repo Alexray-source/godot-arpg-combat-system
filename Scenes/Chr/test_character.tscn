@@ -249,6 +249,8 @@ hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
+start_health = 10000
+max_health = 10000
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
 ability_slots = Dictionary[String, StringName]({
@@ -294,7 +296,7 @@ playback_default_blend_time = 0.1
 [node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
 script = ExtResource("9_efloy")
 dash_time = 0.25
-dash_intensity = 2.0
+dash_intensity = 1.0
 character = NodePath("..")
 metadata/_custom_type_script = "uid://v1xgi18be404"
 
@@ -313,11 +315,13 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_qbr8q")
 
-[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("18_qbr8q")]
+[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree", "state_machine", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("18_qbr8q")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 combat_character = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
+state_machine = NodePath("../CharacterStateMachine")
 legs_air_blend_node_name = "LegsAir"
+dash_anim_name = "BaseAnimations/Dash_Sword"
 equipped_weapons_visuals = {
 "flintlock": NodePath("Armature_003/GeneralSkeleton/EquippedGun")
 }

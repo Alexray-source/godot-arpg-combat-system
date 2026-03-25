@@ -30,6 +30,7 @@ var stagger_state : ChrStaggerState
 var prev_hit_info : AtkInfo
 var invincible : bool = false
 var combat_target_override : Node3D
+var stagger_immune : bool = false
 
 var _stagger_count : int = 0
 var _stagger_count_reset_timer : SceneTreeTimer
@@ -99,6 +100,8 @@ func perform_ability_slot(atk_index : int):
 	state_machine.enter_special_atk_state(ability_name)
 
 func perform_ability(ability_name : StringName):
+	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
+		return
 	state_machine.enter_special_atk_state(ability_name)
 
 func ability_action(ability_name : StringName):
@@ -124,6 +127,10 @@ func on_atk_hit(atk_info : AtkInfo):
 	if invincible == false:
 		health_component.take_damage(atk_info.dmg)
 		damage_hit.emit()
+		
+		if stagger_immune == true:
+			return
+		
 		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE:
 			knockback()
 		else:
@@ -149,16 +156,23 @@ func on_stagger_end():
 
 func increment_stagger_count():
 	_stagger_count += 1
-	
-	if _stagger_count_reset_timer != null:
-		_stagger_count_reset_timer.time_left = 5.0
-	else:
-		_stagger_count_reset_timer = get_tree().create_timer(5.0)
-		_stagger_count_reset_timer.timeout.connect(func():
-			_stagger_count = 0
-		,CONNECT_ONE_SHOT)
+	#
+	#if _stagger_count_reset_timer != null:
+		#_stagger_count_reset_timer.time_left = 5.0
+	#else:
+		#_stagger_count_reset_timer = get_tree().create_timer(5.0)
+		#_stagger_count_reset_timer.timeout.connect(func():
+			#_stagger_count = 0
+		#,CONNECT_ONE_SHOT)
+
+func reset_stagger_count():
+	print("reset stagger")
+	_stagger_count = 0
 
 func stagger():
+	if stagger_immune == true:
+		return
+	
 	increment_stagger_count()
 	#if _stagger_count <= max_stagger_count or is_on_floor() == false:
 	velocity = Vector3.ZERO
@@ -170,6 +184,9 @@ func stagger():
 	interupt_atks.emit()
 
 func knockback():
+	if stagger_immune == true:
+		return
+	
 	velocity = Vector3.ZERO
 	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
