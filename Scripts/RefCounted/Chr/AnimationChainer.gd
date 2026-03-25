@@ -18,7 +18,6 @@ func reset_chain() -> void:
 	current_anim_index = 0
 
 func resume_chain() -> void:
-	print("playing override")
 	var one_shot_property_path = "parameters/" + oneshot_node_name
 	#anim_player.play(animations.get(current_anim_index))
 	anim_tree.tree_root.get_node(animation_node_name).animation = animations.get(current_anim_index)

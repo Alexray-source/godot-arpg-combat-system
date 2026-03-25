@@ -32,13 +32,13 @@ metadata/_custom_type_script = "uid://cgg8sloxa71el"
 [sub_resource type="Resource" id="Resource_qbr8q"]
 script = ExtResource("7_7ch4d")
 scene = ExtResource("6_g2834")
-local_spawn_offset = Vector3(0, 0, -1)
+local_spawn_offset = Vector3(0, 0, -1.5)
 metadata/_custom_type_script = "uid://buegejwwr60aa"
 
 [sub_resource type="Resource" id="Resource_3m4by"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["specials/atk3"])
+animations = Array[String](["PlayerSwordAnims/Shoot3"])
 atk_type = 3
 atk_data = SubResource("Resource_qbr8q")
 targeting_range = 20.0
@@ -100,7 +100,7 @@ metadata/_custom_type_script = "uid://b1stykuxcqnl5"
 [sub_resource type="Resource" id="Resource_smxw8"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot2", "PlayerSwordAnims/Shoot3"])
+animations = Array[String](["PlayerSwordAnims/Shoot1"])
 atk_type = 2
 atk_data = SubResource("Resource_pq3w2")
 targeting_range = 50.0
@@ -228,7 +228,6 @@ graph_offset = Vector2(-48, 30)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bghwh"]
 resource_local_to_scene = true
-graph_offset = Vector2(-680.63495, -164.69557)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-620, -140)
@@ -287,7 +286,6 @@ metadata/_custom_type_script = "uid://8k8ew07c3gmb"
 
 [node name="BaseAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248900169]
 root_node = NodePath("../MaleBaseRigV2")
-callback_mode_method = 1
 libraries/BaseAnimations = ExtResource("14_qbr8q")
 libraries/PlayerGrappleAnims = ExtResource("15_jb0u1")
 libraries/PlayerSwordAnims = ExtResource("15_172ob")
@@ -315,11 +313,17 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_qbr8q")
 
-[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree") instance=ExtResource("18_qbr8q")]
+[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("18_qbr8q")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 combat_character = NodePath("..")
 anim_tree = NodePath("../AnimationTree")
 legs_air_blend_node_name = "LegsAir"
+equipped_weapons_visuals = {
+"flintlock": NodePath("Armature_003/GeneralSkeleton/EquippedGun")
+}
+holstered_weapons_visuals = {
+"flintlock": NodePath("Armature_003/GeneralSkeleton/HolsteredGun")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
 root_node = NodePath("../MaleBaseRigV2")

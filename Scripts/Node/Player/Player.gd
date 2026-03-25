@@ -169,7 +169,7 @@ func _process(delta: float) -> void:
 		var target_to_camera_dir : Vector3 = (current_target.global_position - target_tracking_camera.global_position).normalized()
 		target_to_camera_dir = Vector3(target_to_camera_dir.x, 0.0, target_to_camera_dir.z)
 		
-		var target_to_chr_distance = current_target.global_position.distance_to(character.global_position)
+		var target_to_chr_distance = current_target.global_position.distance_to(character.global_position) * 0.9
 		
 		camera_center_offset = camera_arm_center_rest_offset + ((current_target.global_position - character.global_position) * 0.8) + (target_to_camera_dir * -target_to_chr_distance)
 		

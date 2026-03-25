@@ -111,7 +111,7 @@ func physics_process(delta : float):
 			instigator.velocity = Vector3.ZERO
 			instigator.up_velocity = Vector3.ZERO
 			instigator.move_and_slide()
-			print("finished reeling to target")
+			#print("finished reeling to target")
 			
 			if _current_target is CombatCharacter:
 				#target_node.set_state("custom_movement")
