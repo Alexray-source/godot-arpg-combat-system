@@ -2,6 +2,7 @@
 class_name BT_WaitData extends BT_NodeData
 
 @export var interval : float = 1.0
+@export var randomness : float = 0.0
 
 func _init() -> void:
 	resource_name = "Wait"
@@ -9,4 +10,7 @@ func _init() -> void:
 func create_node() -> BT_Node:
 	var node = BT_Wait.new()
 	node.interval = interval
+	node.randomness = randomness
+	node.reset({})
+	
 	return node
