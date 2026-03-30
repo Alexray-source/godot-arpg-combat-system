@@ -26,6 +26,7 @@ class_name CombatCharacter extends BaseCharacter
 var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
+var knockback_state : ChrKnockbackState
 
 var prev_hit_info : AtkInfo
 var invincible : bool = false
@@ -110,13 +111,13 @@ func ability_action(ability_name : StringName):
 func ability_event_trigger(ability_name : StringName):
 	character_abilities.ability_animation_event(ability_name)
 
-func grapple():
-	if debounces.is_debounce_active("grapple") == true:
-		return
-	
-	debounces.add_debounce("grapple")
-	set_state("custom_movement")
-	#grapple_component.action()
+#func grapple():
+	#if debounces.is_debounce_active("grapple") == true:
+		#return
+	#
+	#debounces.add_debounce("grapple")
+	#set_state("custom_movement")
+	##grapple_component.action()
 
 func end_attack_debounce():
 	debounces.remove_debounce("attack")
@@ -166,7 +167,7 @@ func increment_stagger_count():
 		#,CONNECT_ONE_SHOT)
 
 func reset_stagger_count():
-	print("reset stagger")
+	#print("reset stagger")
 	_stagger_count = 0
 
 func stagger():

@@ -112,7 +112,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -290.0
+offset_left = -383.0
 offset_top = -116.0
 offset_right = -24.0
 offset_bottom = -27.0
@@ -130,6 +130,17 @@ layout_mode = 2
 text = "Mouse1"
 horizontal_alignment = 1
 
+[node name="PanelContainer3" type="PanelContainer" parent="Control/HBoxContainer" unique_id=382204474]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_f4dah")
+action_name = "chr_secondary_atk"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer3" unique_id=1968391437]
+layout_mode = 2
+text = "Mouse2"
+horizontal_alignment = 1
+
 [node name="PanelContainer2" type="PanelContainer" parent="Control/HBoxContainer" unique_id=927795000]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -139,6 +150,17 @@ action_name = "chr_special_atk1"
 [node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer2" unique_id=1334774990]
 layout_mode = 2
 text = "KeyOne"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="Control/HBoxContainer" unique_id=376123994]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_f4dah")
+action_name = "chr_special_atk2"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer4" unique_id=735552174]
+layout_mode = 2
+text = "KeyTwo"
 horizontal_alignment = 1
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("6_o1aaj")]

@@ -4,13 +4,11 @@
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="2_fb08b"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrd4j"]
-size = Vector3(2, 2, 2)
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ifau6"]
 albedo_color = Color(1, 0.75, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1aaj"]
-size = Vector3(2, 2, 2)
 
 [node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
 angular_damp_mode = 1

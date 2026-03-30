@@ -116,6 +116,7 @@ func physics_process(delta : float):
 			if _current_target is CombatCharacter:
 				#target_node.set_state("custom_movement")
 				#target_node.velocity = Vector3.ZERO
+				_current_target.prev_hit_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
 				_current_target.stagger()
 			
 			_current_target = null

@@ -100,10 +100,27 @@ metadata/_custom_type_script = "uid://b1stykuxcqnl5"
 [sub_resource type="Resource" id="Resource_smxw8"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["PlayerSwordAnims/Shoot1"])
+animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot2"])
 atk_type = 2
 atk_data = SubResource("Resource_pq3w2")
 targeting_range = 50.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jb0u1"]
+radius = 4.0
+
+[sub_resource type="Resource" id="Resource_ffspy"]
+script = ExtResource("9_smxw8")
+hit_shape = SubResource("SphereShape3D_jb0u1")
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_5ps18"]
+script = ExtResource("19_jb0u1")
+dmg = 7
+animations = Array[String](["PlayerSwordAnims/SpinAtk"])
+atk_type = 1
+atk_data = SubResource("Resource_ffspy")
+targeting_range = 15.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
@@ -244,22 +261,22 @@ node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"StateMachine", &"
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
 collision_mask = 3
+collision_priority = 1000.0
 script = ExtResource("1_bqqcw")
 hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
-start_health = 10000
-max_health = 10000
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
 ability_slots = Dictionary[String, StringName]({
 "special1": &"kick_atk",
-"special2": &"secondary_atk",
+"special2": &"spin_atk",
 "special3": &"bomb_atk",
 "special4": &""
 })
 move_speed = 50.0
+gravity_scale = 1.75
 state_machine = NodePath("CharacterStateMachine")
 metadata/_custom_type_script = "uid://83mneuiydchi"
 
@@ -273,7 +290,8 @@ abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
 &"grapple_object": SubResource("Resource_172ob"),
 &"kick_atk": SubResource("Resource_7qyh0"),
 &"primary_atk": SubResource("Resource_72lp5"),
-&"secondary_atk": SubResource("Resource_smxw8")
+&"secondary_atk": SubResource("Resource_smxw8"),
+&"spin_atk": SubResource("Resource_5ps18")
 })
 metadata/_custom_type_script = "uid://dah4aaqqbvgen"
 

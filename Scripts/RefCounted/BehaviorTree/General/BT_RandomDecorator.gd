@@ -24,6 +24,6 @@ func tick(_blackboard : Dictionary):
 func reset(_blackboard : Dictionary):
 	#_finished = false
 	super(_blackboard)
-	print("restting probability")
+	#print("restting probability")
 	_can_randomize = true
 	_result = false

@@ -276,7 +276,7 @@ tracks/38/enabled = true
 tracks/38/path = NodePath("%GeneralSkeleton:WristTwist_R")
 tracks/38/interp = 1
 tracks/38/loop_wrap = true
-tracks/38/keys = PackedFloat32Array(0, 1, -0.76348156, -0.103786, -0.08586237, 0.6316265, 0.5, 1, -0.76348156, -0.10378601, -0.08586238, 0.6316265)
+tracks/38/keys = PackedFloat32Array(0, 1, -0.76348156, -0.103786, -0.08586237, 0.6316265, 0.5, 1, -0.7634815, -0.10378599, -0.085862376, 0.6316265)
 tracks/39/type = "rotation_3d"
 tracks/39/imported = true
 tracks/39/enabled = true
@@ -290,7 +290,7 @@ tracks/40/enabled = true
 tracks/40/path = NodePath("%GeneralSkeleton:Shoulder_L")
 tracks/40/interp = 1
 tracks/40/loop_wrap = true
-tracks/40/keys = PackedFloat32Array(0, 1, -0.693741, 0.46386662, -0.42288756, 0.3531533, 0.5, 1, -0.6937411, 0.46386665, -0.4228876, 0.3531533)
+tracks/40/keys = PackedFloat32Array(0, 1, -0.693741, 0.46386662, -0.42288756, 0.3531533, 0.5, 1, -0.693741, 0.46386665, -0.42288756, 0.3531533)
 tracks/41/type = "rotation_3d"
 tracks/41/imported = true
 tracks/41/enabled = true
@@ -431,7 +431,7 @@ tracks/60/path = NodePath("..")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
-"times": PackedFloat32Array(0, 0.041666668, 0.4),
+"times": PackedFloat32Array(0, 0.041666668, 0.16666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [-1.0],
@@ -451,7 +451,7 @@ tracks/61/path = NodePath(".")
 tracks/61/interp = 1
 tracks/61/loop_wrap = true
 tracks/61/keys = {
-"times": PackedFloat32Array(0, 0.375),
+"times": PackedFloat32Array(0, 0.14166667),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": ["flintlock", 0],

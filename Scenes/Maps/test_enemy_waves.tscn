@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
 [ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/Meshes/Misc/CylinderWall.glb" id="8_641pj"]
+[ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="9_6p4gl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -45,6 +46,9 @@ metadata/_custom_type_script = "uid://2x05qfkltv14"
 script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="LabelSettings" id="LabelSettings_6p4gl"]
+font_size = 12
 
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
@@ -130,10 +134,128 @@ transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.5529
 [node name="ThrowableBall5" parent="." unique_id=396423259 instance=ExtResource("7_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2732391, 0.7, 16.564863)
 
-[node name="CylinderWall" parent="." unique_id=277467425 instance=ExtResource("8_641pj")]
+[node name="CylinderWall" parent="." unique_id=138080558 instance=ExtResource("8_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 108, 0)
 
-[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=2067011314]
+[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=2124027241]
 transform = Transform3D(26, 0, 0, 0, 26, 0, 0, 0, 26, 0, 0, 0)
+
+[node name="Control" type="Control" parent="." unique_id=762639426]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=585737212]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -388.0
+offset_top = -82.0
+offset_right = -24.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/HBoxContainer" unique_id=200191228]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer" unique_id=2045027390]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Mouse1"
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer3" type="PanelContainer" parent="Control/HBoxContainer" unique_id=939762967]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+action_name = "chr_secondary_atk"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer3" unique_id=33444737]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Mouse2"
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/HBoxContainer" unique_id=1163372807]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+action_name = "chr_special_atk1"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer2" unique_id=1256295316]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "KeyOne"
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer4" type="PanelContainer" parent="Control/HBoxContainer" unique_id=249093394]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+action_name = "chr_special_atk2"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer4" unique_id=2015347950]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "KeyTwo"
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer5" type="PanelContainer" parent="Control/HBoxContainer" unique_id=171387223]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+action_name = "chr_grapple_object"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer5" unique_id=701420354]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Grapple Obj."
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PanelContainer6" type="PanelContainer" parent="Control/HBoxContainer" unique_id=446794580]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("9_6p4gl")
+action_name = "chr_grapple_enemy"
+
+[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer6" unique_id=1113219895]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Grapple Enemy"
+label_settings = SubResource("LabelSettings_6p4gl")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [editable path="CylinderWall"]
