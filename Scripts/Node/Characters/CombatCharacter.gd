@@ -13,7 +13,6 @@ class_name CombatCharacter extends BaseCharacter
 @export var max_health : int = 100
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
-@export var max_stagger_count : int = 6
 
 @export_subgroup("Ability slots")
 @export var ability_slots : Dictionary[String, StringName] = {
@@ -26,7 +25,6 @@ class_name CombatCharacter extends BaseCharacter
 var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
-var knockback_state : ChrKnockbackState
 
 var prev_hit_info : AtkInfo
 var invincible : bool = false
@@ -175,7 +173,6 @@ func stagger():
 		return
 	
 	increment_stagger_count()
-	#if _stagger_count <= max_stagger_count or is_on_floor() == false:
 	velocity = Vector3.ZERO
 	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
