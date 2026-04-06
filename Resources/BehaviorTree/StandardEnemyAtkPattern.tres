@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="BT_SequenceData" format=3 uid="uid://dcvcav2v1dope"]
 
-[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="1_sqao7"]
-[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://Scripts/Resources/BT_Data/BT_WaitData.gd" id="2_sibbr"]
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="1_sqao7"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="2_sibbr"]
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="3_e48ji"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="4_tuc8a"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_mecjo"]
-[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://Scripts/Resources/BT_Data/BT_SequenceData.gd" id="6_n3yiv"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="6_n3yiv"]
 
 [sub_resource type="Resource" id="Resource_espkd"]
 resource_name = "Wait"

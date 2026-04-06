@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="BT_SequenceData" format=3 uid="uid://dbcdsjm2m27gt"]
 
-[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="1_dddhl"]
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="1_dddhl"]
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_xr4vk"]
 [ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="3_7dnk6"]
 [ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="4_8ikxd"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_gq4s6"]
-[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://Scripts/Resources/BT_Data/BT_WaitData.gd" id="5_xr4vk"]
-[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://Scripts/Resources/BT_Data/BT_SequenceData.gd" id="6_acaa2"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="5_xr4vk"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="6_acaa2"]
 
 [sub_resource type="Resource" id="Resource_t764m"]
 resource_name = "Get Closest Chr."

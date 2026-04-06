@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dobbltvy06yps"]
 
-[ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://Scripts/RefCounted/BehaviorTree/BTRoot.gd" id="1_2t2r4"]
+[ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="1_2t2r4"]
 [ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_d40jh"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_d40jh"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_gx76c"]

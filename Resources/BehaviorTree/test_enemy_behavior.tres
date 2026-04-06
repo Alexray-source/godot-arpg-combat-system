@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="BT_SelectorData" format=3 uid="uid://bffeowxfoalrn"]
 
-[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://Scripts/Resources/BT_Data/BT_Node_Data.gd" id="1_1kwgo"]
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="1_1kwgo"]
 [ext_resource type="Script" uid="uid://drdwdmew2dpjs" path="res://Scripts/Resources/BT_Data/BT_CharacterIsStaggeredData.gd" id="2_kytlo"]
 [ext_resource type="Resource" uid="uid://dbcdsjm2m27gt" path="res://Resources/BehaviorTree/StandardThrowableToPlayer.tres" id="3_gikli"]
 [ext_resource type="Resource" uid="uid://dcvcav2v1dope" path="res://Resources/BehaviorTree/StandardEnemyAtkPattern.tres" id="8_j0s8k"]
-[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://Scripts/Resources/BT_Data/BT_SelectorData.gd" id="8_y5yte"]
+[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="8_y5yte"]
 
 [sub_resource type="Resource" id="Resource_pqgp3"]
 resource_name = "Is Character Staggered"
