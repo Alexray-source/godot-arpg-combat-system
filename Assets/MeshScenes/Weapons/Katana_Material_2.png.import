@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baytbrernpkqq"
-path.s3tc="res://.godot/imported/Katana_Material.png-309fb8b6170f1f5ed7c42d74d8cff4a1.s3tc.ctex"
+uid="uid://odxr4pdmv6kc"
+path.s3tc="res://.godot/imported/Katana_Material_2.png-d73a51733bd09bcfa3266861a709be9a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "282faca64f3b36b2eeb058e5fc53a65d"
+"md5": "a53459750ce1fd28f305c45ef42bffbc"
 }
 
 [deps]
 
-source_file="res://Assets/Meshes/Weapons/Katana_Material.png"
-dest_files=["res://.godot/imported/Katana_Material.png-309fb8b6170f1f5ed7c42d74d8cff4a1.s3tc.ctex"]
+source_file="res://Assets/MeshScenes/Weapons/Katana_Material_2.png"
+dest_files=["res://.godot/imported/Katana_Material_2.png-d73a51733bd09bcfa3266861a709be9a.s3tc.ctex"]
 
 [params]
 

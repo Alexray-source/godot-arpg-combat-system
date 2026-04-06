@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="BT_SequenceData" format=3 uid="uid://cfvcf778xlknq"]
+
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="1_anmjm"]
+[ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_enx01"]
+[ext_resource type="Script" uid="uid://m1kmxukx1j0c" path="res://Scripts/Resources/BT_Data/BT_StrafeData.gd" id="3_6dmt4"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="4_ocyu0"]
+[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_ulxum"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="6_xw67g"]
+[ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="7_dp3hr"]
+[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="8_sj6dd"]
+
+[sub_resource type="Resource" id="Resource_d1dtr"]
+resource_name = "Get Closest Chr."
+script = ExtResource("2_enx01")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 40.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_gnykt"]
+resource_name = "Chr. Strafe"
+script = ExtResource("3_6dmt4")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+metadata/_custom_type_script = "uid://m1kmxukx1j0c"
+
+[sub_resource type="Resource" id="Resource_1yrj6"]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d1dtr"), SubResource("Resource_gnykt")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_au65u"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("5_ulxum")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "homing_ground_pillar"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_jobeu"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_b00bd"]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_au65u"), SubResource("Resource_jobeu")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_enx01"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_jbajh"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("5_ulxum")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_1ypsu"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_f774v"]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_enx01"), SubResource("Resource_jbajh"), SubResource("Resource_1ypsu")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_7lo0a"]
+resource_name = "Random Probability"
+script = ExtResource("7_dp3hr")
+probability = 0.7
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_f774v")])
+metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_anmjm"]
+resource_name = "Selector"
+script = ExtResource("8_sj6dd")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_7lo0a"), SubResource("Resource_b00bd")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[resource]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_1yrj6"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"

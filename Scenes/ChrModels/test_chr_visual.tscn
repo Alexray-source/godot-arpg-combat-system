@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://eeb3go31mweg"]
 
-[ext_resource type="PackedScene" uid="uid://brfoxh8ybu1f2" path="res://Assets/Meshes/Characters/MaleBaseRigV2.glb" id="1_w5mna"]
+[ext_resource type="PackedScene" uid="uid://brfoxh8ybu1f2" path="res://Assets/MeshScenes/Characters/MaleBaseRigV2.glb" id="1_w5mna"]
 [ext_resource type="Script" uid="uid://fhp80firk7f7" path="res://Scripts/Node/Characters/CharacterVisual.gd" id="2_jlwqs"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="3_jlwqs"]
-[ext_resource type="PackedScene" uid="uid://c1yma6i38gccf" path="res://Assets/Meshes/Weapons/Katana.glb" id="4_324pt"]
-[ext_resource type="PackedScene" uid="uid://cfygg5pxcv1uq" path="res://Assets/Meshes/Weapons/FlintlockPlaceholder.glb" id="5_lgpmn"]
+[ext_resource type="PackedScene" uid="uid://c1yma6i38gccf" path="res://Assets/MeshScenes/Weapons/Katana.glb" id="4_324pt"]
+[ext_resource type="PackedScene" uid="uid://cfygg5pxcv1uq" path="res://Assets/MeshScenes/Weapons/FlintlockPlaceholder.glb" id="5_lgpmn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_324pt"]
 emission_enabled = true
@@ -22,10 +22,10 @@ holstered_weapons_visuals = {
 "flintlock": NodePath("Armature_003/GeneralSkeleton/HolsteredGun")
 }
 
-[node name="Cube_003" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(647401894) index="0" unique_id=1937837623]
+[node name="Cube_003" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(718128079) index="0" unique_id=1538958767]
 material_override = ExtResource("3_jlwqs")
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(647401894) index="1" unique_id=1169500303]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(718128079) index="1" unique_id=1169500303]
 transform = Transform3D(0.034489408, -0.819153, 0.57253706, -0.12286981, -0.5720073, -0.8109934, 0.99182326, -0.042376857, -0.12037747, -2.4250429, 4.5333443, 0.049549606)
 bone_name = "Hand_L"
 bone_idx = 41
@@ -33,7 +33,7 @@ bone_idx = 41
 [node name="Katana" parent="Armature_003/GeneralSkeleton/BoneAttachment3D" index="0" unique_id=8756220 instance=ExtResource("4_324pt")]
 transform = Transform3D(-0.083747365, -0.1543216, -0.9844652, -8.6613e-08, -0.9879359, 0.15486562, -0.996487, 0.0129696755, 0.082737006, -0.46518943, 0.4252789, 0.1434433)
 
-[node name="EquippedGun" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(647401894) index="2" unique_id=1643015151]
+[node name="EquippedGun" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(718128079) index="2" unique_id=1643015151]
 transform = Transform3D(0.03448988, 0.8191528, -0.5725373, 0.12286948, -0.57200754, -0.8109931, -0.9918231, -0.04237632, -0.12037744, 2.4250429, 4.5333447, 0.049551234)
 visible = false
 bone_name = "Hand_R"
@@ -42,7 +42,7 @@ bone_idx = 20
 [node name="FlintlockPlaceholder" parent="Armature_003/GeneralSkeleton/EquippedGun" index="0" unique_id=1550256170 instance=ExtResource("5_lgpmn")]
 transform = Transform3D(-2.1855694e-08, 0.5, 0, 0.5, 2.1855694e-08, -4.3711385e-08, -4.371139e-08, 0, -0.5, 0.011888698, 0.18284197, 0.17940083)
 
-[node name="HolsteredGun" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(647401894) index="3" unique_id=2089154445]
+[node name="HolsteredGun" type="BoneAttachment3D" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(718128079) index="3" unique_id=2089154445]
 transform = Transform3D(1, -1.4432899e-15, 5.9604645e-07, -4.440892e-16, -0.99999994, -1.8376844e-09, 7.1525574e-07, 1.8376848e-09, -1, 5.888179e-11, 4.089195, 0.03204059)
 bone_name = "Pelvis"
 bone_idx = 1

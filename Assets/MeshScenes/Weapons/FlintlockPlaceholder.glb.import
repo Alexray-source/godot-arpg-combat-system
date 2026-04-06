@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://brfoxh8ybu1f2"
-path="res://.godot/imported/MaleBaseRigV2.glb-cb193b824015768887c630315d5c52a1.scn"
+uid="uid://cfygg5pxcv1uq"
+path="res://.godot/imported/FlintlockPlaceholder.glb-aa965ed652460d189b2a564a4631caf1.scn"
 
 [deps]
 
-source_file="res://Assets/Meshes/Characters/MaleBaseRigV2.glb"
-dest_files=["res://.godot/imported/MaleBaseRigV2.glb-cb193b824015768887c630315d5c52a1.scn"]
+source_file="res://Assets/MeshScenes/Weapons/FlintlockPlaceholder.glb"
+dest_files=["res://.godot/imported/FlintlockPlaceholder.glb-aa965ed652460d189b2a564a4631caf1.scn"]
 
 [params]
 
@@ -38,9 +38,16 @@ materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
 _subresources={
-"nodes": {
-"PATH:Armature_003/Skeleton3D": {
-"retarget/bone_map": Resource("uid://6lyuj8644e7i", "res://Resources/BoneMaps/DefaultHumanoidMap.tres")
+"materials": {
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Material/Flintlock/FlintlockWood.tres",
+"use_external/path": "uid://4vjfhook5flu"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Assets/Material/Flintlock/FlintlockGold.tres",
+"use_external/path": "uid://wv1e88k2o63g"
 }
 }
 }

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cfygg5pxcv1uq"
-path="res://.godot/imported/FlintlockPlaceholder.glb-bf5d4ee7194b0fe25beafe895d1c2ec9.scn"
+uid="uid://c1yma6i38gccf"
+path="res://.godot/imported/Katana.glb-7896d6678a0a3a5f9fea2d87be1790c1.scn"
 
 [deps]
 
-source_file="res://Assets/Meshes/Weapons/FlintlockPlaceholder.glb"
-dest_files=["res://.godot/imported/FlintlockPlaceholder.glb-bf5d4ee7194b0fe25beafe895d1c2ec9.scn"]
+source_file="res://Assets/MeshScenes/Weapons/Katana.glb"
+dest_files=["res://.godot/imported/Katana.glb-7896d6678a0a3a5f9fea2d87be1790c1.scn"]
 
 [params]
 
@@ -39,15 +39,10 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "materials": {
-"Material.001": {
+"Material.003": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Material/Flintlock/FlintlockWood.tres",
-"use_external/path": "uid://4vjfhook5flu"
-},
-"Material.002": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://Assets/Material/Flintlock/FlintlockGold.tres",
-"use_external/path": "uid://wv1e88k2o63g"
+"use_external/fallback_path": "res://Assets/Material/Katana/KatanaBase.tres",
+"use_external/path": "uid://degcctghf11dn"
 }
 }
 }

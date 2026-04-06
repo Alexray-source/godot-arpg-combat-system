@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="4_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
-[ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/Meshes/Misc/CylinderWall.glb" id="8_641pj"]
+[ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/MeshScenes/Misc/CylinderWall.glb" id="8_641pj"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="9_6p4gl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
@@ -137,7 +137,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2732391, 0.7, 16.564863)
 [node name="CylinderWall" parent="." unique_id=138080558 instance=ExtResource("8_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 108, 0)
 
-[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=2124027241]
+[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=203727855]
 transform = Transform3D(26, 0, 0, 0, 26, 0, 0, 0, 26, 0, 0, 0)
 
 [node name="Control" type="Control" parent="." unique_id=762639426]

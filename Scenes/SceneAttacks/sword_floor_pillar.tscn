@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://b5ffghmyx1ptq"]
+
+[ext_resource type="Script" uid="uid://k86ps4b33ui2" path="res://Scripts/Node/SceneAttackInstance/SwordFloorPillar.gd" id="1_ofm7e"]
+[ext_resource type="ArrayMesh" uid="uid://qduvshi3u78m" path="res://Assets/Meshes/VFX/SwordPillar.tres" id="2_ofm7e"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="2_pvnbi"]
+[ext_resource type="Texture2D" uid="uid://c6udca7n8v6j5" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridRed.png" id="3_pf67q"]
+
+[sub_resource type="Resource" id="Resource_pf67q"]
+script = ExtResource("2_pvnbi")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sy7se"]
+size = Vector3(1, 15, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofm7e"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Curve" id="Curve_ofm7e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99264693, 0), -3.2644634, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pvnbi"]
+curve = SubResource("Curve_ofm7e")
+
+[sub_resource type="Gradient" id="Gradient_pf67q"]
+offsets = PackedFloat32Array(0, 0.19630873, 0.6895973)
+colors = PackedColorArray(1, 1, 1, 1, 0.2115869, 0.2115869, 0.2115869, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sy7se"]
+gradient = SubResource("Gradient_pf67q")
+
+[sub_resource type="Curve" id="Curve_pvnbi"]
+_data = [Vector2(0, 0), 0.0, 3.0625947, 0, 0, Vector2(0.1881029, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pf67q"]
+curve = SubResource("Curve_pvnbi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pvnbi"]
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, -8, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 80.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 0, 0)
+damping_min = 455.00003
+damping_max = 455.00003
+damping_curve = SubResource("CurveTexture_pf67q")
+scale_min = 0.049999997
+scale_max = 0.099999994
+color = Color(1.8247963, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_sy7se")
+alpha_curve = SubResource("CurveTexture_pvnbi")
+
+[node name="SwordFloorPillar" type="Node3D" unique_id=1916235111 node_paths=PackedStringArray("main_object", "decal", "attack_vfx")]
+top_level = true
+script = ExtResource("1_ofm7e")
+main_object = NodePath(".")
+decal = NodePath("Decal")
+attack_vfx = [NodePath("GPUParticles3D")]
+chr_layer_owner = SubResource("Resource_pf67q")
+hitbox = SubResource("BoxShape3D_sy7se")
+travel_time = 1.35
+
+[node name="Decal" type="Decal" parent="." unique_id=711771147]
+size = Vector3(2, 15, 2)
+texture_albedo = ExtResource("3_pf67q")
+emission_energy = 5.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1704210335]
+material_override = SubResource("StandardMaterial3D_ofm7e")
+emitting = false
+amount = 4
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.6
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pvnbi")
+draw_pass_1 = ExtResource("2_ofm7e")

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="8_8y5mx"]
+[ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="8_8y5mx"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
@@ -168,5 +168,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4810505, 3.999999, 13.793
 debug_state = true
 chr_layer = SubResource("Resource_8y5mx")
 
-[node name="Enemy" parent="." unique_id=1147936652 instance=ExtResource("8_8y5mx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.61102, 0, 5.7631083)
+[node name="Enemy" parent="." unique_id=951569018 instance=ExtResource("8_8y5mx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.915356, 0, 21.353355)

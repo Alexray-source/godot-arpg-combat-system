@@ -1,119 +1,20 @@
 [gd_scene format=3 uid="uid://dqqgjql3p6rkp"]
 
 [ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_ecs0e"]
-[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_6y2u2"]
-[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_5koq4"]
+[ext_resource type="PackedScene" uid="uid://drxg0tbgt6880" path="res://Scenes/Chr/mage_character.tscn" id="2_au65u"]
 [ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="4_280eo"]
-[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="5_280eo"]
-[ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="6_xiaek"]
-[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="7_gnykt"]
-[ext_resource type="Script" uid="uid://m1kmxukx1j0c" path="res://Scripts/Resources/BT_Data/BT_StrafeData.gd" id="7_xiaek"]
-[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="8_au65u"]
-[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="9_gnykt"]
-[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="10_au65u"]
-[ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="11_d1dtr"]
-
-[sub_resource type="Resource" id="Resource_jah6w"]
-script = ExtResource("3_5koq4")
-hostility = 1
-metadata/_custom_type_script = "uid://cgg8sloxa71el"
-
-[sub_resource type="Resource" id="Resource_d1dtr"]
-resource_name = "Get Closest Chr."
-script = ExtResource("6_xiaek")
-origin_node_scan_key = "character"
-found_character_target_key = "enemy_character"
-scan_radius = 40.0
-metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
-
-[sub_resource type="Resource" id="Resource_gnykt"]
-resource_name = "Chr. Strafe"
-script = ExtResource("7_xiaek")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-metadata/_custom_type_script = "uid://m1kmxukx1j0c"
-
-[sub_resource type="Resource" id="Resource_1yrj6"]
-resource_name = "Sequence"
-script = ExtResource("7_gnykt")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_d1dtr"), SubResource("Resource_gnykt")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_au65u"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("9_gnykt")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "homing_ground_pillar"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_jobeu"]
-resource_name = "Wait"
-script = ExtResource("10_au65u")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
-[sub_resource type="Resource" id="Resource_b00bd"]
-resource_name = "Sequence"
-script = ExtResource("7_gnykt")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_au65u"), SubResource("Resource_jobeu")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_jbajh"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("9_gnykt")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "primary_atk"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_1ypsu"]
-resource_name = "Wait"
-script = ExtResource("10_au65u")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
-[sub_resource type="Resource" id="Resource_f774v"]
-resource_name = "Sequence"
-script = ExtResource("7_gnykt")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_jbajh"), SubResource("Resource_1ypsu")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_7lo0a"]
-resource_name = "Random Probability"
-script = ExtResource("11_d1dtr")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_f774v")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_wneld"]
-resource_name = "Selector"
-script = ExtResource("8_au65u")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_7lo0a"), SubResource("Resource_b00bd")])
-metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
-
-[sub_resource type="Resource" id="Resource_gx5ev"]
-resource_name = "Selector"
-script = ExtResource("8_au65u")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_1yrj6"), SubResource("Resource_b00bd"), SubResource("Resource_wneld")])
-metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
-
-[sub_resource type="Resource" id="Resource_34rgw"]
-resource_name = "Sequence"
-script = ExtResource("7_gnykt")
-children = Array[ExtResource("5_280eo")]([SubResource("Resource_gx5ev")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+[ext_resource type="Resource" uid="uid://cfvcf778xlknq" path="res://Resources/BehaviorTree/MageEnemyBehavior.tres" id="5_ecs0e"]
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
 script = ExtResource("1_ecs0e")
 character = NodePath("BaseCharacter")
-
-[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_6y2u2")]
-collision_layer = 10
-start_health = 200
-max_health = 200
-chr_layer = SubResource("Resource_jah6w")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("4_280eo")
 blackboard = Dictionary[String, Variant]({
 "character": NodePath("../BaseCharacter")
 })
-tree_data = SubResource("Resource_34rgw")
+tree_data = ExtResource("5_ecs0e")
+debug = true
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_au65u")]
