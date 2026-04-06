@@ -35,7 +35,7 @@ func on_animation_finish():
 	ability_finished.emit()
 	_animation_chainer.reset_chain()
 
-func _action() -> void:
+func action() -> void:
 	var closest_target = target_override
 	#print(closest_target)
 	if closest_target == null:
@@ -53,6 +53,6 @@ func _action() -> void:
 	
 	_animation_chainer.resume_chain()
 
-func _ability_event() -> void:
+func ability_event() -> void:
 	var attack = attack_data.create_attack()
 	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir)

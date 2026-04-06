@@ -35,7 +35,7 @@ func physics_process(delta: float) -> void:
 func on_grapple_finished():
 	ability_finished.emit()
 
-func _action() -> void:
+func action() -> void:
 	if should_target_characters == true:
 		_aoe_grapple.scan_mask = 2 + chr_layer.get_enemy_layer()
 	else:
@@ -62,7 +62,7 @@ func _action() -> void:
 		_animation_chainer.resume_chain()
 
 	
-func _ability_event() -> void:
+func ability_event() -> void:
 	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	
 	if target_override != null and should_target_characters == true:

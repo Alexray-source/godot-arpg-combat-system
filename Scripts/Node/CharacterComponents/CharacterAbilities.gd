@@ -31,13 +31,13 @@ func perform_ability(ability_key : StringName):
 	if ability != null:
 		#print(target_override)
 		ability.target_override = target_override
-		ability._action()
+		ability.action()
 
 func ability_animation_event(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)
 	
 	if ability != null:
-		ability._ability_event()
+		ability.ability_event()
 
 func _physics_process(delta: float) -> void:
 	for ability_key in abilities:

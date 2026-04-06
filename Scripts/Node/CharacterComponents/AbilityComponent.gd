@@ -14,5 +14,5 @@ func setup() -> void:
 func physics_process(_delta : float) -> void:
 	pass
 
-@abstract func _action() -> void
-@abstract func _ability_event() -> void
+@abstract func action() -> void
+@abstract func ability_event() -> void
