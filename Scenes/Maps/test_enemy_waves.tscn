@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_rn81q"]
 [ext_resource type="Script" uid="uid://djjvpfpq6jjrw" path="res://Scripts/Node/Enemies/EnemyWaves.gd" id="2_xcpuq"]
 [ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="3_4n2ml"]
-[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/enemy.tscn" id="4_rn81q"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="4_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
 [ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/Meshes/Misc/CylinderWall.glb" id="8_641pj"]

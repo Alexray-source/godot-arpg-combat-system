@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dobbltvy06yps"]
+
+[ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://Scripts/RefCounted/BehaviorTree/BTRoot.gd" id="1_2t2r4"]
+[ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_d40jh"]
+[ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_d40jh"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_gx76c"]
+[ext_resource type="Resource" uid="uid://u25vnnufdp6p" path="res://Resources/BehaviorTree/EnemyMeleeBehavior.tres" id="5_d40jh"]
+
+[sub_resource type="Resource" id="Resource_jah6w"]
+script = ExtResource("3_gx76c")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
+script = ExtResource("1_d40jh")
+character = NodePath("BaseCharacter")
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_d40jh")]
+collision_layer = 10
+start_health = 200
+max_health = 200
+chr_layer = SubResource("Resource_jah6w")
+
+[node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
+script = ExtResource("1_2t2r4")
+blackboard = Dictionary[String, Variant]({
+"character": NodePath("../BaseCharacter")
+})
+tree_data = ExtResource("5_d40jh")
