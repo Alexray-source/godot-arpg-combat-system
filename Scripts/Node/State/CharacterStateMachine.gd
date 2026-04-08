@@ -12,7 +12,8 @@ func _ready() -> void:
 		"dodge_dash" : CharacterDashState.new(),
 		"stagger" : ChrStaggerState.new(),
 		"knockback" : ChrKnockbackState.new(),
-		"custom_movement" : CharacterCustomMovementState.new()
+		"custom_movement" : CharacterCustomMovementState.new(),
+		"no_movement" : CharacterState.new()
 	}
 
 func enter_special_atk_state(_special_atk_name) -> void:

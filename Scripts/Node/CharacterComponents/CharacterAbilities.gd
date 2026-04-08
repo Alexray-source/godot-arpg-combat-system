@@ -8,6 +8,7 @@ var chr_layer : CharacterLayer
 var target_override : Node3D
 
 signal ability_finished
+signal ability_hit(hurtboxes_hit : Array[HurtBox])
 
 func setup() -> void:
 	for ability_key in abilities_data:
@@ -19,11 +20,13 @@ func setup() -> void:
 		ability_component.chr_layer = chr_layer
 		ability_component.setup()
 		
-		ability_component.ability_finished.connect(func ():
-			ability_finished.emit()
-		)
+		ability_component.ability_finished.connect(ability_finished.emit)
+		ability_component.ability_hit.connect(ability_hit.emit)
 		
 		abilities.set(ability_key, ability_component)
+
+func reset() -> void:
+	abilities.clear()
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)

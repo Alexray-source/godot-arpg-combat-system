@@ -40,7 +40,7 @@ func shoot_to_target() -> void:
 	_is_shooting = true
 
 func _physics_process(delta: float) -> void:
-	if _is_shooting == false:
+	if _is_shooting == false and _target != null:
 		_shoot_dir = _shoot_dir.lerp(scan_origin.global_position.direction_to(_target.global_position + target_shoot_offset), targetting_speed * delta)
 		target_projectile.global_basis = Basis.looking_at(_shoot_dir)
 		return
@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	for result in scan_result:
 		should_destroy = true
 		var collider = result.get("collider")
-		print(collider.name)
+		#print(collider.name)
 
 		if collider is HurtBox:
 			collider.hit.emit(atk_info)

@@ -13,4 +13,5 @@ func attack(instigator : Node3D, atk_layer : int, dmg : int, atk_type : AtkInfo.
 	melee_hitbox.atk_info = AtkInfo.new(dmg, atk_type, instigator, -instigator.global_basis.z.normalized())
 	melee_hitbox.hitbox_transform = Transform3D(instigator.global_basis.orthonormalized(), instigator.global_position + (instigator.global_basis.orthonormalized() * local_offset))
 	
+	melee_hitbox.hurtboxes_hit.connect(hurtboxes_hit.emit, CONNECT_ONE_SHOT)
 	melee_hitbox.attack()

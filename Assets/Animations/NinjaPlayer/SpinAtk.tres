@@ -437,13 +437,13 @@ tracks/60/keys = {
 "args": [15.0, 0.6],
 "method": &"dash"
 }, {
-"args": [&"spin_atk"],
+"args": [&"spin"],
 "method": &"ability_event_trigger"
 }, {
-"args": [&"spin_atk"],
+"args": [&"spin"],
 "method": &"ability_event_trigger"
 }, {
-"args": [&"spin_atk"],
+"args": [&"spin"],
 "method": &"ability_event_trigger"
 }, {
 "args": [],

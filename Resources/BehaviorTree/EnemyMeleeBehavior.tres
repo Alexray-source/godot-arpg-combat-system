@@ -17,11 +17,6 @@
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="15_61te7"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="16_1o65i"]
 
-[sub_resource type="Resource" id="Resource_ifrnt"]
-resource_name = "Reset Stagger Counter"
-script = ExtResource("2_2yww0")
-metadata/_custom_type_script = "uid://c5lfgijp8qrfh"
-
 [sub_resource type="Resource" id="Resource_tj3on"]
 resource_name = "Get Closest Chr."
 script = ExtResource("3_f0syj")
@@ -68,11 +63,6 @@ script = ExtResource("9_yi1jo")
 stagger_count_treshold = 6
 metadata/_custom_type_script = "uid://cxmedjxpldotm"
 
-[sub_resource type="Resource" id="Resource_x4yp7"]
-resource_name = "Reset Stagger Counter"
-script = ExtResource("2_2yww0")
-metadata/_custom_type_script = "uid://c5lfgijp8qrfh"
-
 [sub_resource type="Resource" id="Resource_tqvt7"]
 resource_name = "Set Stagger Immune"
 script = ExtResource("10_qh7sx")
@@ -82,7 +72,7 @@ metadata/_custom_type_script = "uid://br2lag68y1sfx"
 [sub_resource type="Resource" id="Resource_xmc1t"]
 resource_name = "Sequence"
 script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_5luce"), SubResource("Resource_x4yp7"), SubResource("Resource_tqvt7")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_5luce"), SubResource("Resource_tqvt7")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_d2jnu"]
@@ -96,6 +86,18 @@ resource_name = "Selector"
 script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_myvan"), SubResource("Resource_d2jnu")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_q3yxe"]
+resource_name = "Is Character Staggered"
+script = ExtResource("7_jv2x5")
+character_bb_key = "character"
+metadata/_custom_type_script = "uid://drdwdmew2dpjs"
+
+[sub_resource type="Resource" id="Resource_2yww0"]
+resource_name = "Invert Decorator"
+script = ExtResource("8_upapx")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_q3yxe")])
+metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
 
 [sub_resource type="Resource" id="Resource_g6g8b"]
 resource_name = "Random Probability"
@@ -169,6 +171,11 @@ script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_g6g8b"), SubResource("Resource_x18n6")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
+[sub_resource type="Resource" id="Resource_ifrnt"]
+resource_name = "Reset Stagger Counter"
+script = ExtResource("2_2yww0")
+metadata/_custom_type_script = "uid://c5lfgijp8qrfh"
+
 [sub_resource type="Resource" id="Resource_5rl8s"]
 resource_name = "Set Stagger Immune"
 script = ExtResource("10_qh7sx")
@@ -184,5 +191,5 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [resource]
 resource_name = "Sequence"
 script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_ifrnt"), SubResource("Resource_2u43t"), SubResource("Resource_ijynf"), SubResource("Resource_5rl8s"), SubResource("Resource_f3l8n")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_2u43t"), SubResource("Resource_2yww0"), SubResource("Resource_ijynf"), SubResource("Resource_ifrnt"), SubResource("Resource_5rl8s"), SubResource("Resource_f3l8n")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"

@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://d3lhc887sn2gb"]
+
+[ext_resource type="Script" uid="uid://cj836noe0hvrg" path="res://Scripts/Node/UI/AbilitiesUIComponent.gd" id="1_6d7lo"]
+[ext_resource type="Script" uid="uid://5vy7h2bb2fjm" path="res://Scripts/Node/UI/HUD.gd" id="1_b2arx"]
+[ext_resource type="PackedScene" uid="uid://vkfcfqy35fmy" path="res://Scenes/UI/ability_icon.tscn" id="1_ks3ap"]
+[ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="3_3ov73"]
+
+[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("ability_energy_bar", "abilities_ui")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b2arx")
+ability_energy_bar = NodePath("Control/TextureProgressBar")
+abilities_ui = NodePath("Control")
+
+[node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -160.0
+offset_right = -41.0
+offset_bottom = -35.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_6d7lo")
+icons = [NodePath("AbilityIcon1"), NodePath("AbilityIcon2"), NodePath("AbilityIcon3"), NodePath("AbilityIcon4")]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control" unique_id=1271116611]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 19.0
+offset_right = -19.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("3_3ov73")
+texture_progress = ExtResource("3_3ov73")
+tint_under = Color(0.19607843, 0.19607843, 0.19607843, 0.7058824)
+
+[node name="AbilityIcon1" parent="Control" unique_id=565308469 instance=ExtResource("1_ks3ap")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="AbilityIcon2" parent="Control" unique_id=305997422 instance=ExtResource("1_ks3ap")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+grow_horizontal = 2
+
+[node name="AbilityIcon3" parent="Control" unique_id=925880745 instance=ExtResource("1_ks3ap")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_right = 0.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="AbilityIcon4" parent="Control" unique_id=202546464 instance=ExtResource("1_ks3ap")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0

@@ -98,6 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.005686, 0.5, -4.3278694)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6133919, 0.50000095, -16.35602)
 
 [node name="Control" type="Control" parent="." unique_id=790844773]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,4 +170,4 @@ debug_state = true
 chr_layer = SubResource("Resource_8y5mx")
 
 [node name="Enemy" parent="." unique_id=951569018 instance=ExtResource("8_8y5mx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.915356, 0, 21.353355)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9710197, 0, -6.25156)

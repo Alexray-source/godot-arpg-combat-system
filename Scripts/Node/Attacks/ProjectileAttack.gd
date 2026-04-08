@@ -14,3 +14,9 @@ func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo
 	projectile.global_basis = Basis.looking_at(attack_dir)
 	projectile.reset_physics_interpolation()
 	
+	projectile.hit.connect(func(intersected_hurtbox : HurtBox):
+		var array : Array[HurtBox]
+		array.append(intersected_hurtbox)
+		hurtboxes_hit.emit(array),
+	CONNECT_ONE_SHOT)
+	

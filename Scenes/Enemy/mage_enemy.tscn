@@ -15,6 +15,7 @@ blackboard = Dictionary[String, Variant]({
 "character": NodePath("../BaseCharacter")
 })
 tree_data = ExtResource("5_ecs0e")
-debug = true
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_au65u")]
+start_health = 10000
+max_health = 10000

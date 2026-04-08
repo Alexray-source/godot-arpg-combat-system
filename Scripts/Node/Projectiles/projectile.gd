@@ -8,6 +8,8 @@ var ray_params : PhysicsRayQueryParameters3D
 var atk_info : AtkInfo
 var lifetime : float = 0.0
 
+signal hit(intersected_collider : HurtBox)
+
 func _ready() -> void:
 	direct_space_state = get_world_3d().direct_space_state
 	
@@ -34,5 +36,6 @@ func _physics_process(delta: float) -> void:
 		if intersected_collider is HurtBox:
 			#print("hurtbox")
 			intersected_collider.hit.emit(atk_info)
+			hit.emit(intersected_collider)
 		else:
 			queue_free()

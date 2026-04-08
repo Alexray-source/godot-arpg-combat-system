@@ -2,19 +2,29 @@
 
 [ext_resource type="Script" uid="uid://dee718td46nv7" path="res://Scripts/Node/Player/Player.gd" id="1_mtuoh"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="2_htcer"]
+[ext_resource type="Script" uid="uid://snap5qatdr20" path="res://Scripts/Resources/CharacterData/CharacterData.gd" id="3_0u5uq"]
 [ext_resource type="Script" uid="uid://duk0vij7twu3v" path="res://Scripts/Node/Player/ChrCamArm.gd" id="3_dd0ac"]
 [ext_resource type="Script" uid="uid://cxdaamgqtbdpf" path="res://Scripts/Node/State/PlrCharacterStateMachine.gd" id="4_0u5uq"]
 [ext_resource type="Script" uid="uid://cydyfmt81qssv" path="res://Scripts/Node/Player/PlrCamera.gd" id="4_htcer"]
+[ext_resource type="PackedScene" uid="uid://d3lhc887sn2gb" path="res://Scenes/UI/Hud.tscn" id="7_0u5uq"]
+
+[sub_resource type="Resource" id="Resource_jlvik"]
+script = ExtResource("3_0u5uq")
+character_scene = ExtResource("2_htcer")
+available_abilities = Array[String](["kick", "spin", "bomb"])
+metadata/_custom_type_script = "uid://snap5qatdr20"
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]
 points = PackedVector3Array(0, 0, 0, -0.7344628, 0.4131353, -0.53840834, -0.7344628, -0.4131353, -0.53840834, 0.7344628, 0.4131353, -0.53840834, 0.7344628, -0.4131353, -0.53840834)
 
-[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm", "target_tracking_camera")]
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm", "target_tracking_camera", "hud")]
 script = ExtResource("1_mtuoh")
+character_data = SubResource("Resource_jlvik")
 character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("SpringArm3D/Camera3D")
+hud = NodePath("Hud")
 camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_htcer")]
@@ -44,3 +54,5 @@ shape = SubResource("ConvexPolygonShape3D_htcer")
 script = ExtResource("4_0u5uq")
 character = NodePath("../BaseCharacter")
 metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
+
+[node name="Hud" parent="." unique_id=416551460 instance=ExtResource("7_0u5uq")]

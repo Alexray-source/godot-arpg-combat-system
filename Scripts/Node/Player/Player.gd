@@ -1,14 +1,19 @@
 extends Node3D
 
+const ABILITY_DB : AbilityDatabase = preload("res://Resources/AbilityDatabase.tres")
+
+@export var character_data : CharacterData
 @export var character : CombatCharacter
 @export var plr_state_machine : PlrCharacterStateMachine
 @export var camera_arm : ChrCamArm
 @export var target_tracking_camera : TargetTrackingCamera
+@export var hud : PlayerHUD
 
 @export var camera_arm_center_rest_offset : Vector3 = Vector3(0.0,2.0,0.0)
 @export var camera_max_v_angle : float = PI * 0.2
 @export var camera_min_v_angle : float = -PI * 0.2
 @export var targeting_cancel_distance_treshold : float = 40.0
+@export var max_ability_energy : int = 100
 
 var camera_rot_x : float = 0.0
 var camera_rot_y : float = 0.0
@@ -24,8 +29,18 @@ var current_target : Node3D
 var input_events : PlrInputEvents
 
 var plr_debounces : Debounces
+var ability_energy : int = 0:
+	set(_value):
+		ability_energy = _value
+		ability_energy_changed.emit()
+
+var equipped_abilities_keys : Array[String]
+var plr_special_atk_state : PlrSpecialAtkState
+
+signal ability_energy_changed()
 
 func _ready() -> void:
+	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	input_events = PlrInputEvents.new()
 	input_events.setup()
@@ -35,16 +50,31 @@ func _ready() -> void:
 	plr_state_machine.input_events = input_events
 	plr_state_machine.state_machine_setup()
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
+	plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
 	
-	character.character_abilities.ability_finished.connect(return_to_movement_state)
+	equipped_abilities_keys.resize(4)
 	
+	var ability_index: int = 0
+	for ability_key in character_data.available_abilities:
+		var ability_db_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)
+		character.character_abilities.abilities_data[ability_key] = ability_db_entry.ability_data
+		equipped_abilities_keys[ability_index] = ability_key
+		ability_index += 1
+	
+	character.ability_finished.connect(return_to_movement_state)
+	
+	character.character_abilities.setup()
+	
+	character.enemies_hit.connect(on_enemies_hit)
 	character.dash_component.dash_ended.connect(return_to_movement_state)
+	
+	ability_energy_changed.connect(on_ability_energy_changed)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 	input_events.secondary_atk_input.connect(on_secondary_atk)
-	input_events.special_atk1_input.connect(on_special_atk.bind(1))
-	input_events.special_atk2_input.connect(on_special_atk.bind(2))
-	input_events.special_atk3_input.connect(on_special_atk.bind(3))
+	input_events.special_atk1_input.connect(on_special_atk.bind(0))
+	input_events.special_atk2_input.connect(on_special_atk.bind(1))
+	input_events.special_atk3_input.connect(on_special_atk.bind(2))
 	
 	input_events.grapple_object_input.connect(on_grapple.bind(false))
 	input_events.grapple_enemy_input.connect(on_grapple.bind(true))
@@ -54,6 +84,25 @@ func _ready() -> void:
 
 	input_events.dash_input.connect(on_dodge_dash)
 
+func on_ability_energy_changed():
+	hud.ability_energy_bar.value = ability_energy / float(max_ability_energy)
+	
+	for icon in hud.abilities_ui.icons:
+		var icon_index : int = hud.abilities_ui.icons.find(icon)
+		var ability_key : String = equipped_abilities_keys[icon_index]
+		
+		if ability_key == null or ability_key.is_empty():
+			continue
+		
+		var ability_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)
+		
+		icon.fill_progress_factor = (ability_energy / float(ability_entry.ability_energy_cost))
+
+func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
+	ability_energy = clampi(ability_energy + (10.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
+
+func deplete_ability_energy(amount : int):
+	ability_energy = clampi(ability_energy - amount, 0, max_ability_energy)
 
 func get_special_atk_debounce_string(atk_index : int):
 	return "attack" + str(atk_index)
@@ -72,14 +121,22 @@ func on_secondary_atk() -> void:
 		character.perform_ability("secondary_atk")
 
 func on_special_atk(atk_index : int) -> void:
-	var debounce_string = get_special_atk_debounce_string(atk_index)
+	var ability_key = equipped_abilities_keys[atk_index]
+	if ability_key == null:
+		return
 	
-	if character is CombatCharacter and plr_debounces.is_debounce_active(debounce_string) == false and character.debounces.is_debounce_active("attack") == false:
+	var debounce_string = get_special_atk_debounce_string(atk_index)
+	var ability_db_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)
+	
+	if character is CombatCharacter and plr_debounces.is_debounce_active(debounce_string) == false and character.debounces.is_debounce_active("attack") == false and ability_energy >= ability_db_entry.ability_energy_cost:
 		character.debounces.add_debounce("attack")
+		deplete_ability_energy(ability_db_entry.ability_energy_cost)
 		plr_debounces.add_debounce(debounce_string)
 		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
 		
-		plr_state_machine.transition_to_state_by_key("special_atk" + str(atk_index))
+		plr_special_atk_state.ability_key = ability_key
+		
+		plr_state_machine.transition_to_state(plr_special_atk_state)
 
 func on_grapple(targets_characters : bool) -> void:
 	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("grapple") == false:
@@ -94,7 +151,7 @@ func on_grapple(targets_characters : bool) -> void:
 		
 
 func on_dodge_dash() -> void:
-	if character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger"): 
+	if character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
 		plr_debounces.add_debounce("dodge_dash")
 		plr_debounces.remove_debounce_delayed("dodge_dash", 1.0)
 		plr_state_machine.transition_to_state_by_key("dodge_dash")

@@ -7,13 +7,14 @@ func _ready() -> void:
 	states = {
 		"movement" : PlrGroundMovement.new(),
 		"primary_atk" : PlrAttackState.new(),
-		"dodge_dash" : PlrDodgeState.new()
+		"dodge_dash" : PlrDodgeState.new(),
+		"special_atk" : PlrSpecialAtkState.new()
 	}
-	
-	for i in range(3):
-		var sp_attack_state = PlrSpecialAtkState.new()
-		sp_attack_state.special_atk_index = i+1
-		states["special_atk" + str(i+1)] = sp_attack_state
+	#
+	#for i in range(3):
+		#var sp_attack_state = PlrSpecialAtkState.new()
+		#sp_attack_state.special_atk_index = i+1
+		#states["special_atk" + str(i+1)] = sp_attack_state
 	
 	state_machine_setup()
 

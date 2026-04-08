@@ -55,24 +55,6 @@ script = ExtResource("12_7ch4d")
 animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
-size = Vector3(4, 4, 4)
-
-[sub_resource type="Resource" id="Resource_jb0u1"]
-script = ExtResource("9_smxw8")
-hit_shape = SubResource("BoxShape3D_7ch4d")
-local_offset = Vector3(0, 0, -2)
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
-
-[sub_resource type="Resource" id="Resource_7qyh0"]
-script = ExtResource("19_jb0u1")
-dmg = 15
-animations = Array[String](["PlayerSwordAnims/KickAtk"])
-atk_type = 3
-atk_data = SubResource("Resource_jb0u1")
-targeting_range = 25.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_3m4by"]
 size = Vector3(2, 2, 2)
 
@@ -269,12 +251,6 @@ stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
-ability_slots = Dictionary[String, StringName]({
-"special1": &"kick_atk",
-"special2": &"spin_atk",
-"special3": &"bomb_atk",
-"special4": &""
-})
 move_speed = 50.0
 gravity_scale = 1.75
 state_machine = NodePath("CharacterStateMachine")
@@ -288,7 +264,6 @@ abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
 &"bomb_atk": SubResource("Resource_3m4by"),
 &"grapple_enemy": SubResource("Resource_7ch4d"),
 &"grapple_object": SubResource("Resource_172ob"),
-&"kick_atk": SubResource("Resource_7qyh0"),
 &"primary_atk": SubResource("Resource_72lp5"),
 &"secondary_atk": SubResource("Resource_smxw8"),
 &"spin_atk": SubResource("Resource_5ps18")

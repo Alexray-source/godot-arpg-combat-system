@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="3_4n2ml"]
 [ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="4_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
+[ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="6_eu08s"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
 [ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/MeshScenes/Misc/CylinderWall.glb" id="8_641pj"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="9_6p4gl"]
@@ -39,7 +40,7 @@ metadata/_custom_type_script = "uid://2x05qfkltv14"
 
 [sub_resource type="Resource" id="Resource_ema1o"]
 script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q")])
+enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
 [sub_resource type="Resource" id="Resource_rn81q"]
@@ -134,10 +135,10 @@ transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.5529
 [node name="ThrowableBall5" parent="." unique_id=396423259 instance=ExtResource("7_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2732391, 0.7, 16.564863)
 
-[node name="CylinderWall" parent="." unique_id=138080558 instance=ExtResource("8_641pj")]
+[node name="CylinderWall" parent="." unique_id=298510051 instance=ExtResource("8_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 108, 0)
 
-[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=203727855]
+[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=1596742191]
 transform = Transform3D(26, 0, 0, 0, 26, 0, 0, 0, 26, 0, 0, 0)
 
 [node name="Control" type="Control" parent="." unique_id=762639426]

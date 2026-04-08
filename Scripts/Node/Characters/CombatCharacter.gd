@@ -14,8 +14,7 @@ class_name CombatCharacter extends BaseCharacter
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
-@export_subgroup("Ability slots")
-@export var ability_slots : Dictionary[String, StringName] = {
+var ability_slots : Dictionary[String, StringName] = {
 		"special1" : "",
 		"special2" : "",
 		"special3" : "",
@@ -38,6 +37,8 @@ signal interupt_atks()
 signal damage_hit()
 signal chr_died()
 signal atk_debounce_ended()
+signal enemies_hit(opponent_hurtboxes : Array[HurtBox])
+signal ability_finished()
 
 func _ready() -> void:
 	super()
@@ -48,7 +49,8 @@ func _ready() -> void:
 	hurt_box.throwable_hit.connect(on_throwable_hit)
 	
 	character_abilities.chr_layer = chr_layer
-	character_abilities.ability_finished.connect(on_atk_finished)
+	character_abilities.ability_finished.connect(on_ability_finished)
+	character_abilities.ability_hit.connect(enemies_hit.emit)
 	
 	character_abilities.setup()
 	
@@ -75,8 +77,11 @@ func on_floor_changed(is_floored) -> void:
 		return
 	super(is_floored)
 
+func _get_can_attack():
+	return not (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")) and stagger_immune == false
+
 func primary_attack():
-	if not (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")):
+	if _get_can_attack():
 		return
 	
 	set_state("attack")
@@ -89,6 +94,10 @@ func on_atk_finished():
 	debounces.remove_debounce_delayed("grapple", 0.6)
 	end_attack_debounce()
 	rescan_ground_state()
+
+func on_ability_finished():
+	ability_finished.emit()
+	on_atk_finished()
 
 func perform_ability_slot(atk_index : int):
 	#debounces.add_debounce("attack")

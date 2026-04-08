@@ -1,0 +1,83 @@
+[gd_resource type="Resource" script_class="AbilityDatabase" format=3 uid="uid://b7l6kyb6yvyse"]
+
+[ext_resource type="Script" uid="uid://cxsekofi2bc0h" path="res://Scripts/Resources/AbilityDatabase/AbilityDB_Entry.gd" id="1_f8i7n"]
+[ext_resource type="Script" uid="uid://qmau8jwbnm1q" path="res://Scripts/Resources/AbilityDatabase/AbilityDatabase.gd" id="2_331pm"]
+[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="2_staxb"]
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="3_h7bsk"]
+[ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="4_in3r3"]
+[ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="5_jhoc3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Resource" id="Resource_jb0u1"]
+script = ExtResource("2_staxb")
+hit_shape = SubResource("BoxShape3D_7ch4d")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_7qyh0"]
+script = ExtResource("3_h7bsk")
+dmg = 15
+animations = Array[String](["PlayerSwordAnims/KickAtk"])
+atk_type = 3
+atk_data = SubResource("Resource_jb0u1")
+targeting_range = 25.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="Resource" id="Resource_i47es"]
+script = ExtResource("1_f8i7n")
+ability_data = SubResource("Resource_7qyh0")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jb0u1"]
+radius = 4.0
+
+[sub_resource type="Resource" id="Resource_ffspy"]
+script = ExtResource("2_staxb")
+hit_shape = SubResource("SphereShape3D_jb0u1")
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_5ps18"]
+script = ExtResource("3_h7bsk")
+dmg = 7
+animations = Array[String](["PlayerSwordAnims/SpinAtk"])
+atk_type = 1
+atk_data = SubResource("Resource_ffspy")
+targeting_range = 15.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="Resource" id="Resource_5yina"]
+script = ExtResource("1_f8i7n")
+ability_data = SubResource("Resource_5ps18")
+ability_energy_cost = 50
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[sub_resource type="Resource" id="Resource_qbr8q"]
+script = ExtResource("5_jhoc3")
+scene = ExtResource("4_in3r3")
+local_spawn_offset = Vector3(0, 0, -1.5)
+metadata/_custom_type_script = "uid://buegejwwr60aa"
+
+[sub_resource type="Resource" id="Resource_3m4by"]
+script = ExtResource("3_h7bsk")
+dmg = 10
+animations = Array[String](["PlayerSwordAnims/Shoot3"])
+atk_type = 3
+atk_data = SubResource("Resource_qbr8q")
+targeting_range = 20.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="Resource" id="Resource_s1o2a"]
+script = ExtResource("1_f8i7n")
+ability_data = SubResource("Resource_3m4by")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[resource]
+script = ExtResource("2_331pm")
+database = Dictionary[String, ExtResource("1_f8i7n")]({
+"bomb": SubResource("Resource_s1o2a"),
+"kick": SubResource("Resource_i47es"),
+"spin": SubResource("Resource_5yina")
+})
+metadata/_custom_type_script = "uid://qmau8jwbnm1q"

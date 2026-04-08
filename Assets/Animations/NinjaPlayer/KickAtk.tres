@@ -434,7 +434,7 @@ tracks/60/keys = {
 "times": PackedFloat32Array(0.16666667, 0.20833334, 0.41666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
-"args": [&"kick_atk"],
+"args": [&"kick"],
 "method": &"ability_event_trigger"
 }, {
 "args": [-6.0, 0.3],

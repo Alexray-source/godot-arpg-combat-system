@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://vkfcfqy35fmy"]
+
+[ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="1_pp6aw"]
+[ext_resource type="Script" uid="uid://7fe3qnp204sw" path="res://Scripts/Node/UI/AbilityIcon.gd" id="2_7sbxa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp6aw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sbxa"]
+bg_color = Color(0, 0, 0, 0.49019608)
+
+[node name="AbilityIcon" type="TextureRect" unique_id=565308469 node_paths=PackedStringArray("progress_bar")]
+clip_children = 2
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_pp6aw")
+expand_mode = 1
+script = ExtResource("2_7sbxa")
+invert_visual_progress = true
+progress_bar = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=741221724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_pp6aw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7sbxa")
+max_value = 1.0
+fill_mode = 2
+show_percentage = false
