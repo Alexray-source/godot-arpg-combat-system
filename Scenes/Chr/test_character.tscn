@@ -5,8 +5,6 @@
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_ehw7o"]
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
-[ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="6_g2834"]
-[ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="7_7ch4d"]
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="8_3m4by"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
 [ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="8_smxw8"]
@@ -28,21 +26,6 @@ metadata/_custom_type_script = "uid://xo7cr35aaie1"
 [sub_resource type="Resource" id="Resource_rqp8f"]
 script = ExtResource("3_ehw7o")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
-
-[sub_resource type="Resource" id="Resource_qbr8q"]
-script = ExtResource("7_7ch4d")
-scene = ExtResource("6_g2834")
-local_spawn_offset = Vector3(0, 0, -1.5)
-metadata/_custom_type_script = "uid://buegejwwr60aa"
-
-[sub_resource type="Resource" id="Resource_3m4by"]
-script = ExtResource("19_jb0u1")
-dmg = 10
-animations = Array[String](["PlayerSwordAnims/Shoot3"])
-atk_type = 3
-atk_data = SubResource("Resource_qbr8q")
-targeting_range = 20.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="Resource" id="Resource_7ch4d"]
 script = ExtResource("12_7ch4d")
@@ -86,23 +69,6 @@ animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1"
 atk_type = 2
 atk_data = SubResource("Resource_pq3w2")
 targeting_range = 50.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_jb0u1"]
-radius = 4.0
-
-[sub_resource type="Resource" id="Resource_ffspy"]
-script = ExtResource("9_smxw8")
-hit_shape = SubResource("SphereShape3D_jb0u1")
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
-
-[sub_resource type="Resource" id="Resource_5ps18"]
-script = ExtResource("19_jb0u1")
-dmg = 7
-animations = Array[String](["PlayerSwordAnims/SpinAtk"])
-atk_type = 1
-atk_data = SubResource("Resource_ffspy")
-targeting_range = 15.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
@@ -261,12 +227,10 @@ script = ExtResource("17_7ch4d")
 anim_tree = NodePath("../AnimationTree")
 character = NodePath("..")
 abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
-&"bomb_atk": SubResource("Resource_3m4by"),
 &"grapple_enemy": SubResource("Resource_7ch4d"),
 &"grapple_object": SubResource("Resource_172ob"),
 &"primary_atk": SubResource("Resource_72lp5"),
-&"secondary_atk": SubResource("Resource_smxw8"),
-&"spin_atk": SubResource("Resource_5ps18")
+&"secondary_atk": SubResource("Resource_smxw8")
 })
 metadata/_custom_type_script = "uid://dah4aaqqbvgen"
 

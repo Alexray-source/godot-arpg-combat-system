@@ -7,6 +7,26 @@
 [ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="4_in3r3"]
 [ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="5_jhoc3"]
 
+[sub_resource type="Resource" id="Resource_qbr8q"]
+script = ExtResource("5_jhoc3")
+scene = ExtResource("4_in3r3")
+local_spawn_offset = Vector3(0, 0, -1.5)
+metadata/_custom_type_script = "uid://buegejwwr60aa"
+
+[sub_resource type="Resource" id="Resource_3m4by"]
+script = ExtResource("3_h7bsk")
+dmg = 10
+animations = Array[String](["PlayerSwordAnims/Shoot3"])
+atk_type = 3
+atk_data = SubResource("Resource_qbr8q")
+targeting_range = 20.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="Resource" id="Resource_s1o2a"]
+script = ExtResource("1_f8i7n")
+ability_data = SubResource("Resource_3m4by")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
 size = Vector3(4, 4, 4)
 
@@ -51,26 +71,6 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_5ps18")
 ability_energy_cost = 50
-metadata/_custom_type_script = "uid://cxsekofi2bc0h"
-
-[sub_resource type="Resource" id="Resource_qbr8q"]
-script = ExtResource("5_jhoc3")
-scene = ExtResource("4_in3r3")
-local_spawn_offset = Vector3(0, 0, -1.5)
-metadata/_custom_type_script = "uid://buegejwwr60aa"
-
-[sub_resource type="Resource" id="Resource_3m4by"]
-script = ExtResource("3_h7bsk")
-dmg = 10
-animations = Array[String](["PlayerSwordAnims/Shoot3"])
-atk_type = 3
-atk_data = SubResource("Resource_qbr8q")
-targeting_range = 20.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
-[sub_resource type="Resource" id="Resource_s1o2a"]
-script = ExtResource("1_f8i7n")
-ability_data = SubResource("Resource_3m4by")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [resource]

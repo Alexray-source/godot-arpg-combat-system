@@ -39,7 +39,12 @@ var plr_special_atk_state : PlrSpecialAtkState
 
 signal ability_energy_changed()
 
+
 func _ready() -> void:
+	character = character_data.character_scene.instantiate()
+	add_child(character)
+	camera_arm.target = character
+	plr_state_machine.character = character
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	input_events = PlrInputEvents.new()
@@ -52,18 +57,19 @@ func _ready() -> void:
 	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
 	
-	equipped_abilities_keys.resize(4)
+	equipped_abilities_keys.resize(character_data.available_abilities.size())
 	
 	var ability_index: int = 0
 	for ability_key in character_data.available_abilities:
 		var ability_db_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)
-		character.character_abilities.abilities_data[ability_key] = ability_db_entry.ability_data
+		
+		character.character_abilities.add_ability_data(ability_key, ability_db_entry.ability_data)
+		character.character_abilities.create_and_store_ability_component(ability_key)
+		
 		equipped_abilities_keys[ability_index] = ability_key
 		ability_index += 1
 	
 	character.ability_finished.connect(return_to_movement_state)
-	
-	character.character_abilities.setup()
 	
 	character.enemies_hit.connect(on_enemies_hit)
 	character.dash_component.dash_ended.connect(return_to_movement_state)
@@ -87,16 +93,12 @@ func _ready() -> void:
 func on_ability_energy_changed():
 	hud.ability_energy_bar.value = ability_energy / float(max_ability_energy)
 	
-	for icon in hud.abilities_ui.icons:
-		var icon_index : int = hud.abilities_ui.icons.find(icon)
-		var ability_key : String = equipped_abilities_keys[icon_index]
-		
-		if ability_key == null or ability_key.is_empty():
-			continue
-		
+	for ability_key in equipped_abilities_keys:
+		var ability_index = equipped_abilities_keys.find(ability_key)
 		var ability_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)
+		var ability_fill_factor : float = (ability_energy / float(ability_entry.ability_energy_cost))
 		
-		icon.fill_progress_factor = (ability_energy / float(ability_entry.ability_energy_cost))
+		hud.update_ability_icon_fill(ability_index, ability_fill_factor)
 
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
 	ability_energy = clampi(ability_energy + (10.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
@@ -210,10 +212,13 @@ func handle_camera_rot(delta):
 		var viewport_center_pos : Vector2 = viewport_size * 0.5
 		
 		var target_screen_pos : Vector2 = target_tracking_camera.unproject_position(current_target.global_position)
-		
 		var x_correction = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
+		
 		#print(x_correction)
-		if abs(x_correction) > 0.1:
+		if target_tracking_camera.is_position_behind(current_target.global_position):
+			var camera_look_dir : Vector3 = -target_tracking_camera.global_basis.z
+			camera_move_dir.x = camera_look_dir.signed_angle_to(target_tracking_camera.global_position.direction_to(current_target.global_position), target_tracking_camera.global_basis.y) * 10.0
+		elif abs(x_correction) > 0.1:
 			camera_move_dir.x = (x_correction / viewport_size.x) * 25000.0
 		
 	

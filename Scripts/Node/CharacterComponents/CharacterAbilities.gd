@@ -12,21 +12,26 @@ signal ability_hit(hurtboxes_hit : Array[HurtBox])
 
 func setup() -> void:
 	for ability_key in abilities_data:
-		var ability_data : AbilityData = abilities_data[ability_key]
-		
-		var ability_component = ability_data.create_ability_component()
-		ability_component.character = character
-		ability_component.anim_tree = anim_tree
-		ability_component.chr_layer = chr_layer
-		ability_component.setup()
-		
-		ability_component.ability_finished.connect(ability_finished.emit)
-		ability_component.ability_hit.connect(ability_hit.emit)
-		
-		abilities.set(ability_key, ability_component)
+		create_and_store_ability_component(ability_key)
 
 func reset() -> void:
 	abilities.clear()
+
+func add_ability_data(ability_key : StringName, ability_data : AbilityData):
+	abilities_data[ability_key] = ability_data
+
+func create_and_store_ability_component(ability_key : StringName):
+	var ability_data = abilities_data[ability_key]
+	var ability_component = ability_data.create_ability_component()
+	ability_component.character = character
+	ability_component.anim_tree = anim_tree
+	ability_component.chr_layer = chr_layer
+	ability_component.setup()
+	
+	ability_component.ability_finished.connect(ability_finished.emit)
+	ability_component.ability_hit.connect(ability_hit.emit)
+	
+	abilities.set(ability_key, ability_component)
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = abilities.get(ability_key)

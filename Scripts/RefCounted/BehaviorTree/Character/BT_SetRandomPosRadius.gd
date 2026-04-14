@@ -16,3 +16,7 @@ func tick(blackboard : Dictionary):
 	
 	_finished = true
 	return SUCCESS
+
+func reset(blackboard : Dictionary):
+	_finished = false
+	blackboard[target_pos_key] = null

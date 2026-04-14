@@ -17,24 +17,19 @@ metadata/_custom_type_script = "uid://snap5qatdr20"
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]
 points = PackedVector3Array(0, 0, 0, -0.7344628, 0.4131353, -0.53840834, -0.7344628, -0.4131353, -0.53840834, 0.7344628, 0.4131353, -0.53840834, 0.7344628, -0.4131353, -0.53840834)
 
-[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("character", "plr_state_machine", "camera_arm", "target_tracking_camera", "hud")]
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("plr_state_machine", "camera_arm", "target_tracking_camera", "hud")]
 script = ExtResource("1_mtuoh")
 character_data = SubResource("Resource_jlvik")
-character = NodePath("BaseCharacter")
 plr_state_machine = NodePath("PlrCharacterStateMachine")
 camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("SpringArm3D/Camera3D")
 hud = NodePath("Hud")
 camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
 
-[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_htcer")]
-collision_layer = 6
-
-[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908 node_paths=PackedStringArray("target")]
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3716063, 0)
 spring_length = 3.0
 script = ExtResource("3_dd0ac")
-target = NodePath("../BaseCharacter")
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959 node_paths=PackedStringArray("camera_scan_area", "camera_frustum_shape")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1281606)
@@ -50,9 +45,8 @@ collision_mask = 8
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SpringArm3D/Camera3D/Area3D" unique_id=896652275]
 shape = SubResource("ConvexPolygonShape3D_htcer")
 
-[node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828 node_paths=PackedStringArray("character")]
+[node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828]
 script = ExtResource("4_0u5uq")
-character = NodePath("../BaseCharacter")
 metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
 
 [node name="Hud" parent="." unique_id=416551460 instance=ExtResource("7_0u5uq")]

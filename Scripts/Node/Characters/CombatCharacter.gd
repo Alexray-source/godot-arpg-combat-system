@@ -33,8 +33,12 @@ var stagger_immune : bool = false
 var _stagger_count : int = 0
 var _stagger_count_reset_timer : SceneTreeTimer
 
+var _stat_modifier_stack : StatModifierStack
+var _stat_modifiers_visuals : Dictionary[String, Node]
+
 signal interupt_atks()
 signal damage_hit()
+signal received_hit()
 signal chr_died()
 signal atk_debounce_ended()
 signal enemies_hit(opponent_hurtboxes : Array[HurtBox])
@@ -67,6 +71,15 @@ func _ready() -> void:
 	
 	stagger_state = state_machine.get_state_by_key("stagger")
 	stagger_state.state_end.connect(on_stagger_end)
+	
+	var defence_class_stat_mod : StatModifier = StatModifier.new()
+	defence_class_stat_mod.stat = StatModifier.Stats.DEFENSE
+	defence_class_stat_mod.modify_mode = StatModifier.ModifyMode.ADD
+	defence_class_stat_mod.factor = combat_stats.defence
+	
+	_stat_modifier_stack = StatModifierStack.new({
+		"defence_class_value" : defence_class_stat_mod
+	})
 
 func lock_to_target(target : Node3D) -> void:
 	combat_target_override = target
@@ -132,8 +145,15 @@ func end_attack_debounce():
 
 func on_atk_hit(atk_info : AtkInfo):
 	prev_hit_info = atk_info
-	if invincible == false:
-		health_component.take_damage(atk_info.dmg)
+	
+	received_hit.emit()
+	
+	var defence_factor =  clampf(_stat_modifier_stack.get_stat_stack_value(StatModifier.Stats.DEFENSE), 0.0, 1.0)
+
+	if invincible == false and defence_factor < 1.0:
+		var defence_reduction : int = roundi(atk_info.dmg * defence_factor)
+		
+		health_component.take_damage(atk_info.dmg - defence_reduction)
 		damage_hit.emit()
 		
 		if stagger_immune == true:
@@ -164,14 +184,32 @@ func on_stagger_end():
 
 func increment_stagger_count():
 	_stagger_count += 1
-	#
-	#if _stagger_count_reset_timer != null:
-		#_stagger_count_reset_timer.time_left = 5.0
-	#else:
-		#_stagger_count_reset_timer = get_tree().create_timer(5.0)
-		#_stagger_count_reset_timer.timeout.connect(func():
-			#_stagger_count = 0
-		#,CONNECT_ONE_SHOT)
+
+func connect_stat_modifier_interruption(modifier_key : String, stat_modifier : StatModifier):
+	match stat_modifier.interrupt_mode:
+		StatModifier.InterruptMode.ON_HIT:
+			received_hit.connect(remove_stat_modifier.bind(modifier_key), CONNECT_ONE_SHOT)
+
+func add_stat_modifier(modifier_key : String, stat_modifier : StatModifier):
+	if _stat_modifier_stack.is_modifier_key_in_use(modifier_key):
+		print("Stat modifier with this key is already assigned. Skipping.")
+		return
+	
+	_stat_modifier_stack.add_modifier(modifier_key, stat_modifier)
+	connect_stat_modifier_interruption(modifier_key, stat_modifier)
+	
+	if stat_modifier.visual_effect != null:
+		var visual_effect = stat_modifier.visual_effect.instantiate()
+		_stat_modifiers_visuals[modifier_key] = visual_effect
+		add_child(visual_effect)
+
+func remove_stat_modifier(modifier_key : String):
+	_stat_modifier_stack.remove_modifier(modifier_key)
+	
+	var existing_visual_node : Node = _stat_modifiers_visuals.get(modifier_key)
+	if existing_visual_node != null:
+		existing_visual_node.queue_free()
+		_stat_modifiers_visuals[modifier_key] = null
 
 func reset_stagger_count():
 	#print("reset stagger")
