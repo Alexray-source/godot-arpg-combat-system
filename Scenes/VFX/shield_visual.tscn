@@ -2,16 +2,16 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4alam"]
 transparency = 1
-shading_mode = 0
-albedo_color = Color(1.8247963, 1.1330397, 0, 0.105882354)
+blend_mode = 3
+albedo_color = Color(1.825, 0.962, 0, 0.106)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7gh6p"]
 material = SubResource("StandardMaterial3D_4alam")
-radius = 1.4
-height = 2.8
+radius = 1.6
+height = 3.2
 
-[node name="ShieldVisual" type="Node3D" unique_id=1894253128]
+[node name="ShieldVisual" type="Node3D" unique_id=229986644]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2144151812]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89969265, 0)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=937225687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.195598, 0)
 mesh = SubResource("SphereMesh_7gh6p")

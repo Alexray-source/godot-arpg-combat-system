@@ -3,7 +3,7 @@ class_name CharacterAbilities extends Node
 @export var anim_tree : AnimationTree
 @export var character : BaseCharacter
 @export var abilities_data : Dictionary[StringName, AbilityData]
-var abilities : Dictionary[StringName, AbilityComponent]
+var _abilities : Dictionary[StringName, AbilityComponent]
 var chr_layer : CharacterLayer
 var target_override : Node3D
 
@@ -15,7 +15,7 @@ func setup() -> void:
 		create_and_store_ability_component(ability_key)
 
 func reset() -> void:
-	abilities.clear()
+	_abilities.clear()
 
 func add_ability_data(ability_key : StringName, ability_data : AbilityData):
 	abilities_data[ability_key] = ability_data
@@ -31,10 +31,10 @@ func create_and_store_ability_component(ability_key : StringName):
 	ability_component.ability_finished.connect(ability_finished.emit)
 	ability_component.ability_hit.connect(ability_hit.emit)
 	
-	abilities.set(ability_key, ability_component)
+	_abilities.set(ability_key, ability_component)
 
 func perform_ability(ability_key : StringName):
-	var ability : AbilityComponent = abilities.get(ability_key)
+	var ability : AbilityComponent = _abilities.get(ability_key)
 	
 	if ability != null:
 		#print(target_override)
@@ -42,12 +42,12 @@ func perform_ability(ability_key : StringName):
 		ability.action()
 
 func ability_animation_event(ability_key : StringName):
-	var ability : AbilityComponent = abilities.get(ability_key)
+	var ability : AbilityComponent = _abilities.get(ability_key)
 	
 	if ability != null:
 		ability.ability_event()
 
 func _physics_process(delta: float) -> void:
-	for ability_key in abilities:
-		var ability : AbilityComponent = abilities.get(ability_key)
+	for ability_key in _abilities:
+		var ability : AbilityComponent = _abilities.get(ability_key)
 		ability.physics_process(delta)

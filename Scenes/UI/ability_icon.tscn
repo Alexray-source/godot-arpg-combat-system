@@ -8,7 +8,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sbxa"]
 bg_color = Color(0, 0, 0, 0.49019608)
 
-[node name="AbilityIcon" type="TextureRect" unique_id=565308469 node_paths=PackedStringArray("progress_bar")]
+[node name="AbilityIcon" type="TextureRect" unique_id=565308469 node_paths=PackedStringArray("progress_bar", "activate_layer")]
 clip_children = 2
 offset_right = 40.0
 offset_bottom = 40.0
@@ -17,6 +17,7 @@ expand_mode = 1
 script = ExtResource("2_7sbxa")
 invert_visual_progress = true
 progress_bar = NodePath("ProgressBar")
+activate_layer = NodePath("ColorRect")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=741221724]
 layout_mode = 1
@@ -30,3 +31,12 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_7sbxa")
 max_value = 1.0
 fill_mode = 2
 show_percentage = false
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1112225279]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

@@ -84,6 +84,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("6_hvlvc")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
+max_strafe_time = 6.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_8o6yh"]
@@ -104,6 +105,12 @@ script = ExtResource("16_2wy4d")
 character_bb_key = "character"
 ability_name = "shield_ability"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_kns7d"]
+resource_name = "Wait"
+script = ExtResource("15_5nt2l")
+interval = 1.25
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_vrfs7"]
 resource_name = "Get Closest Chr."
@@ -304,7 +311,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_v6j0g"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_6qk6x"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_6qk6x"), SubResource("Resource_kns7d"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]

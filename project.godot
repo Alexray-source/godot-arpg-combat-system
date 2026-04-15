@@ -14,11 +14,15 @@ config/name="ARPG Combat System"
 run/main_scene="uid://bf315smdjou75"
 config/features=PackedStringArray("4.6", "Mobile")
 run/max_fps=60
+run/delta_smoothing=false
 config/icon="res://icon.svg"
 
 [display]
 
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 display_server/driver.linuxbsd="wayland"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -151,3 +155,7 @@ gamepad_action_btn={
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+environment/vsync/vsync_mode=0
+environment/delta_smoothing=false
+environment/stretch/mode="canvas_items"
+environment/stretch/aspect="expand"

@@ -14,12 +14,12 @@ class_name CombatCharacter extends BaseCharacter
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
-var ability_slots : Dictionary[String, StringName] = {
-		"special1" : "",
-		"special2" : "",
-		"special3" : "",
-		"special4" : "",
-	}
+#var ability_slots : Dictionary[String, StringName] = {
+		#"special1" : "",
+		#"special2" : "",
+		#"special3" : "",
+		#"special4" : "",
+	#}
 
 var debounces : Debounces
 var health_component : HealthComponent
@@ -31,10 +31,10 @@ var combat_target_override : Node3D
 var stagger_immune : bool = false
 
 var _stagger_count : int = 0
-var _stagger_count_reset_timer : SceneTreeTimer
 
 var _stat_modifier_stack : StatModifierStack
 var _stat_modifiers_visuals : Dictionary[String, Node]
+var _stat_mod_interrupts : Dictionary[String, StatModifierInterrupt]
 
 signal interupt_atks()
 signal damage_hit()
@@ -72,14 +72,19 @@ func _ready() -> void:
 	stagger_state = state_machine.get_state_by_key("stagger")
 	stagger_state.state_end.connect(on_stagger_end)
 	
-	var defence_class_stat_mod : StatModifier = StatModifier.new()
-	defence_class_stat_mod.stat = StatModifier.Stats.DEFENSE
-	defence_class_stat_mod.modify_mode = StatModifier.ModifyMode.ADD
+	var defence_class_stat_mod : StatModifierData = StatModifierData.new()
+	defence_class_stat_mod.stat = StatModifierData.Stats.DEFENSE
+	defence_class_stat_mod.modify_mode = StatModifierData.ModifyMode.ADD
 	defence_class_stat_mod.factor = combat_stats.defence
 	
 	_stat_modifier_stack = StatModifierStack.new({
 		"defence_class_value" : defence_class_stat_mod
 	})
+
+func _process(delta: float) -> void:
+	for _stat_mod_key : String in _stat_mod_interrupts:
+		var _stat_mod_interrupt : StatModifierInterrupt = _stat_mod_interrupts[_stat_mod_key]
+		_stat_mod_interrupt.process(delta)
 
 func lock_to_target(target : Node3D) -> void:
 	combat_target_override = target
@@ -112,13 +117,13 @@ func on_ability_finished():
 	ability_finished.emit()
 	on_atk_finished()
 
-func perform_ability_slot(atk_index : int):
-	#debounces.add_debounce("attack")
-	var ability_name = ability_slots.get("special" + str(atk_index))
-	if ability_name == null:
-		push_warning("Ability could not be found in abilitiy slots")
-	
-	state_machine.enter_special_atk_state(ability_name)
+#func perform_ability_slot(atk_index : int):
+	##debounces.add_debounce("attack")
+	#var ability_name = ability_slots.get("special" + str(atk_index))
+	#if ability_name == null:
+		#push_warning("Ability could not be found in abilitiy slots")
+	#
+	#state_machine.enter_special_atk_state(ability_name)
 
 func perform_ability(ability_name : StringName):
 	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
@@ -148,7 +153,7 @@ func on_atk_hit(atk_info : AtkInfo):
 	
 	received_hit.emit()
 	
-	var defence_factor =  clampf(_stat_modifier_stack.get_stat_stack_value(StatModifier.Stats.DEFENSE), 0.0, 1.0)
+	var defence_factor =  clampf(_stat_modifier_stack.get_stat_stack_value(StatModifierData.Stats.DEFENSE), 0.0, 1.0)
 
 	if invincible == false and defence_factor < 1.0:
 		var defence_reduction : int = roundi(atk_info.dmg * defence_factor)
@@ -185,12 +190,13 @@ func on_stagger_end():
 func increment_stagger_count():
 	_stagger_count += 1
 
-func connect_stat_modifier_interruption(modifier_key : String, stat_modifier : StatModifier):
-	match stat_modifier.interrupt_mode:
-		StatModifier.InterruptMode.ON_HIT:
-			received_hit.connect(remove_stat_modifier.bind(modifier_key), CONNECT_ONE_SHOT)
+func connect_stat_modifier_interruption(modifier_key : String, stat_modifier : StatModifierData):
+	var interrupt : StatModifierInterrupt = stat_modifier.get_interrupt(character_abilities)
+	_stat_mod_interrupts[modifier_key] = interrupt
+	interrupt.setup()
+	interrupt.interrupt.connect(remove_stat_modifier.bind(modifier_key), CONNECT_ONE_SHOT)
 
-func add_stat_modifier(modifier_key : String, stat_modifier : StatModifier):
+func add_stat_modifier(modifier_key : String, stat_modifier : StatModifierData):
 	if _stat_modifier_stack.is_modifier_key_in_use(modifier_key):
 		print("Stat modifier with this key is already assigned. Skipping.")
 		return
@@ -205,6 +211,7 @@ func add_stat_modifier(modifier_key : String, stat_modifier : StatModifier):
 
 func remove_stat_modifier(modifier_key : String):
 	_stat_modifier_stack.remove_modifier(modifier_key)
+	_stat_mod_interrupts.erase(modifier_key)
 	
 	var existing_visual_node : Node = _stat_modifiers_visuals.get(modifier_key)
 	if existing_visual_node != null:

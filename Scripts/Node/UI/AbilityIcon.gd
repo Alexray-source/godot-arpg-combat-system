@@ -9,6 +9,16 @@ var fill_progress_factor : float:
 
 @export_subgroup("Nodes")
 @export var progress_bar : ProgressBar
+@export var activate_layer : Control
+
+func activate_effect():
+	activate_layer.modulate = Color(1.0,1.0,1.0)
+	
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(activate_layer, "modulate", Color(1.0,1.0,1.0,0.0), 0.25)
+	
 
 func update_bar(new_fill_factor : float):
 	if progress_bar == null:

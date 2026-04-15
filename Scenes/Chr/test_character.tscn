@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
 [ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="18_172ob"]
 [ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_qbr8q"]
+[ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
@@ -275,6 +276,7 @@ shape = SubResource("BoxShape3D_qbr8q")
 [node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree", "state_machine", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("18_qbr8q")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
 combat_character = NodePath("..")
+dmg_overlay_mat = ExtResource("19_172ob")
 anim_tree = NodePath("../AnimationTree")
 state_machine = NodePath("../CharacterStateMachine")
 legs_air_blend_node_name = "LegsAir"

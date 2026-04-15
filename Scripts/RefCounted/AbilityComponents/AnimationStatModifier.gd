@@ -5,7 +5,7 @@ var _animation_chainer : AnimationChainer
 var animation : String
 var animation_node_name : String
 var oneshot_node_name : String
-var stat_modifiers: Dictionary[String, StatModifier]
+var stat_modifiers: Dictionary[String, StatModifierData]
 
 func setup() -> void:
 	_animation_chainer = AnimationChainer.new()

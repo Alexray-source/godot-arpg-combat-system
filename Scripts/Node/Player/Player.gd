@@ -74,6 +74,7 @@ func _ready() -> void:
 	character.enemies_hit.connect(on_enemies_hit)
 	character.dash_component.dash_ended.connect(return_to_movement_state)
 	
+	on_ability_energy_changed()
 	ability_energy_changed.connect(on_ability_energy_changed)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
@@ -132,6 +133,7 @@ func on_special_atk(atk_index : int) -> void:
 	
 	if character is CombatCharacter and plr_debounces.is_debounce_active(debounce_string) == false and character.debounces.is_debounce_active("attack") == false and ability_energy >= ability_db_entry.ability_energy_cost:
 		character.debounces.add_debounce("attack")
+		hud.abilities_ui.activate_abililty(atk_index)
 		deplete_ability_energy(ability_db_entry.ability_energy_cost)
 		plr_debounces.add_debounce(debounce_string)
 		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)

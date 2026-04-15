@@ -3,7 +3,7 @@ class_name AnimationStatModifierData extends AbilityData
 @export var animation : String
 @export var animation_node_name : String = "OverrideAnimation"
 @export var oneshot_node_name : String = "OneShot"
-@export var stat_modifiers : Dictionary[String, StatModifier]
+@export var stat_modifiers : Dictionary[String, StatModifierData]
 
 func create_ability_component() -> AbilityComponent:
 	var anim_stat_modifier : AnimationStatModifier = AnimationStatModifier.new()
