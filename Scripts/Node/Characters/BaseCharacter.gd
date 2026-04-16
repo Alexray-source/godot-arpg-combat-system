@@ -1,10 +1,17 @@
 class_name BaseCharacter extends CharacterBody3D
 
+enum ChrMovementType {
+	GROUND,
+	FLYING
+}
+
+
 const GRAVITY_DIR : Vector3 = Vector3.DOWN
 
 @export var move_speed : float = 10.0
 @export var gravity_scale : float = 2.0
 @export var state_machine : CharacterStateMachine
+@export var chr_movement_type : ChrMovementType = ChrMovementType.GROUND
 
 var move_dir : Vector3
 var up_velocity : Vector3
@@ -24,10 +31,13 @@ func on_floor_changed(_is_floored : bool) -> void:
 	rescan_ground_state()
 
 func rescan_ground_state():
-	if is_on_floor():
-		set_state("ground_movement")
+	if chr_movement_type == ChrMovementType.FLYING:
+		set_state("fly_movement")
 	else:
-		set_state("air_movement")
+		if is_on_floor():
+			set_state("ground_movement")
+		else:
+			set_state("air_movement")
 
 func _physics_process(_delta: float) -> void:
 	if is_on_floor() != prev_is_on_floor:

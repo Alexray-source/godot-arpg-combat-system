@@ -38,6 +38,9 @@ func on_state_changed(new_state : State) -> void:
 		anim_tree.tree_root.get_node(animation_node_name).animation = dash_anim_name
 		anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
 		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	elif state_machine.get_state_by_key("knockback") == new_state:
+		var one_shot_property_path = "parameters/" + oneshot_node_name
+		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 
 func _process(_delta: float) -> void:
 	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor()))

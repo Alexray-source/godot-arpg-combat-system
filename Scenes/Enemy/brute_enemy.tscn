@@ -109,8 +109,32 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_kns7d"]
 resource_name = "Wait"
 script = ExtResource("15_5nt2l")
-interval = 1.25
+interval = 2.0
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_5nt2l"]
+resource_name = "Sequence"
+script = ExtResource("7_ynyrs")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_6qk6x"), SubResource("Resource_kns7d")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_2wy4d"]
+resource_name = "Random Probability"
+script = ExtResource("17_3erts")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5nt2l")])
+metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_3erts"]
+resource_name = "Wait"
+script = ExtResource("15_5nt2l")
+interval = 0.1
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_uyofg"]
+resource_name = "Selector"
+script = ExtResource("12_7lipo")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_2wy4d"), SubResource("Resource_3erts")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_vrfs7"]
 resource_name = "Get Closest Chr."
@@ -148,7 +172,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_w0aaj"]
 resource_name = "Wait"
 script = ExtResource("15_5nt2l")
-interval = 0.5
+interval = 2.0
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_88bjm"]
@@ -206,7 +230,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_7y58b"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5ny8y"), SubResource("Resource_hvlvc"), SubResource("Resource_ynyrs"), SubResource("Resource_ulpl1"), SubResource("Resource_y8a28")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5ny8y"), SubResource("Resource_hvlvc"), SubResource("Resource_ynyrs"), SubResource("Resource_ulpl1"), SubResource("Resource_y8a28"), SubResource("Resource_kns7d")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_amr4h"]
@@ -256,7 +280,6 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_2eexx"]
 resource_name = "Wait"
 script = ExtResource("15_5nt2l")
-interval = 0.5
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_mjw4b"]
@@ -270,7 +293,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_5dgyv"]
 resource_name = "Wait"
 script = ExtResource("15_5nt2l")
-interval = 0.5
+interval = 2.0
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_ejlqg"]
@@ -311,7 +334,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_v6j0g"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_6qk6x"), SubResource("Resource_kns7d"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]

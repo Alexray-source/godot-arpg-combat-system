@@ -8,6 +8,7 @@ var attack_data : AttackData
 var animation_node_name : String
 var oneshot_node_name : String
 
+var _intended_target : Node3D
 var _animation_chainer : AnimationChainer
 var _hurtbox_scanner : HurtBoxScanner
 
@@ -36,16 +37,17 @@ func on_animation_finish():
 	_animation_chainer.reset_chain()
 
 func action() -> void:
-	var closest_target = target_override
+	_intended_target = target_override
+
 	#print(closest_target)
-	if closest_target == null:
-		closest_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
+	if _intended_target == null:
+		_intended_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
 	
-	if closest_target != null:
+	if _intended_target != null:
 		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
-		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(closest_target.global_position.x, 0.0, closest_target.global_position.z)
+		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(_intended_target.global_position.x, 0.0, _intended_target.global_position.z)
 		
-		_current_atk_dir = (closest_target.global_position - character.global_position).normalized()
+		_current_atk_dir = (_intended_target.global_position - character.global_position).normalized()
 		
 		character.global_basis = Basis.looking_at((closest_hurtbox_pos_xz_plane - chr_pos_xz_plane).normalized(), Vector3.UP)
 	else:
@@ -56,4 +58,5 @@ func action() -> void:
 func ability_event() -> void:
 	var attack = attack_data.create_attack()
 	attack.hurtboxes_hit.connect(ability_hit.emit, CONNECT_ONE_SHOT)
-	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir)
+	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir, _intended_target)
+	

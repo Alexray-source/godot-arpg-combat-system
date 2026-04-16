@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
 [ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="6_eu08s"]
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
+[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="7_jjisf"]
+[ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="8_1xyem"]
 [ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/MeshScenes/Misc/CylinderWall.glb" id="8_641pj"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="9_6p4gl"]
 
@@ -45,7 +47,12 @@ metadata/_custom_type_script = "uid://2x05qfkltv14"
 
 [sub_resource type="Resource" id="Resource_rn81q"]
 script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("4_rn81q")])
+enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_mjli6"]
+script = ExtResource("3_4n2ml")
+enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf"), ExtResource("8_1xyem")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
 [sub_resource type="LabelSettings" id="LabelSettings_6p4gl"]
@@ -75,7 +82,7 @@ shape = SubResource("CylinderShape3D_i18pj")
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q")])
+waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6")])
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1496976322]

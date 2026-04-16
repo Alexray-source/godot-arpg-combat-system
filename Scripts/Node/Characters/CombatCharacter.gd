@@ -14,13 +14,6 @@ class_name CombatCharacter extends BaseCharacter
 @export var combat_stats : ChrCombatStats
 @export var chr_layer : CharacterLayer
 
-#var ability_slots : Dictionary[String, StringName] = {
-		#"special1" : "",
-		#"special2" : "",
-		#"special3" : "",
-		#"special4" : "",
-	#}
-
 var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
@@ -92,14 +85,15 @@ func lock_to_target(target : Node3D) -> void:
 
 func on_floor_changed(is_floored) -> void:
 	if is_floored == false and state_machine.current_state == state_machine.get_state_by_key("knockback"):
+		#print("Not checking floored: in knockback")
 		return
 	super(is_floored)
 
 func _get_can_attack():
-	return not (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")) and stagger_immune == false
+	return (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("flying_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")) and stagger_immune == false
 
 func primary_attack():
-	if _get_can_attack():
+	if not _get_can_attack():
 		return
 	
 	set_state("attack")
@@ -117,14 +111,6 @@ func on_ability_finished():
 	ability_finished.emit()
 	on_atk_finished()
 
-#func perform_ability_slot(atk_index : int):
-	##debounces.add_debounce("attack")
-	#var ability_name = ability_slots.get("special" + str(atk_index))
-	#if ability_name == null:
-		#push_warning("Ability could not be found in abilitiy slots")
-	#
-	#state_machine.enter_special_atk_state(ability_name)
-
 func perform_ability(ability_name : StringName):
 	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
 		return
@@ -136,13 +122,6 @@ func ability_action(ability_name : StringName):
 func ability_event_trigger(ability_name : StringName):
 	character_abilities.ability_animation_event(ability_name)
 
-#func grapple():
-	#if debounces.is_debounce_active("grapple") == true:
-		#return
-	#
-	#debounces.add_debounce("grapple")
-	#set_state("custom_movement")
-	##grapple_component.action()
 
 func end_attack_debounce():
 	debounces.remove_debounce("attack")
@@ -170,7 +149,8 @@ func on_atk_hit(atk_info : AtkInfo):
 			stagger()
 
 func on_throwable_hit(throwable : Throwable):
-	set_state("knockback")
+	#set_state("knockback")
+	knockback()
 	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
 	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
 	

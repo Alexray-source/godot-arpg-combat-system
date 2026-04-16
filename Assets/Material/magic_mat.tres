@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://caaoefef2ly1m"]
+
+[ext_resource type="Shader" uid="uid://4vwarwqtchff" path="res://Shaders/MagicMaterial.gdshader" id="1_ureaf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ureaf")
+shader_parameter/rim_factor = 0.4
+shader_parameter/color = Color(1, 0, 0, 1)

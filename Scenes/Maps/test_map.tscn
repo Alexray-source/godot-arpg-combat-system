@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
-[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="8_8y5mx"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="9_f4dah"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="9_jah6w"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="9_w7dut"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="12_06c0b"]
+[ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="12_fa6kx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -173,11 +173,7 @@ horizontal_alignment = 1
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("6_o1aaj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4810505, 3.999999, 13.793129)
-debug_state = true
 chr_layer = SubResource("Resource_8y5mx")
-
-[node name="Enemy" parent="." unique_id=951569018 instance=ExtResource("8_8y5mx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5557585, 0.00050115585, -0.7857876)
 
 [node name="RenderCache" type="Node" parent="." unique_id=1045297071]
 
@@ -191,3 +187,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6330957, -13.267851, -0.56
 
 [node name="FlintlockBullet" parent="RenderCache" unique_id=351752051 instance=ExtResource("12_06c0b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.857524, -3.1741867, 4.2915225)
+
+[node name="Enemy" parent="." unique_id=951569018 instance=ExtResource("12_fa6kx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.89225, 9.536743e-07, 1.35723)

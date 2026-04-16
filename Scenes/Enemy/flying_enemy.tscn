@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://dg8s5b8tpy6fd"]
+
+[ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_qlx8f"]
+[ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="2_qgqgq"]
+[ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="3_op6at"]
+[ext_resource type="PackedScene" uid="uid://dvcc6njincdk5" path="res://Scenes/Chr/flying_character.tscn" id="4_qlx8f"]
+[ext_resource type="Script" uid="uid://drdwdmew2dpjs" path="res://Scripts/Resources/BT_Data/BT_CharacterIsStaggeredData.gd" id="4_tmoux"]
+[ext_resource type="Script" uid="uid://bvc8oipe7tv0h" path="res://addons/atomai/Scripts/DataNodes/BT_InvertDecoratorData.gd" id="5_jj20u"]
+[ext_resource type="Script" uid="uid://cxmedjxpldotm" path="res://Scripts/Resources/BT_Data/BT_StaggerCounterData.gd" id="6_bownv"]
+[ext_resource type="Script" uid="uid://br2lag68y1sfx" path="res://Scripts/Resources/BT_Data/BT_SetStaggerImmuneData.gd" id="7_ifi16"]
+[ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="8_4ltbj"]
+[ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="9_vqomc"]
+[ext_resource type="Script" uid="uid://b8ahg0borfp5m" path="res://Scripts/Resources/BT_Data/BT_SetRandomPosRadiusData.gd" id="10_pvm6y"]
+[ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="11_y1xrn"]
+[ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="12_e64n5"]
+[ext_resource type="Script" uid="uid://1ij8qh1lpkja" path="res://Scripts/Resources/BT_Data/BT_StrafeFlyData.gd" id="13_op6at"]
+[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="14_2oudj"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="15_q1kt8"]
+[ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="16_xny7l"]
+[ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="17_nkj4y"]
+
+[sub_resource type="Resource" id="Resource_dr42f"]
+resource_name = "Is Character Staggered"
+script = ExtResource("4_tmoux")
+character_bb_key = "character"
+metadata/_custom_type_script = "uid://drdwdmew2dpjs"
+
+[sub_resource type="Resource" id="Resource_cvlqn"]
+resource_name = "Invert Decorator"
+script = ExtResource("5_jj20u")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_dr42f")])
+metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
+
+[sub_resource type="Resource" id="Resource_egrym"]
+resource_name = "Check Stagger Count"
+script = ExtResource("6_bownv")
+stagger_count_treshold = 6
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
+
+[sub_resource type="Resource" id="Resource_02w5x"]
+resource_name = "Set Stagger Immune"
+script = ExtResource("7_ifi16")
+stagger_immune = true
+metadata/_custom_type_script = "uid://br2lag68y1sfx"
+
+[sub_resource type="Resource" id="Resource_niqq8"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_egrym"), SubResource("Resource_02w5x")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_rqrps"]
+resource_name = "Selector"
+script = ExtResource("9_vqomc")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_cvlqn"), SubResource("Resource_niqq8")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_2msen"]
+resource_name = "Check Stagger Count"
+script = ExtResource("6_bownv")
+stagger_count_treshold = 6
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
+
+[sub_resource type="Resource" id="Resource_auxvq"]
+resource_name = "Get Closest Chr."
+script = ExtResource("12_e64n5")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 25.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_tmoux"]
+resource_name = "Chr. Strafe (Flying)"
+script = ExtResource("13_op6at")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+strafe_height_relative_to_target = 3.0
+max_strafe_time = 3.0
+metadata/_custom_type_script = "uid://1ij8qh1lpkja"
+
+[sub_resource type="Resource" id="Resource_k842s"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_auxvq"), SubResource("Resource_tmoux")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_qfvu4"]
+resource_name = "Selector"
+script = ExtResource("9_vqomc")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_2msen"), SubResource("Resource_k842s")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_trvt6"]
+resource_name = "Get Closest Chr."
+script = ExtResource("12_e64n5")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 15.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_dbiqx"]
+resource_name = "Get Closest Chr."
+script = ExtResource("12_e64n5")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 100.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_bownv"]
+resource_name = "Set Random Pos Within Radius"
+script = ExtResource("10_pvm6y")
+origin_node_bb_key = "enemy_character"
+target_pos_key = "enemy_character_pos_radius"
+horizontal_randomness = 2.5
+metadata/_custom_type_script = "uid://b8ahg0borfp5m"
+
+[sub_resource type="Resource" id="Resource_ifi16"]
+resource_name = "Chr. Teleport To Position"
+script = ExtResource("11_y1xrn")
+character_bb_key = "character"
+target_pos_bb_key = "enemy_character_pos_radius"
+randomnness_radius = 0.0
+metadata/_custom_type_script = "uid://c16m3e3f00l2d"
+
+[sub_resource type="Resource" id="Resource_op6at"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_dbiqx"), SubResource("Resource_bownv"), SubResource("Resource_ifi16")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_jj20u"]
+resource_name = "Selector"
+script = ExtResource("9_vqomc")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_trvt6"), SubResource("Resource_op6at")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_74xo8"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("14_2oudj")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_851m4"]
+resource_name = "Wait"
+script = ExtResource("15_q1kt8")
+interval = 4.0
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_qanib"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_jj20u"), SubResource("Resource_74xo8"), SubResource("Resource_851m4")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_7f04r"]
+resource_name = "Random Probability"
+script = ExtResource("16_xny7l")
+probability = 0.7
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_qanib")])
+metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_4ltbj"]
+resource_name = "Get Closest Chr."
+script = ExtResource("12_e64n5")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 15.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_guwh2"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("14_2oudj")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "dive_atk"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_icsbh"]
+resource_name = "Wait"
+script = ExtResource("15_q1kt8")
+interval = 4.0
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_8px23"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_4ltbj"), SubResource("Resource_guwh2"), SubResource("Resource_icsbh")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_q5fta"]
+resource_name = "Selector"
+script = ExtResource("9_vqomc")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_7f04r"), SubResource("Resource_8px23")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_jmov8"]
+resource_name = "Reset Stagger Counter"
+script = ExtResource("17_nkj4y")
+metadata/_custom_type_script = "uid://c5lfgijp8qrfh"
+
+[sub_resource type="Resource" id="Resource_xluqc"]
+resource_name = "Set Stagger Immune"
+script = ExtResource("7_ifi16")
+metadata/_custom_type_script = "uid://br2lag68y1sfx"
+
+[sub_resource type="Resource" id="Resource_ke3xc"]
+resource_name = "Wait"
+script = ExtResource("15_q1kt8")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_ff8ff"]
+resource_name = "Sequence"
+script = ExtResource("8_4ltbj")
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_rqrps"), SubResource("Resource_qfvu4"), SubResource("Resource_q5fta"), SubResource("Resource_jmov8"), SubResource("Resource_xluqc"), SubResource("Resource_ke3xc")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
+script = ExtResource("1_qlx8f")
+character = NodePath("BaseCharacter")
+
+[node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
+script = ExtResource("2_qgqgq")
+blackboard = Dictionary[String, Variant]({
+"character": NodePath("../BaseCharacter")
+})
+tree_data = SubResource("Resource_ff8ff")
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("4_qlx8f")]
+start_health = 20000
+max_health = 20000
+move_speed = 15.0

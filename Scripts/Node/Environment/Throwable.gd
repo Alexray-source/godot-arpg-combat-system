@@ -19,12 +19,12 @@ func throw(direction : Vector3, power : float) -> void:
 	apply_central_impulse(direction * power)
 	apply_torque_impulse(direction.rotated(Vector3.UP, PI*0.5) * randf_range(2.0, 6.0))
 
-func throw_to_position(target_position : Vector3) -> void:
+func throw_to_position(target_position : Vector3, speed : float = 0.1) -> void:
 	var g = get_gravity()
 	var x0 = global_position
 	var end_pos = target_position
 		
-	var t = 1.0
+	var t = global_position.distance_to(target_position) * speed
 	var v0 = (end_pos - x0 - 0.5*g*t*t)/t
 	throw(v0.normalized(), v0.length())
 
@@ -33,6 +33,7 @@ func on_hit(atk_info : AtkInfo) -> void:
 		return
 		
 	var scan_layer = 2
+	var intended_target : Node3D = atk_info.intended_target
 	
 	if atk_info.instigator is CombatCharacter:
 		scan_layer = atk_info.instigator.chr_layer.get_enemy_layer()
@@ -46,13 +47,15 @@ func on_hit(atk_info : AtkInfo) -> void:
 		
 		var hurtbox_scanner = HurtBoxScanner.new()
 		hurtbox_scanner.blacklist.append(hurtbox)
-		var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(atk_info.instigator.global_position, get_world_3d().direct_space_state, scan_shape, scan_transform, scan_layer)
 		
-		if closest_hurtbox != null:
-			throw_dir = global_position.direction_to(closest_hurtbox.global_position)
-			#throw_to_position(closest_hurtbox.global_position)
-		#else:
-		throw((throw_dir + Vector3(0,0.1,0.0)).normalized(), atk_info.dmg * mass * 2.0)
+		if intended_target == null:
+			intended_target = hurtbox_scanner.get_closest_hurtbox_to_position(atk_info.instigator.global_position, get_world_3d().direct_space_state, scan_shape, scan_transform, scan_layer)
+		
+		if intended_target != null:
+			throw_dir = global_position.direction_to(intended_target.global_position)
+			throw_to_position(intended_target.global_position, 0.025)
+		else:
+			throw((throw_dir + Vector3(0,0.1,0.0)).normalized(), atk_info.dmg * mass * 2.0)
 
 		
 func on_target_hit() -> void:
