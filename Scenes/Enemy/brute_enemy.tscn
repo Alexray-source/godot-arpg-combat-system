@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="12_7lipo"]
 [ext_resource type="Script" uid="uid://b8ahg0borfp5m" path="res://Scripts/Resources/BT_Data/BT_SetRandomPosRadiusData.gd" id="13_5ny8y"]
 [ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="13_6qk6x"]
+[ext_resource type="Script" uid="uid://bjqa74mo2q804" path="res://Scripts/Resources/BT_Data/BT_RequestAtkTokenEnemyData.gd" id="13_ej8u3"]
 [ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="14_kns7d"]
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="15_5nt2l"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="16_2wy4d"]
@@ -97,6 +98,18 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 resource_name = "Selector"
 script = ExtResource("12_7lipo")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7lipo"), SubResource("Resource_8o6yh")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_2ll3y"]
+resource_name = "Request enemy for combat token"
+script = ExtResource("13_ej8u3")
+token_lifetime = 4.0
+metadata/_custom_type_script = "uid://bjqa74mo2q804"
+
+[sub_resource type="Resource" id="Resource_l24v5"]
+resource_name = "Selector"
+script = ExtResource("12_7lipo")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_2ll3y"), SubResource("Resource_7lipo")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_6qk6x"]
@@ -334,20 +347,18 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_v6j0g"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_l24v5"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
 script = ExtResource("1_x20uq")
-character = NodePath("BaseCharacter")
+character = NodePath("BruteChr")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("2_mtp5r")
 blackboard = Dictionary[String, Variant]({
-"character": NodePath("../BaseCharacter")
+"character": NodePath("../BruteChr")
 })
 tree_data = SubResource("Resource_v6j0g")
 
-[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("4_x20uq")]
-start_health = 1000
-max_health = 1000
+[node name="BruteChr" parent="." unique_id=1058693826 instance=ExtResource("4_x20uq")]

@@ -7,15 +7,13 @@
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
 script = ExtResource("1_ecs0e")
-character = NodePath("BaseCharacter")
+character = NodePath("MageChr")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("4_280eo")
 blackboard = Dictionary[String, Variant]({
-"character": NodePath("../BaseCharacter")
+"character": NodePath("../MageChr")
 })
 tree_data = ExtResource("5_ecs0e")
 
-[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("2_au65u")]
-start_health = 300
-max_health = 300
+[node name="MageChr" parent="." unique_id=1058693826 instance=ExtResource("2_au65u")]

@@ -44,7 +44,7 @@ resource_name = "Combat Chr. Ability"
 script = ExtResource("5_gq4s6")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-ability_name = "kick_atk"
+ability_name = "kick"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [resource]

@@ -1,0 +1,339 @@
+[gd_scene format=3 uid="uid://122if28mknyj"]
+
+[ext_resource type="Script" uid="uid://b5fn5x1kkfn3f" path="res://Scripts/Node/Characters/CombatCharacter.gd" id="1_u5o1h"]
+[ext_resource type="Script" uid="uid://xo7cr35aaie1" path="res://Scripts/Resources/ChrCombatStats.gd" id="2_qbx7l"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_48o35"]
+[ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="4_qi2bp"]
+[ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="5_27lo6"]
+[ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="6_43xnj"]
+[ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="7_sio8a"]
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="8_sbe7v"]
+[ext_resource type="Script" uid="uid://buqi4b1fvv7m" path="res://Scripts/Node/Projectiles/projectile.gd" id="9_u5o1h"]
+[ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="10_6pije"]
+[ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="11_8tah1"]
+[ext_resource type="AnimationLibrary" uid="uid://8ehkuiwucb7r" path="res://Assets/Animations/General/BaseAnimations.glb" id="12_au8ni"]
+[ext_resource type="AnimationLibrary" uid="uid://dbddrmfrxh0c8" path="res://Assets/Animations/NinjaPlayer/PlayerGrappleAnims.glb" id="13_vu70s"]
+[ext_resource type="AnimationLibrary" uid="uid://c6pm07awpnnnr" path="res://Assets/Animations/NinjaPlayer/PlayerSwordAnims.glb" id="14_kcvns"]
+[ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="15_j7oll"]
+[ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="16_brfpq"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="17_qumr2"]
+[ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_58b6k"]
+[ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_5knxa"]
+
+[sub_resource type="Resource" id="Resource_u1pys"]
+script = ExtResource("2_qbx7l")
+metadata/_custom_type_script = "uid://xo7cr35aaie1"
+
+[sub_resource type="Resource" id="Resource_u5o1h"]
+script = ExtResource("3_48o35")
+hostility = 1
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="Resource" id="Resource_7ch4d"]
+script = ExtResource("6_43xnj")
+animations = Array[String](["PlayerGrappleAnims/GrappleShoot"])
+target_characters = true
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
+[sub_resource type="Resource" id="Resource_172ob"]
+script = ExtResource("6_43xnj")
+animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbx7l"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Resource" id="Resource_48o35"]
+script = ExtResource("7_sio8a")
+hit_shape = SubResource("BoxShape3D_qbx7l")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_qi2bp"]
+script = ExtResource("8_sbe7v")
+dmg = 5
+animations = Array[String](["PlayerSwordAnims/NinjaPrimary1", "PlayerSwordAnims/NinjaPrimary2", "PlayerSwordAnims/NinjaPrimary3", "PlayerSwordAnims/NinjaPrimary4", "PlayerSwordAnims/NinjaPrimary5"])
+atk_type = 1
+atk_data = SubResource("Resource_48o35")
+targeting_range = 15.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.3
+
+[sub_resource type="PackedScene" id="PackedScene_27lo6"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"id_paths": [PackedInt32Array()],
+"names": PackedStringArray("FlintlockBullet", "Node3D", "script", "speed", "MeshInstance3D", "MeshInstance3D", "transform", "mesh"),
+"node_count": 2,
+"node_ids": PackedInt32Array(351752051, 1781501788),
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 2, 2, 0, 3, 1, 0, 1073741824, 0, 5, 4, -1, 2, 6, 2, 7, 3, 0),
+"variants": [ExtResource("9_u5o1h"), 400.0, Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0), SubResource("CylinderMesh_04s36")],
+"version": 3
+}
+
+[sub_resource type="Resource" id="Resource_43xnj"]
+script = ExtResource("10_6pije")
+projectile_scene = SubResource("PackedScene_27lo6")
+projectile_origin_path = NodePath("MaleBaseRigV2")
+metadata/_custom_type_script = "uid://b1stykuxcqnl5"
+
+[sub_resource type="Resource" id="Resource_sio8a"]
+script = ExtResource("8_sbe7v")
+dmg = 5
+animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot2"])
+atk_type = 2
+atk_data = SubResource("Resource_43xnj")
+targeting_range = 50.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u5o1h"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Resource" id="Resource_qbx7l"]
+script = ExtResource("7_sio8a")
+hit_shape = SubResource("BoxShape3D_u5o1h")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_27lo6"]
+script = ExtResource("8_sbe7v")
+dmg = 12
+animations = Array[String](["PlayerSwordAnims/KickAtk"])
+atk_type = 3
+atk_data = SubResource("Resource_qbx7l")
+targeting_range = 25.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
+size = Vector3(1.1096191, 2.0214844, 1.1064453)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7gae"]
+animation = &"BaseAnimations/Fall_Sword"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2ddvq"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Foot_L", "%GeneralSkeleton:Foot_R", "%GeneralSkeleton:KneeTwist_L", "%GeneralSkeleton:KneeTwist_R", "%GeneralSkeleton:LowerLeg_L", "%GeneralSkeleton:LowerLeg_R", "%GeneralSkeleton:Toes_L", "%GeneralSkeleton:Toes_R", "%GeneralSkeleton:UpperLeg_L", "%GeneralSkeleton:UpperLeg_R"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_172ob"]
+resource_local_to_scene = true
+fadein_time = 0.1
+fadeout_time = 0.25
+autorestart_delay = 0.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
+resource_local_to_scene = true
+animation = &"PlayerSwordAnims/NinjaPrimary1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qbr8q"]
+animation = &"BaseAnimations/Fall_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_172ob"]
+animation = &"BaseAnimations/Idle_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jb0u1"]
+animation = &"BaseAnimations/Jog_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffspy"]
+animation = &"BaseAnimations/Jump_Sword"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72lp5"]
+animation = &"BaseAnimations/Knockback"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ps18"]
+animation = &"BaseAnimations/KnockbackRecover"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72lp5"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ps18"]
+advance_mode = 2
+advance_expression = "is_on_floor() == false and velocity.y > 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7gae"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ddvq"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qbr8q"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == true and (abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_172ob"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == true and (abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jb0u1"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_on_floor() == false and velocity.y < 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vucap"]
+xfade_time = 0.1
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bghwh"]
+advance_mode = 2
+advance_expression = "state_machine.current_state != state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f726w"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ffspy"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m23ht"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wml65"]
+advance_mode = 2
+advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8m6ks"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vucap"]
+resource_local_to_scene = true
+states/Start/position = Vector2(138, 124)
+states/base_falling/node = SubResource("AnimationNodeAnimation_qbr8q")
+states/base_falling/position = Vector2(304, 323)
+states/base_idle/node = SubResource("AnimationNodeAnimation_172ob")
+states/base_idle/position = Vector2(320, 140)
+states/base_jog/node = SubResource("AnimationNodeAnimation_jb0u1")
+states/base_jog/position = Vector2(492, 124)
+states/base_jump/node = SubResource("AnimationNodeAnimation_ffspy")
+states/base_jump/position = Vector2(492, 323)
+states/staggers_knockback/node = SubResource("AnimationNodeAnimation_72lp5")
+states/staggers_knockback/position = Vector2(845, 223)
+states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
+states/staggers_knockback_recover/position = Vector2(845, 351)
+transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_jog", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_idle", "base_jog", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_jog", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_jog", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "base_jog", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jog", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks")]
+graph_offset = Vector2(-48, 30)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bghwh"]
+resource_local_to_scene = true
+nodes/output/position = Vector2(420, -100)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
+nodes/StateMachine/position = Vector2(-620, -140)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_172ob")
+nodes/OneShot/position = Vector2(-260, -100)
+nodes/OverrideAnimation/node = SubResource("AnimationNodeAnimation_8m6ks")
+nodes/OverrideAnimation/position = Vector2(-720, 60)
+nodes/LegsAir/node = SubResource("AnimationNodeBlend2_2ddvq")
+nodes/LegsAir/position = Vector2(200, -120)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_u7gae")
+nodes/Animation/position = Vector2(-120, 140)
+node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"OverrideAnimation", &"LegsAir", 0, &"OneShot", &"LegsAir", 1, &"Animation"]
+
+[node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
+collision_layer = 2
+collision_mask = 3
+collision_priority = 1000.0
+script = ExtResource("1_u5o1h")
+hurt_box = NodePath("HurtBox")
+dash_component = NodePath("DashComponent")
+stagger_component = NodePath("StaggerComponent")
+character_abilities = NodePath("CharacterAbilities")
+combat_stats = SubResource("Resource_u1pys")
+chr_layer = SubResource("Resource_u5o1h")
+move_speed = 50.0
+gravity_scale = 1.75
+state_machine = NodePath("CharacterStateMachine")
+metadata/_custom_type_script = "uid://83mneuiydchi"
+
+[node name="CharacterAbilities" type="Node" parent="." unique_id=378512650 node_paths=PackedStringArray("anim_tree", "character")]
+script = ExtResource("4_qi2bp")
+anim_tree = NodePath("../AnimationTree")
+character = NodePath("..")
+abilities_data = Dictionary[StringName, ExtResource("5_27lo6")]({
+&"grapple_enemy": SubResource("Resource_7ch4d"),
+&"grapple_object": SubResource("Resource_172ob"),
+&"kick": SubResource("Resource_27lo6"),
+&"primary_atk": SubResource("Resource_qi2bp"),
+&"secondary_atk": SubResource("Resource_sio8a")
+})
+metadata/_custom_type_script = "uid://dah4aaqqbvgen"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=945293395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_8y5mx")
+
+[node name="CharacterStateMachine" type="Node" parent="." unique_id=1195978914 node_paths=PackedStringArray("character")]
+script = ExtResource("11_8tah1")
+character = NodePath("..")
+metadata/_custom_type_script = "uid://8k8ew07c3gmb"
+
+[node name="BaseAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248900169]
+root_node = NodePath("../MaleBaseRigV2")
+libraries/BaseAnimations = ExtResource("12_au8ni")
+libraries/PlayerGrappleAnims = ExtResource("13_vu70s")
+libraries/PlayerSwordAnims = ExtResource("14_kcvns")
+playback_default_blend_time = 0.1
+
+[node name="DashComponent" type="Node" parent="." unique_id=966779485 node_paths=PackedStringArray("character")]
+script = ExtResource("15_j7oll")
+dash_time = 0.25
+dash_intensity = 1.0
+character = NodePath("..")
+metadata/_custom_type_script = "uid://v1xgi18be404"
+
+[node name="StaggerComponent" type="Node" parent="." unique_id=88980073 node_paths=PackedStringArray("anim_tree", "character")]
+script = ExtResource("16_brfpq")
+anim_tree = NodePath("../AnimationTree")
+stagger_anims = Array[StringName]([&"BaseAnimations/Stagger1_Sword", &"BaseAnimations/Stagger2_Sword"])
+character = NodePath("..")
+metadata/_custom_type_script = "uid://ju3pqhikphx7"
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=109342970]
+script = ExtResource("17_qumr2")
+metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1607205754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_qbr8q")
+
+[node name="MaleBaseRigV2" parent="." unique_id=1179849529 node_paths=PackedStringArray("combat_character", "anim_tree", "state_machine", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("18_58b6k")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+combat_character = NodePath("..")
+dmg_overlay_mat = ExtResource("19_5knxa")
+anim_tree = NodePath("../AnimationTree")
+state_machine = NodePath("../CharacterStateMachine")
+legs_air_blend_node_name = "LegsAir"
+dash_anim_name = "BaseAnimations/Dash_Sword"
+equipped_weapons_visuals = {
+"flintlock": NodePath("Armature_003/GeneralSkeleton/EquippedGun")
+}
+holstered_weapons_visuals = {
+"flintlock": NodePath("Armature_003/GeneralSkeleton/HolsteredGun")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
+root_node = NodePath("../MaleBaseRigV2")
+tree_root = SubResource("AnimationNodeBlendTree_bghwh")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../BaseAnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+parameters/LegsAir/blend_amount = 0.0

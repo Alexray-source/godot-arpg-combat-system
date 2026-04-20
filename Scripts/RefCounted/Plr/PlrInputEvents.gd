@@ -8,6 +8,7 @@ enum InputMode {
 var input_mode : InputMode = InputMode.KEYBOARD
 var move_dir : Vector3
 var block_move_input : bool = false
+var block_all_input : bool = false
 var camera_move_dir : Vector2
 
 signal jump_input
@@ -30,9 +31,6 @@ var signal_mapping : Dictionary[String, Signal] = {
 	"chr_dash" : dash_input,
 	"chr_primary_atk" : primary_atk_input,
 	"chr_secondary_atk" : secondary_atk_input,
-	#"chr_special_atk1" : special_atk1_input,
-	#"chr_special_atk2" : special_atk2_input,
-	#"chr_special_atk3" : special_atk3_input,
 	"chr_grapple_object" : grapple_object_input,
 	"chr_grapple_enemy" : grapple_enemy_input,
 	"plr_target_lock" : target_lock,
@@ -46,7 +44,7 @@ var special_atks : Dictionary[String, Signal] = {
 }
 
 func setup() -> void:
-	print(Input.get_connected_joypads().size() > 0)
+	#print(Input.get_connected_joypads().size() > 0)
 	change_input_mode(Input.get_connected_joypads().size() > 0)
 	Input.joy_connection_changed.connect(func(_device : int, is_connected : bool):
 		change_input_mode.bind(is_connected)
@@ -60,6 +58,9 @@ func change_input_mode(is_gamepad_connected : bool):
 
 
 func input_pressed(input : InputEvent):
+	if block_all_input == true:
+		return
+	
 	for action_name in signal_mapping:
 		if input.is_action_pressed(action_name) and Input.is_action_pressed("gamepad_action_btn") == false:
 			signal_mapping[action_name].emit()
@@ -78,7 +79,7 @@ func input_pressed(input : InputEvent):
 
 
 func process(_delta : float):
-	if block_move_input == true:
+	if block_move_input == true or block_all_input == true:
 		move_dir = Vector3.ZERO
 		return
 	

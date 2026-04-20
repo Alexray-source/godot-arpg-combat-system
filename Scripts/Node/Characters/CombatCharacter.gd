@@ -7,6 +7,8 @@ class_name CombatCharacter extends BaseCharacter
 
 @export var debug_health : bool = false
 @export var debug_state: bool = false
+@export var max_allowed_attacking_enemies : int = 1
+@export var attacking_enemies : Array[CombatCharacter]
 
 @export_subgroup("Stats")
 @export var start_health : int = 100
@@ -17,6 +19,7 @@ class_name CombatCharacter extends BaseCharacter
 var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
+var knockback_state : ChrKnockbackState
 
 var prev_hit_info : AtkInfo
 var invincible : bool = false
@@ -65,6 +68,9 @@ func _ready() -> void:
 	stagger_state = state_machine.get_state_by_key("stagger")
 	stagger_state.state_end.connect(on_stagger_end)
 	
+	knockback_state = state_machine.get_state_by_key("knockback")
+	knockback_state.state_end.connect(on_knockback_end)
+	
 	var defence_class_stat_mod : StatModifierData = StatModifierData.new()
 	defence_class_stat_mod.stat = StatModifierData.Stats.DEFENSE
 	defence_class_stat_mod.modify_mode = StatModifierData.ModifyMode.ADD
@@ -112,7 +118,7 @@ func on_ability_finished():
 	on_atk_finished()
 
 func perform_ability(ability_name : StringName):
-	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
+	if state_machine.is_current_state_by_key("knockback") == true or state_machine.is_current_state_by_key("dead") == true:
 		return
 	set_special_atk_state(ability_name)
 
@@ -156,16 +162,20 @@ func on_throwable_hit(throwable : Throwable):
 	
 
 func on_dash_end():
-	if state_machine.current_state == state_machine.get_state_by_key("attack") or state_machine.current_state == state_machine.get_state_by_key("sp_attack") or state_machine.current_state == state_machine.get_state_by_key("knockback"):
+	if state_machine.is_current_state_by_key("attack") or state_machine.is_current_state_by_key("sp_attack") or state_machine.is_current_state_by_key("knockback"):
 		return
 	
 	rescan_ground_state()
 
 func on_stagger_end():
-	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
+	if state_machine.is_current_state_by_key("knockback") == true or state_machine.is_current_state_by_key("dead") == true:
 		return
 	
 	rescan_ground_state()
+
+func on_knockback_end():
+	set_state("no_movement")
+	get_tree().create_timer(0.5).timeout.connect(rescan_ground_state, PROPERTY_HINT_ONESHOT)
 
 func increment_stagger_count():
 	_stagger_count += 1
@@ -227,6 +237,10 @@ func knockback():
 	end_attack_debounce()
 
 func dodge_dash():
+	var abs_move_dir : Vector3 = move_dir.abs()
+	if abs_move_dir.x < 0.1 and abs_move_dir.z < 0.1:
+		return
+	
 	set_state("dodge_dash")
 
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
@@ -239,6 +253,16 @@ func jump():
 	if state_machine.is_current_state_by_key("dead"):
 		return
 	super()
+
+func request_attack_token(requesting_enemy : CombatCharacter, expire_time : float) -> bool:
+	if attacking_enemies.size() < max_allowed_attacking_enemies:
+		attacking_enemies.append(requesting_enemy)
+		
+		get_tree().create_timer(expire_time).timeout.connect(attacking_enemies.erase.bind(requesting_enemy), CONNECT_ONE_SHOT)
+		
+		return true
+	else:
+		return false
 
 func set_state(state_name : String):
 	if state_machine.is_current_state_by_key("dead"):

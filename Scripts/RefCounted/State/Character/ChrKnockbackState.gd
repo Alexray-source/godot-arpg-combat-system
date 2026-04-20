@@ -19,6 +19,7 @@ func on_floor_changed(floored : bool):
 		state_end.emit()
 
 func on_exit() -> void:
+	character.velocity = knockback_dir
 	if character.is_on_floor_changed.is_connected(on_floor_changed) == true:
 		character.is_on_floor_changed.disconnect(on_floor_changed)
 

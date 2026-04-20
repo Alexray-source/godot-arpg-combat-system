@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dth88m0vj1csd"]
+
+[ext_resource type="Script" uid="uid://dh6xewhagfwsb" path="res://Scripts/Node/UI/LoadingScreen.gd" id="1_xofxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a61rs"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="LoadingScreen" type="Panel" unique_id=193644229]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_a61rs")
+script = ExtResource("1_xofxx")
+
+[node name="Label" type="Label" parent="." unique_id=1854747443]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -87.0
+offset_top = -34.0
+offset_right = -12.0
+offset_bottom = -11.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Loading..."

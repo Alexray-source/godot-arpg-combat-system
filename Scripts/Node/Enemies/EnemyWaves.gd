@@ -10,6 +10,8 @@ var _current_wave : int = 0
 var loaded_data : SaveData
 var save_loader : SaveDataHandler
 
+signal finished
+
 func _ready() -> void:
 	#request_next_wave()
 	save_loader = SaveDataHandler.new()
@@ -51,3 +53,7 @@ func start_wave(wave_number : int):
 func request_next_wave():
 	if spawned_enemies.size() == 0 and _current_wave < waves.size():
 		start_wave(_current_wave+1)
+	elif _current_wave >= waves.size():
+		loaded_data.enemy_wave = 0
+		save_loader.save_to_disk(loaded_data)
+		finished.emit()

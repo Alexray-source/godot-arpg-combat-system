@@ -28,6 +28,7 @@ var camera_center_offset : Vector3
 var current_target : Node3D
 
 var input_events : PlrInputEvents
+var block_input : bool = false
 
 var plr_debounces : Debounces
 var ability_energy : int = 0:
@@ -37,6 +38,7 @@ var ability_energy : int = 0:
 
 var equipped_abilities_keys : Array[String]
 var plr_special_atk_state : PlrSpecialAtkState
+var attacking_enemies : Array[Enemy]
 
 signal ability_energy_changed()
 
@@ -74,6 +76,9 @@ func _ready() -> void:
 	
 	character.enemies_hit.connect(on_enemies_hit)
 	character.dash_component.dash_ended.connect(return_to_movement_state)
+	
+	on_damage_hit()
+	character.damage_hit.connect(on_damage_hit)
 	character.chr_died.connect(on_died, CONNECT_ONE_SHOT)
 	
 	on_ability_energy_changed()
@@ -156,12 +161,23 @@ func on_grapple(targets_characters : bool) -> void:
 			character.perform_ability("grapple_object")
 		
 func on_dodge_dash() -> void:
+	var abs_move_dir : Vector3 = character.move_dir.abs()
+	if abs_move_dir.x < 0.1 and abs_move_dir.z < 0.1:
+		return
+	
 	if character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
 		plr_debounces.add_debounce("dodge_dash")
-		plr_debounces.remove_debounce_delayed("dodge_dash", 1.0)
+		plr_debounces.remove_debounce_delayed("dodge_dash", 0.5)
 		plr_state_machine.transition_to_state_by_key("dodge_dash")
 
+func on_damage_hit() -> void:
+	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
+
 func on_died() -> void:
+	block_input = true
+	input_events.block_all_input = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	var game_over_ui : GameOverUI = GAME_OVER_UI_SCENE.instantiate()
 	game_over_ui.retry.connect(GlobalSignals.restart_scene.emit, CONNECT_ONE_SHOT)
 	
@@ -247,6 +263,9 @@ func handle_camera_rot(delta):
 		input_events.camera_move_dir = Vector2(0.0,0.0)
 
 func _process(delta: float) -> void:
+	if block_input == true:
+		return
+	
 	handle_camera_rot(delta)
 	camera_center_offset = camera_arm_center_rest_offset
 	

@@ -69,7 +69,7 @@ func perform_grapple(target_node : Node3D):
 	_grapple_line.start_node = instigator
 	_grapple_line.top_level = true
 	_grapple_line.use_global_space = true
-	target_node.get_tree().current_scene.add_child(_grapple_line)
+	target_node.add_child(_grapple_line)
 	_grapple_line.global_position = Vector3.ZERO
 
 	

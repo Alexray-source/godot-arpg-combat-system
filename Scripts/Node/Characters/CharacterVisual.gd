@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 enum WeaponEquipMode {
 	EQUIP,
@@ -23,8 +23,11 @@ enum WeaponEquipMode {
 
 
 var _legs_blend_path : String
+var _mesh_cached_scale : float
 
 func _ready() -> void:
+	_mesh_cached_scale = scale.x
+	
 	_legs_blend_path = "parameters/" + legs_air_blend_node_name
 	combat_character.damage_hit.connect(damage_visual)
 	
@@ -44,6 +47,15 @@ func on_state_changed(new_state : State) -> void:
 
 func _process(_delta: float) -> void:
 	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor()))
+	
+	#if combat_character.combat_target_override != null:
+		#var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
+		#
+		#var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
+		#
+		#chr_xz_pos.direction_to(target_xz_pos)
+		#
+		#global_basis = Basis.looking_at(chr_xz_pos.direction_to(target_xz_pos)) * _mesh_cached_scale
 
 func damage_visual() -> void:
 	mesh_instance.material_overlay = dmg_overlay_mat

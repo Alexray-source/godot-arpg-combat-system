@@ -56,7 +56,7 @@ func action() -> void:
 	_animation_chainer.resume_chain()
 
 func ability_event() -> void:
-	if _intended_target != null and _intended_target.is_inside_tree() == false:
+	if is_instance_valid(_intended_target) == false:
 		_intended_target = null
 	
 	var attack = attack_data.create_attack()

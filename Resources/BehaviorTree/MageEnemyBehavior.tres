@@ -15,6 +15,8 @@
 [ext_resource type="Script" uid="uid://bvc8oipe7tv0h" path="res://addons/atomai/Scripts/DataNodes/BT_InvertDecoratorData.gd" id="8_uos83"]
 [ext_resource type="Script" uid="uid://cxmedjxpldotm" path="res://Scripts/Resources/BT_Data/BT_StaggerCounterData.gd" id="9_1lurp"]
 [ext_resource type="Script" uid="uid://br2lag68y1sfx" path="res://Scripts/Resources/BT_Data/BT_SetStaggerImmuneData.gd" id="10_wtyqw"]
+[ext_resource type="Script" uid="uid://bjqa74mo2q804" path="res://Scripts/Resources/BT_Data/BT_RequestAtkTokenEnemyData.gd" id="12_p57hi"]
+[ext_resource type="Script" uid="uid://cknijcek4d72h" path="res://addons/atomai/Scripts/DataNodes/BT_ForceResultData.gd" id="13_uos83"]
 
 [sub_resource type="Resource" id="Resource_87k5q"]
 resource_name = "Is Character Staggered"
@@ -52,31 +54,11 @@ script = ExtResource("8_sj6dd")
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_sj6dd"), SubResource("Resource_pnltp")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
-[sub_resource type="Resource" id="Resource_uos83"]
+[sub_resource type="Resource" id="Resource_xt0d4"]
 resource_name = "Check Stagger Count"
 script = ExtResource("9_1lurp")
 stagger_count_treshold = 6
 metadata/_custom_type_script = "uid://cxmedjxpldotm"
-
-[sub_resource type="Resource" id="Resource_i1mt4"]
-resource_name = "Set Random Pos Within Radius"
-script = ExtResource("8_p57hi")
-target_pos_key = "teleport_flee_pos"
-horizontal_randomness = 15.0
-metadata/_custom_type_script = "uid://b8ahg0borfp5m"
-
-[sub_resource type="Resource" id="Resource_qhmi4"]
-resource_name = "Chr. Teleport To Position"
-script = ExtResource("8_dp3hr")
-character_bb_key = "character"
-target_pos_bb_key = "teleport_flee_pos"
-metadata/_custom_type_script = "uid://c16m3e3f00l2d"
-
-[sub_resource type="Resource" id="Resource_xt0d4"]
-resource_name = "Sequence"
-script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_uos83"), SubResource("Resource_i1mt4"), SubResource("Resource_qhmi4")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_cbwj5"]
 resource_name = "Get Closest Chr."
@@ -104,6 +86,61 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 resource_name = "Selector"
 script = ExtResource("8_sj6dd")
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_xt0d4"), SubResource("Resource_1lurp")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_f0syj"]
+resource_name = "Request enemy for combat token"
+script = ExtResource("12_p57hi")
+token_lifetime = 4.0
+metadata/_custom_type_script = "uid://bjqa74mo2q804"
+
+[sub_resource type="Resource" id="Resource_b1ig1"]
+resource_name = "Check Stagger Count"
+script = ExtResource("9_1lurp")
+stagger_count_treshold = 6
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
+
+[sub_resource type="Resource" id="Resource_1m0gs"]
+resource_name = "Selector"
+script = ExtResource("8_sj6dd")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_f0syj"), SubResource("Resource_b1ig1")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_uos83"]
+resource_name = "Check Stagger Count"
+script = ExtResource("9_1lurp")
+stagger_count_treshold = 6
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
+
+[sub_resource type="Resource" id="Resource_i1mt4"]
+resource_name = "Set Random Pos Within Radius"
+script = ExtResource("8_p57hi")
+target_pos_key = "teleport_flee_pos"
+horizontal_randomness = 15.0
+metadata/_custom_type_script = "uid://b8ahg0borfp5m"
+
+[sub_resource type="Resource" id="Resource_qhmi4"]
+resource_name = "Chr. Teleport To Position"
+script = ExtResource("8_dp3hr")
+character_bb_key = "character"
+target_pos_bb_key = "teleport_flee_pos"
+metadata/_custom_type_script = "uid://c16m3e3f00l2d"
+
+[sub_resource type="Resource" id="Resource_d43gv"]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_uos83"), SubResource("Resource_i1mt4"), SubResource("Resource_qhmi4")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_ae3f5"]
+resource_name = "Force Result"
+script = ExtResource("13_uos83")
+metadata/_custom_type_script = "uid://cknijcek4d72h"
+
+[sub_resource type="Resource" id="Resource_v4std"]
+resource_name = "Selector"
+script = ExtResource("8_sj6dd")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d43gv"), SubResource("Resource_ae3f5")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_au65u"]
@@ -180,5 +217,5 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [resource]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g"), SubResource("Resource_dp3hr")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_v4std"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g"), SubResource("Resource_dp3hr")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
