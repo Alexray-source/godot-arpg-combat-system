@@ -13,7 +13,8 @@ func _ready() -> void:
 		"stagger" : ChrStaggerState.new(),
 		"knockback" : ChrKnockbackState.new(),
 		"custom_movement" : CharacterCustomMovementState.new(),
-		"no_movement" : CharacterState.new()
+		"no_movement" : CharacterState.new(),
+		"dead" : CharacterState.new()
 	}
 
 func enter_special_atk_state(_special_atk_name) -> void:

@@ -114,7 +114,7 @@ func on_ability_finished():
 func perform_ability(ability_name : StringName):
 	if state_machine.current_state == state_machine.get_state_by_key("knockback"):
 		return
-	state_machine.enter_special_atk_state(ability_name)
+	set_special_atk_state(ability_name)
 
 func ability_action(ability_name : StringName):
 	character_abilities.perform_ability(ability_name)
@@ -234,3 +234,23 @@ func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 
 	dash_component.dash_time = duration
 	dash_component.dash_dir = direction
 	dash_component.action()
+
+func jump():
+	if state_machine.is_current_state_by_key("dead"):
+		return
+	super()
+
+func set_state(state_name : String):
+	if state_machine.is_current_state_by_key("dead"):
+		return
+	super(state_name)
+
+func set_special_atk_state(ability_name : String):
+	if state_machine.is_current_state_by_key("dead"):
+		return
+	state_machine.enter_special_atk_state(ability_name)
+
+func die():
+	print("Chr dead")
+	set_state("dead")
+	

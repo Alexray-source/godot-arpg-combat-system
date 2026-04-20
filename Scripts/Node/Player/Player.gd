@@ -1,6 +1,7 @@
 extends Node3D
 
 const ABILITY_DB : AbilityDatabase = preload("res://Resources/AbilityDatabase.tres")
+const GAME_OVER_UI_SCENE : PackedScene = preload("res://Scenes/UI/GameOver.tscn")
 
 @export var character_data : CharacterData
 @export var character : CombatCharacter
@@ -73,6 +74,7 @@ func _ready() -> void:
 	
 	character.enemies_hit.connect(on_enemies_hit)
 	character.dash_component.dash_ended.connect(return_to_movement_state)
+	character.chr_died.connect(on_died, CONNECT_ONE_SHOT)
 	
 	on_ability_energy_changed()
 	ability_energy_changed.connect(on_ability_energy_changed)
@@ -153,12 +155,17 @@ func on_grapple(targets_characters : bool) -> void:
 		else:
 			character.perform_ability("grapple_object")
 		
-
 func on_dodge_dash() -> void:
 	if character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
 		plr_debounces.add_debounce("dodge_dash")
 		plr_debounces.remove_debounce_delayed("dodge_dash", 1.0)
 		plr_state_machine.transition_to_state_by_key("dodge_dash")
+
+func on_died() -> void:
+	var game_over_ui : GameOverUI = GAME_OVER_UI_SCENE.instantiate()
+	game_over_ui.retry.connect(GlobalSignals.restart_scene.emit, CONNECT_ONE_SHOT)
+	
+	add_child(game_over_ui)
 
 func on_toggle_target_lock() -> void:
 	if current_target != null:

@@ -56,6 +56,9 @@ func action() -> void:
 	_animation_chainer.resume_chain()
 
 func ability_event() -> void:
+	if _intended_target != null and _intended_target.is_inside_tree() == false:
+		_intended_target = null
+	
 	var attack = attack_data.create_attack()
 	attack.hurtboxes_hit.connect(ability_hit.emit, CONNECT_ONE_SHOT)
 	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir, _intended_target)

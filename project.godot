@@ -17,6 +17,10 @@ run/max_fps=60
 run/delta_smoothing=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalSignals="*uid://dimjk2e5vp0my"
+
 [display]
 
 window/stretch/mode="canvas_items"

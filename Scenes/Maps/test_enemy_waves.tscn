@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
 [ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="7_jjisf"]
 [ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="8_1xyem"]
-[ext_resource type="PackedScene" uid="uid://dgbgrjtk5y87e" path="res://Assets/MeshScenes/Misc/CylinderWall.glb" id="8_641pj"]
-[ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="9_6p4gl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -27,13 +25,13 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xcpuq"]
-top_radius = 25.0
-bottom_radius = 25.0
+top_radius = 26.0
+bottom_radius = 26.0
 height = 15.0
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_i18pj"]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jjisf"]
 height = 15.0
-radius = 25.0
+radius = 26.0
 
 [sub_resource type="Resource" id="Resource_4n2ml"]
 script = ExtResource("3_4n2ml")
@@ -55,8 +53,8 @@ script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf"), ExtResource("8_1xyem")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
-[sub_resource type="LabelSettings" id="LabelSettings_6p4gl"]
-font_size = 12
+[sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
+size = Vector3(46, 156, 28.46106)
 
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
@@ -72,10 +70,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
 material_override = ExtResource("1_rn81q")
 mesh = SubResource("CylinderMesh_xcpuq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=1315953549]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=223224578]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=63815023]
-shape = SubResource("CylinderShape3D_i18pj")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=880499533]
+shape = SubResource("CylinderShape3D_jjisf")
 
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
 
@@ -142,128 +140,44 @@ transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.5529
 [node name="ThrowableBall5" parent="." unique_id=396423259 instance=ExtResource("7_641pj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2732391, 0.7, 16.564863)
 
-[node name="CylinderWall" parent="." unique_id=298510051 instance=ExtResource("8_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 108, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=792147931]
 
-[node name="CylinderWall" parent="CylinderWall" index="0" unique_id=1596742191]
-transform = Transform3D(26, 0, 0, 0, 26, 0, 0, 0, 26, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=269918999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.345253)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="Control" type="Control" parent="." unique_id=762639426]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=2042665798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.3453)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control" unique_id=585737212]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -388.0
-offset_top = -82.0
-offset_right = -24.0
-offset_bottom = -27.0
-grow_horizontal = 0
-grow_vertical = 0
-alignment = 1
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1181090968]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -37.345276, 0, -2.4520597e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/HBoxContainer" unique_id=200191228]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=386596645]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37.345276, 0, -2.125577e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer" unique_id=2045027390]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Mouse1"
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=75267099]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -26.407097, 0, 26.407074)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="PanelContainer3" type="PanelContainer" parent="Control/HBoxContainer" unique_id=939762967]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
-action_name = "chr_secondary_atk"
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=1582463433]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 26.407097, 0, -26.40712)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer3" unique_id=33444737]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Mouse2"
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=1904495788]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -26.407095, 0, -26.407122)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="PanelContainer2" type="PanelContainer" parent="Control/HBoxContainer" unique_id=1163372807]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
-action_name = "chr_special_atk1"
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer2" unique_id=1256295316]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "KeyOne"
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="PanelContainer4" type="PanelContainer" parent="Control/HBoxContainer" unique_id=249093394]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
-action_name = "chr_special_atk2"
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer4" unique_id=2015347950]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "KeyTwo"
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="PanelContainer5" type="PanelContainer" parent="Control/HBoxContainer" unique_id=171387223]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
-action_name = "chr_grapple_object"
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer5" unique_id=701420354]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Grapple Obj."
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="PanelContainer6" type="PanelContainer" parent="Control/HBoxContainer" unique_id=446794580]
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("9_6p4gl")
-action_name = "chr_grapple_enemy"
-
-[node name="Label" type="Label" parent="Control/HBoxContainer/PanelContainer6" unique_id=1113219895]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Grapple Enemy"
-label_settings = SubResource("LabelSettings_6p4gl")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[editable path="CylinderWall"]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=1010322561]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 26.407095, 0, 26.407076)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
