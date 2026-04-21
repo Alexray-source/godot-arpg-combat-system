@@ -111,6 +111,7 @@ func is_attack_debounce_active():
 func on_atk_finished():
 	debounces.remove_debounce_delayed("grapple", 0.6)
 	end_attack_debounce()
+	
 	rescan_ground_state()
 
 func on_ability_finished():
@@ -175,7 +176,7 @@ func on_stagger_end():
 
 func on_knockback_end():
 	set_state("no_movement")
-	get_tree().create_timer(0.5).timeout.connect(rescan_ground_state, PROPERTY_HINT_ONESHOT)
+	get_tree().create_timer(0.7).timeout.connect(rescan_ground_state, PROPERTY_HINT_ONESHOT)
 
 func increment_stagger_count():
 	_stagger_count += 1

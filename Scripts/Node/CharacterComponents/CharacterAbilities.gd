@@ -7,6 +7,8 @@ var _abilities : Dictionary[StringName, AbilityComponent]
 var chr_layer : CharacterLayer
 var target_override : Node3D
 
+var active_ability : AbilityComponent
+
 signal ability_finished
 signal ability_hit(hurtboxes_hit : Array[HurtBox])
 
@@ -20,6 +22,11 @@ func reset() -> void:
 func add_ability_data(ability_key : StringName, ability_data : AbilityData):
 	abilities_data[ability_key] = ability_data
 
+func interrupt_active_ability():
+	if active_ability != null:
+		active_ability.cancel()
+		active_ability = null
+
 func create_and_store_ability_component(ability_key : StringName):
 	var ability_data = abilities_data[ability_key]
 	var ability_component = ability_data.create_ability_component()
@@ -28,18 +35,25 @@ func create_and_store_ability_component(ability_key : StringName):
 	ability_component.chr_layer = chr_layer
 	ability_component.setup()
 	
-	ability_component.ability_finished.connect(ability_finished.emit)
+	ability_component.ability_finished.connect(on_ability_component_finished)
 	ability_component.ability_hit.connect(ability_hit.emit)
 	
 	_abilities.set(ability_key, ability_component)
+
+func on_ability_component_finished():
+	active_ability = null
+	ability_finished.emit()
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = _abilities.get(ability_key)
 	
 	if ability != null:
+		if ability != active_ability:
+			interrupt_active_ability()
 		#print(target_override)
 		ability.target_override = target_override
 		ability.action()
+		active_ability = ability
 
 func ability_animation_event(ability_key : StringName):
 	var ability : AbilityComponent = _abilities.get(ability_key)

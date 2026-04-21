@@ -86,8 +86,7 @@ filters = ["%GeneralSkeleton:Foot_L", "%GeneralSkeleton:Foot_R", "%GeneralSkelet
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_172ob"]
 resource_local_to_scene = true
-fadein_time = 0.1
-fadeout_time = 0.25
+fadeout_time = 0.1
 autorestart_delay = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
@@ -190,10 +189,11 @@ states/staggers_knockback/position = Vector2(845, 223)
 states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
 states/staggers_knockback_recover/position = Vector2(845, 351)
 transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_jog", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_idle", "base_jog", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_jog", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_jog", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "base_jog", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jog", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks")]
-graph_offset = Vector2(-48, 30)
+graph_offset = Vector2(-10, -68)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bghwh"]
 resource_local_to_scene = true
+graph_offset = Vector2(-688.9326, -199.2881)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-620, -140)

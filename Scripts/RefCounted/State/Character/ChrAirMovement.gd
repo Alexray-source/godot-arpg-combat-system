@@ -4,6 +4,7 @@ var smoothed_move_dir : Vector3
 
 func on_enter() -> void:
 	smoothed_move_dir = character.move_dir
+	#character.up_velocity = Vector3.ZERO
 
 func state_physics_process(delta : float) -> void:
 	character.up_velocity = character.velocity * -character.GRAVITY_DIR

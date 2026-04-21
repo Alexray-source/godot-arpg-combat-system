@@ -8,21 +8,27 @@ var oneshot_node_name : String
 var animations : Array[String]
 var current_anim_index : int = 0
 
+var _one_shot_property_path : String
+
 signal animation_finished
 
 func setup() -> void:
 	#animations = anim_player.get_animation_library(attacks_library_name).get_animation_list()
+	_one_shot_property_path = "parameters/" + oneshot_node_name
 	anim_tree.animation_finished.connect(on_animation_finished)
 
 func reset_chain() -> void:
 	current_anim_index = 0
 
+func interrupt_chain() -> void:
+	reset_chain()
+	anim_tree.set(_one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
 func resume_chain() -> void:
-	var one_shot_property_path = "parameters/" + oneshot_node_name
 	#anim_player.play(animations.get(current_anim_index))
 	anim_tree.tree_root.get_node(animation_node_name).animation = animations.get(current_anim_index)
-	anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
-	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	anim_tree.set(_one_shot_property_path + "/fadein_time", 0.0)
+	anim_tree.set(_one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	
 	current_anim_index += 1
 	

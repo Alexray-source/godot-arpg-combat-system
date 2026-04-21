@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bno2mb3ugs355"]
+
+[ext_resource type="Texture2D" uid="uid://c55if8r5mafav" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridYellow.png" id="1_8di6d"]
+
+[node name="Sprite3D" type="Sprite3D" unique_id=1161638584]
+pixel_size = 0.0005
+billboard = 1
+double_sided = false
+no_depth_test = true
+fixed_size = true
+texture = ExtResource("1_8di6d")

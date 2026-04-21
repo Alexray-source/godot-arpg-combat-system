@@ -33,10 +33,12 @@ func setup() -> void:
 	#print(_animation_chainer.animations)
 
 func on_animation_finish():
-	ability_finished.emit()
+	if _interrupted == false:
+		ability_finished.emit()
 	_animation_chainer.reset_chain()
 
 func action() -> void:
+	_interrupted = false
 	_intended_target = target_override
 
 	#print(closest_target)
@@ -54,6 +56,10 @@ func action() -> void:
 		_current_atk_dir = -character.global_basis.z
 	
 	_animation_chainer.resume_chain()
+
+func cancel() -> void:
+	super()
+	_animation_chainer.interrupt_chain()
 
 func ability_event() -> void:
 	if is_instance_valid(_intended_target) == false:

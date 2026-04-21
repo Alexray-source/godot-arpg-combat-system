@@ -2,6 +2,7 @@ extends Node3D
 
 const ABILITY_DB : AbilityDatabase = preload("res://Resources/AbilityDatabase.tres")
 const GAME_OVER_UI_SCENE : PackedScene = preload("res://Scenes/UI/GameOver.tscn")
+const TARGET_RETICLE_SCENE : PackedScene = preload("res://Scenes/UI/target_reticle.tscn")
 
 @export var character_data : CharacterData
 @export var character : CombatCharacter
@@ -26,6 +27,7 @@ var camera_sens_y : float = 0.9
 var camera_center_offset : Vector3
 
 var current_target : Node3D
+var target_reticle : Node3D
 
 var input_events : PlrInputEvents
 var block_input : bool = false
@@ -97,6 +99,11 @@ func _ready() -> void:
 	input_events.target_next.connect(on_target_next)
 
 	input_events.dash_input.connect(on_dodge_dash)
+	
+	target_reticle = TARGET_RETICLE_SCENE.instantiate()
+	target_reticle.top_level = true
+	add_child(target_reticle)
+	target_reticle.visible = false
 
 func on_ability_energy_changed():
 	hud.ability_energy_bar.value = ability_energy / float(max_ability_energy)
@@ -150,7 +157,7 @@ func on_special_atk(atk_index : int) -> void:
 		plr_state_machine.transition_to_state(plr_special_atk_state)
 
 func on_grapple(targets_characters : bool) -> void:
-	if character is CombatCharacter and character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("grapple") == false:
+	if character is CombatCharacter and plr_debounces.is_debounce_active("grapple") == false:
 		#character.grapple()
 		plr_debounces.add_debounce("grapple")
 		plr_debounces.remove_debounce_delayed("grapple", 0.5)
@@ -187,9 +194,11 @@ func on_toggle_target_lock() -> void:
 	if current_target != null:
 		#current_target = null
 		set_lock_target(null)
+		target_reticle.visible = false
 	elif target_tracking_camera.targets_in_view.size() > 0:
 		#current_target = target_tracking_camera.targets_in_view.get(0)
 		set_lock_target(target_tracking_camera.targets_in_view.get(0))
+		target_reticle.visible = true
 
 func on_target_next() -> void:
 	var current_index : int = 0
@@ -219,6 +228,7 @@ func handle_target_tree_exit(_exiting_target : Node3D) -> void:
 	if current_target == _exiting_target:
 		#on_target_next()
 		set_lock_target(null)
+		target_reticle.visible = false
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)
@@ -263,6 +273,9 @@ func handle_camera_rot(delta):
 		input_events.camera_move_dir = Vector2(0.0,0.0)
 
 func _process(delta: float) -> void:
+	if current_target != null:
+		target_reticle.global_position = current_target.global_position
+	
 	if block_input == true:
 		return
 	

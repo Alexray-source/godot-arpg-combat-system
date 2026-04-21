@@ -40,6 +40,24 @@ script = ExtResource("6_43xnj")
 animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_u5o1h"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="Resource" id="Resource_qbx7l"]
+script = ExtResource("7_sio8a")
+hit_shape = SubResource("BoxShape3D_u5o1h")
+local_offset = Vector3(0, 0, -2)
+metadata/_custom_type_script = "uid://c4ge8e721k3f8"
+
+[sub_resource type="Resource" id="Resource_27lo6"]
+script = ExtResource("8_sbe7v")
+dmg = 12
+animations = Array[String](["PlayerSwordAnims/KickAtk"])
+atk_type = 3
+atk_data = SubResource("Resource_qbx7l")
+targeting_range = 25.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbx7l"]
 size = Vector3(2, 2, 2)
 
@@ -91,24 +109,6 @@ animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1"
 atk_type = 2
 atk_data = SubResource("Resource_43xnj")
 targeting_range = 50.0
-metadata/_custom_type_script = "uid://bob1v7bks8do5"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_u5o1h"]
-size = Vector3(4, 4, 4)
-
-[sub_resource type="Resource" id="Resource_qbx7l"]
-script = ExtResource("7_sio8a")
-hit_shape = SubResource("BoxShape3D_u5o1h")
-local_offset = Vector3(0, 0, -2)
-metadata/_custom_type_script = "uid://c4ge8e721k3f8"
-
-[sub_resource type="Resource" id="Resource_27lo6"]
-script = ExtResource("8_sbe7v")
-dmg = 12
-animations = Array[String](["PlayerSwordAnims/KickAtk"])
-atk_type = 3
-atk_data = SubResource("Resource_qbx7l")
-targeting_range = 25.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]

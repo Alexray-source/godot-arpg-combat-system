@@ -33,9 +33,14 @@ func physics_process(delta: float) -> void:
 	_aoe_grapple.physics_process(delta)
 
 func on_grapple_finished():
+	if _interrupted == true:
+		return
+	
 	ability_finished.emit()
 
 func action() -> void:
+	_interrupted = false
+	
 	if should_target_characters == true:
 		_aoe_grapple.scan_mask = 2 + chr_layer.get_enemy_layer()
 	else:
@@ -61,7 +66,10 @@ func action() -> void:
 	else:
 		_animation_chainer.resume_chain()
 
-	
+func cancel() -> void:
+	super()
+	_aoe_grapple.on_grapple_finished()
+
 func ability_event() -> void:
 	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	
