@@ -59,7 +59,8 @@ resource_name = "Get Closest Chr."
 script = ExtResource("3_f0syj")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
-scan_radius = 25.0
+scan_radius = 15.0
+scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -82,6 +83,42 @@ script = ExtResource("6_sxmng")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_tj3on"), SubResource("Resource_fjqqt"), SubResource("Resource_3nhpm")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
+[sub_resource type="Resource" id="Resource_jv2x5"]
+resource_name = "Get Closest Chr."
+script = ExtResource("3_f0syj")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 50.0
+scan_once = false
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_upapx"]
+resource_name = "Set Chr. Move Speed"
+script = ExtResource("4_484js")
+new_move_speed = 25.0
+metadata/_custom_type_script = "uid://74tunipa0gp8"
+
+[sub_resource type="Resource" id="Resource_yi1jo"]
+resource_name = "Chr. Move To"
+script = ExtResource("15_61te7")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+timeout_result = 0
+metadata/_custom_type_script = "uid://bmpahmv7sooex"
+
+[sub_resource type="Resource" id="Resource_qh7sx"]
+resource_name = "Sequence"
+script = ExtResource("6_sxmng")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_jv2x5"), SubResource("Resource_upapx"), SubResource("Resource_yi1jo")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_6twoj"]
+resource_name = "Selector"
+script = ExtResource("11_6twoj")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_myvan"), SubResource("Resource_qh7sx")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
 [sub_resource type="Resource" id="Resource_5luce"]
 resource_name = "Check Stagger Count"
 script = ExtResource("9_yi1jo")
@@ -103,7 +140,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_2u43t"]
 resource_name = "Selector"
 script = ExtResource("11_6twoj")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_myvan"), SubResource("Resource_sxmng")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_6twoj"), SubResource("Resource_sxmng")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_f0syj"]

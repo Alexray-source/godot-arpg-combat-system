@@ -13,11 +13,14 @@ var fill_progress_factor : float:
 
 func activate_effect():
 	activate_layer.modulate = Color(1.0,1.0,1.0)
+	scale = Vector2(1.4,1.4)
 	
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(activate_layer, "modulate", Color(1.0,1.0,1.0,0.0), 0.25)
+	tween.set_parallel(true)
+	tween.tween_property(activate_layer, "modulate", Color(1.0,1.0,1.0,0.0), 0.5)
+	tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.5)
 	
 
 func update_bar(new_fill_factor : float):

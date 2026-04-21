@@ -1,0 +1,60 @@
+[gd_resource type="Resource" script_class="DeviceInputTextures" format=3 uid="uid://diyxlpm56ehd8"]
+
+[ext_resource type="Script" uid="uid://c5kgl0pt3t7l4" path="res://Scripts/Resources/DeviceInputTextures/InputTextures.gd" id="1_hv4bh"]
+[ext_resource type="Script" uid="uid://d2eiolxr78a4v" path="res://Scripts/Resources/DeviceInputTextures/DevicesInputTextures.gd" id="2_frnoj"]
+[ext_resource type="Texture2D" uid="uid://cey2mvt2k24j6" path="res://Assets/Textures/UI/InputKeyboard/keyboard_shift.svg" id="2_rly2r"]
+[ext_resource type="Texture2D" uid="uid://dp8i4jwqkosnk" path="res://Assets/Textures/UI/InputKeyboard/keyboard_ctrl.svg" id="3_qc6ck"]
+[ext_resource type="Texture2D" uid="uid://dljf7hsa3huw3" path="res://Assets/Textures/UI/InputKeyboard/keyboard_f.svg" id="4_7iekw"]
+[ext_resource type="Texture2D" uid="uid://5b6goxocgwcy" path="res://Assets/Textures/UI/InputController/xbox_lb.svg" id="5_2vgjj"]
+[ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="5_f5y0i"]
+[ext_resource type="Texture2D" uid="uid://b02funo13nen4" path="res://Assets/Textures/UI/InputKeyboard/mouse_left.svg" id="5_g6far"]
+[ext_resource type="Texture2D" uid="uid://cv2grbk6gykw2" path="res://Assets/Textures/UI/InputKeyboard/keyboard_q.svg" id="5_txcya"]
+[ext_resource type="Texture2D" uid="uid://btv7q6wmiutje" path="res://Assets/Textures/UI/InputKeyboard/keyboard_e.svg" id="6_f5y0i"]
+[ext_resource type="Texture2D" uid="uid://ctwflbg31rkyv" path="res://Assets/Textures/UI/InputKeyboard/mouse_right.svg" id="6_gw0nm"]
+[ext_resource type="Texture2D" uid="uid://mpw1w33sn6p4" path="res://Assets/Textures/UI/InputController/xbox_rt.svg" id="6_jy1uy"]
+[ext_resource type="Texture2D" uid="uid://5u1itgid06pg" path="res://Assets/Textures/UI/InputController/xbox_lt.svg" id="7_qca4k"]
+[ext_resource type="Texture2D" uid="uid://pamywleyfruw" path="res://Assets/Textures/UI/InputController/xbox_button_color_x.svg" id="8_gba3v"]
+[ext_resource type="Texture2D" uid="uid://d33v3hbkkepnu" path="res://Assets/Textures/UI/InputController/xbox_button_color_y.svg" id="9_txcya"]
+[ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="10_g6far"]
+[ext_resource type="Texture2D" uid="uid://fckxps3t3pis" path="res://Assets/Textures/UI/InputController/xbox_stick_r_press.svg" id="12_01dh1"]
+[ext_resource type="Texture2D" uid="uid://dimiuvp6g5wix" path="res://Assets/Textures/UI/InputController/xbox_stick_l_press.svg" id="13_rly2r"]
+[ext_resource type="Texture2D" uid="uid://bbyr0q6j1thtc" path="res://Assets/Textures/UI/InputController/xb_x.svg" id="16_gw0nm"]
+[ext_resource type="Texture2D" uid="uid://dfd2wki2sot7l" path="res://Assets/Textures/UI/InputController/xb_y.svg" id="19_j1nyp"]
+
+[sub_resource type="Resource" id="Resource_hv4bh"]
+script = ExtResource("1_hv4bh")
+textures = Dictionary[String, Texture2D]({
+"chr_dash": ExtResource("2_rly2r"),
+"chr_grapple_enemy": ExtResource("3_qc6ck"),
+"chr_grapple_object": ExtResource("4_7iekw"),
+"chr_primary_atk": ExtResource("5_g6far"),
+"chr_secondary_atk": ExtResource("6_gw0nm"),
+"chr_special_atk1": ExtResource("5_f5y0i"),
+"chr_special_atk2": ExtResource("10_g6far"),
+"plr_target_lock": ExtResource("5_txcya"),
+"plr_target_next": ExtResource("6_f5y0i")
+})
+metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
+
+[sub_resource type="Resource" id="Resource_2toak"]
+script = ExtResource("1_hv4bh")
+textures = Dictionary[String, Texture2D]({
+"chr_dash": ExtResource("5_2vgjj"),
+"chr_grapple_enemy": ExtResource("6_jy1uy"),
+"chr_grapple_object": ExtResource("7_qca4k"),
+"chr_primary_atk": ExtResource("8_gba3v"),
+"chr_secondary_atk": ExtResource("9_txcya"),
+"chr_special_atk1": ExtResource("16_gw0nm"),
+"chr_special_atk2": ExtResource("19_j1nyp"),
+"plr_target_lock": ExtResource("12_01dh1"),
+"plr_target_next": ExtResource("13_rly2r")
+})
+metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
+
+[resource]
+script = ExtResource("2_frnoj")
+input_textures = Dictionary[String, ExtResource("1_hv4bh")]({
+"keyboard": SubResource("Resource_hv4bh"),
+"xbox": SubResource("Resource_2toak")
+})
+metadata/_custom_type_script = "uid://d2eiolxr78a4v"

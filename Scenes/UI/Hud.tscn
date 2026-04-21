@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://5vy7h2bb2fjm" path="res://Scripts/Node/UI/HUD.gd" id="1_b2arx"]
 [ext_resource type="PackedScene" uid="uid://vkfcfqy35fmy" path="res://Scenes/UI/ability_icon.tscn" id="1_ks3ap"]
 [ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="3_3ov73"]
+[ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="5_dva25"]
+[ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="6_xq4qh"]
+[ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="7_45mfi"]
+[ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="8_knqh6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ov73"]
 bg_color = Color(0.109375, 0.109375, 0.109375, 1)
@@ -22,7 +26,7 @@ expand_margin_right = 1.0
 expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duido"]
-bg_color = Color(0.17543793, 0.46875, 0.042114258, 1)
+bg_color = Color(0.33686393, 0.79296875, 0.13009644, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -76,52 +80,60 @@ texture_progress = ExtResource("3_3ov73")
 tint_under = Color(0.19607843, 0.19607843, 0.19607843, 0.7058824)
 
 [node name="AbilityIcon1" parent="Control" unique_id=565308469 instance=ExtResource("1_ks3ap")]
+self_modulate = Color(0, 0.5078125, 1, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -24.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 32.0
 grow_vertical = 2
+texture = ExtResource("5_dva25")
 
 [node name="AbilityIcon2" parent="Control" unique_id=305997422 instance=ExtResource("1_ks3ap")]
+modulate = Color(1, 0.796875, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -24.0
-offset_right = 24.0
-offset_bottom = 48.0
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 64.0
 grow_horizontal = 2
+texture = ExtResource("6_xq4qh")
 
 [node name="AbilityIcon3" parent="Control" unique_id=925880745 instance=ExtResource("1_ks3ap")]
+modulate = Color(0.84765625, 0.09933472, 0.09933472, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -24.0
+offset_left = -64.0
+offset_top = -32.0
 offset_right = 0.0
-offset_bottom = 24.0
+offset_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 2
+texture = ExtResource("7_45mfi")
 
 [node name="AbilityIcon4" parent="Control" unique_id=202546464 instance=ExtResource("1_ks3ap")]
+modulate = Color(0.20099044, 0.83984375, 0.16403198, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -24.0
-offset_top = -48.0
-offset_right = 24.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
+texture = ExtResource("8_knqh6")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1915422211]
 layout_mode = 1

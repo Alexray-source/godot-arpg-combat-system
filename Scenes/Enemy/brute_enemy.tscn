@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="15_5nt2l"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="16_2wy4d"]
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="17_3erts"]
+[ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="18_hvlvc"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="18_uyofg"]
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="19_2ll3y"]
 
@@ -70,7 +71,7 @@ resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
-scan_radius = 25.0
+scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -85,7 +86,6 @@ resource_name = "Chr. Strafe"
 script = ExtResource("6_hvlvc")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-max_strafe_time = 6.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_8o6yh"]
@@ -94,10 +94,45 @@ script = ExtResource("7_ynyrs")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_psykm"), SubResource("Resource_v74rv"), SubResource("Resource_iwbx2")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
+[sub_resource type="Resource" id="Resource_wu3pm"]
+resource_name = "Get Closest Chr."
+script = ExtResource("4_5ny8y")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 50.0
+scan_once = false
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
+[sub_resource type="Resource" id="Resource_qlffu"]
+resource_name = "Set Chr. Move Speed"
+script = ExtResource("5_ej8u3")
+new_move_speed = 25.0
+metadata/_custom_type_script = "uid://74tunipa0gp8"
+
+[sub_resource type="Resource" id="Resource_qafw8"]
+resource_name = "Chr. Move To"
+script = ExtResource("18_uyofg")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+metadata/_custom_type_script = "uid://bmpahmv7sooex"
+
+[sub_resource type="Resource" id="Resource_81kx7"]
+resource_name = "Sequence"
+script = ExtResource("7_ynyrs")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_wu3pm"), SubResource("Resource_qlffu"), SubResource("Resource_qafw8")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_cjww3"]
+resource_name = "Selector"
+script = ExtResource("12_7lipo")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_8o6yh"), SubResource("Resource_81kx7")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
 [sub_resource type="Resource" id="Resource_b2fsp"]
 resource_name = "Selector"
 script = ExtResource("12_7lipo")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7lipo"), SubResource("Resource_8o6yh")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7lipo"), SubResource("Resource_cjww3")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_2ll3y"]
@@ -172,6 +207,8 @@ script = ExtResource("14_kns7d")
 character_bb_key = "character"
 target_pos_bb_key = "enemy_slam_pos"
 randomnness_radius = 0.0
+optional_vfx_start = ExtResource("18_hvlvc")
+optional_vfx_end = ExtResource("18_hvlvc")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 
 [sub_resource type="Resource" id="Resource_tj720"]
@@ -224,6 +261,8 @@ script = ExtResource("14_kns7d")
 character_bb_key = "character"
 target_pos_bb_key = "throw_pos"
 randomnness_radius = 0.0
+optional_vfx_start = ExtResource("18_hvlvc")
+optional_vfx_end = ExtResource("18_hvlvc")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 
 [sub_resource type="Resource" id="Resource_ulpl1"]

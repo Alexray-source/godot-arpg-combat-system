@@ -5,8 +5,8 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrd4j"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_ifau6"]
-albedo_color = Color(1, 0.75, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifau6"]
+albedo_color = Color(0.44209558, 0.15686277, 0.9019608, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1aaj"]
 
@@ -15,10 +15,11 @@ angular_damp_mode = 1
 script = ExtResource("1_ifau6")
 hurtbox = NodePath("HurtBox")
 accepted_atk_types = Array[int]([3])
+allowed_target_hits = 10000
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
 mesh = SubResource("BoxMesh_wrd4j")
-surface_material_override/0 = SubResource("ORMMaterial3D_ifau6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ifau6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1236279868]
 shape = SubResource("BoxShape3D_o1aaj")

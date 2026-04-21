@@ -6,6 +6,7 @@ class_name BT_CharacterMoveToData extends BT_NodeData
 @export var target_offset : Vector3 = Vector3.ZERO
 @export var target_success_radius : float = 1.0
 @export var timeout_time : float = 5.0
+@export var timeout_result := BT_ForceResult.ForcedResult.FAILURE
 
 func _init() -> void:
 	resource_name = "Chr. Move To"
@@ -17,4 +18,5 @@ func create_node() -> BT_Node:
 	node.target_offset = target_offset
 	node.target_success_radius = target_success_radius
 	node.timeout_time = timeout_time
+	node.timeout_result = timeout_result
 	return node

@@ -11,6 +11,7 @@ enum WeaponEquipMode {
 @export var anim_tree : AnimationTree
 @export var state_machine : CharacterStateMachine
 @export var legs_air_blend_node_name : String
+@export var movement_blend_prop_path : String = "parameters/StateMachine/base_movement/blend_position"
 @export var dash_anim_name : String
 
 @export_subgroup("Weapon Visuals")
@@ -24,6 +25,7 @@ enum WeaponEquipMode {
 
 var _legs_blend_path : String
 var _mesh_cached_scale : float
+var _face_target : bool = false
 
 func _ready() -> void:
 	_mesh_cached_scale = scale.x
@@ -44,18 +46,26 @@ func on_state_changed(new_state : State) -> void:
 	elif state_machine.get_state_by_key("knockback") == new_state:
 		var one_shot_property_path = "parameters/" + oneshot_node_name
 		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+	
+	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")
 
 func _process(_delta: float) -> void:
 	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor()))
-	
-	#if combat_character.combat_target_override != null:
-		#var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
-		#
-		#var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
-		#
-		#chr_xz_pos.direction_to(target_xz_pos)
-		#
+
+	if combat_character.combat_target_override != null and _face_target == true:
+		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
+		
+		var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
+		
+		chr_xz_pos.direction_to(target_xz_pos)
+		
 		#global_basis = Basis.looking_at(chr_xz_pos.direction_to(target_xz_pos)) * _mesh_cached_scale
+		global_basis = global_basis.orthonormalized().slerp(Basis.looking_at(chr_xz_pos.direction_to(target_xz_pos)), _delta * 5.0) * _mesh_cached_scale
+	else:
+		basis = basis.orthonormalized().slerp(Basis.IDENTITY, _delta * 15.0) * _mesh_cached_scale
+	
+	#print(combat_character.velocity.dot(-global_basis.z))
+	anim_tree.set(movement_blend_prop_path, Vector2(combat_character.velocity.dot(global_basis.x), combat_character.velocity.dot(-global_basis.z)))
 
 func damage_visual() -> void:
 	mesh_instance.material_overlay = dmg_overlay_mat

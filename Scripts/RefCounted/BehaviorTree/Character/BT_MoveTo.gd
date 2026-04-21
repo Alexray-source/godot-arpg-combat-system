@@ -5,6 +5,7 @@ var target_node_bb_key : String
 var target_success_radius : float = 1.0
 var target_offset : Vector3 = Vector3.ZERO
 var timeout_time : float = 5.0
+var timeout_result := FAILURE
 var accumulated_time : float = 0.0
 
 var _reached_target : bool = false
@@ -21,7 +22,7 @@ func tick(blackboard : Dictionary):
 	
 	if accumulated_time > timeout_time:
 		base_chr.move_dir = Vector3.ZERO
-		return FAILURE
+		return timeout_result
 	
 	accumulated_time += delta
 	

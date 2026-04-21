@@ -10,6 +10,7 @@ var _current_wave : int = 0
 var loaded_data : SaveData
 var save_loader : SaveDataHandler
 
+signal new_wave(new_wave_numbe : int)
 signal finished
 
 func _ready() -> void:
@@ -33,6 +34,7 @@ func _exit_tree() -> void:
 
 func start_wave(wave_number : int):
 	_current_wave = wave_number
+	new_wave.emit(_current_wave)
 	update_loaded_wave_data(wave_number)
 	
 	var enemy_wave_data : EnemyWaveData = waves[_current_wave-1]

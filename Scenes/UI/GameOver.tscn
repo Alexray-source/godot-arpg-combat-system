@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dpx621abf38e7"]
 
 [ext_resource type="Script" uid="uid://b3f5ecj4jbheh" path="res://Scripts/Node/UI/GameOverUI.gd" id="1_n002h"]
+[ext_resource type="Texture2D" uid="uid://0obw322h23kd" path="res://Assets/Textures/UI/InputController/xbox_button_start.svg" id="2_34bmr"]
+[ext_resource type="Texture2D" uid="uid://bjkyq7enieiue" path="res://Assets/Textures/UI/InputController/xbox_button_back.svg" id="3_wpfos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbeer"]
 bg_color = Color(0, 0, 0, 0.49019608)
@@ -62,8 +64,10 @@ alignment = 1
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Retry wave"
+icon = ExtResource("2_34bmr")
 
 [node name="Button2" type="Button" parent="BoxContainer" unique_id=454201200]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"
+icon = ExtResource("3_wpfos")

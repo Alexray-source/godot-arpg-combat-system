@@ -11,7 +11,7 @@
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("3_0u5uq")
 character_scene = ExtResource("2_htcer")
-available_abilities = Array[String](["kick", "spin", "bomb"])
+available_abilities = Array[String](["kick", "spin"])
 metadata/_custom_type_script = "uid://snap5qatdr20"
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]

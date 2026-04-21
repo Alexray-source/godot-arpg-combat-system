@@ -44,6 +44,17 @@ _subresources={
 "use_external/fallback_path": "res://Assets/Material/magic_mat.tres",
 "use_external/path": "uid://caaoefef2ly1m"
 }
+},
+"meshes": {
+"WarFan_Cube_012": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Weapons/WarFan.res",
+"save_to_file/path": "uid://7qici1c3x8fl"
+}
 }
 }
 gltf/naming_version=2

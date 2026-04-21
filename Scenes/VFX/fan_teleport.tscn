@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://hqokgsqqffo1"]
+
+[ext_resource type="Script" uid="uid://ca5wug207wcpn" path="res://Scripts/Node/VFX/LookAtCamera.gd" id="1_ns47w"]
+[ext_resource type="ArrayMesh" uid="uid://ce60d0qexvdkb" path="res://Assets/Meshes/Weapons/WarFan.res" id="1_vdluw"]
+[ext_resource type="Script" uid="uid://dsrd08alyplrc" path="res://Scripts/Node/VFX/TemporaryNode.gd" id="3_yjjso"]
+[ext_resource type="Script" uid="uid://coipllk02mn2a" path="res://Scripts/Node/VFX/AnimPlayerAutoplay.gd" id="4_bkw8x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns47w"]
+cull_mode = 2
+
+[sub_resource type="Animation" id="Animation_vdluw"]
+length = 0.001
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:Close")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0)
+
+[sub_resource type="Animation" id="Animation_ns47w"]
+resource_name = "teleport"
+length = 0.3667
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:Close")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 0.16666667, 1, 0, 0.36666667, 1, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yjjso"]
+_data = {
+&"RESET": SubResource("Animation_vdluw"),
+&"teleport": SubResource("Animation_ns47w")
+}
+
+[node name="FanTeleport" type="Node3D" unique_id=1629860808]
+script = ExtResource("1_ns47w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1649284016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("1_vdluw")
+blend_shapes/Close = 0.0
+surface_material_override/0 = SubResource("StandardMaterial3D_ns47w")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1734559073]
+libraries/ = SubResource("AnimationLibrary_yjjso")
+
+[node name="TemporaryNode" type="Node" parent="." unique_id=572233805 node_paths=PackedStringArray("target_node")]
+script = ExtResource("3_yjjso")
+target_node = NodePath("..")
+lifetime = 0.3667
+metadata/_custom_type_script = "uid://dsrd08alyplrc"
+
+[node name="AnimPlayerAutoplay" type="Node" parent="." unique_id=1269206529 node_paths=PackedStringArray("anim_player")]
+script = ExtResource("4_bkw8x")
+anim_player = NodePath("../AnimationPlayer")
+anim_name = "teleport"
+metadata/_custom_type_script = "uid://coipllk02mn2a"

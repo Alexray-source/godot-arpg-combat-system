@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="1_dddhl"]
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_xr4vk"]
 [ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="3_7dnk6"]
+[ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="4_7dnk6"]
 [ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="4_8ikxd"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_gq4s6"]
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="5_xr4vk"]
@@ -31,6 +32,8 @@ script = ExtResource("4_8ikxd")
 character_bb_key = "character"
 target_pos_bb_key = "throw_pos"
 randomnness_radius = 0.0
+optional_vfx_start = ExtResource("4_7dnk6")
+optional_vfx_end = ExtResource("4_7dnk6")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 
 [sub_resource type="Resource" id="Resource_7dnk6"]

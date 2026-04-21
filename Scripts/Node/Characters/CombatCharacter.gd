@@ -32,6 +32,8 @@ var _stat_modifier_stack : StatModifierStack
 var _stat_modifiers_visuals : Dictionary[String, Node]
 var _stat_mod_interrupts : Dictionary[String, StatModifierInterrupt]
 
+var _damage_sfx_player : DamageSoundPlayer
+
 signal interupt_atks()
 signal damage_hit()
 signal received_hit()
@@ -62,6 +64,8 @@ func _ready() -> void:
 		chr_died.emit(),
 	CONNECT_ONE_SHOT)
 	debounces = Debounces.new()
+	
+	_damage_sfx_player = DamageSoundPlayer.new()
 	
 	state_machine.debug = debug_state
 	
@@ -146,6 +150,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		
 		health_component.take_damage(atk_info.dmg - defence_reduction)
 		damage_hit.emit()
+		_damage_sfx_player.play_damage_sfx(self, atk_info.atk_type)
 		
 		if stagger_immune == true:
 			return
@@ -214,9 +219,9 @@ func reset_stagger_count():
 	_stagger_count = 0
 
 func stagger():
-	if stagger_immune == true:
+	if stagger_immune == true and state_machine.is_current_state_by_key("knockback") == false:
 		return
-	
+	character_abilities.interrupt_active_ability()
 	increment_stagger_count()
 	velocity = Vector3.ZERO
 	up_velocity = Vector3.ZERO
@@ -229,7 +234,7 @@ func stagger():
 func knockback():
 	if stagger_immune == true:
 		return
-	
+	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO
 	up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))

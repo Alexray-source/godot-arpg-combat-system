@@ -22,7 +22,8 @@ func tick(blackboard : Dictionary):
 	var character : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
 	var target : Node3D = blackboard.get(target_bb_key) as Node3D
 	
-	var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, _strafe_angle)
+	#var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, _strafe_angle)
+	var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, PI*0.5)
 	
 	character.move_dir = move_dir
 	

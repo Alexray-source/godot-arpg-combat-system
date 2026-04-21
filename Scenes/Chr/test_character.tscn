@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_qbr8q"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://coygqchle5bnk" path="res://Assets/AnimTreeRoot/human.tres" id="20_jb0u1"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -77,136 +78,6 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
 size = Vector3(1.1096191, 2.0214844, 1.1064453)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u7gae"]
-animation = &"BaseAnimations/Fall_Sword"
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_2ddvq"]
-filter_enabled = true
-filters = ["%GeneralSkeleton:Foot_L", "%GeneralSkeleton:Foot_R", "%GeneralSkeleton:KneeTwist_L", "%GeneralSkeleton:KneeTwist_R", "%GeneralSkeleton:LowerLeg_L", "%GeneralSkeleton:LowerLeg_R", "%GeneralSkeleton:Toes_L", "%GeneralSkeleton:Toes_R", "%GeneralSkeleton:UpperLeg_L", "%GeneralSkeleton:UpperLeg_R"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_172ob"]
-resource_local_to_scene = true
-fadeout_time = 0.1
-autorestart_delay = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
-resource_local_to_scene = true
-animation = &"PlayerSwordAnims/NinjaPrimary1"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qbr8q"]
-animation = &"BaseAnimations/Fall_Sword"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_172ob"]
-animation = &"BaseAnimations/Idle_Sword"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jb0u1"]
-animation = &"BaseAnimations/Jog_Sword"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffspy"]
-animation = &"BaseAnimations/Jump_Sword"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72lp5"]
-animation = &"BaseAnimations/Knockback"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5ps18"]
-animation = &"BaseAnimations/KnockbackRecover"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72lp5"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5ps18"]
-advance_mode = 2
-advance_expression = "is_on_floor() == false and velocity.y > 0.01"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u7gae"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ddvq"]
-xfade_time = 0.2
-advance_mode = 2
-advance_expression = "abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qbr8q"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "is_on_floor() == true and (abs(velocity.x) > 0.01 or abs(velocity.z) > 0.01)"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_172ob"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "is_on_floor() == true and (abs(velocity.x) < 0.01 and abs(velocity.z) < 0.01)"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jb0u1"]
-xfade_time = 0.1
-advance_mode = 2
-advance_expression = "is_on_floor() == false and velocity.y < 0.01"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vucap"]
-xfade_time = 0.1
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bghwh"]
-advance_mode = 2
-advance_expression = "state_machine.current_state != state_machine.get_state_by_key(\"knockback\")"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f726w"]
-advance_mode = 2
-advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ffspy"]
-advance_mode = 2
-advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m23ht"]
-advance_mode = 2
-advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wml65"]
-advance_mode = 2
-advance_expression = "state_machine.current_state == state_machine.get_state_by_key(\"knockback\")"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8m6ks"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vucap"]
-resource_local_to_scene = true
-states/Start/position = Vector2(138, 124)
-states/base_falling/node = SubResource("AnimationNodeAnimation_qbr8q")
-states/base_falling/position = Vector2(304, 323)
-states/base_idle/node = SubResource("AnimationNodeAnimation_172ob")
-states/base_idle/position = Vector2(320, 140)
-states/base_jog/node = SubResource("AnimationNodeAnimation_jb0u1")
-states/base_jog/position = Vector2(492, 124)
-states/base_jump/node = SubResource("AnimationNodeAnimation_ffspy")
-states/base_jump/position = Vector2(492, 323)
-states/staggers_knockback/node = SubResource("AnimationNodeAnimation_72lp5")
-states/staggers_knockback/position = Vector2(845, 223)
-states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
-states/staggers_knockback_recover/position = Vector2(845, 351)
-transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_jog", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_idle", "base_jog", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_jog", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_jog", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "base_jog", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jog", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks")]
-graph_offset = Vector2(-10, -68)
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bghwh"]
-resource_local_to_scene = true
-graph_offset = Vector2(-688.9326, -199.2881)
-nodes/output/position = Vector2(420, -100)
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
-nodes/StateMachine/position = Vector2(-620, -140)
-nodes/OneShot/node = SubResource("AnimationNodeOneShot_172ob")
-nodes/OneShot/position = Vector2(-260, -100)
-nodes/OverrideAnimation/node = SubResource("AnimationNodeAnimation_8m6ks")
-nodes/OverrideAnimation/position = Vector2(-720, 60)
-nodes/LegsAir/node = SubResource("AnimationNodeBlend2_2ddvq")
-nodes/LegsAir/position = Vector2(200, -120)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_u7gae")
-nodes/Animation/position = Vector2(-120, 140)
-node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"OverrideAnimation", &"LegsAir", 0, &"OneShot", &"LegsAir", 1, &"Animation"]
-
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
 collision_mask = 3
@@ -216,6 +87,8 @@ hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
+start_health = 150
+max_health = 150
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
 move_speed = 50.0
@@ -290,9 +163,10 @@ holstered_weapons_visuals = {
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
 root_node = NodePath("../MaleBaseRigV2")
-tree_root = SubResource("AnimationNodeBlendTree_bghwh")
+tree_root = ExtResource("20_jb0u1")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../BaseAnimationPlayer")
+parameters/StateMachine/base_movement/blend_position = Vector2(0, 0)
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0

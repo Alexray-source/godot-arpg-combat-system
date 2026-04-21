@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://bno2mb3ugs355"]
 
-[ext_resource type="Texture2D" uid="uid://c55if8r5mafav" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridYellow.png" id="1_8di6d"]
+[ext_resource type="Texture2D" uid="uid://dmkycthjdi3u1" path="res://Assets/Textures/UI/InputKeyboard/flair_circle_target_a.png" id="1_8di6d"]
 
-[node name="Sprite3D" type="Sprite3D" unique_id=1161638584]
-pixel_size = 0.0005
+[node name="Node3D" type="Node3D" unique_id=879635403]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1161638584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+layers = 524288
+offset = Vector2(0, 5)
+modulate = Color(0.8807113, 0.88671875, 0.117767334, 1)
+pixel_size = 0.0025
 billboard = 1
 double_sided = false
 no_depth_test = true
 fixed_size = true
+alpha_cut = 1
 texture = ExtResource("1_8di6d")

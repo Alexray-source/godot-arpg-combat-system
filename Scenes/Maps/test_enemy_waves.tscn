@@ -7,22 +7,35 @@
 [ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="4_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
 [ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="6_eu08s"]
-[ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="7_641pj"]
 [ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="7_jjisf"]
 [ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="8_1xyem"]
+[ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="9_yi1ag"]
+[ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="10_jjisf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
+sky_horizon_color = Color(0.390625, 0.68694836, 1, 1)
+sky_curve = 0.2121321
+ground_bottom_color = Color(0.265625, 0.24591064, 0.23657227, 1)
+ground_horizon_color = Color(0.390625, 0.68694836, 1, 1)
+ground_curve = 0.07464243
+sun_angle_max = 3.0
+sun_curve = 1.818861
 
 [sub_resource type="Sky" id="Sky_xcpuq"]
 sky_material = SubResource("ProceduralSkyMaterial_pyddj")
 
 [sub_resource type="Environment" id="Environment_i18pj"]
 background_mode = 2
+background_energy_multiplier = 1.2
 sky = SubResource("Sky_xcpuq")
-tonemap_mode = 2
+ambient_light_source = 2
+ambient_light_color = Color(0.37347412, 0.4081049, 0.453125, 1)
+ambient_light_energy = 4.0
+tonemap_mode = 3
 glow_enabled = true
+glow_intensity = 0.5
+glow_bloom = 0.1
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xcpuq"]
 top_radius = 26.0
@@ -50,8 +63,39 @@ metadata/_custom_type_script = "uid://2x05qfkltv14"
 
 [sub_resource type="Resource" id="Resource_mjli6"]
 script = ExtResource("3_4n2ml")
+enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_38hi7"]
+script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf"), ExtResource("8_1xyem")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_jjisf"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_dash": "Dodge / Dash",
+"chr_primary_atk": "Primary Attack",
+"chr_secondary_atk": "Secondary Attack",
+"plr_target_lock": "Lock/Unlock Camera Targetting"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_1xyem"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_grapple_enemy": "Grapple Enemy",
+"plr_target_next": "Next Camera Target"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_p0lev"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_grapple_object": "Grapple Objects",
+"chr_special_atk1": "Special Attack #1"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
 size = Vector3(46, 156, 28.46106)
@@ -59,7 +103,8 @@ size = Vector3(46, 156, 28.46106)
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.1958383, -0.9630976, -0.18463652, 0.38119766, -0.24824043, 0.89054215, -0.9035132, 0.104019284, 0.41574544, 0, 0, 0)
+light_energy = 2.0
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=927437522]
@@ -80,11 +125,20 @@ shape = SubResource("CylinderShape3D_jjisf")
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6")])
+waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6"), SubResource("Resource_38hi7")])
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1496976322]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Node2" type="Node" parent="EnemyWaves" unique_id=203176248 node_paths=PackedStringArray("enemy_wave_spawner")]
+script = ExtResource("9_yi1ag")
+enemy_wave_spawner = NodePath("..")
+enemy_wave_tutorials = Dictionary[int, ExtResource("10_jjisf")]({
+1: SubResource("Resource_jjisf"),
+2: SubResource("Resource_1xyem"),
+3: SubResource("Resource_p0lev")
+})
 
 [node name="ThrowableCube" parent="." unique_id=554461063 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209965, 1.0000005, -14.295042)
@@ -101,23 +155,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786633, 2.9999995, -9.3638
 [node name="ThrowableCube6" parent="." unique_id=844239056 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355663, 1, 5.731777)
 
-[node name="ThrowableBall" parent="." unique_id=1814475392 instance=ExtResource("7_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.299128, 0.70000094, -13.986462)
-
 [node name="ThrowableCube7" parent="." unique_id=1985501722 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981824, 1.000001, 8.090936)
 
 [node name="ThrowableCube8" parent="." unique_id=1386090068 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771572, 1.000001, 4.002225)
-
-[node name="ThrowableBall2" parent="." unique_id=573911596 instance=ExtResource("7_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.487256, 0.70000094, 8.769113)
-
-[node name="ThrowableBall3" parent="." unique_id=592704745 instance=ExtResource("7_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.457747, 0.70000094, 8.795365)
-
-[node name="ThrowableBall4" parent="." unique_id=1176201727 instance=ExtResource("7_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.316575, 0.70000094, -19.666199)
 
 [node name="ThrowableCube9" parent="." unique_id=1251095342 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899056, 1.000001, -5.239993)
@@ -136,9 +178,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287379, 1, 14.564385)
 
 [node name="ThrowableCube13" parent="." unique_id=111861886 instance=ExtResource("6_embne")]
 transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530903, 3.0000007, 16.100836)
-
-[node name="ThrowableBall5" parent="." unique_id=396423259 instance=ExtResource("7_641pj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2732391, 0.7, 16.564863)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=792147931]
 

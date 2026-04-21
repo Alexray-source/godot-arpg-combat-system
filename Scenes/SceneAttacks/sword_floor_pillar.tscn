@@ -75,7 +75,7 @@ travel_time = 1.35
 [node name="Decal" type="Decal" parent="." unique_id=711771147]
 size = Vector3(2, 15, 2)
 texture_albedo = ExtResource("3_pf67q")
-emission_energy = 5.0
+modulate = Color(1, 0, 0, 1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1704210335]
 material_override = SubResource("StandardMaterial3D_ofm7e")

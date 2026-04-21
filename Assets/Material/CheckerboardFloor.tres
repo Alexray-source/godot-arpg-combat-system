@@ -3,5 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b8tcdjcjhmmf5" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGrid.png" id="1_owx7v"]
 
 [resource]
+albedo_color = Color(0.44140625, 0.44140625, 0.44140625, 1)
 albedo_texture = ExtResource("1_owx7v")
 uv1_triplanar = true
