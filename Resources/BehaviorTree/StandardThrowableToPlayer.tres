@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="4_7dnk6"]
 [ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="4_8ikxd"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_gq4s6"]
-[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="5_xr4vk"]
 [ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="6_acaa2"]
 
 [sub_resource type="Resource" id="Resource_t764m"]
@@ -36,12 +35,6 @@ optional_vfx_start = ExtResource("4_7dnk6")
 optional_vfx_end = ExtResource("4_7dnk6")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 
-[sub_resource type="Resource" id="Resource_7dnk6"]
-resource_name = "Wait"
-script = ExtResource("5_xr4vk")
-interval = 0.5
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
 [sub_resource type="Resource" id="Resource_2mqpe"]
 resource_name = "Combat Chr. Ability"
 script = ExtResource("5_gq4s6")
@@ -53,5 +46,5 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [resource]
 resource_name = "Sequence"
 script = ExtResource("6_acaa2")
-children = Array[ExtResource("1_dddhl")]([SubResource("Resource_t764m"), SubResource("Resource_h34gu"), SubResource("Resource_n6u8u"), SubResource("Resource_7dnk6"), SubResource("Resource_2mqpe")])
+children = Array[ExtResource("1_dddhl")]([SubResource("Resource_t764m"), SubResource("Resource_h34gu"), SubResource("Resource_n6u8u"), SubResource("Resource_2mqpe")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"

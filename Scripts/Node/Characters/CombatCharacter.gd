@@ -8,7 +8,6 @@ class_name CombatCharacter extends BaseCharacter
 @export var debug_health : bool = false
 @export var debug_state: bool = false
 @export var max_allowed_attacking_enemies : int = 1
-@export var attacking_enemies : Array[CombatCharacter]
 
 @export_subgroup("Stats")
 @export var start_health : int = 100
@@ -25,6 +24,7 @@ var prev_hit_info : AtkInfo
 var invincible : bool = false
 var combat_target_override : Node3D
 var stagger_immune : bool = false
+var attacking_enemies : Array[CombatCharacter]
 
 var _stagger_count : int = 0
 

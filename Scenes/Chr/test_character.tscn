@@ -11,10 +11,15 @@
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="9_smxw8"]
 [ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="12_7ch4d"]
+[ext_resource type="Animation" uid="uid://b3rqxmlhei0k2" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast1.tres" id="13_u7gae"]
+[ext_resource type="Animation" uid="uid://brjy45xwhxbsg" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast2.tres" id="14_2ddvq"]
 [ext_resource type="AnimationLibrary" uid="uid://8ehkuiwucb7r" path="res://Assets/Animations/General/BaseAnimations.glb" id="14_qbr8q"]
 [ext_resource type="AnimationLibrary" uid="uid://c6pm07awpnnnr" path="res://Assets/Animations/NinjaPlayer/PlayerSwordAnims.glb" id="15_172ob"]
 [ext_resource type="AnimationLibrary" uid="uid://dbddrmfrxh0c8" path="res://Assets/Animations/NinjaPlayer/PlayerGrappleAnims.glb" id="15_jb0u1"]
+[ext_resource type="Animation" uid="uid://cd0bkoi8hh3rk" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast3.tres" id="15_vucap"]
+[ext_resource type="Animation" uid="uid://cdwiet4h8wmmm" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast4.tres" id="16_bghwh"]
 [ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
+[ext_resource type="Animation" uid="uid://0c1rxdnqtu2n" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast5.tres" id="17_f726w"]
 [ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="18_172ob"]
 [ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_qbr8q"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
@@ -40,21 +45,21 @@ script = ExtResource("12_7ch4d")
 animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3m4by"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_u7gae"]
 size = Vector3(2, 2, 2)
 
-[sub_resource type="Resource" id="Resource_8m6ks"]
+[sub_resource type="Resource" id="Resource_2ddvq"]
 script = ExtResource("9_smxw8")
-hit_shape = SubResource("BoxShape3D_3m4by")
+hit_shape = SubResource("BoxShape3D_u7gae")
 local_offset = Vector3(0, 0, -2)
 metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
-[sub_resource type="Resource" id="Resource_72lp5"]
+[sub_resource type="Resource" id="Resource_vucap"]
 script = ExtResource("19_jb0u1")
 dmg = 10
-animations = Array[String](["PlayerSwordAnims/NinjaPrimary1", "PlayerSwordAnims/NinjaPrimary2", "PlayerSwordAnims/NinjaPrimary3", "PlayerSwordAnims/NinjaPrimary4", "PlayerSwordAnims/NinjaPrimary5"])
+animations = Array[String](["FastSword/NinjaPrimaryFast1", "FastSword/NinjaPrimaryFast2", "FastSword/NinjaPrimaryFast3", "FastSword/NinjaPrimaryFast4", "FastSword/NinjaPrimaryFast5"])
 atk_type = 1
-atk_data = SubResource("Resource_8m6ks")
+atk_data = SubResource("Resource_2ddvq")
 targeting_range = 15.0
 metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
@@ -75,6 +80,15 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8y5mx"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m23ht"]
+_data = {
+&"NinjaPrimaryFast1": ExtResource("13_u7gae"),
+&"NinjaPrimaryFast2": ExtResource("14_2ddvq"),
+&"NinjaPrimaryFast3": ExtResource("15_vucap"),
+&"NinjaPrimaryFast4": ExtResource("16_bghwh"),
+&"NinjaPrimaryFast5": ExtResource("17_f726w")
+}
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
 size = Vector3(1.1096191, 2.0214844, 1.1064453)
 
@@ -87,6 +101,7 @@ hurt_box = NodePath("HurtBox")
 dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
+max_allowed_attacking_enemies = 2
 start_health = 150
 max_health = 150
 combat_stats = SubResource("Resource_u1pys")
@@ -103,7 +118,7 @@ character = NodePath("..")
 abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
 &"grapple_enemy": SubResource("Resource_7ch4d"),
 &"grapple_object": SubResource("Resource_172ob"),
-&"primary_atk": SubResource("Resource_72lp5"),
+&"primary_atk": SubResource("Resource_vucap"),
 &"secondary_atk": SubResource("Resource_smxw8")
 })
 metadata/_custom_type_script = "uid://dah4aaqqbvgen"
@@ -120,6 +135,7 @@ metadata/_custom_type_script = "uid://8k8ew07c3gmb"
 [node name="BaseAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1248900169]
 root_node = NodePath("../MaleBaseRigV2")
 libraries/BaseAnimations = ExtResource("14_qbr8q")
+libraries/FastSword = SubResource("AnimationLibrary_m23ht")
 libraries/PlayerGrappleAnims = ExtResource("15_jb0u1")
 libraries/PlayerSwordAnims = ExtResource("15_172ob")
 playback_default_blend_time = 0.1

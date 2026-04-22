@@ -143,7 +143,7 @@ func on_secondary_atk() -> void:
 		character.perform_ability("secondary_atk")
 
 func on_special_atk(atk_index : int) -> void:
-	var ability_key = equipped_abilities_keys[atk_index]
+	var ability_key = equipped_abilities_keys.get(atk_index)
 	if ability_key == null:
 		return
 	
@@ -199,25 +199,44 @@ func on_toggle_target_lock() -> void:
 	if current_target != null:
 		#current_target = null
 		set_lock_target(null)
-		target_reticle.visible = false
 	elif target_tracking_camera.targets_in_view.size() > 0:
 		#current_target = target_tracking_camera.targets_in_view.get(0)
 		set_lock_target(target_tracking_camera.targets_in_view.get(0))
-		target_reticle.visible = true
 
 func on_target_next() -> void:
-	var current_index : int = 0
-	
-	if current_target != null:
-		current_index = target_tracking_camera.targets_in_view.find(current_target)
+	print("searching new target")
+	if target_tracking_camera.targets_in_view.size() > 0:
 		
-		current_index += 1
-		
-		if current_index >= target_tracking_camera.targets_in_view.size():
-			current_index = 0
+		var current_index : int = 0
+		if current_target != null:
+			current_index = target_tracking_camera.targets_in_view.find(current_target)
+			
+			current_index += 1
+			
+			if current_index >= target_tracking_camera.targets_in_view.size():
+				current_index = 0
+				
+		var new_target : Node3D = target_tracking_camera.targets_in_view.get(current_index)
+		if new_target == current_target:
+			target_closest_enemy_to_character()
+		else:
+			set_lock_target(target_tracking_camera.targets_in_view.get(current_index))
+	else:
+		target_closest_enemy_to_character()
+
+func target_closest_enemy_to_character():
+	var scan_shape : SphereShape3D = SphereShape3D.new()
+	scan_shape.radius = 50.0
 	
-	#current_target = target_tracking_camera.targets_in_view.get(current_index)
-	set_lock_target(target_tracking_camera.targets_in_view.get(current_index))
+	var combat_chr_scanner : CombatCharacterScanner = CombatCharacterScanner.new()
+	combat_chr_scanner.blacklist = [character, current_target]
+	var closest_enemy = combat_chr_scanner.get_closest_character_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
+	
+	print("target outside camera : " + str(closest_enemy))
+	if closest_enemy != null and closest_enemy.is_inside_tree():
+		set_lock_target(closest_enemy)
+	else:
+		set_lock_target(null)
 
 func set_lock_target(new_target : Node3D) -> void:
 	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == true:
@@ -225,15 +244,16 @@ func set_lock_target(new_target : Node3D) -> void:
 	
 	current_target = new_target
 	character.lock_to_target(new_target)
+	target_reticle.visible = current_target != null
 	
 	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == false:
 		current_target.tree_exiting.connect(handle_target_tree_exit.bind(current_target))
 
 func handle_target_tree_exit(_exiting_target : Node3D) -> void:
 	if current_target == _exiting_target:
-		#on_target_next()
-		set_lock_target(null)
-		target_reticle.visible = false
+		on_target_next()
+		#set_lock_target(null)
+		#target_reticle.visible = false
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)

@@ -7,8 +7,13 @@ var scan_layer : int = 1
 var scan_once : bool
 
 var _found_character : bool
+var _finished : bool
+var _result := FAILURE
 
 func tick(blackboard : Dictionary):
+	if _finished == true:
+		return _result
+	
 	if scan_once == true and _found_character == true:
 		return SUCCESS
 	
@@ -24,9 +29,15 @@ func tick(blackboard : Dictionary):
 	if closest_character != null:
 		blackboard.set(found_character_target_key, closest_character)
 		_found_character = true
+		_result = SUCCESS
 		return SUCCESS
 	
+	if scan_once == true:
+		_finished = true
+	
+	_result = FAILURE
 	return FAILURE
 
 func reset(_blackboard : Dictionary):
 	_found_character = false
+	_finished = false

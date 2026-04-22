@@ -40,8 +40,8 @@ metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
 script = ExtResource("1_hv4bh")
 textures = Dictionary[String, Texture2D]({
 "chr_dash": ExtResource("5_2vgjj"),
-"chr_grapple_enemy": ExtResource("6_jy1uy"),
-"chr_grapple_object": ExtResource("7_qca4k"),
+"chr_grapple_enemy": ExtResource("7_qca4k"),
+"chr_grapple_object": ExtResource("6_jy1uy"),
 "chr_primary_atk": ExtResource("8_gba3v"),
 "chr_secondary_atk": ExtResource("9_txcya"),
 "chr_special_atk1": ExtResource("16_gw0nm"),

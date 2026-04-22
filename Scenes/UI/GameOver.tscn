@@ -63,10 +63,11 @@ alignment = 1
 [node name="Button" type="Button" parent="BoxContainer" unique_id=1134057114]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-text = "Retry wave"
+text = "Retry wave "
 icon = ExtResource("2_34bmr")
 
 [node name="Button2" type="Button" parent="BoxContainer" unique_id=454201200]
+visible = false
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"

@@ -376,17 +376,10 @@ resource_name = "Set Stagger Immune"
 script = ExtResource("11_amr4h")
 metadata/_custom_type_script = "uid://br2lag68y1sfx"
 
-[sub_resource type="Resource" id="Resource_qys1q"]
-resource_name = "Wait"
-script = ExtResource("15_5nt2l")
-interval = 2.0
-randomness = 0.4
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
 [sub_resource type="Resource" id="Resource_v6j0g"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_l24v5"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht"), SubResource("Resource_qys1q")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_l24v5"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]

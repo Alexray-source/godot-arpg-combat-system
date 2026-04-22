@@ -242,13 +242,8 @@ resource_name = "Set Stagger Immune"
 script = ExtResource("10_wtyqw")
 metadata/_custom_type_script = "uid://br2lag68y1sfx"
 
-[sub_resource type="Resource" id="Resource_dp3hr"]
-resource_name = "Wait"
-script = ExtResource("6_xw67g")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
 [resource]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_v4std"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g"), SubResource("Resource_dp3hr")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_v4std"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
