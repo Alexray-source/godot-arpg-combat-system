@@ -11,15 +11,15 @@
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="9_smxw8"]
 [ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="12_7ch4d"]
-[ext_resource type="Animation" uid="uid://b3rqxmlhei0k2" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast1.tres" id="13_u7gae"]
-[ext_resource type="Animation" uid="uid://brjy45xwhxbsg" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast2.tres" id="14_2ddvq"]
+[ext_resource type="Animation" uid="uid://bcaje6hlqmm2l" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast1.tres" id="13_u7gae"]
+[ext_resource type="Animation" uid="uid://bolvdqglfcc7k" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast2.tres" id="14_2ddvq"]
 [ext_resource type="AnimationLibrary" uid="uid://8ehkuiwucb7r" path="res://Assets/Animations/General/BaseAnimations.glb" id="14_qbr8q"]
 [ext_resource type="AnimationLibrary" uid="uid://c6pm07awpnnnr" path="res://Assets/Animations/NinjaPlayer/PlayerSwordAnims.glb" id="15_172ob"]
 [ext_resource type="AnimationLibrary" uid="uid://dbddrmfrxh0c8" path="res://Assets/Animations/NinjaPlayer/PlayerGrappleAnims.glb" id="15_jb0u1"]
-[ext_resource type="Animation" uid="uid://cd0bkoi8hh3rk" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast3.tres" id="15_vucap"]
-[ext_resource type="Animation" uid="uid://cdwiet4h8wmmm" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast4.tres" id="16_bghwh"]
+[ext_resource type="Animation" uid="uid://c3vfynnp1trm4" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast3.tres" id="15_vucap"]
+[ext_resource type="Animation" uid="uid://dihlkycg4vuhm" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast4.tres" id="16_bghwh"]
 [ext_resource type="Script" uid="uid://dah4aaqqbvgen" path="res://Scripts/Node/CharacterComponents/CharacterAbilities.gd" id="17_7ch4d"]
-[ext_resource type="Animation" uid="uid://0c1rxdnqtu2n" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast5.tres" id="17_f726w"]
+[ext_resource type="Animation" uid="uid://fj45rhelklso" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast5.tres" id="17_f726w"]
 [ext_resource type="Script" uid="uid://ddbamtm5bpb0k" path="res://Scripts/Resources/AbilityData/AbilityData.gd" id="18_172ob"]
 [ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="18_qbr8q"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
@@ -102,8 +102,8 @@ dash_component = NodePath("DashComponent")
 stagger_component = NodePath("StaggerComponent")
 character_abilities = NodePath("CharacterAbilities")
 max_allowed_attacking_enemies = 2
-start_health = 150
-max_health = 150
+start_health = 250
+max_health = 250
 combat_stats = SubResource("Resource_u1pys")
 chr_layer = SubResource("Resource_rqp8f")
 move_speed = 50.0

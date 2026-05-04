@@ -19,6 +19,7 @@ func _ready() -> void:
 	loaded_data = save_loader.load_from_disk()
 	
 	if loaded_data != null:
+		print(loaded_data.enemy_wave)
 		start_wave(loaded_data.enemy_wave)
 	else:
 		if loaded_data == null:
@@ -34,6 +35,7 @@ func _exit_tree() -> void:
 
 func start_wave(wave_number : int):
 	_current_wave = wave_number
+	print(wave_number)
 	new_wave.emit(_current_wave)
 	update_loaded_wave_data(wave_number)
 	
@@ -55,7 +57,7 @@ func start_wave(wave_number : int):
 func request_next_wave():
 	if spawned_enemies.size() == 0 and _current_wave < waves.size():
 		start_wave(_current_wave+1)
-	elif _current_wave >= waves.size():
-		loaded_data.enemy_wave = 0
+	elif spawned_enemies.size() == 0 and _current_wave >= waves.size():
+		loaded_data.enemy_wave = 1
 		save_loader.save_to_disk(loaded_data)
 		finished.emit()

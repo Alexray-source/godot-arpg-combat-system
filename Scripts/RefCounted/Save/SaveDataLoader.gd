@@ -37,3 +37,6 @@ func save_to_disk(save_data : SaveData):
 	save_file.store_var(save_dictionary, false)
 	save_file.close()
 	
+
+func delete_from_disk():
+	DirAccess.remove_absolute("user://save" + str(save_number))

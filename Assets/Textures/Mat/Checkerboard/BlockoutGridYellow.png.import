@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c55if8r5mafav"
 path.s3tc="res://.godot/imported/BlockoutGridYellow.png-8ee20b3a21cfe23f3b9d284deab3c309.s3tc.ctex"
+path.etc2="res://.godot/imported/BlockoutGridYellow.png-8ee20b3a21cfe23f3b9d284deab3c309.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Mat/Checkerboard/BlockoutGridYellow.png"
-dest_files=["res://.godot/imported/BlockoutGridYellow.png-8ee20b3a21cfe23f3b9d284deab3c309.s3tc.ctex"]
+dest_files=["res://.godot/imported/BlockoutGridYellow.png-8ee20b3a21cfe23f3b9d284deab3c309.s3tc.ctex", "res://.godot/imported/BlockoutGridYellow.png-8ee20b3a21cfe23f3b9d284deab3c309.etc2.ctex"]
 
 [params]
 

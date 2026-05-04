@@ -4,6 +4,8 @@ const ABILITY_DB : AbilityDatabase = preload("res://Resources/AbilityDatabase.tr
 const GAME_OVER_UI_SCENE : PackedScene = preload("res://Scenes/UI/GameOver.tscn")
 const TARGET_RETICLE_SCENE : PackedScene = preload("res://Scenes/UI/target_reticle.tscn")
 
+const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
+
 @export var character_data : CharacterData
 @export var character : CombatCharacter
 @export var plr_state_machine : PlrCharacterStateMachine
@@ -192,6 +194,7 @@ func on_died() -> void:
 	
 	var game_over_ui : GameOverUI = GAME_OVER_UI_SCENE.instantiate()
 	game_over_ui.retry.connect(GlobalSignals.restart_scene.emit, CONNECT_ONE_SHOT)
+	game_over_ui.quit.connect(GlobalSignals.change_scene.emit.bind(TITLE_SCREEN_PATH), CONNECT_ONE_SHOT)
 	
 	add_child(game_over_ui)
 

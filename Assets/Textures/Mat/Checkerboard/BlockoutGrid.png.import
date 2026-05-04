@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8tcdjcjhmmf5"
 path.s3tc="res://.godot/imported/BlockoutGrid.png-34378a9cbb4d8ca9e8117038413e14fa.s3tc.ctex"
+path.etc2="res://.godot/imported/BlockoutGrid.png-34378a9cbb4d8ca9e8117038413e14fa.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Mat/Checkerboard/BlockoutGrid.png"
-dest_files=["res://.godot/imported/BlockoutGrid.png-34378a9cbb4d8ca9e8117038413e14fa.s3tc.ctex"]
+dest_files=["res://.godot/imported/BlockoutGrid.png-34378a9cbb4d8ca9e8117038413e14fa.s3tc.ctex", "res://.godot/imported/BlockoutGrid.png-34378a9cbb4d8ca9e8117038413e14fa.etc2.ctex"]
 
 [params]
 

@@ -135,7 +135,7 @@ metadata/_custom_type_script = "uid://bjqa74mo2q804"
 [sub_resource type="Resource" id="Resource_pvm6y"]
 resource_name = "Selector"
 script = ExtResource("9_vqomc")
-children = Array[ExtResource("3_op6at")]([SubResource("Resource_vqomc"), SubResource("Resource_2msen")])
+children = Array[ExtResource("3_op6at")]([SubResource("Resource_2msen"), SubResource("Resource_vqomc")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_trvt6"]

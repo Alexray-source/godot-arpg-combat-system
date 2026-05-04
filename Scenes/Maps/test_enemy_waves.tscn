@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="8_1xyem"]
 [ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="9_yi1ag"]
 [ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="10_jjisf"]
+[ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="12_jjisf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -228,3 +229,8 @@ debug_color = Color(0, 0.85882354, 1, 1)
 transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 26.407095, 0, 26.407076)
 shape = SubResource("BoxShape3D_yi1ag")
 debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves")]
+script = ExtResource("12_jjisf")
+enemy_waves = NodePath("../EnemyWaves")
+target_scene_path = "res://Scenes/UI/prototype_test_end.tscn"

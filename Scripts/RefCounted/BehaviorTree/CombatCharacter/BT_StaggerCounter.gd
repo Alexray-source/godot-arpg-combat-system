@@ -13,7 +13,7 @@ func tick(blackboard : Dictionary):
 	
 	if character._stagger_count > stagger_count_treshold:
 		#print("Reached stagger threshold")
-		print(character._stagger_count)
+		#print(character._stagger_count)
 		_threshold_reached = true
 		return SUCCESS
 	else:

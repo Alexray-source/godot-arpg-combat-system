@@ -14,11 +14,13 @@ func _ready() -> void:
 	scene_loaded.connect(on_scene_loaded)
 	
 	GlobalSignals.restart_scene.connect(restart_scene)
+	GlobalSignals.change_scene.connect(load_scene)
 
 func restart_scene():
 	load_scene(scene_path)
 
 func load_scene(_path) -> void:
+	scene_path = _path
 	load_screen = LOADING_SCREEN_SCENE.instantiate()
 	add_child(load_screen)
 	load_screen.load_start()

@@ -33,7 +33,6 @@ metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
 [sub_resource type="Resource" id="Resource_1jxw1"]
 resource_name = "Check Stagger Count"
 script = ExtResource("9_yi1jo")
-stagger_count_treshold = 6
 metadata/_custom_type_script = "uid://cxmedjxpldotm"
 
 [sub_resource type="Resource" id="Resource_ya4cg"]
@@ -53,6 +52,23 @@ resource_name = "Selector"
 script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_sj6dd"), SubResource("Resource_pnltp")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_5luce"]
+resource_name = "Check Stagger Count"
+script = ExtResource("9_yi1jo")
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
+
+[sub_resource type="Resource" id="Resource_tqvt7"]
+resource_name = "Set Stagger Immune"
+script = ExtResource("10_qh7sx")
+stagger_immune = true
+metadata/_custom_type_script = "uid://br2lag68y1sfx"
+
+[sub_resource type="Resource" id="Resource_sxmng"]
+resource_name = "Sequence"
+script = ExtResource("6_sxmng")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_5luce"), SubResource("Resource_tqvt7")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_tj3on"]
 resource_name = "Get Closest Chr."
@@ -104,6 +120,7 @@ resource_name = "Chr. Move To"
 script = ExtResource("15_61te7")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
+target_success_radius = 5.0
 timeout_result = 0
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
@@ -119,29 +136,16 @@ script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_myvan"), SubResource("Resource_qh7sx")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
-[sub_resource type="Resource" id="Resource_5luce"]
-resource_name = "Check Stagger Count"
-script = ExtResource("9_yi1jo")
-stagger_count_treshold = 6
-metadata/_custom_type_script = "uid://cxmedjxpldotm"
-
-[sub_resource type="Resource" id="Resource_tqvt7"]
-resource_name = "Set Stagger Immune"
-script = ExtResource("10_qh7sx")
-stagger_immune = true
-metadata/_custom_type_script = "uid://br2lag68y1sfx"
-
-[sub_resource type="Resource" id="Resource_sxmng"]
-resource_name = "Sequence"
-script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_5luce"), SubResource("Resource_tqvt7")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
 [sub_resource type="Resource" id="Resource_2u43t"]
 resource_name = "Selector"
 script = ExtResource("11_6twoj")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_6twoj"), SubResource("Resource_sxmng")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_sxmng"), SubResource("Resource_6twoj")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_484js"]
+resource_name = "Check Stagger Count"
+script = ExtResource("9_yi1jo")
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
 
 [sub_resource type="Resource" id="Resource_f0syj"]
 resource_name = "Request enemy for combat token"
@@ -149,16 +153,10 @@ script = ExtResource("11_2yww0")
 token_lifetime = 4.0
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
-[sub_resource type="Resource" id="Resource_484js"]
-resource_name = "Check Stagger Count"
-script = ExtResource("9_yi1jo")
-stagger_count_treshold = 6
-metadata/_custom_type_script = "uid://cxmedjxpldotm"
-
 [sub_resource type="Resource" id="Resource_5hrey"]
 resource_name = "Selector"
 script = ExtResource("11_6twoj")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_f0syj"), SubResource("Resource_484js")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_484js"), SubResource("Resource_f0syj")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_g6g8b"]
@@ -173,6 +171,15 @@ script = ExtResource("14_dwotr")
 interval = 0.5
 randomness = 0.4
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_q5qd7"]
+resource_name = "Get Closest Chr."
+script = ExtResource("3_f0syj")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 15.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
 [sub_resource type="Resource" id="Resource_rac3i"]
 resource_name = "Set Chr. Move Speed"
@@ -224,7 +231,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_x18n6"]
 resource_name = "Sequence"
 script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_espkd"), SubResource("Resource_tj3on"), SubResource("Resource_rac3i"), SubResource("Resource_gtqxs"), SubResource("Resource_kytlo")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_espkd"), SubResource("Resource_q5qd7"), SubResource("Resource_rac3i"), SubResource("Resource_gtqxs"), SubResource("Resource_kytlo")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_ijynf"]

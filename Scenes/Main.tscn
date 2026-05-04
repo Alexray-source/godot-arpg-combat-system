@@ -4,4 +4,4 @@
 
 [node name="Main" type="Node" unique_id=169160600]
 script = ExtResource("1_r150o")
-scene_path = "res://Scenes/Maps/test_enemy_waves.tscn"
+scene_path = "res://Scenes/UI/title.tscn"

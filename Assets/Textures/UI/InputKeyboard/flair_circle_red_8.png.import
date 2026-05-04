@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://31gu81q1omi3"
 path.s3tc="res://.godot/imported/flair_circle_red_8.png-5a928a730cc15c0285c16ffda4156523.s3tc.ctex"
+path.etc2="res://.godot/imported/flair_circle_red_8.png-5a928a730cc15c0285c16ffda4156523.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/UI/InputKeyboard/flair_circle_red_8.png"
-dest_files=["res://.godot/imported/flair_circle_red_8.png-5a928a730cc15c0285c16ffda4156523.s3tc.ctex"]
+dest_files=["res://.godot/imported/flair_circle_red_8.png-5a928a730cc15c0285c16ffda4156523.s3tc.ctex", "res://.godot/imported/flair_circle_red_8.png-5a928a730cc15c0285c16ffda4156523.etc2.ctex"]
 
 [params]
 

@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://bnto811d3e3kv"]
+
+[ext_resource type="Texture2D" uid="uid://0obw322h23kd" path="res://Assets/Textures/UI/InputController/xbox_button_start.svg" id="1_2aywq"]
+[ext_resource type="Script" uid="uid://bymnnxr8oy87w" path="res://Scripts/Node/UI/title.gd" id="1_gdg20"]
+[ext_resource type="Texture2D" uid="uid://bjkyq7enieiue" path="res://Assets/Textures/UI/InputController/xbox_button_back.svg" id="3_o0rgc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdg20"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o0rgc"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_468b1"]
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_2aywq"]
+font_size = 36
+
+[node name="Title" type="Panel" unique_id=1044877940]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gdg20")
+script = ExtResource("1_gdg20")
+target_scene_path = "res://Scenes/Maps/test_enemy_waves.tscn"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=854937166]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.5
+offset_top = -163.0
+offset_right = 109.5
+offset_bottom = -99.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=429961077]
+layout_mode = 2
+text = "Press"
+label_settings = SubResource("LabelSettings_o0rgc")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=486574302]
+layout_mode = 2
+texture = ExtResource("1_2aywq")
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="HBoxContainer" unique_id=974112886]
+layout_mode = 2
+text = "to start"
+label_settings = SubResource("LabelSettings_o0rgc")
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=819655317]
+modulate = Color(1, 1, 1, 0.13333334)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 135.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer2" unique_id=1435272231]
+layout_mode = 2
+text = "Press"
+label_settings = SubResource("LabelSettings_468b1")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=1319346384]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_o0rgc")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="HBoxContainer2" unique_id=236695574]
+layout_mode = 2
+text = "to delete save data"
+label_settings = SubResource("LabelSettings_468b1")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=2103275634]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Action RPG Combat System Prototype"
+label_settings = SubResource("LabelSettings_2aywq")
