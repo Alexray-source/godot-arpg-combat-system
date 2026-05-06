@@ -431,7 +431,7 @@ tracks/60/path = NodePath("..")
 tracks/60/interp = 1
 tracks/60/loop_wrap = true
 tracks/60/keys = {
-"times": PackedFloat32Array(0.16666667, 0.20833334, 0.41666666),
+"times": PackedFloat32Array(0.1547043, 0.20833334, 0.41666666),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [&"kick"],
@@ -442,5 +442,19 @@ tracks/60/keys = {
 }, {
 "args": [],
 "method": &"end_attack_debounce"
+}]
+}
+tracks/61/type = "method"
+tracks/61/imported = false
+tracks/61/enabled = true
+tracks/61/path = NodePath(".")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = {
+"times": PackedFloat32Array(0.125),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["general_slash", "Foot_L"],
+"method": &"slash_vfx"
 }]
 }

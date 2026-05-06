@@ -163,8 +163,8 @@ func on_atk_hit(atk_info : AtkInfo):
 func on_throwable_hit(throwable : Throwable):
 	#set_state("knockback")
 	knockback()
-	var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
-	throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
+	#var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
+	#throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
 	
 
 func on_dash_end():

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/Node/Environment/Throwable.gd" id="1_ifau6"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="2_fb08b"]
+[ext_resource type="AudioStream" uid="uid://dk4uhyegdrvma" path="res://Assets/SFX/524312__bertsz__rock-destroy.wav" id="4_oiq14"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_wrd4j"]
 
@@ -10,12 +11,13 @@ albedo_color = Color(0.44209558, 0.15686277, 0.9019608, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1aaj"]
 
-[node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox")]
+[node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox", "hit_sfx_player")]
 angular_damp_mode = 1
 script = ExtResource("1_ifau6")
 hurtbox = NodePath("HurtBox")
 accepted_atk_types = Array[int]([3])
 allowed_target_hits = 10000
+hit_sfx_player = NodePath("AudioStreamPlayer3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
 mesh = SubResource("BoxMesh_wrd4j")
@@ -32,3 +34,7 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1752552509]
 shape = SubResource("BoxShape3D_o1aaj")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=792607980]
+stream = ExtResource("4_oiq14")
+unit_size = 25.0

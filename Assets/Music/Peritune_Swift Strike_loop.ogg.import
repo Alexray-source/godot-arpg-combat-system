@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c0078nfv36bky"
+path="res://.godot/imported/Peritune_Swift Strike_loop.ogg-8c2c3ef4d2f76bb17f6241831dac133f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Peritune_Swift Strike_loop.ogg"
+dest_files=["res://.godot/imported/Peritune_Swift Strike_loop.ogg-8c2c3ef4d2f76bb17f6241831dac133f.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

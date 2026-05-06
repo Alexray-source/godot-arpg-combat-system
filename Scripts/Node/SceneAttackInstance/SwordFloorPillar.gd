@@ -41,7 +41,7 @@ func move_to_target(factor : float):
 	main_object.global_position = spawn_transform.origin.lerp(_target.global_position, factor)
 
 func spawn_sword_pillar():
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.25).timeout
 	decal.visible = false
 	
 	var aoe_hitbox : AoeHitbox = AoeHitbox.new()

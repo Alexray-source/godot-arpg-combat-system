@@ -13,9 +13,10 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 2.0
 
-[node name="MaleBaseRigV2" unique_id=1179849529 node_paths=PackedStringArray("mesh_instance", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("1_w5mna")]
+[node name="MaleBaseRigV2" unique_id=1179849529 node_paths=PackedStringArray("mesh_instance", "skeleton", "equipped_weapons_visuals", "holstered_weapons_visuals") instance=ExtResource("1_w5mna")]
 script = ExtResource("2_jlwqs")
 mesh_instance = NodePath("Armature_003/GeneralSkeleton/Cube_003")
+skeleton = NodePath("Armature_003/GeneralSkeleton")
 dmg_overlay_mat = SubResource("StandardMaterial3D_324pt")
 equipped_weapons_visuals = {
 "flintlock": NodePath("Armature_003/GeneralSkeleton/EquippedGun")
@@ -23,6 +24,9 @@ equipped_weapons_visuals = {
 holstered_weapons_visuals = {
 "flintlock": NodePath("Armature_003/GeneralSkeleton/HolsteredGun")
 }
+bone_vfx_rot_offsets = Dictionary[String, Vector3]({
+"Hand_L": Vector3(90, 0, 0)
+})
 
 [node name="Cube_003" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(758744942) index="0" unique_id=4665352]
 material_override = ExtResource("3_jlwqs")

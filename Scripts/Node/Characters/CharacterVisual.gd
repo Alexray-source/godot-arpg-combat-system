@@ -7,6 +7,7 @@ enum WeaponEquipMode {
 
 @export var combat_character : CombatCharacter
 @export var mesh_instance : MeshInstance3D
+@export var skeleton : Skeleton3D
 @export var dmg_overlay_mat : Material
 @export var anim_tree : AnimationTree
 @export var state_machine : CharacterStateMachine
@@ -22,6 +23,8 @@ enum WeaponEquipMode {
 @export var animation_node_name : String = "OverrideAnimation"
 @export var oneshot_node_name : String = "OneShot"
 
+@export_subgroup("Attack VFX")
+@export var bone_vfx_rot_offsets : Dictionary[String, Vector3]
 
 var _legs_blend_path : String
 var _mesh_cached_scale : float
@@ -79,3 +82,18 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	
 	equipped_weapon_node.visible = equip_mode == WeaponEquipMode.EQUIP
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
+
+func slash_vfx(vfx_key : String, bone_name : String):
+	var bone_id : int = skeleton.find_bone(bone_name)
+	var bone_transform : Transform3D = skeleton.get_bone_global_pose(bone_id)
+	var bone_global_transform = skeleton.global_transform * bone_transform
+	
+	if bone_vfx_rot_offsets.get(bone_name) != null:
+		var bone_rot_offset : Vector3 = bone_vfx_rot_offsets.get(bone_name)
+		bone_global_transform = bone_global_transform.rotated_local(Vector3.RIGHT, deg_to_rad(bone_rot_offset.x))
+		bone_global_transform = bone_global_transform.rotated_local(Vector3.UP, deg_to_rad(bone_rot_offset.y))
+		bone_global_transform = bone_global_transform.rotated_local(Vector3.FORWARD, deg_to_rad(bone_rot_offset.z))
+	print(vfx_key)
+	GlobalSignals.spawn_vfx.emit(vfx_key, bone_global_transform.orthonormalized())
+	
+	

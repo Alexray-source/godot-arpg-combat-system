@@ -21,20 +21,24 @@ func tick(blackboard : Dictionary):
 	scan_shape.radius = scan_radius
 	
 	#print(blackboard.get(origin_node_scan_key))
-	var origin : Node3D = blackboard.get(origin_node_scan_key) as Node3D
+	var origin : Node3D = blackboard_object_get(blackboard, origin_node_scan_key)
+	
+	if origin == null:
+		return FAILURE
 	
 	var scanner = CombatCharacterScanner.new()
-	var closest_character = scanner.get_closest_character_to_position(origin.global_position, origin.get_world_3d().direct_space_state, scan_shape, origin.transform.orthonormalized(), scan_layer)
+	var closest_character = scanner.get_closest_character_to_position(origin.global_position, origin.get_world_3d().direct_space_state, scan_shape, origin.global_transform.orthonormalized(), scan_layer)
+	#print(closest_character)
+	if scan_once == true:
+		_finished = true
 	
 	if closest_character != null:
 		blackboard.set(found_character_target_key, closest_character)
 		_found_character = true
 		_result = SUCCESS
+		#print(_found_character)
 		return SUCCESS
-	
-	if scan_once == true:
-		_finished = true
-	
+	#print(_found_character)
 	_result = FAILURE
 	return FAILURE
 

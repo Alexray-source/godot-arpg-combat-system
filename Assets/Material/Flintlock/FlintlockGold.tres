@@ -1,17 +1,11 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://wv1e88k2o63g"]
 
-[ext_resource type="Shader" uid="uid://cj4slq8586qbx" path="res://Shaders/InverseHull.gdshader" id="1_6sc2r"]
+[ext_resource type="Material" uid="uid://4mina2opc8kc" path="res://Assets/Material/outline.tres" id="1_6sc2r"]
 [ext_resource type="Shader" uid="uid://u85hcwww5dj3" path="res://Shaders/CelShaderV3.gdshader" id="2_s1swq"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cb2lu"]
-render_priority = 0
-shader = ExtResource("1_6sc2r")
-shader_parameter/OutlineSize = 0.5
-shader_parameter/OutlineColor = Color(0, 0, 0, 1)
 
 [resource]
 render_priority = 0
-next_pass = SubResource("ShaderMaterial_cb2lu")
+next_pass = ExtResource("1_6sc2r")
 shader = ExtResource("2_s1swq")
 shader_parameter/BaseColor = Color(0.94921875, 0.7593634, 0.11123657, 1)
 shader_parameter/useAlpha = false

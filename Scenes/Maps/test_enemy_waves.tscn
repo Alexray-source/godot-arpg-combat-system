@@ -12,6 +12,13 @@
 [ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="9_yi1ag"]
 [ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="10_jjisf"]
 [ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="12_jjisf"]
+[ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="13_38hi7"]
+[ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="14_kn14b"]
+[ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="15_2grvq"]
+[ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="16_hjdgx"]
+[ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
+[ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
+[ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -35,8 +42,13 @@ ambient_light_color = Color(0.37347412, 0.4081049, 0.453125, 1)
 ambient_light_energy = 4.0
 tonemap_mode = 3
 glow_enabled = true
-glow_intensity = 0.5
-glow_bloom = 0.1
+glow_levels/1 = 1.0
+glow_levels/2 = 1.0
+glow_levels/3 = 1.0
+glow_levels/4 = 1.0
+glow_levels/5 = 1.0
+glow_levels/6 = 1.0
+glow_hdr_scale = 0.5
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xcpuq"]
 top_radius = 26.0
@@ -108,6 +120,9 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 [sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
 size = Vector3(46, 156, 28.46106)
 
+[sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
+material = ExtResource("14_kn14b")
+
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
@@ -129,6 +144,7 @@ mesh = SubResource("CylinderMesh_xcpuq")
 shape = SubResource("CylinderShape3D_jjisf")
 
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
 
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
@@ -230,7 +246,36 @@ transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.707
 shape = SubResource("BoxShape3D_yi1ag")
 debug_color = Color(0, 0.85882354, 1, 1)
 
-[node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves")]
+[node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
 script = ExtResource("12_jjisf")
 enemy_waves = NodePath("../EnemyWaves")
 target_scene_path = "res://Scenes/UI/prototype_test_end.tscn"
+bgm_changer = NodePath("BgmChanger")
+
+[node name="BgmChanger" type="Node" parent="Node" unique_id=89251606]
+script = ExtResource("17_2grvq")
+crossfade_time = 2.0
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="RenderCache" type="Node" parent="." unique_id=881205720]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="RenderCache" unique_id=1791191181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.3329086, -0.7182689)
+material_overlay = ExtResource("13_38hi7")
+mesh = SubResource("BoxMesh_pe36k")
+
+[node name="ShieldVisual" parent="RenderCache" unique_id=229986644 instance=ExtResource("15_2grvq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6330957, -13.267851, -0.5667343)
+
+[node name="FlintlockBullet" parent="RenderCache" unique_id=351752051 instance=ExtResource("16_hjdgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.857524, -3.1741867, 4.2915225)
+
+[node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
+script = ExtResource("17_2grvq")
+auto_start = true
+bgm = ExtResource("18_hjdgx")
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="VFXSpawner" type="Node" parent="." unique_id=832207028]
+script = ExtResource("19_hjdgx")
+metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"

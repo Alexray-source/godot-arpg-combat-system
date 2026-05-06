@@ -15,8 +15,8 @@ signal input_mode_changed(new_input_mode : String)
 
 func _ready() -> void:
 	change_input_mode(Input.get_connected_joypads().size() > 0)
-	Input.joy_connection_changed.connect(func(_device : int, is_connected : bool):
-		change_input_mode.bind(is_connected)
+	Input.joy_connection_changed.connect(func(_device : int, is_gamepad_connected : bool):
+		change_input_mode.bind(is_gamepad_connected)
 	)
 	
 	show_inputs(tutorial_actions, tutorial_display_time)

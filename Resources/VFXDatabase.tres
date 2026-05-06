@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VFX_Database" format=3 uid="uid://20nrxdouskda"]
+
+[ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="1_q1kvh"]
+[ext_resource type="Script" uid="uid://1giy8nffy3qm" path="res://Scripts/Resources/VFXDatabase/VFX_Database.gd" id="1_sq60v"]
+
+[resource]
+script = ExtResource("1_sq60v")
+entries = Dictionary[String, PackedScene]({
+"general_slash": ExtResource("1_q1kvh")
+})
+metadata/_custom_type_script = "uid://1giy8nffy3qm"
