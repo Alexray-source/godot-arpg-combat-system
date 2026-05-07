@@ -247,6 +247,7 @@ func dodge_dash():
 	if abs_move_dir.x < 0.1 and abs_move_dir.z < 0.1:
 		return
 	
+	character_abilities.interrupt_active_ability()
 	set_state("dodge_dash")
 
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):

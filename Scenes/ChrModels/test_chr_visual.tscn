@@ -27,6 +27,9 @@ holstered_weapons_visuals = {
 bone_vfx_rot_offsets = Dictionary[String, Vector3]({
 "Hand_L": Vector3(90, 0, 0)
 })
+vfx_key_mapping = Dictionary[String, String]({
+"general_slash": "general_slash"
+})
 
 [node name="Cube_003" parent="Armature_003/GeneralSkeleton" parent_id_path=PackedInt32Array(758744942) index="0" unique_id=4665352]
 material_override = ExtResource("3_jlwqs")

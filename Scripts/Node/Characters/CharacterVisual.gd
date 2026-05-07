@@ -25,6 +25,7 @@ enum WeaponEquipMode {
 
 @export_subgroup("Attack VFX")
 @export var bone_vfx_rot_offsets : Dictionary[String, Vector3]
+@export var vfx_key_mapping : Dictionary[String, String]
 
 var _legs_blend_path : String
 var _mesh_cached_scale : float
@@ -83,10 +84,16 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	equipped_weapon_node.visible = equip_mode == WeaponEquipMode.EQUIP
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
 
-func slash_vfx(vfx_key : String, bone_name : String):
+func slash_vfx(vfx_preset : String, bone_name : String):
+	print(vfx_preset)
+	if vfx_key_mapping.get(vfx_preset) == null:
+		return
+	
 	var bone_id : int = skeleton.find_bone(bone_name)
 	var bone_transform : Transform3D = skeleton.get_bone_global_pose(bone_id)
 	var bone_global_transform = skeleton.global_transform * bone_transform
+	
+	var vfx_key = vfx_key_mapping.get(vfx_preset)
 	
 	if bone_vfx_rot_offsets.get(bone_name) != null:
 		var bone_rot_offset : Vector3 = bone_vfx_rot_offsets.get(bone_name)

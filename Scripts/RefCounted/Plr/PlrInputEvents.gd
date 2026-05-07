@@ -50,6 +50,16 @@ func setup() -> void:
 		change_input_mode.bind(is_connected)
 	)
 
+func disconnect_all_events():
+	for input_signal_key in signal_mapping:
+		var input_signal : Signal = signal_mapping[input_signal_key]
+		var connections = input_signal.get_connections()
+		
+		for connection : Dictionary in connections:
+			var callable = connection.get("callable")
+			input_signal.disconnect(callable)
+		
+		
 func change_input_mode(is_gamepad_connected : bool):
 	if is_gamepad_connected:
 		input_mode = InputMode.GAMEPAD

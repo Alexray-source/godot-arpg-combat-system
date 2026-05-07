@@ -19,6 +19,8 @@
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
+[ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
+[ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -41,14 +43,23 @@ ambient_light_source = 2
 ambient_light_color = Color(0.37347412, 0.4081049, 0.453125, 1)
 ambient_light_energy = 4.0
 tonemap_mode = 3
+tonemap_white = 1.5
 glow_enabled = true
 glow_levels/1 = 1.0
-glow_levels/2 = 1.0
+glow_levels/2 = 3.0
 glow_levels/3 = 1.0
 glow_levels/4 = 1.0
 glow_levels/5 = 1.0
 glow_levels/6 = 1.0
-glow_hdr_scale = 0.5
+glow_levels/7 = 1.0
+glow_hdr_threshold = 1.5
+glow_hdr_scale = 1.0
+fog_enabled = true
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_brightness = 0.96
+adjustment_contrast = 1.125
+adjustment_saturation = 1.05
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xcpuq"]
 top_radius = 26.0
@@ -269,6 +280,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6330957, -13.267851, -0.56
 
 [node name="FlintlockBullet" parent="RenderCache" unique_id=351752051 instance=ExtResource("16_hjdgx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.857524, -3.1741867, 4.2915225)
+
+[node name="GeneralSlash" parent="RenderCache" unique_id=871721391 instance=ExtResource("20_yin4f")]
+transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0.019015998, 26.425064, -16.24628, 8.97797)
+
+[node name="GeneralSlash2" parent="RenderCache" unique_id=1023199983 instance=ExtResource("21_x2r5p")]
+transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
 [node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
 script = ExtResource("17_2grvq")

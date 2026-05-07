@@ -2,9 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://54a2401gtppj" path="res://Assets/Textures/VFX/Slash/GeneralSlash.png" id="1_hhybn"]
 [ext_resource type="Shader" uid="uid://ds5x2ussuuo36" path="res://SlashMaterial.gdshader" id="1_qfwxm"]
+[ext_resource type="Texture2D" uid="uid://c3gd5uggmttub" path="res://Assets/Textures/VFX/Slash/SlashMask1.png" id="3_1o23y"]
 
 [sub_resource type="Gradient" id="Gradient_qfwxm"]
-offsets = PackedFloat32Array(0.41943127, 0.5379147)
+offsets = PackedFloat32Array(0.17080745, 0.23291926)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1o23y"]
 noise_type = 3
@@ -23,4 +24,5 @@ render_priority = 0
 shader = ExtResource("1_qfwxm")
 shader_parameter/albedo = ExtResource("1_hhybn")
 shader_parameter/noise_mask = SubResource("NoiseTexture2D_opdw0")
-shader_parameter/strength = 25.0
+shader_parameter/mask = ExtResource("3_1o23y")
+shader_parameter/strength = 4.0

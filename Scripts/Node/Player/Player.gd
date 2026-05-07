@@ -175,13 +175,16 @@ func on_grapple(targets_characters : bool) -> void:
 			character.perform_ability("grapple_object")
 		
 func on_dodge_dash() -> void:
-	var abs_move_dir : Vector3 = character.move_dir.abs()
+	var abs_move_dir : Vector3 = input_events.move_dir.abs()
 	if abs_move_dir.x < 0.1 and abs_move_dir.z < 0.1:
 		return
-	
-	if character.debounces.is_debounce_active("attack") == false and plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
+
+
+	if plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
 		plr_debounces.add_debounce("dodge_dash")
 		plr_debounces.remove_debounce_delayed("dodge_dash", 0.5)
+		
+		character.move_dir = input_events.move_dir
 		plr_state_machine.transition_to_state_by_key("dodge_dash")
 
 func on_damage_hit() -> void:

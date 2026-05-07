@@ -11,7 +11,7 @@ hostility = 1
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sy7se"]
-size = Vector3(1, 15, 1)
+size = Vector3(4, 15, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofm7e"]
 transparency = 1
@@ -45,7 +45,7 @@ emission_shape_offset = Vector3(0, -8, 0)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
 emission_ring_height = 0.0
-emission_ring_radius = 1.0
+emission_ring_radius = 2.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
 direction = Vector3(0, 1, 0)
@@ -73,7 +73,7 @@ hitbox = SubResource("BoxShape3D_sy7se")
 travel_time = 1.35
 
 [node name="Decal" type="Decal" parent="." unique_id=711771147]
-size = Vector3(2, 15, 2)
+size = Vector3(4, 15, 4)
 texture_albedo = ExtResource("3_pf67q")
 modulate = Color(1, 0, 0, 1)
 
