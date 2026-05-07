@@ -41,7 +41,7 @@ func is_current_state(state_to_compare : State) -> bool:
 
 func is_current_state_by_key(state_key_to_compare) -> bool:
 	var state_to_compare = get_state_by_key(state_key_to_compare)
-	return current_state == state_to_compare	
+	return current_state == state_to_compare
 
 func transition_to_state_by_key(new_state_key : String):
 	var new_state = get_state_by_key(new_state_key)

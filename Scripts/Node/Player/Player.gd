@@ -8,7 +8,7 @@ const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 
 @export var character_data : CharacterData
 @export var character : CombatCharacter
-@export var plr_state_machine : PlrCharacterStateMachine
+#@export var plr_state_machine : PlrCharacterStateMachine
 @export var camera_arm : ChrCamArm
 @export var target_tracking_camera : TargetTrackingCamera
 @export var hud : PlayerHUD
@@ -19,6 +19,7 @@ const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 @export var targeting_cancel_distance_treshold : float = 40.0
 @export var max_ability_energy : int = 100
 
+var current_camera : Camera3D
 var camera_rot_x : float = 0.0
 var camera_rot_y : float = 0.0
 var camera_rot_x_accel : float = 0.0
@@ -41,17 +42,18 @@ var ability_energy : int = 0:
 		ability_energy_changed.emit()
 
 var equipped_abilities_keys : Array[String]
-var plr_special_atk_state : PlrSpecialAtkState
+#var plr_special_atk_state : PlrSpecialAtkState
 var attacking_enemies : Array[Enemy]
 
 signal ability_energy_changed()
 
 
 func _ready() -> void:
+	current_camera = get_viewport().get_camera_3d()
 	character = character_data.character_scene.instantiate()
 	add_child(character)
 	camera_arm.target = character
-	plr_state_machine.character = character
+	#plr_state_machine.character = character
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	input_events = PlrInputEvents.new()
@@ -59,10 +61,10 @@ func _ready() -> void:
 	
 	plr_debounces = Debounces.new()
 	
-	plr_state_machine.input_events = input_events
-	plr_state_machine.state_machine_setup()
-	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
-	plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
+	#plr_state_machine.input_events = input_events
+	#plr_state_machine.state_machine_setup()
+	#plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
+	#plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
 	
 	equipped_abilities_keys.resize(character_data.available_abilities.size())
 	
@@ -81,10 +83,10 @@ func _ready() -> void:
 		equipped_abilities_keys[ability_index] = ability_key
 		ability_index += 1
 	
-	character.ability_finished.connect(return_to_movement_state)
+	#character.ability_finished.connect(return_to_movement_state)
 	
 	character.enemies_hit.connect(on_enemies_hit)
-	character.dash_component.dash_ended.connect(return_to_movement_state)
+	#character.dash_component.dash_ended.connect(return_to_movement_state)
 	
 	on_damage_hit()
 	character.damage_hit.connect(on_damage_hit)
@@ -104,7 +106,8 @@ func _ready() -> void:
 	
 	input_events.target_lock.connect(on_toggle_target_lock)
 	input_events.target_next.connect(on_target_next)
-
+	
+	input_events.jump_input.connect(character.jump)
 	input_events.dash_input.connect(on_dodge_dash)
 	
 	target_reticle = TARGET_RETICLE_SCENE.instantiate()
@@ -131,13 +134,14 @@ func deplete_ability_energy(amount : int):
 func get_special_atk_debounce_string(atk_index : int):
 	return "attack" + str(atk_index)
 
-func return_to_movement_state():
-	plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
+#func return_to_movement_state():
+	#plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 
 func on_primary_atk() -> void:
 	#print(character.debounces.is_debounce_active("attack"))
 	if character.debounces.is_debounce_active("attack") == false:
-		plr_state_machine.transition_to_state_by_key("primary_atk")
+		#plr_state_machine.transition_to_state_by_key("primary_atk")
+		character.primary_attack()
 
 func on_secondary_atk() -> void:
 	if character.debounces.is_debounce_active("attack") == false:
@@ -159,9 +163,10 @@ func on_special_atk(atk_index : int) -> void:
 		plr_debounces.add_debounce(debounce_string)
 		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
 		
-		plr_special_atk_state.ability_key = ability_key
+		character.perform_ability(ability_key)
+		#plr_special_atk_state.ability_key = ability_key
 		
-		plr_state_machine.transition_to_state(plr_special_atk_state)
+		#plr_state_machine.transition_to_state(plr_special_atk_state)
 
 func on_grapple(targets_characters : bool) -> void:
 	if character is CombatCharacter and plr_debounces.is_debounce_active("grapple") == false:
@@ -184,8 +189,9 @@ func on_dodge_dash() -> void:
 		plr_debounces.add_debounce("dodge_dash")
 		plr_debounces.remove_debounce_delayed("dodge_dash", 0.5)
 		
-		character.move_dir = input_events.move_dir
-		plr_state_machine.transition_to_state_by_key("dodge_dash")
+		character.dodge_dash()
+		#character.move_dir = input_events.move_dir
+		#plr_state_machine.transition_to_state_by_key("dodge_dash")
 
 func on_damage_hit() -> void:
 	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
@@ -304,6 +310,8 @@ func handle_camera_rot(delta):
 		input_events.camera_move_dir = Vector2(0.0,0.0)
 
 func _process(delta: float) -> void:
+	input_events.process(delta)
+
 	if current_target != null:
 		target_reticle.global_position = current_target.global_position
 	
@@ -326,3 +334,10 @@ func _process(delta: float) -> void:
 			set_lock_target(null)
 	
 	camera_arm.target_offset_pos = lerp(camera_arm.target_offset_pos, camera_center_offset, delta * 5.0)
+	
+	var flat_right_dir = Vector3(current_camera.global_basis.x.x, 0.0, current_camera.global_basis.x.z)
+	var flat_forward_dir = Vector3(current_camera.global_basis.z.x, 0.0, current_camera.global_basis.z.z)
+	
+	var corrected_basis = Basis(flat_right_dir, Vector3.UP, -flat_forward_dir)
+	var relative_input_camera_view : Vector3 = corrected_basis * input_events.move_dir
+	character.move_dir = relative_input_camera_view

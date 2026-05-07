@@ -171,6 +171,9 @@ func on_dash_end():
 	if state_machine.is_current_state_by_key("attack") or state_machine.is_current_state_by_key("sp_attack") or state_machine.is_current_state_by_key("knockback"):
 		return
 	
+	if state_machine.is_current_state_by_key("dodge_dash"):
+		debounces.remove_debounce("attack")
+	
 	rescan_ground_state()
 
 func on_stagger_end():

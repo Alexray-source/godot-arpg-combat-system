@@ -17,10 +17,9 @@ metadata/_custom_type_script = "uid://snap5qatdr20"
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]
 points = PackedVector3Array(0, 0, 0, -0.7344628, 0.4131353, -0.53840834, -0.7344628, -0.4131353, -0.53840834, 0.7344628, 0.4131353, -0.53840834, 0.7344628, -0.4131353, -0.53840834)
 
-[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("plr_state_machine", "camera_arm", "target_tracking_camera", "hud")]
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("camera_arm", "target_tracking_camera", "hud")]
 script = ExtResource("1_mtuoh")
 character_data = SubResource("Resource_jlvik")
-plr_state_machine = NodePath("PlrCharacterStateMachine")
 camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("SpringArm3D/Camera3D")
 hud = NodePath("Hud")
