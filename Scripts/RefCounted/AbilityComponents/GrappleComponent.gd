@@ -50,7 +50,10 @@ func action() -> void:
 	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	#+ (character.global_basis.orthonormalized() * attack_data.local_offset))
 	
-	var closest_grapple_object = target_override
+	var closest_grapple_object
+	
+	if should_target_characters == true:
+		closest_grapple_object = target_override
 	
 	if closest_grapple_object == null:
 		closest_grapple_object = _aoe_grapple.get_closest_grapple_object()
@@ -60,7 +63,7 @@ func action() -> void:
 		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(closest_grapple_object.global_position.x, 0.0, closest_grapple_object.global_position.z)
 		
 		character.global_basis = Basis.looking_at((closest_hurtbox_pos_xz_plane - chr_pos_xz_plane).normalized(), Vector3.UP)
-	#print(closest_grapple_object)
+	print(closest_grapple_object)
 	if closest_grapple_object == null:
 		on_grapple_finished()
 	else:

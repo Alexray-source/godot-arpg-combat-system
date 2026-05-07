@@ -11,6 +11,7 @@ var grapple_reel_in_speed : float = 3000.0
 
 var _current_target : Node3D
 var _grapple_line : GrappleLine
+var _timer : SceneTreeTimer
 
 signal grapple_finished
 
@@ -74,6 +75,12 @@ func perform_grapple(target_node : Node3D):
 		grapple_finished.emit()
 		return
 	
+	if _timer != null and is_instance_valid(_timer):
+		if _timer.timeout.is_connected(on_timer_finish):
+			_timer.timeout.disconnect(on_timer_finish)
+		
+		_timer = null
+	
 	if _grapple_line != null and is_instance_valid(_grapple_line):
 		_grapple_line.queue_free()
 	
@@ -88,12 +95,6 @@ func perform_grapple(target_node : Node3D):
 	_grapple_line.set_end_node_animated(target_node)
 	_grapple_line.grapple_anim_finished.connect(func():
 		class_callback.call(target_node)
-		#_grapple_line.set_end_node_animated(instigator)
-		
-		#_grapple_line.grapple_anim_finished.connect(func():
-			#_grapple_line.queue_free()
-			#_grapple_line = null
-		#, CONNECT_ONE_SHOT)
 	, CONNECT_ONE_SHOT)
 
 func throwable_grapple(target_node : Throwable):
@@ -109,19 +110,28 @@ func character_grapple_to_target(target_node : Node3D):
 	instigator.set_state("custom_movement")
 	_current_target = target_node
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
-	instigator.get_tree().create_timer(2.0).timeout.connect(func():
-		instigator.up_velocity = Vector3.ZERO
-		grapple_finished.emit()
-		, CONNECT_ONE_SHOT)
+	
+	_timer = instigator.get_tree().create_timer(2.0)
+	_timer.timeout.connect(on_timer_finish, CONNECT_ONE_SHOT)
+
+func on_timer_finish():
+	_timer = null
+	#instigator.up_velocity = Vector3.ZERO
+	grapple_finished.emit()
 
 func physics_process(delta : float):
 	if _current_target != null:
+		if is_instance_valid(_current_target) == false:
+			_current_target = null
+			grapple_finished.emit()
+			return
+		
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
 		
 		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
 		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius:
 			instigator.velocity = Vector3(0.0,5.0,0.0)
-			instigator.up_velocity = Vector3.ZERO
+			#instigator.up_velocity = Vector3.ZERO
 			instigator.move_and_slide()
 			#print("finished reeling to target")
 			

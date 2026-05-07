@@ -20,7 +20,7 @@ const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 @export var max_ability_energy : int = 100
 
 var current_camera : Camera3D
-var camera_rot_x : float = 0.0
+var camera_rot_x : float = -0.35
 var camera_rot_y : float = 0.0
 var camera_rot_x_accel : float = 0.0
 var camera_rot_y_accel : float = 0.0
@@ -49,7 +49,11 @@ signal ability_energy_changed()
 
 
 func _ready() -> void:
-	current_camera = get_viewport().get_camera_3d()
+	GlobalSignals.camera_changed.connect(set_active_camera)
+	GlobalSignals.plr_input_state_changed.connect(set_input_state)
+	
+	set_active_camera(get_viewport().get_camera_3d())
+	
 	character = character_data.character_scene.instantiate()
 	add_child(character)
 	camera_arm.target = character
@@ -115,6 +119,9 @@ func _ready() -> void:
 	add_child(target_reticle)
 	target_reticle.visible = false
 
+func set_active_camera(new_camera : Camera3D):
+	current_camera = new_camera
+
 func on_ability_energy_changed():
 	hud.ability_energy_bar.value = ability_energy / float(max_ability_energy)
 	
@@ -164,10 +171,9 @@ func on_special_atk(atk_index : int) -> void:
 		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
 		
 		character.perform_ability(ability_key)
-		#plr_special_atk_state.ability_key = ability_key
-		
-		#plr_state_machine.transition_to_state(plr_special_atk_state)
-
+	elif ability_energy < ability_db_entry.ability_energy_cost:
+		hud.abilities_ui.insufficient_energy_notification(atk_index)
+	
 func on_grapple(targets_characters : bool) -> void:
 	if character is CombatCharacter and plr_debounces.is_debounce_active("grapple") == false:
 		#character.grapple()
@@ -273,8 +279,7 @@ func _input(event: InputEvent) -> void:
 func handle_camera_rot(delta):
 	var chr_movement_camera_influence : float = 0.0
 	
-	var current_cam = get_viewport().get_camera_3d()
-	chr_movement_camera_influence = (current_cam.global_basis.x).dot(character.velocity.normalized()) * character.velocity.length() * 0.35
+	chr_movement_camera_influence = (current_camera.global_basis.x).dot(character.velocity.normalized()) * character.velocity.length() * 0.35
 	
 	var camera_move_dir : Vector2 = Vector2(-input_events.camera_move_dir.x - chr_movement_camera_influence, -input_events.camera_move_dir.y,)
 	
@@ -309,9 +314,12 @@ func handle_camera_rot(delta):
 	if input_events.input_mode == PlrInputEvents.InputMode.KEYBOARD:
 		input_events.camera_move_dir = Vector2(0.0,0.0)
 
+func set_input_state(new_state : bool):
+	block_input = not new_state
+	input_events.block_all_input = block_input
+
 func _process(delta: float) -> void:
 	input_events.process(delta)
-
 	if current_target != null:
 		target_reticle.global_position = current_target.global_position
 	

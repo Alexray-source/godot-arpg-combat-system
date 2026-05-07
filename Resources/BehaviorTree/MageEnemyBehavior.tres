@@ -76,6 +76,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("3_6dmt4")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
+max_strafe_time = 6.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_0vih5"]

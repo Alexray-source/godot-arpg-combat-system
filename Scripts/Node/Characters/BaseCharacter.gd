@@ -14,7 +14,7 @@ const GRAVITY_DIR : Vector3 = Vector3.DOWN
 @export var chr_movement_type : ChrMovementType = ChrMovementType.GROUND
 
 var move_dir : Vector3
-var up_velocity : Vector3
+#var up_velocity : Vector3
 var move_velocity : Vector3 = Vector3.ZERO 
 var prev_is_on_floor : bool = false
 
@@ -39,6 +39,14 @@ func rescan_ground_state():
 		else:
 			set_state("air_movement")
 
+func apply_gravity_force(up_velocity : Vector3, delta : float):
+	up_velocity = velocity * -GRAVITY_DIR
+	var gravity_acceleration : Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * GRAVITY_DIR * gravity_scale
+	var gravity_velocity : Vector3 = (gravity_acceleration * delta)
+		
+	up_velocity = (up_velocity + gravity_velocity).limit_length(20.0)
+	return up_velocity
+
 func _physics_process(_delta: float) -> void:
 	if is_on_floor() != prev_is_on_floor:
 		is_on_floor_changed.emit(is_on_floor())
@@ -47,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 
 func jump():
 	if is_on_floor():
-		up_velocity = Vector3.ZERO
+		#up_velocity = Vector3.ZERO
 		velocity.y = 15.0
 		move_and_slide()
 

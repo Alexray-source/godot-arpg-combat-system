@@ -26,12 +26,12 @@ hud = NodePath("Hud")
 camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=495651908]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3716063, 0)
-spring_length = 3.0
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 1.3716063, 0)
+spring_length = 4.0
 script = ExtResource("3_dd0ac")
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959 node_paths=PackedStringArray("camera_scan_area", "camera_frustum_shape")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1281606)
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959 node_paths=PackedStringArray("camera_scan_area", "camera_frustum_shape") groups=["default_camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.99528396, -0.09700271, 0, 0.09700271, 0.99528396, 0, 0, -1.1281606)
 script = ExtResource("4_htcer")
 camera_scan_area = NodePath("Area3D")
 camera_frustum_shape = NodePath("Area3D/CollisionShape3D")

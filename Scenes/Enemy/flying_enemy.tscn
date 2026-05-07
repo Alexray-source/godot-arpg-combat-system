@@ -80,7 +80,6 @@ script = ExtResource("13_op6at")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 strafe_height_relative_to_target = 2.6
-max_strafe_time = 3.0
 metadata/_custom_type_script = "uid://1ij8qh1lpkja"
 
 [sub_resource type="Resource" id="Resource_25lwp"]
@@ -263,9 +262,10 @@ script = ExtResource("8_4ltbj")
 children = Array[ExtResource("3_op6at")]([SubResource("Resource_rqrps"), SubResource("Resource_qfvu4"), SubResource("Resource_pvm6y"), SubResource("Resource_q5fta"), SubResource("Resource_jmov8"), SubResource("Resource_xluqc")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
-[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
+[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character", "behavior_tree")]
 script = ExtResource("1_qlx8f")
 character = NodePath("FlyingChr")
+behavior_tree = NodePath("BehaviorTreeRoot")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("2_qgqgq")

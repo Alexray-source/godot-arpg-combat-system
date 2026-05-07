@@ -168,6 +168,9 @@ func on_throwable_hit(throwable : Throwable):
 	
 
 func on_dash_end():
+	if state_machine.is_current_state_by_key("knockback") == false:
+		velocity = Vector3.ZERO
+	
 	if state_machine.is_current_state_by_key("attack") or state_machine.is_current_state_by_key("sp_attack") or state_machine.is_current_state_by_key("knockback"):
 		return
 	
@@ -227,7 +230,7 @@ func stagger():
 	character_abilities.interrupt_active_ability()
 	increment_stagger_count()
 	velocity = Vector3.ZERO
-	up_velocity = Vector3.ZERO
+	#up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
 	stagger_component.action()
 	set_state("stagger")
@@ -239,7 +242,7 @@ func knockback():
 		return
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO
-	up_velocity = Vector3.ZERO
+	#up_velocity = Vector3.ZERO
 	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
 	interupt_atks.emit()
 	set_state("knockback")

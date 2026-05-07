@@ -7,7 +7,6 @@ func _ready() -> void:
 
 func on_spawn_vfx(vfx_key : String, target_transform : Transform3D):
 	var vfx_scene : PackedScene = VFX_DATABASE.entries.get(vfx_key)
-	print(vfx_key)
 	if vfx_scene == null:
 		return
 	

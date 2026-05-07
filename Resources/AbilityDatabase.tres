@@ -38,7 +38,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="Resource" id="Resource_7qyh0"]
 script = ExtResource("3_h7bsk")
-dmg = 15
+dmg = 20
 animations = Array[String](["PlayerSwordAnims/KickAtk"])
 atk_type = 3
 atk_data = SubResource("Resource_jb0u1")
@@ -60,7 +60,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="Resource" id="Resource_5ps18"]
 script = ExtResource("3_h7bsk")
-dmg = 7
+dmg = 8
 animations = Array[String](["PlayerSwordAnims/SpinAtk"])
 atk_type = 1
 atk_data = SubResource("Resource_ffspy")

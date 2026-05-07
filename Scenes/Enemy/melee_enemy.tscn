@@ -5,9 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://122if28mknyj" path="res://Scenes/Chr/melee_character.tscn" id="4_8cum6"]
 [ext_resource type="Resource" uid="uid://u25vnnufdp6p" path="res://Resources/BehaviorTree/EnemyMeleeBehavior.tres" id="5_d40jh"]
 
-[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character")]
+[node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character", "behavior_tree")]
 script = ExtResource("1_d40jh")
 character = NodePath("MeleeChr")
+behavior_tree = NodePath("BehaviorTreeRoot")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("1_2t2r4")
@@ -17,3 +18,4 @@ blackboard = Dictionary[String, Variant]({
 tree_data = ExtResource("5_d40jh")
 
 [node name="MeleeChr" parent="." unique_id=1058693826 instance=ExtResource("4_8cum6")]
+debug_state = true

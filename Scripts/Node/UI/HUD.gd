@@ -13,5 +13,8 @@ func set_ability_icon_visiblity(icon_index : int, new_visible : bool):
 func activate_abililty(icon_index : int):
 	abilities_ui.activate_abililty(icon_index)
 
+func show_insufficient_ability_energy(icon_index : int):
+	abilities_ui.insufficient_energy_notification(icon_index)
+
 func update_health_bar(health : int, max_health : int):
 	health_bar.value = health / float(max_health)

@@ -2,8 +2,8 @@ class_name EnemyWaves extends Node
 
 @export var spawn_origin : Node3D
 @export var spawn_radius : float = 10.0
-
 @export var waves : Array[EnemyWaveData]
+@export var active_enemy_ai : bool = false
 
 var spawned_enemies : Array[Enemy]
 var _current_wave : int = 0
@@ -19,12 +19,17 @@ func _ready() -> void:
 	loaded_data = save_loader.load_from_disk()
 	
 	if loaded_data != null:
-		print(loaded_data.enemy_wave)
 		start_wave(loaded_data.enemy_wave)
 	else:
 		if loaded_data == null:
 			loaded_data = SaveData.new()
 		request_next_wave()
+
+func update_enemy_ai_state(new_state : bool):
+	active_enemy_ai = new_state
+	
+	for enemy in spawned_enemies:
+		enemy.set_behavior_tree_active(active_enemy_ai)
 
 func update_loaded_wave_data(wave_number):
 	if loaded_data != null:
@@ -35,7 +40,6 @@ func _exit_tree() -> void:
 
 func start_wave(wave_number : int):
 	_current_wave = wave_number
-	print(wave_number)
 	new_wave.emit(_current_wave)
 	update_loaded_wave_data(wave_number)
 	
@@ -46,13 +50,20 @@ func start_wave(wave_number : int):
 		var enemy : Enemy = enemy_scene.instantiate()
 		spawned_enemies.append(enemy)
 		
+		enemy.set_behavior_tree_active(active_enemy_ai)
+		
 		enemy.died.connect(func():
 			spawned_enemies.erase(enemy)
 			request_next_wave()
 		, CONNECT_ONE_SHOT)
 		
 		add_child(enemy)
-		enemy.global_position = spawn_origin.global_position + Vector3(randf_range(-spawn_radius, spawn_radius), 0.0, randf_range(-spawn_radius, spawn_radius))
+		
+		if enemy_wave_list.size() == 1:
+			#enemy.global_position = spawn_origin.global_position
+			enemy.global_transform = spawn_origin.global_transform
+		else:
+			enemy.global_position = spawn_origin.global_position + Vector3(randf_range(-spawn_radius, spawn_radius), 0.0, randf_range(-spawn_radius, spawn_radius))
 
 func request_next_wave():
 	if spawned_enemies.size() == 0 and _current_wave < waves.size():

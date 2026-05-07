@@ -15,6 +15,9 @@ enum WeaponEquipMode {
 @export var movement_blend_prop_path : String = "parameters/StateMachine/base_movement/blend_position"
 @export var dash_anim_name : String
 
+@export_subgroup("Leg Air Settings")
+@export var blacklisted_air_anims : Array[String]
+
 @export_subgroup("Weapon Visuals")
 @export var equipped_weapons_visuals : Dictionary[String, Node3D]
 @export var holstered_weapons_visuals : Dictionary[String, Node3D]
@@ -30,6 +33,7 @@ enum WeaponEquipMode {
 var _legs_blend_path : String
 var _mesh_cached_scale : float
 var _face_target : bool = false
+var _bypass_air_leg_animation : bool = false
 
 func _ready() -> void:
 	_mesh_cached_scale = scale.x
@@ -38,6 +42,10 @@ func _ready() -> void:
 	combat_character.damage_hit.connect(damage_visual)
 	
 	state_machine.state_changed.connect(on_state_changed)
+	anim_tree.animation_started.connect(on_animation_started)
+
+func on_animation_started(anim_name):
+	_bypass_air_leg_animation = not blacklisted_air_anims.has(anim_name)
 
 func on_state_changed(new_state : State) -> void:
 	if state_machine.get_state_by_key("dodge_dash") == new_state:
@@ -54,7 +62,7 @@ func on_state_changed(new_state : State) -> void:
 	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")
 
 func _process(_delta: float) -> void:
-	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor()))
+	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor() or _bypass_air_leg_animation == false))
 
 	if combat_character.combat_target_override != null and _face_target == true:
 		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
@@ -85,7 +93,6 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
 
 func slash_vfx(vfx_preset : String, bone_name : String):
-	print(vfx_preset)
 	if vfx_key_mapping.get(vfx_preset) == null:
 		return
 	
@@ -100,7 +107,6 @@ func slash_vfx(vfx_preset : String, bone_name : String):
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.RIGHT, deg_to_rad(bone_rot_offset.x))
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.UP, deg_to_rad(bone_rot_offset.y))
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.FORWARD, deg_to_rad(bone_rot_offset.z))
-	print(vfx_key)
 	GlobalSignals.spawn_vfx.emit(vfx_key, bone_global_transform.orthonormalized())
 	
 	

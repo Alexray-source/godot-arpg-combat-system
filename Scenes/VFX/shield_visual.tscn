@@ -1,12 +1,36 @@
 [gd_scene format=3 uid="uid://ct65pc633n034"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4alam"]
-transparency = 1
-blend_mode = 3
-albedo_color = Color(1.825, 0.962, 0, 0.106)
+[ext_resource type="Shader" uid="uid://4vwarwqtchff" path="res://Shaders/MagicMaterial.gdshader" id="1_0kqo5"]
+
+[sub_resource type="Gradient" id="Gradient_85tq2"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.54545456, 1)
+colors = PackedColorArray(0.16796875, 0.16796875, 0.16796875, 1, 0.60546875, 0.60546875, 0.60546875, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gteiw"]
+noise_type = 2
+seed = 232
+frequency = 0.0096
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fm3dp"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_gteiw")
+color_ramp = SubResource("Gradient_85tq2")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l0oad"]
+render_priority = 0
+shader = ExtResource("1_0kqo5")
+shader_parameter/rim_factor = 1.46
+shader_parameter/edge_factor = -0.044
+shader_parameter/color = Color(2.778, 0.9738087, 0, 1)
+shader_parameter/color_mask = SubResource("NoiseTexture2D_fm3dp")
+shader_parameter/move_factor = Vector2(0.1, 0.2)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7gh6p"]
-material = SubResource("StandardMaterial3D_4alam")
+material = SubResource("ShaderMaterial_l0oad")
 radius = 1.6
 height = 3.2
 

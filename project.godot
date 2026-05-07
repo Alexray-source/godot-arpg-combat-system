@@ -33,6 +33,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/atomai/plugin.cfg")
 
+[global_group]
+
+default_camera=""
+
 [input]
 
 chr_move_fwd={

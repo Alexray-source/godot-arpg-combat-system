@@ -8,7 +8,7 @@ var timer : SceneTreeTimer
 signal dash_ended
 
 func stop_dash() -> void:
-	character.velocity = Vector3.ZERO
+	#character.velocity = Vector3.ZERO
 	timer = null
 	dash_ended.emit()
 
