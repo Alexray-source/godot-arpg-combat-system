@@ -19,8 +19,11 @@ func tick(blackboard : Dictionary):
 		_finished = true
 		return SUCCESS
 	
-	var character : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
-	var target : Node3D = blackboard.get(target_bb_key) as Node3D
+	var character : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	var target : Node3D = blackboard_object_get(blackboard, target_bb_key)
+	
+	if character == null or target == null:
+		return FAILURE
 	
 	#var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, _strafe_angle)
 	var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, PI*0.5)

@@ -2,11 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ca5wug207wcpn" path="res://Scripts/Node/VFX/LookAtCamera.gd" id="1_ns47w"]
 [ext_resource type="ArrayMesh" uid="uid://ce60d0qexvdkb" path="res://Assets/Meshes/Weapons/WarFan.res" id="1_vdluw"]
+[ext_resource type="Material" uid="uid://b24gexjfmikpv" path="res://Assets/Textures/Mat/Fan/fan.tres" id="3_li2tm"]
 [ext_resource type="Script" uid="uid://dsrd08alyplrc" path="res://Scripts/Node/VFX/TemporaryNode.gd" id="3_yjjso"]
 [ext_resource type="Script" uid="uid://coipllk02mn2a" path="res://Scripts/Node/VFX/AnimPlayerAutoplay.gd" id="4_bkw8x"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ns47w"]
-cull_mode = 2
 
 [sub_resource type="Animation" id="Animation_vdluw"]
 length = 0.001
@@ -42,7 +40,7 @@ script = ExtResource("1_ns47w")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 mesh = ExtResource("1_vdluw")
 blend_shapes/Close = 0.0
-surface_material_override/0 = SubResource("StandardMaterial3D_ns47w")
+surface_material_override/0 = ExtResource("3_li2tm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1734559073]
 libraries/ = SubResource("AnimationLibrary_yjjso")

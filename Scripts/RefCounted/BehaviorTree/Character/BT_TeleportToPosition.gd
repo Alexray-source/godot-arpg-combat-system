@@ -18,8 +18,11 @@ func tick(blackboard : Dictionary):
 	
 	_finished = true
 	
-	var base_chr : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
-	var target_position : Vector3 = blackboard.get(target_position_bb_key) as Vector3
+	var base_chr : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	var target_position : Vector3 = blackboard.get(target_position_bb_key)
+	
+	if base_chr == null:
+		return FAILURE
 	
 	if teleport_start_vfx_scene != null:
 		var teleport_start_vfx = teleport_start_vfx_scene.instantiate()

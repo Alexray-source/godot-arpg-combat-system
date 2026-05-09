@@ -1,7 +1,7 @@
 extends Node
 
 var bgm : AudioStreamPlayer
-var bgm_volume : float = 0.4
+var bgm_volume : float = 0.15
 
 func _ready() -> void:
 	bgm = AudioStreamPlayer.new()

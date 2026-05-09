@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="16_hjdgx"]
 [ext_resource type="Script" uid="uid://ccaek2qbo6oci" path="res://Scripts/Node/Trigger/EnemyWavesUpdateAITrigger.gd" id="16_nd2sr"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
+[ext_resource type="Script" uid="uid://bepfnmc0ag8m4" path="res://Scripts/Node/Trigger/ToggleHudTrigger.gd" id="17_7rcam"]
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="20_bx8ag"]
@@ -89,6 +90,11 @@ script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
+[sub_resource type="Resource" id="Resource_7rcam"]
+script = ExtResource("3_4n2ml")
+enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
 [sub_resource type="Resource" id="Resource_ema1o"]
 script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s")])
@@ -114,7 +120,6 @@ script = ExtResource("10_jjisf")
 action_display_names = Dictionary[String, String]({
 "chr_dash": "Dodge / Dash",
 "chr_primary_atk": "Primary Attack",
-"chr_secondary_atk": "Secondary Attack",
 "plr_target_lock": "Lock/Unlock Camera Targetting"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
@@ -123,6 +128,7 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 script = ExtResource("10_jjisf")
 action_display_names = Dictionary[String, String]({
 "chr_grapple_enemy": "Grapple Enemy",
+"chr_secondary_atk": "Secondary Attack",
 "plr_target_next": "Next Camera Target"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
@@ -135,7 +141,7 @@ action_display_names = Dictionary[String, String]({
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
-[sub_resource type="Resource" id="Resource_yi1ag"]
+[sub_resource type="Resource" id="Resource_m4vf5"]
 script = ExtResource("10_jjisf")
 action_display_names = Dictionary[String, String]({
 "chr_special_atk2": "Special Attack #2"
@@ -143,10 +149,6 @@ action_display_names = Dictionary[String, String]({
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=508170288]
-transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 3.6519995, 10.988262)
-fov = 39.374996
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
 transform = Transform3D(-0.1958383, -0.9630976, -0.18463652, 0.38119766, -0.24824043, 0.89054215, -0.9035132, 0.104019284, 0.41574544, 0, 0, 0)
@@ -165,9 +167,6 @@ mesh = SubResource("CylinderMesh_xcpuq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=880499533]
 shape = SubResource("CylinderShape3D_jjisf")
-
-[node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
 
 [node name="ThrowableCube" parent="." unique_id=554461063 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209965, 1.0000005, -14.295042)
@@ -280,6 +279,9 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 [node name="GeneralSlash2" parent="RenderCache" unique_id=1023199983 instance=ExtResource("21_x2r5p")]
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
+[node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
+
 [node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
 script = ExtResource("20_bx8ag")
 enemy_waves = NodePath("../EnemyWaves")
@@ -289,7 +291,13 @@ event_triggers = {
 
 [node name="MultiTrigger" type="Node" parent="EnemyWaveEvents" unique_id=907810051 node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_nd2sr")
-triggers = [NodePath("BlockInputTrigger"), NodePath("CameraTrigger"), NodePath("DelayTrigger"), NodePath("DelayTrigger2")]
+triggers = [NodePath("EnemyWavesUpdateAITrigger"), NodePath("BlockInputTrigger"), NodePath("CameraTrigger"), NodePath("ToggleHudTrigger"), NodePath("DelayTrigger"), NodePath("DelayTrigger2")]
+
+[node name="EnemyWavesUpdateAITrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger" unique_id=405273354 node_paths=PackedStringArray("enemy_waves")]
+script = ExtResource("16_nd2sr")
+enemy_waves = NodePath("../../../EnemyWaves")
+enable_ai = false
+metadata/_custom_type_script = "uid://ccaek2qbo6oci"
 
 [node name="BlockInputTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger" unique_id=542281353]
 script = ExtResource("14_g8dp3")
@@ -298,6 +306,11 @@ metadata/_custom_type_script = "uid://dv7h2qq8f8at2"
 [node name="CameraTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger" unique_id=1946619285 node_paths=PackedStringArray("target_camera")]
 script = ExtResource("22_x2r5p")
 target_camera = NodePath("../../../Camera3D")
+
+[node name="ToggleHudTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger" unique_id=1312878322]
+script = ExtResource("17_7rcam")
+is_visible = false
+metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
 
 [node name="DelayTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger" unique_id=1432997871 node_paths=PackedStringArray("target_trigger")]
 script = ExtResource("23_e0ggl")
@@ -316,7 +329,7 @@ target_trigger = NodePath("MultiTrigger")
 
 [node name="MultiTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger/DelayTrigger2" unique_id=1541380748 node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_nd2sr")
-triggers = [NodePath("BlockInputTrigger"), NodePath("EnemyWavesUpdateAITrigger")]
+triggers = [NodePath("BlockInputTrigger"), NodePath("EnemyWavesUpdateAITrigger"), NodePath("ToggleHudTrigger")]
 
 [node name="EnemyWavesUpdateAITrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger/DelayTrigger2/MultiTrigger" unique_id=1344488377 node_paths=PackedStringArray("enemy_waves")]
 script = ExtResource("16_nd2sr")
@@ -328,10 +341,15 @@ script = ExtResource("14_g8dp3")
 block_input = false
 metadata/_custom_type_script = "uid://dv7h2qq8f8at2"
 
+[node name="ToggleHudTrigger" type="Node" parent="EnemyWaveEvents/MultiTrigger/DelayTrigger2/MultiTrigger" unique_id=133227370]
+script = ExtResource("17_7rcam")
+metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
+
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6"), SubResource("Resource_38hi7")])
+waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_7rcam"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6"), SubResource("Resource_38hi7")])
+active_enemy_ai = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1496976322]
@@ -343,8 +361,8 @@ enemy_wave_spawner = NodePath("..")
 enemy_wave_tutorials = Dictionary[int, ExtResource("10_jjisf")]({
 1: SubResource("Resource_jjisf"),
 2: SubResource("Resource_1xyem"),
-3: SubResource("Resource_p0lev"),
-4: SubResource("Resource_yi1ag")
+4: SubResource("Resource_p0lev"),
+5: SubResource("Resource_m4vf5")
 })
 
 [node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
@@ -356,3 +374,7 @@ metadata/_custom_type_script = "uid://dfay20msmb3cw"
 [node name="VFXSpawner" type="Node" parent="." unique_id=832207028]
 script = ExtResource("19_hjdgx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=508170288]
+transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 3.6519995, 10.988262)
+fov = 39.374996

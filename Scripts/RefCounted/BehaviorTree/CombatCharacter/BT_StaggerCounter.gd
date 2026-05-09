@@ -9,7 +9,10 @@ func tick(blackboard : Dictionary):
 	if _threshold_reached == true:
 		return SUCCESS
 	
-	var character : CombatCharacter = blackboard.get(character_bb_key) as CombatCharacter
+	var character : CombatCharacter = blackboard_object_get(blackboard, character_bb_key)
+	
+	if character == null:
+		return FAILURE
 	
 	if character._stagger_count > stagger_count_treshold:
 		#print("Reached stagger threshold")

@@ -159,6 +159,11 @@ func on_atk_hit(atk_info : AtkInfo):
 			knockback()
 		else:
 			stagger()
+	elif invincible == true or defence_factor >= 1.0:
+		var instigator = atk_info.instigator
+		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE:
+			var bounce_atk_dir = self.global_position.direction_to(instigator.global_position)
+			instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
 
 func on_throwable_hit(throwable : Throwable):
 	#set_state("knockback")
@@ -225,7 +230,7 @@ func reset_stagger_count():
 	_stagger_count = 0
 
 func stagger():
-	if stagger_immune == true and state_machine.is_current_state_by_key("knockback") == false:
+	if stagger_immune == true and state_machine.is_current_state_by_key("knockback") == false or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	increment_stagger_count()
@@ -238,7 +243,7 @@ func stagger():
 	interupt_atks.emit()
 
 func knockback():
-	if stagger_immune == true:
+	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO
@@ -263,9 +268,11 @@ func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 
 	dash_component.action()
 
 func jump():
-	if state_machine.is_current_state_by_key("dead"):
-		return
-	super()
+	#if state_machine.is_current_state_by_key("dead") or state_machine.is_current_state():
+		#return
+	
+	if state_machine.is_current_state_by_key("ground_movement"):
+		super()
 
 func request_attack_token(requesting_enemy : CombatCharacter, expire_time : float) -> bool:
 	if attacking_enemies.size() < max_allowed_attacking_enemies:

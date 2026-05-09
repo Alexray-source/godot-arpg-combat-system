@@ -9,7 +9,10 @@ func tick(blackboard : Dictionary):
 	if _finished == true:
 		return SUCCESS
 	
-	var character : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
+	var character : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	
+	if character == null:
+		return FAILURE
 	
 	character.move_speed = new_move_speed
 	_finished = true

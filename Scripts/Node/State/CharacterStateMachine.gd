@@ -14,7 +14,7 @@ func _ready() -> void:
 		"knockback" : ChrKnockbackState.new(),
 		"custom_movement" : CharacterCustomMovementState.new(),
 		"no_movement" : CharacterState.new(),
-		"dead" : CharacterState.new()
+		"dead" : CharacterDeadState.new()
 	}
 
 func enter_special_atk_state(_special_atk_name) -> void:

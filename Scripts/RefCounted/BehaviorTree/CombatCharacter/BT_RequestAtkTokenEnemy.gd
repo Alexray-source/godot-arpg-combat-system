@@ -10,8 +10,11 @@ func tick(blackboard : Dictionary):
 	if finished == true:
 		return succes_result
 	
-	var chr : CombatCharacter = blackboard.get(chr_bb_key)
-	var enemy_chr : CombatCharacter = blackboard.get(enemy_chr_bb_key)
+	var chr : BaseCharacter = blackboard_object_get(blackboard, chr_bb_key)
+	var enemy_chr : Node3D = blackboard_object_get(blackboard, enemy_chr_bb_key)
+	
+	if chr == null or enemy_chr == null:
+		return FAILURE
 	
 	var request_result = enemy_chr.request_attack_token(chr, token_lifetime)
 	#print(chr)

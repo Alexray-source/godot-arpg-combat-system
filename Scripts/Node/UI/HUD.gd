@@ -4,6 +4,12 @@ class_name PlayerHUD extends Control
 @export var abilities_ui : AbilitiesUIComponent
 @export var health_bar : ProgressBar
 
+func _ready() -> void:
+	GlobalSignals.plr_hud_state_changed.connect(on_hud_state_changed)
+
+func on_hud_state_changed(new_state : bool):
+	visible = new_state
+
 func update_ability_icon_fill(icon_index : int, new_value : float):
 	abilities_ui.update_icon_fill(icon_index, new_value)
 

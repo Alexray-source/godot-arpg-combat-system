@@ -14,8 +14,12 @@ func tick(blackboard : Dictionary):
 	if _reached_target == true:
 		return SUCCESS
 	
-	var base_chr : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
-	var target_node : Node3D = blackboard.get(target_node_bb_key) as Node3D
+	var base_chr : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	var target_node : Node3D = blackboard_object_get(blackboard, target_node_bb_key)
+	
+	if target_node == null or base_chr == null:
+		return FAILURE
+	
 	var target_position : Vector3 = target_node.global_position + target_offset
 	
 	var delta = blackboard.get("delta")

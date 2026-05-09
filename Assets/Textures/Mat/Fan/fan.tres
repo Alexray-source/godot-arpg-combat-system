@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b24gexjfmikpv"]
+
+[ext_resource type="Material" uid="uid://4mina2opc8kc" path="res://Assets/Material/outline.tres" id="1_n0xcn"]
+[ext_resource type="Shader" uid="uid://u85hcwww5dj3" path="res://Shaders/CelShaderV3.gdshader" id="2_wxtrv"]
+[ext_resource type="Texture2D" uid="uid://vjp4i5obl7w7" path="res://Assets/Textures/Mat/Fan/Fan.png" id="3_0tyv0"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_n0xcn")
+shader = ExtResource("2_wxtrv")
+shader_parameter/BaseColor = Color(1, 1, 1, 1)
+shader_parameter/BaseTexture = ExtResource("3_0tyv0")
+shader_parameter/useAlpha = false
+shader_parameter/ShadeColor = Color(0.65, 0.65, 0.65, 1)
+shader_parameter/alphaCutoff = 1.0
+shader_parameter/threshold = 0.0
+shader_parameter/SpecularTint = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/SpecularOffset = 1.0
+shader_parameter/RimTint = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 0.2
+shader_parameter/RimSoftness = 0.0
+shader_parameter/UseEmission = false
+shader_parameter/EmissionStrength = 5.0
+shader_parameter/UseNormalMap = false
+shader_parameter/NormalStrength = 1.0
+shader_parameter/custom_light_dir = Vector3(0, 1, 0)
+shader_parameter/lighting_mode = 0.5
+shader_parameter/uv_div_x = 1
+shader_parameter/uv_div_y = 1
+shader_parameter/uv_offset_x = 0
+shader_parameter/uv_offset_y = 0

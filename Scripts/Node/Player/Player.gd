@@ -133,7 +133,7 @@ func on_ability_energy_changed():
 		hud.update_ability_icon_fill(ability_index, ability_fill_factor)
 
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
-	ability_energy = clampi(ability_energy + (10.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
+	ability_energy = clampi(ability_energy + (7.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
 
 func deplete_ability_energy(amount : int):
 	ability_energy = clampi(ability_energy - amount, 0, max_ability_energy)
@@ -145,17 +145,26 @@ func get_special_atk_debounce_string(atk_index : int):
 	#plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
 
 func on_primary_atk() -> void:
+	if character.state_machine.is_current_state_by_key("no_movement"):
+		return
+	
 	#print(character.debounces.is_debounce_active("attack"))
 	if character.debounces.is_debounce_active("attack") == false:
 		#plr_state_machine.transition_to_state_by_key("primary_atk")
 		character.primary_attack()
 
 func on_secondary_atk() -> void:
+	if character.state_machine.is_current_state_by_key("no_movement"):
+		return
+	
 	if character.debounces.is_debounce_active("attack") == false:
 		character.debounces.add_debounce("attack")
 		character.perform_ability("secondary_atk")
 
 func on_special_atk(atk_index : int) -> void:
+	if character.state_machine.is_current_state_by_key("no_movement"):
+		return
+	
 	var ability_key = equipped_abilities_keys.get(atk_index)
 	if ability_key == null:
 		return
@@ -168,7 +177,7 @@ func on_special_atk(atk_index : int) -> void:
 		hud.abilities_ui.activate_abililty(atk_index)
 		deplete_ability_energy(ability_db_entry.ability_energy_cost)
 		plr_debounces.add_debounce(debounce_string)
-		plr_debounces.remove_debounce_delayed(debounce_string, 1.0)
+		plr_debounces.remove_debounce_delayed(debounce_string, 0.5)
 		
 		character.perform_ability(ability_key)
 	elif ability_energy < ability_db_entry.ability_energy_cost:
@@ -243,6 +252,9 @@ func on_target_next() -> void:
 		target_closest_enemy_to_character()
 
 func target_closest_enemy_to_character():
+	if is_instance_valid(self) == false or get_world_3d() == null:
+		return
+	
 	var scan_shape : SphereShape3D = SphereShape3D.new()
 	scan_shape.radius = 50.0
 	
@@ -320,14 +332,16 @@ func set_input_state(new_state : bool):
 
 func _process(delta: float) -> void:
 	input_events.process(delta)
+	
+	handle_camera_rot(delta)
+	camera_center_offset = camera_arm_center_rest_offset
+	camera_arm.target_offset_pos = lerp(camera_arm.target_offset_pos, camera_center_offset, delta * 5.0)
+
 	if current_target != null:
 		target_reticle.global_position = current_target.global_position
 	
 	if block_input == true:
 		return
-	
-	handle_camera_rot(delta)
-	camera_center_offset = camera_arm_center_rest_offset
 	
 	if current_target != null:
 		var target_to_camera_dir : Vector3 = (current_target.global_position - target_tracking_camera.global_position).normalized()
@@ -341,7 +355,6 @@ func _process(delta: float) -> void:
 			#current_target = null
 			set_lock_target(null)
 	
-	camera_arm.target_offset_pos = lerp(camera_arm.target_offset_pos, camera_center_offset, delta * 5.0)
 	
 	var flat_right_dir = Vector3(current_camera.global_basis.x.x, 0.0, current_camera.global_basis.x.z)
 	var flat_forward_dir = Vector3(current_camera.global_basis.z.x, 0.0, current_camera.global_basis.z.z)

@@ -37,4 +37,4 @@ shape = SubResource("BoxShape3D_o1aaj")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=792607980]
 stream = ExtResource("4_oiq14")
-unit_size = 25.0
+max_db = -6.0

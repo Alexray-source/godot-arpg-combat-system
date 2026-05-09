@@ -20,6 +20,10 @@ func _ready() -> void:
 	)
 	
 	show_inputs(tutorial_actions, tutorial_display_time)
+	GlobalSignals.plr_hud_state_changed.connect(on_hud_state_changed)
+
+func on_hud_state_changed(new_state : bool):
+	visible = new_state
 
 func change_input_mode(is_gamepad_connected : bool):
 	if is_gamepad_connected:

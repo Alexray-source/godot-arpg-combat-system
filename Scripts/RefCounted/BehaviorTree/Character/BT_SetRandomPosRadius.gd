@@ -11,7 +11,11 @@ func tick(blackboard : Dictionary):
 	if _finished == true:
 		return SUCCESS
 	
-	var origin_node : Node3D = blackboard.get(origin_node_bb_key)
+	var origin_node : Node3D = blackboard_object_get(blackboard, origin_node_bb_key)
+	
+	if origin_node == null:
+		return FAILURE
+	
 	blackboard[target_pos_key] = origin_node.global_position + Vector3(randf_range(-horizontal_randomness, horizontal_randomness), randf_range(-vertical_randomness, vertical_randomness), randf_range(-horizontal_randomness, horizontal_randomness))
 	
 	_finished = true

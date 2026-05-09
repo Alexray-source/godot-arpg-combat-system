@@ -31,6 +31,9 @@ func on_floor_changed(_is_floored : bool) -> void:
 	rescan_ground_state()
 
 func rescan_ground_state():
+	if state_machine.is_current_state_by_key("custom_movement"):
+		return
+	
 	if chr_movement_type == ChrMovementType.FLYING:
 		set_state("fly_movement")
 	else:

@@ -107,7 +107,7 @@ func character_grapple_to_target(target_node : Node3D):
 		##target_node.velocity = Vector3.ZERO
 		#target_node.stagger()
 	
-	instigator.set_state("custom_movement")
+	#instigator.set_state("custom_movement")
 	_current_target = target_node
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 	
@@ -124,6 +124,7 @@ func physics_process(delta : float):
 		if is_instance_valid(_current_target) == false:
 			_current_target = null
 			grapple_finished.emit()
+			print("Interrupted grapple because target has been freed")
 			return
 		
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)

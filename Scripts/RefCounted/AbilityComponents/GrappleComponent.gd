@@ -17,6 +17,7 @@ func setup() -> void:
 	_aoe_grapple = AoeGrapple.new()
 	_aoe_grapple.instigator = character
 	_aoe_grapple.hit_shape = _scan_shape
+	_aoe_grapple.grapple_finish_radius = 2.0
 	_aoe_grapple.direct_space_state = character.get_world_3d().direct_space_state
 	_aoe_grapple.grapple_finished.connect(on_grapple_finished)
 	_aoe_grapple.setup()

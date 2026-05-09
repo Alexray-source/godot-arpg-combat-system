@@ -12,8 +12,11 @@ func tick(blackboard : Dictionary):
 	if _reached_target == true:
 		return SUCCESS
 	
-	var base_chr : BaseCharacter = blackboard.get(character_bb_key) as BaseCharacter
-	var target_position : Vector3 = blackboard.get(target_position_bb_key) as Vector3
+	var base_chr : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	var target_position : Vector3 = blackboard.get(target_position_bb_key)
+	
+	if base_chr == null:
+		return FAILURE
 	
 	var delta = blackboard.get("delta")
 	

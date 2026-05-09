@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bnto811d3e3kv"]
 
-[ext_resource type="Texture2D" uid="uid://0obw322h23kd" path="res://Assets/Textures/UI/InputController/xbox_button_start.svg" id="1_2aywq"]
 [ext_resource type="Script" uid="uid://bymnnxr8oy87w" path="res://Scripts/Node/UI/title.gd" id="1_gdg20"]
-[ext_resource type="Texture2D" uid="uid://bjkyq7enieiue" path="res://Assets/Textures/UI/InputController/xbox_button_back.svg" id="3_o0rgc"]
+[ext_resource type="Texture2D" uid="uid://d3dypbvjcq1e5" path="res://Assets/Textures/UI/InputController/playstation3_button_start.svg" id="2_o0rgc"]
+[ext_resource type="Texture2D" uid="uid://uw5hrk6anll8" path="res://Assets/Textures/UI/InputController/playstation3_button_select.svg" id="3_o0rgc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdg20"]
 bg_color = Color(0, 0, 0, 1)
@@ -48,7 +48,7 @@ metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=486574302]
 layout_mode = 2
-texture = ExtResource("1_2aywq")
+texture = ExtResource("2_o0rgc")
 metadata/_edit_lock_ = true
 
 [node name="Label2" type="Label" parent="HBoxContainer" unique_id=974112886]

@@ -14,6 +14,7 @@ enum WeaponEquipMode {
 @export var legs_air_blend_node_name : String
 @export var movement_blend_prop_path : String = "parameters/StateMachine/base_movement/blend_position"
 @export var dash_anim_name : String
+@export var dead_anim_name : String = "BaseAnimations/Dead"
 
 @export_subgroup("Leg Air Settings")
 @export var blacklisted_air_anims : Array[String]
@@ -48,15 +49,19 @@ func on_animation_started(anim_name):
 	_bypass_air_leg_animation = not blacklisted_air_anims.has(anim_name)
 
 func on_state_changed(new_state : State) -> void:
-	if state_machine.get_state_by_key("dodge_dash") == new_state:
-		
-		var one_shot_property_path = "parameters/" + oneshot_node_name
+	var one_shot_property_path = "parameters/" + oneshot_node_name
+
+	if state_machine.get_state_by_key("dead") == new_state:
+		anim_tree.tree_root.get_node(animation_node_name).animation = dead_anim_name
+		anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
+		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		return
+	elif state_machine.get_state_by_key("dodge_dash") == new_state:
 		
 		anim_tree.tree_root.get_node(animation_node_name).animation = dash_anim_name
 		anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
 		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	elif state_machine.get_state_by_key("knockback") == new_state:
-		var one_shot_property_path = "parameters/" + oneshot_node_name
 		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
 	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")
@@ -108,5 +113,3 @@ func slash_vfx(vfx_preset : String, bone_name : String):
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.UP, deg_to_rad(bone_rot_offset.y))
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.FORWARD, deg_to_rad(bone_rot_offset.z))
 	GlobalSignals.spawn_vfx.emit(vfx_key, bone_global_transform.orthonormalized())
-	
-	

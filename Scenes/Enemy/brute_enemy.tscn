@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="17_3erts"]
 [ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="18_hvlvc"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="18_uyofg"]
+[ext_resource type="Script" uid="uid://cknijcek4d72h" path="res://addons/atomai/Scripts/DataNodes/BT_ForceResultData.gd" id="18_ynyrs"]
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="19_2ll3y"]
 
 [sub_resource type="Resource" id="Resource_b15qd"]
@@ -175,10 +176,9 @@ children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5nt2l")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
 [sub_resource type="Resource" id="Resource_3erts"]
-resource_name = "Wait"
-script = ExtResource("15_5nt2l")
-interval = 0.1
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+resource_name = "Force Result"
+script = ExtResource("18_ynyrs")
+metadata/_custom_type_script = "uid://cknijcek4d72h"
 
 [sub_resource type="Resource" id="Resource_uyofg"]
 resource_name = "Selector"
@@ -292,13 +292,6 @@ script = ExtResource("17_3erts")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7y58b")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
-[sub_resource type="Resource" id="Resource_q4pgq"]
-resource_name = "Wait"
-script = ExtResource("15_5nt2l")
-interval = 0.5
-randomness = 0.4
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
 [sub_resource type="Resource" id="Resource_5krea"]
 resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
@@ -357,7 +350,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_1xatg"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_q4pgq"), SubResource("Resource_5krea"), SubResource("Resource_8eb36"), SubResource("Resource_gvsaa"), SubResource("Resource_ejlqg")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5krea"), SubResource("Resource_8eb36"), SubResource("Resource_gvsaa"), SubResource("Resource_ejlqg")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_6tuee"]

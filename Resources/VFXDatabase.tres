@@ -3,11 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="1_q1kvh"]
 [ext_resource type="Script" uid="uid://1giy8nffy3qm" path="res://Scripts/Resources/VFXDatabase/VFX_Database.gd" id="1_sq60v"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="2_8yxse"]
+[ext_resource type="PackedScene" uid="uid://dr1who33ikakt" path="res://Scenes/VFX/muzzle.tscn" id="3_ig2jd"]
 
 [resource]
 script = ExtResource("1_sq60v")
 entries = Dictionary[String, PackedScene]({
 "enemy_slash": ExtResource("2_8yxse"),
-"general_slash": ExtResource("1_q1kvh")
+"general_slash": ExtResource("1_q1kvh"),
+"muzzle": ExtResource("3_ig2jd")
 })
 metadata/_custom_type_script = "uid://1giy8nffy3qm"

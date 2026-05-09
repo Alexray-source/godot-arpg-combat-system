@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode ambient_light_disabled;
+render_mode ambient_light_disabled, cull_disabled;
 
 //Color & Lighting Variables
 uniform vec3 BaseColor : source_color = vec3(1.0);

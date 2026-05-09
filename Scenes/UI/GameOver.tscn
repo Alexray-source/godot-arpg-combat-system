@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://dpx621abf38e7"]
 
 [ext_resource type="Script" uid="uid://b3f5ecj4jbheh" path="res://Scripts/Node/UI/GameOverUI.gd" id="1_n002h"]
-[ext_resource type="Texture2D" uid="uid://0obw322h23kd" path="res://Assets/Textures/UI/InputController/xbox_button_start.svg" id="2_34bmr"]
-[ext_resource type="Texture2D" uid="uid://bjkyq7enieiue" path="res://Assets/Textures/UI/InputController/xbox_button_back.svg" id="3_wpfos"]
+[ext_resource type="Texture2D" uid="uid://d3dypbvjcq1e5" path="res://Assets/Textures/UI/InputController/playstation3_button_start.svg" id="2_wpfos"]
+[ext_resource type="Texture2D" uid="uid://uw5hrk6anll8" path="res://Assets/Textures/UI/InputController/playstation3_button_select.svg" id="3_ielvo"]
+[ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="4_wpfos"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cbeer"]
 bg_color = Color(0, 0, 0, 0.49019608)
@@ -12,7 +13,7 @@ spacing_glyph = 45
 
 [sub_resource type="LabelSettings" id="LabelSettings_6pbke"]
 font = SubResource("FontVariation_n002h")
-font_size = 32
+font_size = 56
 font_color = Color(0.80859375, 0.10107422, 0.10107422, 1)
 
 [node name="GameOver" type="Panel" unique_id=1954947275 node_paths=PackedStringArray("continue_btn", "quit_btn")]
@@ -60,14 +61,19 @@ grow_vertical = 2
 theme_override_constants/separation = 125
 alignment = 1
 
-[node name="Button" type="Button" parent="BoxContainer" unique_id=1134057114]
-custom_minimum_size = Vector2(128, 0)
-layout_mode = 2
-text = "Retry wave "
-icon = ExtResource("2_34bmr")
-
 [node name="Button2" type="Button" parent="BoxContainer" unique_id=454201200]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 text = "Quit"
-icon = ExtResource("3_wpfos")
+icon = ExtResource("3_ielvo")
+
+[node name="Button" type="Button" parent="BoxContainer" unique_id=1134057114]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+text = "Retry wave "
+icon = ExtResource("2_wpfos")
+
+[node name="BgmChanger" type="Node" parent="." unique_id=530554328]
+script = ExtResource("4_wpfos")
+auto_start = true
+metadata/_custom_type_script = "uid://dfay20msmb3cw"

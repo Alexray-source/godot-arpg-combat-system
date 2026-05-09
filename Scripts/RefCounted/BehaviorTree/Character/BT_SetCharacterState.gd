@@ -9,7 +9,11 @@ func tick(blackboard : Dictionary):
 	if _finished == true:
 		return SUCCESS
 	
-	var chr = blackboard.get(character_bb_key) as BaseCharacter
+	var chr : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
+	
+	if chr == null:
+		return FAILURE
+	
 	chr.set_state(new_state)
 	_finished = true
 	

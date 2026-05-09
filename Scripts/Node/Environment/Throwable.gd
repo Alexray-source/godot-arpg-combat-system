@@ -2,7 +2,7 @@ class_name Throwable extends RigidBody3D
 
 @export var hurtbox : HurtBox
 @export var accepted_atk_types : Array[AtkInfo.AtkType]
-@export var damage : float = 33.0
+@export var damage : float = 20.0
 @export var allowed_target_hits : int = 1
 
 @export var hit_sfx_player : AudioStreamPlayer3D

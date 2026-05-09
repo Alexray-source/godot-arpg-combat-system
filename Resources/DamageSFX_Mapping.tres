@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dwmkc8uvnj38r" path="res://Assets/SFX/464839__breviceps__anime-sound-effect-piercing-impact-stabbing_0.ogg" id="10_ku5pj"]
 [ext_resource type="AudioStream" uid="uid://l1gcotvbci15" path="res://Assets/SFX/464839__breviceps__anime-sound-effect-piercing-impact-stabbing_1.ogg" id="11_4bty0"]
 [ext_resource type="AudioStream" uid="uid://ck1l6mg3r7wbf" path="res://Assets/SFX/464839__breviceps__anime-sound-effect-piercing-impact-stabbing_2.ogg" id="12_r34rp"]
+[ext_resource type="AudioStream" uid="uid://jmxq2q7hpijk" path="res://Assets/SFX/block.ogg" id="13_4bty0"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ku5pj"]
 streams_count = 3
@@ -60,6 +61,7 @@ mapping = Dictionary[int, AudioStream]({
 2: SubResource("AudioStreamRandomizer_jmbjo"),
 3: SubResource("AudioStreamRandomizer_tjrbb"),
 4: SubResource("AudioStreamRandomizer_4bty0"),
-5: SubResource("AudioStreamRandomizer_r34rp")
+5: SubResource("AudioStreamRandomizer_r34rp"),
+6: ExtResource("13_4bty0")
 })
 metadata/_custom_type_script = "uid://btseebhsl3qtr"
