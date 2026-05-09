@@ -26,6 +26,10 @@ func on_exit() -> void:
 
 func state_physics_process(delta : float) -> void:
 	up_velocity = character.apply_gravity_force(up_velocity, delta)
+	
+	#if up_velocity.length() < 2.0 and up_velocity.dot(-character.GRAVITY_DIR) <= -0.9:
+		#up_velocity *= 0.75
+	
 	character.velocity = (-knockback_dir * knockback_speed * delta) + up_velocity
 	#character.move_and_slide()
 	character.move_and_slide()

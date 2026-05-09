@@ -109,6 +109,12 @@ func character_grapple_to_target(target_node : Node3D):
 	
 	#instigator.set_state("custom_movement")
 	_current_target = target_node
+	
+	if _current_target is CombatCharacter:
+		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
+		_current_target.prev_hit_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
+		_current_target.stagger()
+	
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 	
 	_timer = instigator.get_tree().create_timer(2.0)
