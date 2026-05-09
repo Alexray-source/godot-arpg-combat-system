@@ -457,3 +457,17 @@ tracks/61/keys = {
 "method": &"change_weapon"
 }]
 }
+tracks/62/type = "method"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath(".")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["muzzle", "Hand_R"],
+"method": &"slash_vfx"
+}]
+}
