@@ -73,7 +73,7 @@ func _ready() -> void:
 	equipped_abilities_keys.resize(character_data.available_abilities.size())
 	
 	for i in range(4):
-		hud.set_ability_icon_visiblity(i, false)
+		hud.set_ability_icon(i, null)
 	
 	var ability_index: int = 0
 	for ability_key in character_data.available_abilities:
@@ -82,7 +82,7 @@ func _ready() -> void:
 		character.character_abilities.add_ability_data(ability_key, ability_db_entry.ability_data)
 		character.character_abilities.create_and_store_ability_component(ability_key)
 		
-		hud.set_ability_icon_visiblity(ability_index, true)
+		hud.set_ability_icon(ability_index, ability_db_entry.ability_icon)
 		
 		equipped_abilities_keys[ability_index] = ability_key
 		ability_index += 1
@@ -123,8 +123,6 @@ func set_active_camera(new_camera : Camera3D):
 	current_camera = new_camera
 
 func on_ability_energy_changed():
-	hud.ability_energy_bar.value = ability_energy / float(max_ability_energy)
-	
 	for ability_key in equipped_abilities_keys:
 		var ability_index = equipped_abilities_keys.find(ability_key)
 		var ability_entry : AbilityDB_Entry = ABILITY_DB.get_ability_db_entry(ability_key)

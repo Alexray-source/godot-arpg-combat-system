@@ -2,25 +2,38 @@
 
 [ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="1_pp6aw"]
 [ext_resource type="Script" uid="uid://7fe3qnp204sw" path="res://Scripts/Node/UI/AbilityIcon.gd" id="2_7sbxa"]
+[ext_resource type="Texture2D" uid="uid://b1p4pavtpaupu" path="res://Assets/Textures/UI/InputKeyboard/generic_button_square.svg" id="2_kel0v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp6aw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7sbxa"]
 bg_color = Color(0, 0, 0, 0.49019608)
 
-[node name="AbilityIcon" type="TextureRect" unique_id=565308469 node_paths=PackedStringArray("progress_bar", "activate_layer")]
-clip_children = 2
+[node name="Control" type="Control" unique_id=1717113656 node_paths=PackedStringArray("icon_rect", "progress_bar", "activate_layer")]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_7sbxa")
+invert_visual_progress = true
+icon_empty = ExtResource("2_kel0v")
+icon_rect = NodePath("AbilityIcon")
+progress_bar = NodePath("AbilityIcon/ProgressBar")
+activate_layer = NodePath("AbilityIcon/ColorRect")
+
+[node name="AbilityIcon" type="TextureRect" parent="." unique_id=565308469]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("1_pp6aw")
 expand_mode = 1
-script = ExtResource("2_7sbxa")
-invert_visual_progress = true
-progress_bar = NodePath("ProgressBar")
-activate_layer = NodePath("ColorRect")
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=741221724]
+[node name="ProgressBar" type="ProgressBar" parent="AbilityIcon" unique_id=741221724]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +46,7 @@ max_value = 1.0
 fill_mode = 2
 show_percentage = false
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1112225279]
+[node name="ColorRect" type="ColorRect" parent="AbilityIcon" unique_id=1112225279]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15

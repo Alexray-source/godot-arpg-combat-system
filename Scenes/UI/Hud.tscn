@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cj836noe0hvrg" path="res://Scripts/Node/UI/AbilitiesUIComponent.gd" id="1_6d7lo"]
 [ext_resource type="Script" uid="uid://5vy7h2bb2fjm" path="res://Scripts/Node/UI/HUD.gd" id="1_b2arx"]
 [ext_resource type="PackedScene" uid="uid://vkfcfqy35fmy" path="res://Scenes/UI/ability_icon.tscn" id="1_ks3ap"]
-[ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="3_3ov73"]
 [ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="5_dva25"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="6_xq4qh"]
 [ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="7_45mfi"]
@@ -32,7 +31,7 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("ability_energy_bar", "abilities_ui", "health_bar")]
+[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,7 +39,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b2arx")
-ability_energy_bar = NodePath("Control/TextureProgressBar")
 abilities_ui = NodePath("Control")
 health_bar = NodePath("ProgressBar")
 
@@ -60,27 +58,8 @@ grow_vertical = 0
 script = ExtResource("1_6d7lo")
 icons = [NodePath("AbilityIcon1"), NodePath("AbilityIcon2"), NodePath("AbilityIcon3"), NodePath("AbilityIcon4")]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Control" unique_id=1271116611]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 19.0
-offset_top = 19.0
-offset_right = -19.0
-offset_bottom = -19.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 1.0
-step = 0.01
-fill_mode = 4
-nine_patch_stretch = true
-texture_under = ExtResource("3_3ov73")
-texture_progress = ExtResource("3_3ov73")
-tint_under = Color(0.19607843, 0.19607843, 0.19607843, 0.7058824)
-
 [node name="AbilityIcon1" parent="Control" unique_id=565308469 instance=ExtResource("1_ks3ap")]
-self_modulate = Color(0, 0.5078125, 1, 1)
+modulate = Color(0, 0.5058824, 1, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -89,7 +68,8 @@ offset_top = -32.0
 offset_right = 64.0
 offset_bottom = 32.0
 grow_vertical = 2
-texture = ExtResource("5_dva25")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+icon = ExtResource("5_dva25")
 
 [node name="AbilityIcon2" parent="Control" unique_id=305997422 instance=ExtResource("1_ks3ap")]
 modulate = Color(1, 0.796875, 0, 1)
@@ -101,7 +81,8 @@ offset_left = -32.0
 offset_right = 32.0
 offset_bottom = 64.0
 grow_horizontal = 2
-texture = ExtResource("6_xq4qh")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+icon = ExtResource("6_xq4qh")
 
 [node name="AbilityIcon3" parent="Control" unique_id=925880745 instance=ExtResource("1_ks3ap")]
 modulate = Color(0.84765625, 0.09933472, 0.09933472, 1)
@@ -117,7 +98,8 @@ offset_right = 0.0
 offset_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 2
-texture = ExtResource("7_45mfi")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+icon = ExtResource("7_45mfi")
 
 [node name="AbilityIcon4" parent="Control" unique_id=202546464 instance=ExtResource("1_ks3ap")]
 modulate = Color(0.20099044, 0.83984375, 0.16403198, 1)
@@ -133,7 +115,8 @@ offset_right = 32.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("8_knqh6")
+pivot_offset_ratio = Vector2(0.5, 0.5)
+icon = ExtResource("8_knqh6")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1915422211]
 layout_mode = 1

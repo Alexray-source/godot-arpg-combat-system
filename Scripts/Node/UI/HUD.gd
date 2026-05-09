@@ -1,6 +1,6 @@
 class_name PlayerHUD extends Control
 
-@export var ability_energy_bar : Range
+#@export var ability_energy_bar : Range
 @export var abilities_ui : AbilitiesUIComponent
 @export var health_bar : ProgressBar
 
@@ -13,8 +13,8 @@ func on_hud_state_changed(new_state : bool):
 func update_ability_icon_fill(icon_index : int, new_value : float):
 	abilities_ui.update_icon_fill(icon_index, new_value)
 
-func set_ability_icon_visiblity(icon_index : int, new_visible : bool):
-	abilities_ui.icons[icon_index].visible = new_visible
+func set_ability_icon(icon_index : int, new_icon : Texture2D):
+	abilities_ui.set_ability_icon(icon_index, new_icon)
 
 func activate_abililty(icon_index : int):
 	abilities_ui.activate_abililty(icon_index)
