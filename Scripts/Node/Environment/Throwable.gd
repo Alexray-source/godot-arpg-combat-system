@@ -58,9 +58,10 @@ func on_hit(atk_info : AtkInfo) -> void:
 		
 		if intended_target != null:
 			throw_dir = global_position.direction_to(intended_target.global_position)
-			throw_to_position(intended_target.global_position, 0.025)
-		else:
-			throw((throw_dir + Vector3(0,0.1,0.0)).normalized(), atk_info.dmg * mass * 2.0)
+			#throw_to_position(intended_target.global_position, 0.025)
+			#throw(throw_dir, 50.0 * mass)
+		#else:
+		throw((throw_dir + Vector3(0,0.1,0.0)).normalized(), 50.0 * mass)
 	
 	
 func on_target_hit() -> void:

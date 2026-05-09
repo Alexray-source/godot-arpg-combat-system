@@ -11,7 +11,7 @@ func _ready() -> void:
 	body_entered.connect(on_body_entered)
 
 func on_body_entered(entered_body : Node3D) -> void:
-	if entered_body is Throwable and entered_body.linear_velocity.length() > 1.0:
+	if entered_body is Throwable and entered_body.linear_velocity.length() > 15.0:
 		var impact_dir : Vector3 = entered_body.linear_velocity.normalized()
 		
 		var atk_info = AtkInfo.new(entered_body.damage, AtkInfo.AtkType.MASSIVE_PROJECTILE, entered_body, impact_dir)

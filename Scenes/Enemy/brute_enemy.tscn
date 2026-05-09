@@ -22,7 +22,6 @@
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="17_3erts"]
 [ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="18_hvlvc"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="18_uyofg"]
-[ext_resource type="Script" uid="uid://cknijcek4d72h" path="res://addons/atomai/Scripts/DataNodes/BT_ForceResultData.gd" id="18_ynyrs"]
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="19_2ll3y"]
 
 [sub_resource type="Resource" id="Resource_b15qd"]
@@ -72,7 +71,6 @@ resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
-scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -87,7 +85,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("6_hvlvc")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-max_strafe_time = 6.0
+max_strafe_time = 3.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_8o6yh"]
@@ -102,7 +100,6 @@ script = ExtResource("4_5ny8y")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
 scan_radius = 50.0
-scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -118,6 +115,8 @@ script = ExtResource("18_uyofg")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 target_success_radius = 5.0
+timeout_time = 3.0
+timeout_result = 0
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
 [sub_resource type="Resource" id="Resource_81kx7"]
@@ -154,6 +153,7 @@ metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 resource_name = "Combat Chr. Ability"
 script = ExtResource("16_2wy4d")
 character_bb_key = "character"
+target_node_bb_key = "enemy_character"
 ability_name = "shield_ability"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
@@ -172,19 +172,9 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_2wy4d"]
 resource_name = "Random Probability"
 script = ExtResource("17_3erts")
+probability = 0.25
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5nt2l")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_3erts"]
-resource_name = "Force Result"
-script = ExtResource("18_ynyrs")
-metadata/_custom_type_script = "uid://cknijcek4d72h"
-
-[sub_resource type="Resource" id="Resource_uyofg"]
-resource_name = "Selector"
-script = ExtResource("12_7lipo")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_2wy4d"), SubResource("Resource_3erts")])
-metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_vrfs7"]
 resource_name = "Get Closest Chr."
@@ -244,7 +234,7 @@ resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
-scan_radius = 25.0
+scan_radius = 100.0
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -297,7 +287,7 @@ resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
-scan_radius = 25.0
+scan_radius = 100.0
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -353,10 +343,10 @@ script = ExtResource("7_ynyrs")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5krea"), SubResource("Resource_8eb36"), SubResource("Resource_gvsaa"), SubResource("Resource_ejlqg")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
-[sub_resource type="Resource" id="Resource_6tuee"]
+[sub_resource type="Resource" id="Resource_uyofg"]
 resource_name = "Selector"
 script = ExtResource("12_7lipo")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_4win8"), SubResource("Resource_amr4h"), SubResource("Resource_1xatg")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_2wy4d"), SubResource("Resource_4win8"), SubResource("Resource_amr4h"), SubResource("Resource_1xatg")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_cyucd"]
@@ -372,7 +362,7 @@ metadata/_custom_type_script = "uid://br2lag68y1sfx"
 [sub_resource type="Resource" id="Resource_v6j0g"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_l24v5"), SubResource("Resource_uyofg"), SubResource("Resource_6tuee"), SubResource("Resource_cyucd"), SubResource("Resource_31uht")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_aqajk"), SubResource("Resource_b2fsp"), SubResource("Resource_l24v5"), SubResource("Resource_uyofg"), SubResource("Resource_cyucd"), SubResource("Resource_31uht")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character", "behavior_tree")]
@@ -388,3 +378,4 @@ blackboard = Dictionary[String, Variant]({
 tree_data = SubResource("Resource_v6j0g")
 
 [node name="BruteChr" parent="." unique_id=1058693826 instance=ExtResource("4_x20uq")]
+debug_state = true

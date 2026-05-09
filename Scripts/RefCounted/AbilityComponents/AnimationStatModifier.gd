@@ -13,8 +13,11 @@ func setup() -> void:
 	_animation_chainer.anim_tree = anim_tree
 	_animation_chainer.oneshot_node_name = oneshot_node_name
 	_animation_chainer.animation_node_name = animation_node_name
+	_animation_chainer.animation_finished.connect(on_animation_finish)
+	_animation_chainer.setup()
 
 func action() -> void:
+	print("play animation stat anim")
 	_animation_chainer.resume_chain()
 
 func ability_event() -> void:
@@ -22,5 +25,8 @@ func ability_event() -> void:
 		for modifier_key in stat_modifiers:
 			var stat_modifier = stat_modifiers[modifier_key]
 			character.add_stat_modifier(modifier_key, stat_modifier)
-	
-	ability_finished.emit()
+
+func on_animation_finish():
+	if _interrupted == false:
+		ability_finished.emit()
+	_animation_chainer.reset_chain()

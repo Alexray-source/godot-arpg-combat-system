@@ -39,7 +39,7 @@ metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 [sub_resource type="Resource" id="Resource_8ikxd"]
 resource_name = "Wait"
 script = ExtResource("6_7dnk6")
-interval = 0.4
+interval = 0.7
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_2mqpe"]

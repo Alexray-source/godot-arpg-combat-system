@@ -101,6 +101,7 @@ script = ExtResource("11_cbwj5")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 target_success_radius = 5.0
+timeout_result = 0
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
 [sub_resource type="Resource" id="Resource_01bsr"]
@@ -178,6 +179,12 @@ script = ExtResource("8_sj6dd")
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d43gv"), SubResource("Resource_ae3f5")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
+[sub_resource type="Resource" id="Resource_b88ew"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+interval = 0.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
 [sub_resource type="Resource" id="Resource_au65u"]
 resource_name = "Combat Chr. Ability"
 script = ExtResource("5_ulxum")
@@ -194,7 +201,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_b00bd"]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_au65u"), SubResource("Resource_jobeu")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_b88ew"), SubResource("Resource_au65u"), SubResource("Resource_jobeu")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_enx01"]

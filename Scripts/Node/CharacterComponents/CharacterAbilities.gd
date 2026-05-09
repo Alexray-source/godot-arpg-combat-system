@@ -3,6 +3,7 @@ class_name CharacterAbilities extends Node
 @export var anim_tree : AnimationTree
 @export var character : BaseCharacter
 @export var abilities_data : Dictionary[StringName, AbilityData]
+@export var debug : bool = false
 var _abilities : Dictionary[StringName, AbilityComponent]
 var chr_layer : CharacterLayer
 var target_override : Node3D
@@ -46,6 +47,9 @@ func on_ability_component_finished():
 
 func perform_ability(ability_key : StringName):
 	var ability : AbilityComponent = _abilities.get(ability_key)
+	
+	if debug == true:
+		print(ability_key)
 	
 	if ability != null:
 		if ability != active_ability:

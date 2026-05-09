@@ -209,13 +209,12 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_cxdt6"]
 resource_name = "Wait"
 script = ExtResource("14_dwotr")
-interval = 0.5
+interval = 0.7
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_y5yte"]
 resource_name = "Wait"
 script = ExtResource("14_dwotr")
-interval = 0.6
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_j0s8k"]
