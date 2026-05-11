@@ -44,6 +44,7 @@ signal ability_finished()
 
 func _ready() -> void:
 	super()
+	collision_priority = 10.0
 	collision_layer = 2 + chr_layer.get_collision_layer()
 	
 	hurt_box.collision_layer = chr_layer.get_collision_layer()
@@ -281,11 +282,33 @@ func jump():
 	if state_machine.is_current_state_by_key("ground_movement"):
 		super()
 
+func remove_attack_token(removing_enemy : CombatCharacter):
+	attacking_enemies.erase(removing_enemy)
+
+func disconnect_token_timer(timer : SceneTreeTimer):
+	if timer.timeout.is_connected(remove_attack_token) == true:
+		timer.timeout.disconnect(remove_attack_token)
+
+func on_attacking_enemy_died(removing_enemy : CombatCharacter, token_timer : SceneTreeTimer):
+	if removing_enemy.tree_exiting.is_connected(on_attacking_enemy_died):
+		removing_enemy.tree_exiting.disconnect(on_attacking_enemy_died)
+	
+	remove_attack_token(removing_enemy)
+	disconnect_token_timer(token_timer)
+
 func request_attack_token(requesting_enemy : CombatCharacter, expire_time : float) -> bool:
 	if attacking_enemies.size() < max_allowed_attacking_enemies:
 		attacking_enemies.append(requesting_enemy)
 		
-		get_tree().create_timer(expire_time).timeout.connect(attacking_enemies.erase.bind(requesting_enemy), CONNECT_ONE_SHOT)
+		var scene_timer = get_tree().create_timer(expire_time)
+		
+		scene_timer.timeout.connect(remove_attack_token.bind(requesting_enemy), CONNECT_ONE_SHOT)
+		
+		if requesting_enemy.tree_exiting.is_connected(on_attacking_enemy_died) == false:
+			requesting_enemy.tree_exiting.connect(on_attacking_enemy_died.bind(requesting_enemy, scene_timer))
+		
+		if requesting_enemy.chr_died.is_connected(on_attacking_enemy_died) == false:
+			requesting_enemy.chr_died.connect(on_attacking_enemy_died.bind(requesting_enemy, scene_timer))
 		
 		return true
 	else:

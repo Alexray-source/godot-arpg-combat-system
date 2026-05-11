@@ -21,6 +21,7 @@ var prev_is_on_floor : bool = false
 signal is_on_floor_changed(floored : bool)
 
 func _ready() -> void:
+	platform_floor_layers = 0
 	state_machine.state_machine_setup()
 	#state_machine.transition_to_state(state_machine.get_state_by_key("ground_movement"))
 	on_floor_changed(is_on_floor())
@@ -55,6 +56,9 @@ func _physics_process(_delta: float) -> void:
 		is_on_floor_changed.emit(is_on_floor())
 		
 	prev_is_on_floor = is_on_floor()
+	
+	if velocity.y > 15.0:
+		print("VERY HIGH VELOCITY")
 
 func jump():
 	if is_on_floor():

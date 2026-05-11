@@ -36,7 +36,7 @@ func _ready() -> void:
 	_target = combat_chr_scanner.get_closest_character_to_position(scan_origin.global_position, _direct_space_state, scan_shape, scan_origin.global_transform, chr_layer_owner.get_enemy_layer())
 	
 	if attack_indicator.is_empty() == false:
-		get_tree().create_timer(shoot_time - 0.2).timeout.connect(telegraph)
+		get_tree().create_timer(shoot_time - 0.3).timeout.connect(telegraph)
 	
 	get_tree().create_timer(shoot_time).timeout.connect(shoot_to_target, CONNECT_ONE_SHOT)
 

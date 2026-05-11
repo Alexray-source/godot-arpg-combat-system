@@ -135,7 +135,7 @@ func physics_process(delta : float):
 		
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
 		var instigator_real_velocity : Vector3 = instigator.global_position - _instigator_prev_pos
-		print(instigator_real_velocity)
+		
 		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
 		_instigator_prev_pos = instigator.global_position
 		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius or instigator_real_velocity.length() < 0.1:

@@ -84,7 +84,7 @@ cull_mask = 1047553
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1704210335]
 material_override = SubResource("StandardMaterial3D_ofm7e")
 emitting = false
-amount = 4
+amount = 10
 one_shot = true
 speed_scale = 2.0
 explosiveness = 0.6

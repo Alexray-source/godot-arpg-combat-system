@@ -66,6 +66,7 @@ resource_name = "Get Closest Chr."
 script = ExtResource("2_enx01")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
+scan_radius = 100.0
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
