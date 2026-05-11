@@ -3,6 +3,7 @@ extends SceneAttackInstance
 @export var main_object : Node3D
 @export var decal : Decal
 @export var attack_vfx : Array[GPUParticles3D]
+@export var attack_sfx : AudioStreamPlayer3D
 @export var chr_layer_owner : CharacterLayer
 @export var hitbox : BoxShape3D
 @export var travel_time : float = 1.0
@@ -41,6 +42,7 @@ func move_to_target(factor : float):
 	main_object.global_position = spawn_transform.origin.lerp(_target.global_position, factor)
 
 func spawn_sword_pillar():
+	show_indicator(decal.global_transform)
 	await get_tree().create_timer(0.25).timeout
 	decal.visible = false
 	
@@ -55,6 +57,8 @@ func spawn_sword_pillar():
 	
 	for particle in attack_vfx:
 		particle.emitting = true
+	
+	attack_sfx.play()
 	
 	await get_tree().create_timer(1.0).timeout
 	queue_free()

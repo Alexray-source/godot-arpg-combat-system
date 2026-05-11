@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ct65pc633n034"]
 
 [ext_resource type="Shader" uid="uid://4vwarwqtchff" path="res://Shaders/MagicMaterial.gdshader" id="1_0kqo5"]
+[ext_resource type="Script" uid="uid://bfds7c6tw0mrr" path="res://Scripts/Node/VFX/shield_visual.gd" id="1_85tq2"]
 
 [sub_resource type="Gradient" id="Gradient_85tq2"]
 interpolation_mode = 2
@@ -35,6 +36,7 @@ radius = 1.6
 height = 3.2
 
 [node name="ShieldVisual" type="Node3D" unique_id=229986644]
+script = ExtResource("1_85tq2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=937225687]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.195598, 0)

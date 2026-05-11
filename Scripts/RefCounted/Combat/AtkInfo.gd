@@ -7,7 +7,8 @@ enum AtkType {
 	MASSIVE,
 	MASSIVE_PROJECTILE,
 	ABILITY,
-	DEFLECT
+	DEFLECT,
+	DEFLECT_INSTIGATOR
 }
 
 var instigator : Node3D

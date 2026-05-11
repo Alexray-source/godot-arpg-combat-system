@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://begyeqbd0k88t"]
+
+[ext_resource type="Shader" uid="uid://dgbcqd71x226o" path="res://Shaders/ParticleBillboardShader.gdshader" id="1_tdi78"]
+[ext_resource type="Texture2D" uid="uid://dm3dcxfksvsj5" path="res://Assets/Textures/VFX/GradientGlowSmall.png" id="2_tdi78"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="3_8s6so"]
+[ext_resource type="Texture2D" uid="uid://bg87nn0we888u" path="res://Assets/Textures/VFX/Flare.png" id="3_yma6l"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_dkfnb"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="6_yma6l"]
+[ext_resource type="AudioStream" uid="uid://clliwvg31u0ub" path="res://Assets/SFX/406063__aleks41__magic-strike.wav" id="7_dkfnb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdi78"]
+render_priority = 0
+shader = ExtResource("1_tdi78")
+shader_parameter/particle_tex = ExtResource("3_yma6l")
+shader_parameter/color_multiplier = 1.0
+shader_parameter/depth_offset = 2.0
+
+[sub_resource type="Curve" id="Curve_pkpef"]
+_data = [Vector2(0, 0), 0.0, -2.0100672, 0, 0, Vector2(0.058282204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.021820623, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vllbt"]
+curve = SubResource("Curve_pkpef")
+
+[sub_resource type="Curve" id="Curve_rwpk5"]
+_data = [Vector2(0, 0), 0.0, 2.724497, 0, 1, Vector2(0.2852761, 0.77723384), 0.79804194, 0.79804194, 0, 0, Vector2(1, 1), -6.817934e-07, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_pkpef"]
+curve_x = SubResource("Curve_rwpk5")
+curve_y = SubResource("Curve_rwpk5")
+curve_z = SubResource("Curve_rwpk5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dd8jd"]
+angle_min = -198.49998
+angle_max = 270.0
+gravity = Vector3(0, 0, 0)
+scale_min = 15.0
+scale_max = 15.0
+scale_curve = SubResource("CurveXYZTexture_pkpef")
+color = Color(2.296, 0.46580985, 0.27647984, 1)
+alpha_curve = SubResource("CurveTexture_vllbt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8s4to"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgfkf"]
+render_priority = 0
+shader = ExtResource("1_tdi78")
+shader_parameter/particle_tex = ExtResource("2_tdi78")
+shader_parameter/color_multiplier = 1.0
+shader_parameter/depth_offset = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cvug0"]
+angle_min = -198.49998
+angle_max = 270.0
+gravity = Vector3(0, 0, 0)
+scale_min = 15.0
+scale_max = 15.0
+scale_curve = SubResource("CurveXYZTexture_pkpef")
+color = Color(2.296, 0.46580985, 0.27647984, 1)
+alpha_curve = SubResource("CurveTexture_vllbt")
+
+[node name="AttackIndicator" type="Node3D" unique_id=1517511568]
+
+[node name="GPUParticleTrigger2" type="Node" parent="." unique_id=1203321066 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("3_8s6so")
+target_particle = NodePath("../GPUParticles3D2")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=434688298 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("4_dkfnb")
+delay_time = 0.4
+target_trigger = NodePath("GPUParticleTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="GPUParticleTrigger" type="Node" parent="DelayTrigger" unique_id=708909946 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("3_8s6so")
+target_particle = NodePath("../../GPUParticles3D")
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=1219556816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_tdi78")
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1.0000001, -1, 2, 2, 2)
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_dd8jd")
+draw_pass_1 = SubResource("QuadMesh_8s4to")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1536477817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_dgfkf")
+emitting = false
+amount = 2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_cvug0")
+draw_pass_1 = SubResource("QuadMesh_8s4to")
+
+[node name="DelayTrigger2" type="Node" parent="." unique_id=153419756 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("4_dkfnb")
+delay_time = 2.0
+target_trigger = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger2" unique_id=1299693021]
+script = ExtResource("6_yma6l")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1653207480]
+stream = ExtResource("7_dkfnb")
+unit_size = 25.0
+max_db = -6.0
+autoplay = true

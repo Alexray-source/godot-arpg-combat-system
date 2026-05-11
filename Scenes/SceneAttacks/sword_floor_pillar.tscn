@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://qduvshi3u78m" path="res://Assets/Meshes/VFX/SwordPillar.tres" id="2_ofm7e"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="2_pvnbi"]
 [ext_resource type="Texture2D" uid="uid://c6udca7n8v6j5" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridRed.png" id="3_pf67q"]
+[ext_resource type="AudioStream" uid="uid://d3chugqw4si6w" path="res://Assets/SFX/519414__iridiuss__energymagic-shot.wav" id="5_sy7se"]
 
 [sub_resource type="Resource" id="Resource_pf67q"]
 script = ExtResource("2_pvnbi")
@@ -62,20 +63,23 @@ color = Color(1.8247963, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_sy7se")
 alpha_curve = SubResource("CurveTexture_pvnbi")
 
-[node name="SwordFloorPillar" type="Node3D" unique_id=1916235111 node_paths=PackedStringArray("main_object", "decal", "attack_vfx")]
+[node name="SwordFloorPillar" type="Node3D" unique_id=1916235111 node_paths=PackedStringArray("main_object", "decal", "attack_vfx", "attack_sfx")]
 top_level = true
 script = ExtResource("1_ofm7e")
 main_object = NodePath(".")
 decal = NodePath("Decal")
 attack_vfx = [NodePath("GPUParticles3D")]
+attack_sfx = NodePath("AudioStreamPlayer3D")
 chr_layer_owner = SubResource("Resource_pf67q")
 hitbox = SubResource("BoxShape3D_sy7se")
 travel_time = 1.35
+attack_indicator = "blue_flash"
 
 [node name="Decal" type="Decal" parent="." unique_id=711771147]
 size = Vector3(4, 15, 4)
 texture_albedo = ExtResource("3_pf67q")
 modulate = Color(1, 0, 0, 1)
+cull_mask = 1047553
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1704210335]
 material_override = SubResource("StandardMaterial3D_ofm7e")
@@ -87,3 +91,7 @@ explosiveness = 0.6
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_pvnbi")
 draw_pass_1 = ExtResource("2_ofm7e")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=206537972]
+stream = ExtResource("5_sy7se")
+unit_size = 250.0

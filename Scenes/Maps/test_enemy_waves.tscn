@@ -59,7 +59,6 @@ glow_levels/4 = 1.0
 glow_levels/5 = 1.0
 glow_levels/6 = 1.0
 glow_levels/7 = 1.0
-glow_hdr_threshold = 1.5
 glow_hdr_scale = 1.0
 fog_enabled = true
 fog_light_color = Color(0.33874512, 0.4354725, 0.5859375, 1)

@@ -22,7 +22,7 @@ func tick(blackboard : Dictionary):
 	if chr_must_be_in_camera == true:
 		var active_camera : Camera3D = chr.get_viewport().get_camera_3d()
 		var is_in_camera : bool = active_camera.is_position_in_frustum(chr.global_position) 
-	
+		print(is_in_camera)
 		if is_in_camera == false:
 			finished = true
 			succes_result = FAILURE

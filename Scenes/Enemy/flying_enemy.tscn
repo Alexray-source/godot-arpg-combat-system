@@ -191,6 +191,7 @@ script = ExtResource("14_2oudj")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "primary_atk"
+indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [sub_resource type="Resource" id="Resource_851m4"]
@@ -227,6 +228,7 @@ script = ExtResource("14_2oudj")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "dive_atk"
+indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [sub_resource type="Resource" id="Resource_icsbh"]

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c220s3jcrb0pt"]
+
+[ext_resource type="Shader" uid="uid://dgbcqd71x226o" path="res://Shaders/ParticleBillboardShader.gdshader" id="1_1tfwu"]
+[ext_resource type="Texture2D" uid="uid://dxwxaccjqrjwa" path="res://Assets/Textures/VFX/shockwave_2d.png" id="2_0k8jc"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="3_0k8jc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgfkf"]
+render_priority = 0
+shader = ExtResource("1_1tfwu")
+shader_parameter/particle_tex = ExtResource("2_0k8jc")
+shader_parameter/color_multiplier = 1.0
+shader_parameter/depth_offset = 2.0
+
+[sub_resource type="Curve" id="Curve_pkpef"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.45172417, 0.23844206), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.021820623, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vllbt"]
+curve = SubResource("Curve_pkpef")
+
+[sub_resource type="Curve" id="Curve_rwpk5"]
+_data = [Vector2(0, 1), 0.0, -0.81860036, 0, 0, Vector2(1, 0), -1.4453338, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_pkpef"]
+curve_x = SubResource("Curve_rwpk5")
+curve_y = SubResource("Curve_rwpk5")
+curve_z = SubResource("Curve_rwpk5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cvug0"]
+angle_min = -198.49998
+angle_max = 270.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_pkpef")
+color = Color(2.296, 2.296, 2.296, 1)
+alpha_curve = SubResource("CurveTexture_vllbt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8s4to"]
+
+[node name="AttackIndicator" type="Node3D" unique_id=1517511568]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1536477817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_dgfkf")
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 60
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_cvug0")
+draw_pass_1 = SubResource("QuadMesh_8s4to")
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=708909946 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("3_0k8jc")
+target_particle = NodePath("../GPUParticles3D")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"

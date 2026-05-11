@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://b15m2336wqpsf"]
+
+[ext_resource type="Shader" uid="uid://dgbcqd71x226o" path="res://Shaders/ParticleBillboardShader.gdshader" id="1_rbwl2"]
+[ext_resource type="Texture2D" uid="uid://vnjkhrkblm0h" path="res://Assets/Textures/VFX/Star1.png" id="2_rbwl2"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="3_no4na"]
+[ext_resource type="AudioStream" uid="uid://bks4hlyj81vdm" path="res://Assets/SFX/529019__euphrosyyn__anime_drama_shing_sword_2.wav" id="4_fhsjc"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="5_wqa54"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="6_3nu1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgfkf"]
+render_priority = 0
+shader = ExtResource("1_rbwl2")
+shader_parameter/particle_tex = ExtResource("2_rbwl2")
+shader_parameter/color_multiplier = 1.0
+shader_parameter/depth_offset = 2.0
+
+[sub_resource type="Curve" id="Curve_pkpef"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10670731, 0.97630614), 0.0, 0.0, 0, 0, Vector2(0.3871951, 0.31287968), -0.47100374, -0.47100374, 0, 0, Vector2(1, 0), -0.021820623, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_vllbt"]
+curve = SubResource("Curve_pkpef")
+
+[sub_resource type="Gradient" id="Gradient_fhsjc"]
+offsets = PackedFloat32Array(0, 0.23255815)
+colors = PackedColorArray(1.4750372, 2.9133258, 3.357888, 1, 0.16650422, 0.2561702, 0.5607256, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_no4na"]
+gradient = SubResource("Gradient_fhsjc")
+
+[sub_resource type="Curve" id="Curve_rwpk5"]
+_data = [Vector2(0, 0), 0.0, -0.81860036, 0, 0, Vector2(0.09451219, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4453338, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_pkpef"]
+curve_x = SubResource("Curve_rwpk5")
+curve_y = SubResource("Curve_rwpk5")
+curve_z = SubResource("Curve_rwpk5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cvug0"]
+angle_min = -198.49998
+angle_max = 270.0
+angular_velocity_min = 124.999985
+angular_velocity_max = 124.999985
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_pkpef")
+color_ramp = SubResource("GradientTexture1D_no4na")
+alpha_curve = SubResource("CurveTexture_vllbt")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8s4to"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fhsjc"]
+random_pitch = 1.1637249
+streams_count = 1
+stream_0/stream = ExtResource("4_fhsjc")
+
+[node name="BlueFlash" type="Node3D" unique_id=1517511568]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1536477817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 2
+material_override = SubResource("ShaderMaterial_dgfkf")
+emitting = false
+amount = 1
+lifetime = 0.4
+one_shot = true
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+local_coords = true
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_cvug0")
+draw_pass_1 = SubResource("QuadMesh_8s4to")
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=708909946 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("3_no4na")
+target_particle = NodePath("../GPUParticles3D")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="." unique_id=1348846453]
+stream = SubResource("AudioStreamRandomizer_fhsjc")
+unit_size = 25.0
+max_db = -2.0
+autoplay = true
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=497882762 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("5_wqa54")
+delay_time = 2.0
+target_trigger = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=1503592982]
+script = ExtResource("6_3nu1v")

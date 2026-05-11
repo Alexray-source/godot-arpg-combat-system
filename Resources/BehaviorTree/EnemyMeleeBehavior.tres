@@ -78,7 +78,6 @@ script = ExtResource("3_f0syj")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
 scan_radius = 15.0
-scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -93,7 +92,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("5_5hrey")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-max_strafe_time = 6.0
+max_strafe_time = 5.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_myvan"]
@@ -108,7 +107,6 @@ script = ExtResource("3_f0syj")
 origin_node_scan_key = "character"
 found_character_target_key = "enemy_character"
 scan_radius = 50.0
-scan_once = false
 scan_layer = 4
 metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 
@@ -198,12 +196,13 @@ target_node_bb_key = "enemy_character"
 target_success_radius = 1.5
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
-[sub_resource type="Resource" id="Resource_1kwgo"]
+[sub_resource type="Resource" id="Resource_ccn1i"]
 resource_name = "Combat Chr. Ability"
 script = ExtResource("16_1o65i")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "primary_atk"
+indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [sub_resource type="Resource" id="Resource_cxdt6"]
@@ -211,6 +210,14 @@ resource_name = "Wait"
 script = ExtResource("14_dwotr")
 interval = 0.7
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_1kwgo"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("16_1o65i")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [sub_resource type="Resource" id="Resource_y5yte"]
 resource_name = "Wait"
@@ -223,12 +230,13 @@ script = ExtResource("16_1o65i")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "kick"
+indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [sub_resource type="Resource" id="Resource_kytlo"]
 resource_name = "Sequence"
 script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_1kwgo"), SubResource("Resource_cxdt6"), SubResource("Resource_1kwgo"), SubResource("Resource_cxdt6"), SubResource("Resource_1kwgo"), SubResource("Resource_y5yte"), SubResource("Resource_j0s8k")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_ccn1i"), SubResource("Resource_cxdt6"), SubResource("Resource_1kwgo"), SubResource("Resource_cxdt6"), SubResource("Resource_1kwgo"), SubResource("Resource_y5yte"), SubResource("Resource_j0s8k")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_x18n6"]

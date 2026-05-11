@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dr1who33ikakt"]
 
 [ext_resource type="Texture2D" uid="uid://clsv8e2om47by" path="res://Assets/Textures/VFX/Muzzle/Muzzle.png" id="1_dmdqn"]
-[ext_resource type="ArrayMesh" uid="uid://c2o4qc0gvxjiv" path="res://Assets/Meshes/VFX/muzzle.res" id="2_4nljn"]
+[ext_resource type="ArrayMesh" uid="uid://3p0a6jyl00bv" path="res://Assets/Meshes/VFX/muzzle.res" id="2_4nljn"]
 [ext_resource type="AudioStream" uid="uid://bq2it1lulr352" path="res://Assets/SFX/402789__acidsnowflake__small-pistol-gunshot-indoors.ogg" id="3_u1axs"]
 [ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_awrwk"]
-[ext_resource type="Script" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_bxl3u"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_bxl3u"]
 [ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="6_bxl3u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6doe"]
@@ -39,8 +39,13 @@ gravity = Vector3(0, 0, 0)
 scale_min = 0.7
 scale_max = 0.7
 scale_curve = SubResource("CurveXYZTexture_412hx")
-color = Color(2.7769997, 2.436212, 0.5959573, 1)
+color = Color(2.77701, 0.9288213, 0.6026705, 1)
 alpha_curve = SubResource("CurveTexture_bxl3u")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxl3u"]
+random_pitch = 1.0696088
+streams_count = 1
+stream_0/stream = ExtResource("3_u1axs")
 
 [node name="Muzzle" type="Node3D" unique_id=847841904]
 
@@ -49,7 +54,7 @@ transform = Transform3D(-1, 1.509958e-07, 0, 0, -4.371139e-08, 1, 1.509958e-07, 
 material_override = SubResource("StandardMaterial3D_i6doe")
 emitting = false
 amount = 1
-lifetime = 0.09999999999999999
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
@@ -57,7 +62,7 @@ process_material = SubResource("ParticleProcessMaterial_4nljn")
 draw_pass_1 = ExtResource("2_4nljn")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=803308115]
-stream = ExtResource("3_u1axs")
+stream = SubResource("AudioStreamRandomizer_bxl3u")
 volume_db = 6.0
 unit_size = 25.0
 max_db = 6.0

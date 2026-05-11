@@ -10,5 +10,6 @@ func play_damage_sfx(owner : Node3D, atk_type : AtkInfo.AtkType):
 		spatial_player.autoplay = true
 		spatial_player.stream = mapped_sfx
 		spatial_player.volume_linear = 0.5
+		spatial_player.unit_size = 25.0
 		spatial_player.finished.connect(spatial_player.queue_free)
 		owner.add_child(spatial_player)

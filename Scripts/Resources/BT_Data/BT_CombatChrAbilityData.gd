@@ -4,6 +4,7 @@ class_name BT_CombatCharacterAbilityData extends BT_NodeData
 @export var character_bb_key : String
 @export var target_node_bb_key : String
 @export var ability_name : String
+@export var indicator_vfx : String
 
 func _init() -> void:
 	resource_name = "Combat Chr. Ability"
@@ -13,5 +14,6 @@ func create_node() -> BT_Node:
 	node.character_bb_key = character_bb_key
 	node.target_node_bb_key = target_node_bb_key
 	node.ability_name = ability_name 
+	node.indicator_vfx = indicator_vfx
 	
 	return node

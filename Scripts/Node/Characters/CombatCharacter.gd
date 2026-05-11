@@ -35,7 +35,7 @@ var _stat_mod_interrupts : Dictionary[String, StatModifierInterrupt]
 var _damage_sfx_player : DamageSoundPlayer
 
 signal interupt_atks()
-signal damage_hit()
+signal damage_hit(atk_info : AtkInfo)
 signal received_hit()
 signal chr_died()
 signal atk_debounce_ended()
@@ -48,7 +48,7 @@ func _ready() -> void:
 	
 	hurt_box.collision_layer = chr_layer.get_collision_layer()
 	hurt_box.hit.connect(on_atk_hit)
-	hurt_box.throwable_hit.connect(on_throwable_hit)
+	#hurt_box.throwable_hit.connect(on_throwable_hit)
 	
 	character_abilities.chr_layer = chr_layer
 	character_abilities.ability_finished.connect(on_ability_finished)
@@ -149,25 +149,29 @@ func on_atk_hit(atk_info : AtkInfo):
 		var defence_reduction : int = roundi(atk_info.dmg * defence_factor)
 		
 		health_component.take_damage(atk_info.dmg - defence_reduction)
-		damage_hit.emit()
+		damage_hit.emit(atk_info)
 		_damage_sfx_player.play_damage_sfx(self, atk_info.atk_type)
 		
 		if stagger_immune == true:
 			return
 		
-		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE:
-			knockback()
+		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE:
+			knockback(atk_info)
 		else:
-			stagger()
+			stagger(atk_info)
 	elif invincible == true or defence_factor >= 1.0:
 		var instigator = atk_info.instigator
+		
+		_damage_sfx_player.play_damage_sfx(self, AtkInfo.AtkType.DEFLECT_INSTIGATOR)
+		
 		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE:
 			var bounce_atk_dir = self.global_position.direction_to(instigator.global_position)
 			instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
+		
 
-func on_throwable_hit(throwable : Throwable):
+#func on_throwable_hit(throwable : Throwable):
 	#set_state("knockback")
-	knockback()
+	#knockback(atk_info)
 	#var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
 	#throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
 	
@@ -229,26 +233,26 @@ func reset_stagger_count():
 	#print("reset stagger")
 	_stagger_count = 0
 
-func stagger():
+func stagger(atk_info : AtkInfo):
 	if stagger_immune == true and state_machine.is_current_state_by_key("knockback") == false or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	increment_stagger_count()
 	velocity = Vector3.ZERO
 	#up_velocity = Vector3.ZERO
-	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
+	global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 	stagger_component.action()
 	set_state("stagger")
 	end_attack_debounce()
 	interupt_atks.emit()
 
-func knockback():
+func knockback(atk_info : AtkInfo):
 	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO
 	#up_velocity = Vector3.ZERO
-	global_basis = Basis.looking_at(Vector3(-prev_hit_info.atk_dir.x, 0.0, -prev_hit_info.atk_dir.z))
+	global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 	interupt_atks.emit()
 	set_state("knockback")
 	end_attack_debounce()
@@ -262,6 +266,9 @@ func dodge_dash():
 	set_state("dodge_dash")
 
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
+	##TEMPORARY WORKAROUND, MAKE THIS FUNCTION COMPATIBLE ON Y-AXIS TOO LATER
+	direction.y = 0.0
+	
 	dash_component.dash_intensity = dash_power
 	dash_component.dash_time = duration
 	dash_component.dash_dir = direction

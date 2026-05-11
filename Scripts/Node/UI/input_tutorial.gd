@@ -7,6 +7,7 @@ const TUTORIAL_INPUT_UI_ELEMENT : PackedScene = preload("res://Scenes/UI/tutoria
 @export var tutorial_display_time : float = 10.0
 
 @export_subgroup("Nodes")
+@export var tutorial_panel : Control
 @export var input_elements_holder : Control
 
 var input_mode : String = "keyboard"
@@ -47,5 +48,13 @@ func show_inputs(_tutorial_actions : Dictionary[String, String], _tutorial_displ
 		)
 		
 		input_elements_holder.add_child(new_input_ui_element)
+	
+	tutorial_panel.modulate = Color(1.0,1.0,1.0,0.0)
+	tutorial_panel.scale = Vector2(1.5,1.5)
+	
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(tutorial_panel, "modulate", Color(1.0,1.0,1.0), 0.6)
+	tween.tween_property(tutorial_panel, "scale", Vector2(1.0,1.0), 0.6)
 	
 	get_tree().create_timer(_tutorial_display_time).timeout.connect(queue_free, CONNECT_ONE_SHOT)

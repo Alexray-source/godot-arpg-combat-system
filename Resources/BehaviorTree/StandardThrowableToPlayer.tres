@@ -48,6 +48,7 @@ script = ExtResource("5_gq4s6")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "kick"
+indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
 [resource]

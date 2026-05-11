@@ -12,6 +12,7 @@ var grapple_reel_in_speed : float = 3000.0
 var _current_target : Node3D
 var _grapple_line : GrappleLine
 var _timer : SceneTreeTimer
+var _instigator_prev_pos : Vector3
 
 signal grapple_finished
 
@@ -102,18 +103,17 @@ func throwable_grapple(target_node : Throwable):
 	grapple_finished.emit()
 
 func character_grapple_to_target(target_node : Node3D):
-	#if target_node is CombatCharacter:
-		##target_node.set_state("custom_movement")
-		##target_node.velocity = Vector3.ZERO
-		#target_node.stagger()
-	
 	#instigator.set_state("custom_movement")
+	if is_instance_valid(target_node) == false:
+		grapple_finished.emit()
+		return
+	
 	_current_target = target_node
 	
-	if _current_target is CombatCharacter:
+	if _current_target is CombatCharacter and _current_target.is_on_floor() == false:
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
-		_current_target.prev_hit_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
-		_current_target.stagger()
+		var atk_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
+		_current_target.stagger(atk_info)
 	
 	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 	
@@ -134,19 +134,19 @@ func physics_process(delta : float):
 			return
 		
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
-		
+		var instigator_real_velocity : Vector3 = instigator.global_position - _instigator_prev_pos
+		print(instigator_real_velocity)
 		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
-		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius:
+		_instigator_prev_pos = instigator.global_position
+		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius or instigator_real_velocity.length() < 0.1:
 			instigator.velocity = Vector3(0.0,5.0,0.0)
 			#instigator.up_velocity = Vector3.ZERO
 			instigator.move_and_slide()
 			#print("finished reeling to target")
 			
-			if _current_target is CombatCharacter:
-				#target_node.set_state("custom_movement")
-				#target_node.velocity = Vector3.ZERO
-				_current_target.prev_hit_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
-				_current_target.stagger()
+			if _current_target is CombatCharacter and _current_target.is_on_floor() == false:
+				var atk_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
+				_current_target.stagger(atk_info)
 			
 			_current_target = null
 			grapple_finished.emit()

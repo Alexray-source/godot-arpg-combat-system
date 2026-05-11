@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://v4r5vyouijxf" path="res://Scripts/Node/VFX/SlashVFX.gd" id="1_olao1"]
 [ext_resource type="Material" uid="uid://dap2lw3d4xncc" path="res://Assets/Material/VFX/EnemySlash.tres" id="2_olao1"]
-[ext_resource type="ArrayMesh" uid="uid://dhqb1iatkjin6" path="res://Assets/Meshes/VFX/Slash1.tres" id="3_olao1"]
+[ext_resource type="ArrayMesh" uid="uid://n20lj7d3d7b5" path="res://Assets/Meshes/VFX/Slash.tres" id="3_olao1"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_5lj4n"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_jgfv5"]
 
 [node name="GeneralSlash" type="Node3D" unique_id=871721391 node_paths=PackedStringArray("mesh_instance")]
 script = ExtResource("1_olao1")
 rot_speed = -15.0
-lifetime = 0.1
+lifetime = 0.2
+fade_time = 0.05
 mesh_instance = NodePath("Slash")
 
 [node name="Slash" type="MeshInstance3D" parent="." unique_id=1869276354]
@@ -15,3 +18,12 @@ transform = Transform3D(-7.86805e-08, 0, -1.8000001, 0, 1.8000001, 0, 1.8000001,
 material_override = ExtResource("2_olao1")
 instance_shader_parameters/alpha = 1.0
 mesh = ExtResource("3_olao1")
+
+[node name="DelayTrigger2" type="Node" parent="." unique_id=326226953 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("4_5lj4n")
+target_trigger = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger2" unique_id=421209133 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("5_jgfv5")
+node_to_destroy = NodePath("")

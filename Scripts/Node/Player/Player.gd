@@ -92,7 +92,8 @@ func _ready() -> void:
 	character.enemies_hit.connect(on_enemies_hit)
 	#character.dash_component.dash_ended.connect(return_to_movement_state)
 	
-	on_damage_hit()
+	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
+
 	character.damage_hit.connect(on_damage_hit)
 	character.chr_died.connect(on_died, CONNECT_ONE_SHOT)
 	
@@ -206,7 +207,7 @@ func on_dodge_dash() -> void:
 		#character.move_dir = input_events.move_dir
 		#plr_state_machine.transition_to_state_by_key("dodge_dash")
 
-func on_damage_hit() -> void:
+func on_damage_hit(_atk_info : AtkInfo) -> void:
 	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
 
 func on_died() -> void:

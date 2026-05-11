@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://coygqchle5bnk" path="res://Assets/AnimTreeRoot/human.tres" id="20_jb0u1"]
+[ext_resource type="Shader" uid="uid://u85hcwww5dj3" path="res://Shaders/CelShaderV3.gdshader" id="25_2ddvq"]
 
 [sub_resource type="Resource" id="Resource_u1pys"]
 script = ExtResource("2_0o5qm")
@@ -56,7 +57,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="Resource" id="Resource_vucap"]
 script = ExtResource("19_jb0u1")
-dmg = 9
+dmg = 5
 animations = Array[String](["FastSword/NinjaPrimaryFast1", "FastSword/NinjaPrimaryFast2", "FastSword/NinjaPrimaryFast3", "FastSword/NinjaPrimaryFast4", "FastSword/NinjaPrimaryFast5"])
 atk_type = 1
 atk_data = SubResource("Resource_2ddvq")
@@ -71,7 +72,7 @@ metadata/_custom_type_script = "uid://b1stykuxcqnl5"
 
 [sub_resource type="Resource" id="Resource_smxw8"]
 script = ExtResource("19_jb0u1")
-dmg = 7
+dmg = 3
 animations = Array[String](["PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot1", "PlayerSwordAnims/Shoot2"])
 atk_type = 2
 atk_data = SubResource("Resource_pq3w2")
@@ -91,6 +92,36 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qbr8q"]
 size = Vector3(1.1096191, 2.0214844, 1.1064453)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vucap"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.341
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bghwh"]
+render_priority = 0
+shader = ExtResource("25_2ddvq")
+shader_parameter/BaseColor = Color(0.5234375, 0.2658081, 0.2658081, 1)
+shader_parameter/useAlpha = false
+shader_parameter/ShadeColor = Color(0.66015625, 0.38165283, 0.5317836, 1)
+shader_parameter/alphaCutoff = 1.0
+shader_parameter/threshold = 0.0
+shader_parameter/SpecularTint = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/SpecularOffset = 1.0
+shader_parameter/RimTint = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 0.2
+shader_parameter/RimSoftness = 0.0
+shader_parameter/UseEmission = false
+shader_parameter/EmissionStrength = 5.0
+shader_parameter/UseNormalMap = false
+shader_parameter/NormalStrength = 1.0
+shader_parameter/custom_light_dir = Vector3(0, 1, 0)
+shader_parameter/lighting_mode = 0.5
+shader_parameter/uv_div_x = 1
+shader_parameter/uv_div_y = 1
+shader_parameter/uv_offset_x = 0
+shader_parameter/uv_offset_y = 0
 
 [node name="BaseCharacter" type="CharacterBody3D" unique_id=1058693826 node_paths=PackedStringArray("hurt_box", "dash_component", "stagger_component", "character_abilities", "state_machine")]
 collision_layer = 2
@@ -184,30 +215,30 @@ bone_vfx_rot_offsets = Dictionary[String, Vector3]({
 [node name="GeneralSkeleton" parent="MaleBaseRigV2/Armature_003" parent_id_path=PackedInt32Array(1179849529, 653949451) index="0" unique_id=758744942]
 bones/0/position = Vector3(-4.0395705e-09, 8.2718056e-25, 0)
 bones/0/rotation = Quaternion(6.497199e-10, 0.7071068, -6.4971983e-10, 0.7071068)
-bones/1/position = Vector3(-0.032040607, 3.6942694, -4.2448622e-09)
+bones/1/position = Vector3(-0.032040607, 3.7058687, -4.2661785e-09)
 bones/1/rotation = Quaternion(0.8459008, 0.011964449, 0.5324154, 0.02902672)
-bones/2/rotation = Quaternion(0.06176624, 0.9235253, 0.2997854, -0.23111661)
-bones/3/rotation = Quaternion(0.24524459, -2.6673844e-05, 0.00023293149, 0.9694612)
-bones/4/rotation = Quaternion(-0.4569275, 0.02019611, -0.025725884, 0.88890254)
+bones/2/rotation = Quaternion(0.0603896, 0.9252542, 0.29441333, -0.2314703)
+bones/3/rotation = Quaternion(0.23578529, -2.2459852e-05, 0.00020693193, 0.9718053)
+bones/4/rotation = Quaternion(-0.45464575, 0.02012833, -0.026034288, 0.89006424)
 bones/5/rotation = Quaternion(-0.24985352, 1.4643615e-07, -2.5852136e-08, 0.96828365)
 bones/6/rotation = Quaternion(-0.703536, 1.3446016e-08, -9.717982e-08, 0.7106596)
-bones/7/rotation = Quaternion(-0.19110885, 0.96915513, -0.098064296, 0.120827645)
-bones/8/rotation = Quaternion(0.077745035, -0.009876311, 0.026332278, 0.9965766)
-bones/9/rotation = Quaternion(-0.64082474, -0.08059548, 0.13702454, 0.7510475)
+bones/7/rotation = Quaternion(-0.18278341, 0.9684991, -0.11414414, 0.12478395)
+bones/8/rotation = Quaternion(0.04606481, -0.009880586, 0.016006617, 0.9987614)
+bones/9/rotation = Quaternion(-0.62650967, -0.082633205, 0.15126218, 0.7601165)
 bones/10/rotation = Quaternion(-0.24985349, 1.5497255e-07, 1.6084392e-08, 0.96828365)
 bones/11/rotation = Quaternion(-0.703536, -1.9222988e-08, 6.7514144e-08, 0.7106596)
-bones/12/position = Vector3(-0.032040566, 3.8590999, -4.547765e-09)
-bones/12/rotation = Quaternion(0.10037566, 0.8187811, -0.14686264, 0.5458513)
-bones/13/rotation = Quaternion(0.018845432, -0.5422531, 0.060152613, 0.8378473)
-bones/14/rotation = Quaternion(-0.038791284, -0.113270074, 0.034794975, 0.99219686)
-bones/14/scale = Vector3(1.0144277, 1.0144277, 1.0144278)
-bones/15/rotation = Quaternion(0.07545232, -0.23531233, -0.25456345, 0.9349506)
-bones/15/scale = Vector3(0.98577756, 0.9857775, 0.9857776)
+bones/12/position = Vector3(-0.032040562, 3.8740377, -4.575216e-09)
+bones/12/rotation = Quaternion(0.100838766, 0.8187242, -0.14717138, 0.54576814)
+bones/13/rotation = Quaternion(0.0103817275, -0.5427607, 0.061888717, 0.83753973)
+bones/14/rotation = Quaternion(-0.04312614, -0.11332344, 0.040151466, 0.99180937)
+bones/14/scale = Vector3(1.0007985, 1.0007985, 1.0007985)
+bones/15/rotation = Quaternion(0.07742723, -0.23468429, -0.26062024, 0.9332768)
+bones/15/scale = Vector3(0.9992023, 0.9992024, 0.99920243)
 bones/16/rotation = Quaternion(0.011736325, -0.020623703, 0.32389048, 0.94579697)
-bones/17/rotation = Quaternion(0.65742093, 0.20061295, 0.5197304, 0.50737804)
-bones/18/rotation = Quaternion(0.2991317, -0.48637253, -0.05220744, 0.8192903)
-bones/19/rotation = Quaternion(0.039655685, 0.021152828, -0.57713556, 0.8154107)
-bones/20/rotation = Quaternion(0.0031208643, -0.02060835, -0.19779277, 0.9800223)
+bones/17/rotation = Quaternion(0.6601881, 0.20112818, 0.52080005, 0.5024605)
+bones/18/rotation = Quaternion(0.29075995, -0.48890504, -0.05263874, 0.82076776)
+bones/19/rotation = Quaternion(0.030018594, 0.029229634, -0.5599764, 0.82744855)
+bones/20/rotation = Quaternion(-0.060419105, -0.037858106, -0.20194732, 0.9767977)
 bones/21/rotation = Quaternion(0.18912877, -0.03606822, 0.02602373, 0.9809446)
 bones/22/rotation = Quaternion(0.27312142, -1.26208e-07, -5.6015885e-08, 0.96197957)
 bones/23/rotation = Quaternion(0.30522484, 2.515232e-07, 2.5666003e-07, 0.95228034)
@@ -225,10 +256,10 @@ bones/34/rotation = Quaternion(-0.17964402, 0.06121359, -0.032536477, 0.98128605
 bones/35/rotation = Quaternion(-0.048182514, 0.0032040412, -0.0045291055, 0.9988232)
 bones/36/rotation = Quaternion(-0.76348156, -0.10378601, -0.08586237, 0.6316265)
 bones/37/rotation = Quaternion(-0.0002513117, 0.00010083815, 0.52488565, 0.85117275)
-bones/38/rotation = Quaternion(0.6943828, -0.4646113, 0.41753632, -0.35725665)
-bones/39/rotation = Quaternion(0.3710874, 0.7445074, -0.261637, 0.4894375)
-bones/40/rotation = Quaternion(0.041448846, -0.008071992, 0.18904841, 0.9810595)
-bones/41/rotation = Quaternion(-0.09058158, -0.40331253, -0.17863144, 0.89287454)
+bones/38/rotation = Quaternion(0.6938584, -0.46400157, 0.42193085, -0.3538892)
+bones/39/rotation = Quaternion(0.36984494, 0.74279886, -0.25588813, 0.4959696)
+bones/40/rotation = Quaternion(0.04133326, -0.008644533, 0.20260026, 0.97835076)
+bones/41/rotation = Quaternion(-0.09859917, -0.4014276, -0.1608064, 0.8962563)
 bones/42/rotation = Quaternion(0.7414094, 0.01314293, -0.042490073, 0.6695774)
 bones/43/rotation = Quaternion(0.5851851, 2.4216507e-07, 1.0144381e-07, 0.8108998)
 bones/44/rotation = Quaternion(0.5851943, -1.6330745e-07, -1.5245497e-07, 0.8108932)
@@ -248,13 +279,23 @@ bones/57/rotation = Quaternion(-0.7649726, -0.09215438, -0.07623872, 0.63286024)
 bones/58/rotation = Quaternion(-0.0002432334, -0.0001188557, -0.5857752, 0.81047356)
 
 [node name="BoneAttachment3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="1" unique_id=1169500303]
-transform = Transform3D(0.99872714, -0.14795823, 0.09857026, -0.09121457, -0.9092041, -0.44055718, 0.15260276, 0.42487568, -0.90843624, -1.1727573, 3.544619, 0.7708196)
+transform = Transform3D(0.9741165, -0.20743912, 0.09830114, -0.1544157, -0.90926296, -0.38857886, 0.16985247, 0.36305243, -0.91702807, -1.1818206, 3.5519853, 0.70519745)
 
 [node name="EquippedGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="2" unique_id=1643015151]
-transform = Transform3D(-0.3960845, -0.61043906, -0.7067846, 0.8685242, 0.041429937, -0.5225058, 0.3432873, -0.8091418, 0.5064642, 0.8992847, 3.913498, -1.831413)
+transform = Transform3D(-0.46510616, -0.48533615, -0.74143237, 0.8084996, 0.110380754, -0.579432, 0.36276963, -0.86825216, 0.3407832, 0.9292729, 3.9661183, -1.8378668)
 
-[node name="HolsteredGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="3" unique_id=2089154445]
-transform = Transform3D(0.9000466, 0.061847564, -0.43138254, 0.051150013, -0.99802846, -0.036367334, -0.4327814, 0.010667073, -0.90143573, -1.4955286e-09, 3.6942692, 0.032040607)
+[node name="EquippedGun2" type="BoneAttachment3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="3" unique_id=658771142]
+transform = Transform3D(-0.5827903, -0.3596902, -0.7297776, 0.8130038, -0.29195452, -0.50535566, -0.03126537, -0.88712025, 0.46220872, 1.2493166, 4.2258925, -1.0485275)
+bone_name = "LowerArm_R"
+bone_idx = 19
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton/EquippedGun2" unique_id=897910419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7505813, -0.13700002)
+mesh = SubResource("CylinderMesh_vucap")
+surface_material_override/0 = SubResource("ShaderMaterial_bghwh")
+
+[node name="HolsteredGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="4" unique_id=2089154445]
+transform = Transform3D(0.9000466, 0.061847564, -0.43138254, 0.051150013, -0.99802846, -0.036367334, -0.4327814, 0.010667073, -0.90143573, -1.495529e-09, 3.7058685, 0.032040607)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
 root_node = NodePath("../MaleBaseRigV2")

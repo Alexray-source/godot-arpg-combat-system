@@ -35,6 +35,7 @@ var _legs_blend_path : String
 var _mesh_cached_scale : float
 var _face_target : bool = false
 var _bypass_air_leg_animation : bool = false
+var _bone_attachments : Dictionary[String, BoneAttachment3D]
 
 func _ready() -> void:
 	_mesh_cached_scale = scale.x
@@ -84,7 +85,10 @@ func _process(_delta: float) -> void:
 	#print(combat_character.velocity.dot(-global_basis.z))
 	anim_tree.set(movement_blend_prop_path, Vector2(combat_character.velocity.dot(global_basis.x), combat_character.velocity.dot(-global_basis.z)))
 
-func damage_visual() -> void:
+func damage_visual(atk_info : AtkInfo) -> void:
+	if atk_info.dmg <= 0:
+		return
+	
 	mesh_instance.material_overlay = dmg_overlay_mat
 	get_tree().create_timer(0.1).timeout.connect(func():
 		mesh_instance.material_overlay = null
@@ -97,7 +101,7 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	equipped_weapon_node.visible = equip_mode == WeaponEquipMode.EQUIP
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
 
-func slash_vfx(vfx_preset : String, bone_name : String):
+func slash_vfx(vfx_preset : String, bone_name : String, attached : bool = false):
 	if vfx_key_mapping.get(vfx_preset) == null:
 		return
 	
@@ -106,10 +110,22 @@ func slash_vfx(vfx_preset : String, bone_name : String):
 	var bone_global_transform = skeleton.global_transform * bone_transform
 	
 	var vfx_key = vfx_key_mapping.get(vfx_preset)
+	var attachment = _bone_attachments.get(bone_name)
 	
 	if bone_vfx_rot_offsets.get(bone_name) != null:
 		var bone_rot_offset : Vector3 = bone_vfx_rot_offsets.get(bone_name)
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.RIGHT, deg_to_rad(bone_rot_offset.x))
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.UP, deg_to_rad(bone_rot_offset.y))
 		bone_global_transform = bone_global_transform.rotated_local(Vector3.FORWARD, deg_to_rad(bone_rot_offset.z))
-	GlobalSignals.spawn_vfx.emit(vfx_key, bone_global_transform.orthonormalized())
+		
+	if attached == true and attachment == null:
+		var new_attachment = BoneAttachment3D.new()
+		skeleton.add_child(new_attachment)
+		new_attachment.bone_name = bone_name
+		_bone_attachments[bone_name] = new_attachment
+		attachment = new_attachment
+	#print(attachment)
+	if attached == true:
+		GlobalSignals.spawn_vfx_attached.emit(vfx_key, attachment)
+	else:
+		GlobalSignals.spawn_vfx.emit(vfx_key, bone_global_transform.orthonormalized())

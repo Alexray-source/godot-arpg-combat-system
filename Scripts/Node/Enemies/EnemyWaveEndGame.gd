@@ -10,7 +10,7 @@ func _ready() -> void:
 	enemy_waves.finished.connect(transition, CONNECT_ONE_SHOT)
 
 func transition():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.5).timeout
 	
 	bgm_changer.change_bgm()
 	

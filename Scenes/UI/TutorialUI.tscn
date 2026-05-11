@@ -2,16 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dp2f37ugofyqg" path="res://Scripts/Node/UI/input_tutorial.gd" id="1_miii1"]
 
-[node name="TutorialUi" type="Control" unique_id=1087208815 node_paths=PackedStringArray("input_elements_holder")]
+[node name="TutorialUi" type="Control" unique_id=1087208815 node_paths=PackedStringArray("tutorial_panel", "input_elements_holder")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 script = ExtResource("1_miii1")
 tutorial_display_time = 25.0
+tutorial_panel = NodePath("PanelContainer")
 input_elements_holder = NodePath("PanelContainer/VBoxContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1882138820]
@@ -27,6 +29,7 @@ offset_right = 371.0
 offset_bottom = 105.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=196795415]
 layout_mode = 2

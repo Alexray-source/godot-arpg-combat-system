@@ -4,12 +4,20 @@
 [ext_resource type="Script" uid="uid://1giy8nffy3qm" path="res://Scripts/Resources/VFXDatabase/VFX_Database.gd" id="1_sq60v"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="2_8yxse"]
 [ext_resource type="PackedScene" uid="uid://dr1who33ikakt" path="res://Scenes/VFX/muzzle.tscn" id="3_ig2jd"]
+[ext_resource type="PackedScene" uid="uid://c220s3jcrb0pt" path="res://Scenes/VFX/attack_indicator.tscn" id="4_7yb46"]
+[ext_resource type="PackedScene" uid="uid://b15m2336wqpsf" path="res://Scenes/VFX/blue_flash.tscn" id="5_s8pht"]
+[ext_resource type="PackedScene" uid="uid://begyeqbd0k88t" path="res://Scenes/VFX/shield_charge.tscn" id="6_rmixs"]
+[ext_resource type="PackedScene" uid="uid://co2pul8ryv554" path="res://Scenes/VFX/shield_break.tscn" id="7_nc4x0"]
 
 [resource]
 script = ExtResource("1_sq60v")
 entries = Dictionary[String, PackedScene]({
+"ai_attack_indicator": ExtResource("4_7yb46"),
+"blue_flash": ExtResource("5_s8pht"),
 "enemy_slash": ExtResource("2_8yxse"),
 "general_slash": ExtResource("1_q1kvh"),
-"muzzle": ExtResource("3_ig2jd")
+"muzzle": ExtResource("3_ig2jd"),
+"shield_break": ExtResource("7_nc4x0"),
+"shield_summon": ExtResource("6_rmixs")
 })
 metadata/_custom_type_script = "uid://1giy8nffy3qm"
