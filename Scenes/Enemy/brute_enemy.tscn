@@ -114,7 +114,7 @@ metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 [sub_resource type="Resource" id="Resource_v74rv"]
 resource_name = "Set Chr. Move Speed"
 script = ExtResource("5_ej8u3")
-new_move_speed = 18.0
+new_move_speed = 5.0
 metadata/_custom_type_script = "uid://74tunipa0gp8"
 
 [sub_resource type="Resource" id="Resource_iwbx2"]
@@ -143,7 +143,7 @@ metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 [sub_resource type="Resource" id="Resource_qlffu"]
 resource_name = "Set Chr. Move Speed"
 script = ExtResource("5_ej8u3")
-new_move_speed = 25.0
+new_move_speed = 10.0
 metadata/_custom_type_script = "uid://74tunipa0gp8"
 
 [sub_resource type="Resource" id="Resource_qafw8"]
@@ -333,6 +333,7 @@ metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
 [sub_resource type="Resource" id="Resource_8eb36"]
 resource_name = "Set Chr. Move Speed"
 script = ExtResource("5_ej8u3")
+new_move_speed = 10.0
 metadata/_custom_type_script = "uid://74tunipa0gp8"
 
 [sub_resource type="Resource" id="Resource_gvsaa"]

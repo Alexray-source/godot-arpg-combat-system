@@ -18,4 +18,4 @@ blackboard = Dictionary[String, Variant]({
 tree_data = ExtResource("5_ecs0e")
 
 [node name="MageChr" parent="." unique_id=1058693826 instance=ExtResource("2_au65u")]
-move_speed = 35.0
+move_speed = 5.0

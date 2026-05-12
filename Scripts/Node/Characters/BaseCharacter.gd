@@ -6,9 +6,9 @@ enum ChrMovementType {
 }
 
 
-const GRAVITY_DIR : Vector3 = Vector3.DOWN
+#const GRAVITY_DIR : Vector3 = Vector3.DOWN
 
-@export var move_speed : float = 10.0
+@export var move_speed : float = 7.0
 @export var gravity_scale : float = 2.0
 @export var state_machine : CharacterStateMachine
 @export var chr_movement_type : ChrMovementType = ChrMovementType.GROUND
@@ -43,12 +43,11 @@ func rescan_ground_state():
 		else:
 			set_state("air_movement")
 
-func apply_gravity_force(up_velocity : Vector3, delta : float):
-	up_velocity = velocity * -GRAVITY_DIR
-	var gravity_acceleration : Vector3 = ProjectSettings.get_setting("physics/3d/default_gravity") * GRAVITY_DIR * gravity_scale
+func calculate_gravity_force(up_velocity : Vector3, delta : float):
+	var gravity_acceleration : Vector3 = get_gravity() * gravity_scale
 	var gravity_velocity : Vector3 = (gravity_acceleration * delta)
-		
-	up_velocity = (up_velocity + gravity_velocity).limit_length(20.0)
+	#up_velocity = (up_velocity + gravity_velocity).limit_length(20.0)
+	up_velocity = (up_velocity + gravity_velocity)
 	return up_velocity
 
 func _physics_process(_delta: float) -> void:
@@ -57,8 +56,8 @@ func _physics_process(_delta: float) -> void:
 		
 	prev_is_on_floor = is_on_floor()
 	
-	if velocity.y > 15.0:
-		print("VERY HIGH VELOCITY")
+	#if velocity.y > 15.0:
+		#print("VERY HIGH VELOCITY")
 
 func jump():
 	if is_on_floor():

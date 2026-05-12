@@ -253,7 +253,8 @@ func knockback(atk_info : AtkInfo):
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO
 	#up_velocity = Vector3.ZERO
-	global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
+	#global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
+	global_basis = Basis.looking_at(-atk_info.atk_dir)
 	interupt_atks.emit()
 	set_state("knockback")
 	end_attack_debounce()
