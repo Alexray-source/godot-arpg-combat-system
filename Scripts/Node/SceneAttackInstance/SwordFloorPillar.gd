@@ -14,6 +14,7 @@ var _target : Node3D
 var _direct_space_state  : PhysicsDirectSpaceState3D
 var _physics_shape_query_params : PhysicsShapeQueryParameters3D
 var _start_pos : Vector3
+var _follow_target : bool = false
 
 func _ready() -> void:
 	_physics_shape_query_params = PhysicsShapeQueryParameters3D.new()
@@ -41,9 +42,15 @@ func _ready() -> void:
 func move_to_target(factor : float):
 	main_object.global_position = spawn_transform.origin.lerp(_target.global_position, factor)
 
+func _physics_process(_delta: float) -> void:
+	if _follow_target == true:
+		main_object.global_position = _target.global_position
+
 func spawn_sword_pillar():
+	_follow_target = true
 	show_indicator(decal.global_transform)
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.35).timeout
+	_follow_target = false
 	decal.visible = false
 	
 	var aoe_hitbox : AoeHitbox = AoeHitbox.new()
