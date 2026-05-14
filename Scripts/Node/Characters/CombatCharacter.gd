@@ -230,6 +230,9 @@ func remove_stat_modifier(modifier_key : String):
 		existing_visual_node.queue_free()
 		_stat_modifiers_visuals[modifier_key] = null
 
+func has_stat_modifier(modifier_key : String) -> bool:
+	return _stat_modifier_stack.has_stat_modifier(modifier_key)
+
 func reset_stagger_count():
 	#print("reset stagger")
 	_stagger_count = 0

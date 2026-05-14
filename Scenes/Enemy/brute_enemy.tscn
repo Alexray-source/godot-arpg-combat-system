@@ -23,7 +23,12 @@
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="17_3erts"]
 [ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="18_hvlvc"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="18_uyofg"]
+[ext_resource type="Script" uid="uid://b8rauombb0847" path="res://addons/atomai/Scripts/DataNodes/BT_SetFloatBBData.gd" id="18_y8a28"]
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="19_2ll3y"]
+[ext_resource type="Script" uid="uid://dmbun8oop6xgt" path="res://addons/atomai/Scripts/DataNodes/BT_CheckFloatBBData.gd" id="19_7y58b"]
+[ext_resource type="Script" uid="uid://vs2abxhxbfjx" path="res://addons/atomai/Scripts/DataNodes/BT_IncrementFloatBBData.gd" id="23_7y58b"]
+[ext_resource type="Script" uid="uid://cprh33b8156vw" path="res://Scripts/Resources/BT_Data/BT_CombatCharacterHasStatModData.gd" id="24_7lipo"]
+[ext_resource type="Script" uid="uid://cknijcek4d72h" path="res://addons/atomai/Scripts/DataNodes/BT_ForceResultData.gd" id="26_6qk6x"]
 
 [sub_resource type="Resource" id="Resource_qys1q"]
 resource_name = "Set Stagger Immune"
@@ -186,6 +191,25 @@ script = ExtResource("12_7lipo")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7lipo"), SubResource("Resource_2ll3y")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
+[sub_resource type="Resource" id="Resource_7xh3r"]
+resource_name = "Chr. Has Stat Modifier"
+script = ExtResource("24_7lipo")
+stat_modifier_key = "shield"
+metadata/_custom_type_script = "uid://cprh33b8156vw"
+
+[sub_resource type="Resource" id="Resource_dxdoe"]
+resource_name = "Invert Decorator"
+script = ExtResource("9_y8a28")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7xh3r")])
+metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
+
+[sub_resource type="Resource" id="Resource_gbh31"]
+resource_name = "Check Blackboard Float"
+script = ExtResource("19_7y58b")
+bb_float_key = "atk_count"
+compare_mode = 2
+metadata/_custom_type_script = "uid://dmbun8oop6xgt"
+
 [sub_resource type="Resource" id="Resource_6qk6x"]
 resource_name = "Combat Chr. Ability"
 script = ExtResource("16_2wy4d")
@@ -193,6 +217,11 @@ character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 ability_name = "shield_ability"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_mxjuv"]
+script = ExtResource("18_y8a28")
+bb_float_key = "atk_count"
+metadata/_custom_type_script = "uid://b8rauombb0847"
 
 [sub_resource type="Resource" id="Resource_kns7d"]
 resource_name = "Wait"
@@ -203,7 +232,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_5nt2l"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_6qk6x"), SubResource("Resource_kns7d")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_dxdoe"), SubResource("Resource_gbh31"), SubResource("Resource_6qk6x"), SubResource("Resource_mxjuv"), SubResource("Resource_kns7d")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_2wy4d"]
@@ -255,10 +284,46 @@ ability_name = "kick_atk"
 indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
+[sub_resource type="Resource" id="Resource_02m7i"]
+resource_name = "Chr. Has Stat Modifier"
+script = ExtResource("24_7lipo")
+stat_modifier_key = "shield"
+metadata/_custom_type_script = "uid://cprh33b8156vw"
+
+[sub_resource type="Resource" id="Resource_3178f"]
+resource_name = "Invert Decorator"
+script = ExtResource("9_y8a28")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_02m7i")])
+metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
+
+[sub_resource type="Resource" id="Resource_mc1n4"]
+resource_name = "Increment Blackboard Float"
+script = ExtResource("23_7y58b")
+bb_float_key = "atk_count"
+addition = 1.0
+metadata/_custom_type_script = "uid://vs2abxhxbfjx"
+
+[sub_resource type="Resource" id="Resource_uj3yh"]
+resource_name = "Sequence"
+script = ExtResource("7_ynyrs")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_3178f"), SubResource("Resource_mc1n4")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_ikft3"]
+resource_name = "Force Result"
+script = ExtResource("26_6qk6x")
+metadata/_custom_type_script = "uid://cknijcek4d72h"
+
+[sub_resource type="Resource" id="Resource_bd3s2"]
+resource_name = "Selector"
+script = ExtResource("12_7lipo")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_uj3yh"), SubResource("Resource_ikft3")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
 [sub_resource type="Resource" id="Resource_7y58b"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5ny8y"), SubResource("Resource_hvlvc"), SubResource("Resource_ynyrs"), SubResource("Resource_ulpl1"), SubResource("Resource_y8a28"), SubResource("Resource_kns7d")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_5ny8y"), SubResource("Resource_hvlvc"), SubResource("Resource_ynyrs"), SubResource("Resource_ulpl1"), SubResource("Resource_y8a28"), SubResource("Resource_bd3s2"), SubResource("Resource_kns7d")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_amr4h"]
@@ -312,7 +377,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_88bjm"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_vrfs7"), SubResource("Resource_ej8u3"), SubResource("Resource_fxq8x"), SubResource("Resource_tj720"), SubResource("Resource_w0aaj")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_vrfs7"), SubResource("Resource_ej8u3"), SubResource("Resource_fxq8x"), SubResource("Resource_tj720"), SubResource("Resource_bd3s2"), SubResource("Resource_w0aaj")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_4win8"]
@@ -375,7 +440,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_ejlqg"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_cg6gv"), SubResource("Resource_2eexx"), SubResource("Resource_mjw4b"), SubResource("Resource_5dgyv")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_cg6gv"), SubResource("Resource_2eexx"), SubResource("Resource_mjw4b"), SubResource("Resource_bd3s2"), SubResource("Resource_5dgyv")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_1xatg"]
@@ -414,6 +479,7 @@ behavior_tree = NodePath("BehaviorTreeRoot")
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("2_mtp5r")
 blackboard = Dictionary[String, Variant]({
+"atk_count": 0.0,
 "character": NodePath("../BruteChr")
 })
 tree_data = SubResource("Resource_v6j0g")

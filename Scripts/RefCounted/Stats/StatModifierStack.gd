@@ -14,6 +14,9 @@ func add_modifier(modifier_key : String, stat_modifier : StatModifierData):
 func remove_modifier(modifier_key : String):
 	stat_modifiers.erase(modifier_key)
 
+func has_stat_modifier(modifier_key : String) -> bool:
+	return stat_modifiers.has(modifier_key)
+
 func get_stat_stack_value(stat : StatModifierData.Stats):
 	var stat_value : float = 0.0
 	for modifier_key in stat_modifiers:
