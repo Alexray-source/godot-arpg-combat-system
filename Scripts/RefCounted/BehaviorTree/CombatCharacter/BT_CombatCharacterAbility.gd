@@ -4,9 +4,9 @@ var character_bb_key : String
 var target_node_bb_key : String
 var ability_name : String
 var indicator_vfx : String
+var cooldown_time : float = 0.0
 
 var _finished : bool = false
-
 
 func tick(blackboard : Dictionary):
 	if _finished == false:
