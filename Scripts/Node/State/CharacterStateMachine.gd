@@ -10,6 +10,7 @@ func _ready() -> void:
 		"attack" : CharacterPrimaryAttackState.new(),
 		"sp_attack" : CharacterSpecialAttackState.new(),
 		"dodge_dash" : CharacterDashState.new(),
+		"block" : CharacterBlockState.new(),
 		"stagger" : ChrStaggerState.new(),
 		"knockback" : ChrKnockbackState.new(),
 		"custom_movement" : CharacterCustomMovementState.new(),

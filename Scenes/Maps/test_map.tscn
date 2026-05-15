@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="12_06c0b"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="13_fa6kx"]
-[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="13_gmu01"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="13_gmu01"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yx20t"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -202,7 +202,7 @@ script = ExtResource("13_fa6kx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
 
 [node name="Enemy" parent="." unique_id=951569018 instance=ExtResource("13_gmu01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.889205, 0, 12.279916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8628216, -9.536743e-07, 4.8415422)
 
 [node name="BehaviorTreeRoot" parent="Enemy" index="0" unique_id=1147936652]
 active = true

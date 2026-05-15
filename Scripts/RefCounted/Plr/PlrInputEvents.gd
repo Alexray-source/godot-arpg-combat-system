@@ -13,6 +13,8 @@ var camera_move_dir : Vector2
 
 signal jump_input
 signal dash_input
+signal block_start
+signal block_end
 
 signal primary_atk_input
 signal secondary_atk_input
@@ -29,12 +31,17 @@ signal target_next
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
 	"chr_dash" : dash_input,
+	"chr_block" : block_start,
 	"chr_primary_atk" : primary_atk_input,
 	"chr_secondary_atk" : secondary_atk_input,
 	"chr_grapple_object" : grapple_object_input,
 	"chr_grapple_enemy" : grapple_enemy_input,
 	"plr_target_lock" : target_lock,
 	"plr_target_next" : target_next
+}
+
+var signal_mapping_end : Dictionary[String, Signal] = {
+	"chr_block" : block_end
 }
 
 var special_atks : Dictionary[String, Signal] = {
@@ -87,6 +94,13 @@ func input_pressed(input : InputEvent):
 	if input_mode == InputMode.KEYBOARD and input is InputEventMouseMotion:
 		camera_move_dir = input.screen_relative
 
+func input_released(input : InputEvent):
+	if block_all_input == true:
+		return
+	
+	for action_name in signal_mapping_end:
+		if input.is_action_released(action_name) and Input.is_action_pressed("gamepad_action_btn") == false:
+			signal_mapping_end[action_name].emit()
 
 func process(_delta : float):
 	if block_move_input == true or block_all_input == true:

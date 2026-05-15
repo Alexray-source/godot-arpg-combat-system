@@ -67,3 +67,6 @@ func jump():
 
 func set_state(state_name : String):
 	state_machine.transition_to_state_by_key(state_name)
+
+func is_current_state(state_name : String) -> bool:
+	return state_machine.is_current_state_by_key(state_name)

@@ -45,6 +45,8 @@ var equipped_abilities_keys : Array[String]
 #var plr_special_atk_state : PlrSpecialAtkState
 var attacking_enemies : Array[Enemy]
 
+var _block_stamina : float = 100.0
+
 signal ability_energy_changed()
 
 
@@ -96,6 +98,7 @@ func _ready() -> void:
 
 	character.damage_hit.connect(on_damage_hit)
 	character.chr_died.connect(on_died, CONNECT_ONE_SHOT)
+	character.atk_blocked.connect(on_atk_blocked)
 	
 	on_ability_energy_changed()
 	ability_energy_changed.connect(on_ability_energy_changed)
@@ -114,6 +117,9 @@ func _ready() -> void:
 	
 	input_events.jump_input.connect(character.jump)
 	input_events.dash_input.connect(on_dodge_dash)
+	
+	input_events.block_start.connect(on_block_start)
+	input_events.block_end.connect(on_block_end)
 	
 	target_reticle = TARGET_RETICLE_SCENE.instantiate()
 	target_reticle.top_level = true
@@ -198,14 +204,26 @@ func on_dodge_dash() -> void:
 	if abs_move_dir.x < 0.1 and abs_move_dir.z < 0.1:
 		return
 
-
-	if plr_debounces.is_debounce_active("dodge_dash") == false and character.state_machine.current_state != character.state_machine.get_state_by_key("stagger") and character.state_machine.current_state != character.state_machine.get_state_by_key("knockback"): 
+	if plr_debounces.is_debounce_active("dodge_dash") == false and character.is_current_state("knockback") == false: 
 		plr_debounces.add_debounce("dodge_dash")
 		plr_debounces.remove_debounce_delayed("dodge_dash", 0.5)
 		
 		character.dodge_dash()
-		#character.move_dir = input_events.move_dir
-		#plr_state_machine.transition_to_state_by_key("dodge_dash")
+
+func on_block_start() -> void:
+	if character != null and _block_stamina >= 25.0:
+		character.block()
+
+func on_block_end() -> void:
+	print("block release")
+	if character != null and character.is_current_state("block"):
+		character.rescan_ground_state()
+
+func on_atk_blocked() -> void:
+	_block_stamina = clampf(_block_stamina - 25.0, 0.0, 100.0)
+	
+	if _block_stamina <= 0.0:
+		on_block_end()
 
 func on_damage_hit(_atk_info : AtkInfo) -> void:
 	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
@@ -223,10 +241,8 @@ func on_died() -> void:
 
 func on_toggle_target_lock() -> void:
 	if current_target != null:
-		#current_target = null
 		set_lock_target(null)
 	elif target_tracking_camera.targets_in_view.size() > 0:
-		#current_target = target_tracking_camera.targets_in_view.get(0)
 		set_lock_target(target_tracking_camera.targets_in_view.get(0))
 
 func on_target_next() -> void:
@@ -281,11 +297,14 @@ func set_lock_target(new_target : Node3D) -> void:
 func handle_target_tree_exit(_exiting_target : Node3D) -> void:
 	if current_target == _exiting_target:
 		on_target_next()
-		#set_lock_target(null)
-		#target_reticle.visible = false
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)
+	input_events.input_released(event)
+	#if event.is_pressed():
+		#input_events.input_pressed(event)
+	#elif event.is_released():
+		#input_events.input_released(event)
 
 func handle_camera_rot(delta):
 	var chr_movement_camera_influence : float = 0.0
@@ -354,6 +373,11 @@ func _process(delta: float) -> void:
 			#current_target = null
 			set_lock_target(null)
 	
+	if character != null and character.is_current_state("block"):
+		_block_stamina = clamp(_block_stamina - delta, 0.0, 100.0)
+		print(_block_stamina)
+	else:
+		_block_stamina = clampf(_block_stamina + delta, 0.0, 100.0)
 	
 	var flat_right_dir = Vector3(current_camera.global_basis.x.x, 0.0, current_camera.global_basis.x.z)
 	var flat_forward_dir = Vector3(current_camera.global_basis.z.x, 0.0, current_camera.global_basis.z.z)

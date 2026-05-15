@@ -37,6 +37,7 @@ var _damage_sfx_player : DamageSoundPlayer
 signal interupt_atks()
 signal damage_hit(atk_info : AtkInfo)
 signal received_hit()
+signal atk_blocked()
 signal chr_died()
 signal atk_debounce_ended()
 signal enemies_hit(opponent_hurtboxes : Array[HurtBox])
@@ -114,6 +115,9 @@ func is_attack_debounce_active():
 	return debounces.is_debounce_active("attack")
 
 func on_atk_finished():
+	if is_current_state("block") == true:
+		return
+	
 	debounces.remove_debounce_delayed("grapple", 0.6)
 	end_attack_debounce()
 	
@@ -134,7 +138,6 @@ func ability_action(ability_name : StringName):
 func ability_event_trigger(ability_name : StringName):
 	character_abilities.ability_animation_event(ability_name)
 
-
 func end_attack_debounce():
 	debounces.remove_debounce("attack")
 	atk_debounce_ended.emit()
@@ -146,7 +149,7 @@ func on_atk_hit(atk_info : AtkInfo):
 	
 	var defence_factor =  clampf(_stat_modifier_stack.get_stat_stack_value(StatModifierData.Stats.DEFENSE), 0.0, 1.0)
 
-	if invincible == false and defence_factor < 1.0:
+	if invincible == false and defence_factor < 1.0 and is_current_state("block") == false:
 		var defence_reduction : int = roundi(atk_info.dmg * defence_factor)
 		
 		health_component.take_damage(atk_info.dmg - defence_reduction)
@@ -160,14 +163,18 @@ func on_atk_hit(atk_info : AtkInfo):
 			knockback(atk_info)
 		else:
 			stagger(atk_info)
-	elif invincible == true or defence_factor >= 1.0:
+	elif invincible == true or defence_factor >= 1.0 or is_current_state("block"):
 		var instigator = atk_info.instigator
 		
 		_damage_sfx_player.play_damage_sfx(self, AtkInfo.AtkType.DEFLECT_INSTIGATOR)
 		
-		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE:
+		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE and is_current_state("block") == false:
 			var bounce_atk_dir = self.global_position.direction_to(instigator.global_position)
 			instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
+		
+		if is_current_state("block") == true:
+			atk_blocked.emit()
+			rescan_ground_state()
 		
 
 #func on_throwable_hit(throwable : Throwable):
@@ -175,22 +182,21 @@ func on_atk_hit(atk_info : AtkInfo):
 	#knockback(atk_info)
 	#var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
 	#throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
-	
 
 func on_dash_end():
-	if state_machine.is_current_state_by_key("knockback") == false:
+	if is_current_state("knockback") == false:
 		velocity = Vector3.ZERO
 	
-	if state_machine.is_current_state_by_key("attack") or state_machine.is_current_state_by_key("sp_attack") or state_machine.is_current_state_by_key("knockback"):
+	if is_current_state("attack") or is_current_state("sp_attack") or is_current_state("knockback") or is_current_state("block") == true:
 		return
 	
-	if state_machine.is_current_state_by_key("dodge_dash"):
+	if is_current_state("dodge_dash"):
 		debounces.remove_debounce("attack")
 	
 	rescan_ground_state()
 
 func on_stagger_end():
-	if state_machine.is_current_state_by_key("knockback") == true or state_machine.is_current_state_by_key("dead") == true:
+	if is_current_state("knockback") == true or is_current_state("dead") == true:
 		return
 	
 	rescan_ground_state()
@@ -269,6 +275,9 @@ func dodge_dash():
 	
 	character_abilities.interrupt_active_ability()
 	set_state("dodge_dash")
+
+func block():
+	set_state("block")
 
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
 	##TEMPORARY WORKAROUND, MAKE THIS FUNCTION COMPATIBLE ON Y-AXIS TOO LATER
