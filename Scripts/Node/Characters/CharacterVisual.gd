@@ -13,7 +13,11 @@ enum WeaponEquipMode {
 @export var state_machine : CharacterStateMachine
 @export var legs_air_blend_node_name : String
 @export var movement_blend_prop_path : String = "parameters/StateMachine/base_movement/blend_position"
+
+@export_subgroup("Animations")
 @export var dash_anim_name : String
+@export var block_anim_name : String
+@export var block_hit_anim_name : String
 @export var dead_anim_name : String = "BaseAnimations/Dead"
 
 @export_subgroup("Leg Air Settings")
@@ -37,35 +41,56 @@ var _face_target : bool = false
 var _bypass_air_leg_animation : bool = false
 var _bone_attachments : Dictionary[String, BoneAttachment3D]
 
+var _state_enter_anim_mapping : Dictionary[String, String]
+var _state_end_stop_anims : Array[String]
+
 func _ready() -> void:
+	_state_enter_anim_mapping = {
+		"dead" = dead_anim_name,
+		"dodge_dash" = dash_anim_name,
+		"block" = block_anim_name
+	}
+	
+	_state_end_stop_anims = ["block"]
+	
 	_mesh_cached_scale = scale.x
 	
 	_legs_blend_path = "parameters/" + legs_air_blend_node_name
 	combat_character.damage_hit.connect(damage_visual)
+	combat_character.atk_blocked.connect(on_attack_blocked)
 	
-	state_machine.state_changed.connect(on_state_changed)
+	state_machine.state_key_changed.connect(on_state_key_changed)
 	anim_tree.animation_started.connect(on_animation_started)
 
 func on_animation_started(anim_name):
 	_bypass_air_leg_animation = not blacklisted_air_anims.has(anim_name)
 
-func on_state_changed(new_state : State) -> void:
+func play_override_animation(anim_name : String):
 	var one_shot_property_path = "parameters/" + oneshot_node_name
-
-	if state_machine.get_state_by_key("dead") == new_state:
-		anim_tree.tree_root.get_node(animation_node_name).animation = dead_anim_name
-		anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
-		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		return
-	elif state_machine.get_state_by_key("dodge_dash") == new_state:
-		
-		anim_tree.tree_root.get_node(animation_node_name).animation = dash_anim_name
-		anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
-		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	elif state_machine.get_state_by_key("knockback") == new_state:
-		anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 	
-	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")
+	anim_tree.tree_root.get_node(animation_node_name).animation = anim_name
+	anim_tree.set(one_shot_property_path + "/fadein_time", 0.0)
+	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func stop_override_anim():
+	var one_shot_property_path = "parameters/" + oneshot_node_name
+	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
+
+func on_state_key_changed(old_state_key : String , new_state_key : String) -> void:
+	var one_shot_property_path = "parameters/" + oneshot_node_name
+	var assigned_state_enter_anim = _state_enter_anim_mapping.get(new_state_key)
+	var state_end_stop_override_anim = _state_end_stop_anims.has(old_state_key)
+	
+	if state_end_stop_override_anim == true:
+		stop_override_anim()
+	
+	if assigned_state_enter_anim != null:
+		play_override_animation(assigned_state_enter_anim)
+	
+	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")  or state_machine.is_current_state_by_key("block")
+
+func on_attack_blocked():
+	play_override_animation(block_hit_anim_name)
 
 func _process(_delta: float) -> void:
 	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor() or _bypass_air_leg_animation == false))

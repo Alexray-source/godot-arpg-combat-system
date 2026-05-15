@@ -173,8 +173,11 @@ func on_atk_hit(atk_info : AtkInfo):
 			instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
 		
 		if is_current_state("block") == true:
+			global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 			atk_blocked.emit()
-			rescan_ground_state()
+			dash(-6.0)
+			#rescan_ground_state()
+			get_tree().create_timer(0.5).timeout.connect(rescan_ground_state)
 		
 
 #func on_throwable_hit(throwable : Throwable):

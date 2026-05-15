@@ -4,8 +4,10 @@ var states : Dictionary[String, State]
 @export var debug : bool = false
 
 var current_state : State
+var current_state_key : String
 
 signal state_changed(new_state : State)
+signal state_key_changed(old_state_key : String, new_state_key : String)
 
 #func _ready() -> void:
 func state_machine_setup():
@@ -22,7 +24,7 @@ func _physics_process(delta: float) -> void:
 func get_state_by_key(state_key : String):
 	return states.get(state_key)
 
-func transition_to_state(new_state : State):
+func _transition_to_state(new_state : State):
 	#if new_state == current_state:
 		#return
 
@@ -44,5 +46,9 @@ func is_current_state_by_key(state_key_to_compare) -> bool:
 	return current_state == state_to_compare
 
 func transition_to_state_by_key(new_state_key : String):
+	var old_state_key = current_state_key
 	var new_state = get_state_by_key(new_state_key)
-	transition_to_state(new_state)
+	_transition_to_state(new_state)
+	current_state_key = new_state_key
+
+	state_key_changed.emit(old_state_key, new_state_key)

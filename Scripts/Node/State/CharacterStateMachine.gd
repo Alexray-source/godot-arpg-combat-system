@@ -21,7 +21,7 @@ func _ready() -> void:
 func enter_special_atk_state(_special_atk_name) -> void:
 	var sp_attack_state = states.get("sp_attack")
 	sp_attack_state.ability_name = _special_atk_name
-	transition_to_state(sp_attack_state)
+	_transition_to_state(sp_attack_state)
 
 func state_machine_setup() -> void:
 	for state_key in states:

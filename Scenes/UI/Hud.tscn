@@ -31,7 +31,14 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npgtc"]
+bg_color = Color(1, 0.796875, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar", "stamina_bar")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +48,7 @@ grow_vertical = 2
 script = ExtResource("1_b2arx")
 abilities_ui = NodePath("Control")
 health_bar = NodePath("ProgressBar")
+stamina_bar = NodePath("ProgressBar2")
 
 [node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons")]
 layout_mode = 1
@@ -133,5 +141,16 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_3ov73")
 theme_override_styles/fill = SubResource("StyleBoxFlat_duido")
+max_value = 1.0
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="." unique_id=1025610221]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 204.0
+offset_right = 497.0
+offset_bottom = 208.0
+pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_styles/fill = SubResource("StyleBoxFlat_npgtc")
 max_value = 1.0
 show_percentage = false

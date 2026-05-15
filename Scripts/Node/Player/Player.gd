@@ -48,7 +48,7 @@ var attacking_enemies : Array[Enemy]
 var _block_stamina : float = 100.0
 
 signal ability_energy_changed()
-
+signal block_stamina_empty()
 
 func _ready() -> void:
 	GlobalSignals.camera_changed.connect(set_active_camera)
@@ -67,9 +67,11 @@ func _ready() -> void:
 	
 	plr_debounces = Debounces.new()
 	
+	hud._max_stamina = _block_stamina
+	
 	#plr_state_machine.input_events = input_events
 	#plr_state_machine.state_machine_setup()
-	#plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
+	#plr_state_machine._transition_to_state(plr_state_machine.get_state_by_key("movement"))
 	#plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
 	
 	equipped_abilities_keys.resize(character_data.available_abilities.size())
@@ -102,6 +104,7 @@ func _ready() -> void:
 	
 	on_ability_energy_changed()
 	ability_energy_changed.connect(on_ability_energy_changed)
+	block_stamina_empty.connect(on_block_energy_empty)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 	input_events.secondary_atk_input.connect(on_secondary_atk)
@@ -147,7 +150,7 @@ func get_special_atk_debounce_string(atk_index : int):
 	return "attack" + str(atk_index)
 
 #func return_to_movement_state():
-	#plr_state_machine.transition_to_state(plr_state_machine.get_state_by_key("movement"))
+	#plr_state_machine._transition_to_state(plr_state_machine.get_state_by_key("movement"))
 
 func on_primary_atk() -> void:
 	if character.state_machine.is_current_state_by_key("no_movement"):
@@ -224,6 +227,9 @@ func on_atk_blocked() -> void:
 	
 	if _block_stamina <= 0.0:
 		on_block_end()
+
+func on_block_energy_empty() -> void:
+	on_block_end()
 
 func on_damage_hit(_atk_info : AtkInfo) -> void:
 	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
@@ -373,11 +379,19 @@ func _process(delta: float) -> void:
 			#current_target = null
 			set_lock_target(null)
 	
-	if character != null and character.is_current_state("block"):
+	if character != null and character.is_current_state("block") and _block_stamina > 0.0:
 		_block_stamina = clamp(_block_stamina - delta, 0.0, 100.0)
 		print(_block_stamina)
+		
+		if is_equal_approx(_block_stamina, 0.0):
+			block_stamina_empty.emit()
 	else:
-		_block_stamina = clampf(_block_stamina + delta, 0.0, 100.0)
+		_block_stamina = clampf(_block_stamina + (delta * 5.0), 0.0, 100.0)
+	
+	if character != null:
+		hud._stamina = _block_stamina
+		
+		hud._stamina_bar_screen_pos = current_camera.unproject_position(character.global_position)
 	
 	var flat_right_dir = Vector3(current_camera.global_basis.x.x, 0.0, current_camera.global_basis.x.z)
 	var flat_forward_dir = Vector3(current_camera.global_basis.z.x, 0.0, current_camera.global_basis.z.z)

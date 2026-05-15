@@ -23,7 +23,7 @@ signal is_on_floor_changed(floored : bool)
 func _ready() -> void:
 	platform_floor_layers = 0
 	state_machine.state_machine_setup()
-	#state_machine.transition_to_state(state_machine.get_state_by_key("ground_movement"))
+	#state_machine._transition_to_state(state_machine.get_state_by_key("ground_movement"))
 	on_floor_changed(is_on_floor())
 	
 	is_on_floor_changed.connect(on_floor_changed)
