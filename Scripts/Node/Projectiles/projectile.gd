@@ -2,6 +2,7 @@ class_name Projectile extends Node3D
 
 @export var speed : float = 100.0
 @export var max_lifetime : float = 5.0
+@export var hit_vfx : String = "projectile_hit"
 
 var direct_space_state : PhysicsDirectSpaceState3D
 var ray_params : PhysicsRayQueryParameters3D
@@ -37,5 +38,5 @@ func _physics_process(delta: float) -> void:
 			#print("hurtbox")
 			intersected_collider.hit.emit(atk_info)
 			hit.emit(intersected_collider)
-		else:
-			queue_free()
+		GlobalSignals.spawn_vfx.emit(hit_vfx, Transform3D(Basis.IDENTITY, result.get("position")))
+		queue_free()

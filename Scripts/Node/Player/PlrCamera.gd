@@ -1,5 +1,6 @@
-class_name TargetTrackingCamera extends Camera3D
+class_name TargetTrackingCamera extends Node
 
+@export var camera : Camera3D
 @export var camera_scan_area : Area3D
 @export var camera_frustum_shape : CollisionShape3D
 @export var camera_scan_radius : float = 10.0
@@ -12,7 +13,7 @@ func _ready() -> void:
 	camera_scan_area.body_exited.connect(on_body_camera_view_exited)
 
 func recalculate_perspective_shape() -> void:
-	var pyramid_shape_rid : RID = get_pyramid_shape_rid()
+	var pyramid_shape_rid : RID = camera.get_pyramid_shape_rid()
 	
 	var camera_shape_points = PhysicsServer3D.shape_get_data(pyramid_shape_rid)
 	var convex_shape : ConvexPolygonShape3D = ConvexPolygonShape3D.new()

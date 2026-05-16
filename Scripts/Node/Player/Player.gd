@@ -19,6 +19,10 @@ const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 @export var targeting_cancel_distance_treshold : float = 40.0
 @export var max_ability_energy : int = 100
 
+@export_subgroup("Camera Settings")
+@export var block_shake : ShakeInfo
+@export var hit_shake : ShakeInfo
+
 var current_camera : Camera3D
 var camera_rot_x : float = -0.35
 var camera_rot_y : float = 0.0
@@ -46,6 +50,8 @@ var equipped_abilities_keys : Array[String]
 var attacking_enemies : Array[Enemy]
 
 var _block_stamina : float = 100.0
+var _block_combo : int = 0
+var _plr_camera : Camera3D
 
 signal ability_energy_changed()
 signal block_stamina_empty()
@@ -55,6 +61,7 @@ func _ready() -> void:
 	GlobalSignals.plr_input_state_changed.connect(set_input_state)
 	
 	set_active_camera(get_viewport().get_camera_3d())
+	_plr_camera = target_tracking_camera.camera
 	
 	character = character_data.character_scene.instantiate()
 	add_child(character)
@@ -104,7 +111,7 @@ func _ready() -> void:
 	
 	on_ability_energy_changed()
 	ability_energy_changed.connect(on_ability_energy_changed)
-	block_stamina_empty.connect(on_block_energy_empty)
+	#block_stamina_empty.connect(on_block_energy_empty)
 	
 	input_events.primary_atk_input.connect(on_primary_atk)
 	input_events.secondary_atk_input.connect(on_secondary_atk)
@@ -141,6 +148,7 @@ func on_ability_energy_changed():
 		hud.update_ability_icon_fill(ability_index, ability_fill_factor)
 
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
+	GlobalSignals.shake_all_cameras.emit(hit_shake)
 	ability_energy = clampi(ability_energy + (7.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
 
 func deplete_ability_energy(amount : int):
@@ -224,6 +232,16 @@ func on_block_end() -> void:
 
 func on_atk_blocked() -> void:
 	_block_stamina = clampf(_block_stamina - 25.0, 0.0, 100.0)
+	_block_combo += 1
+	
+	GlobalSignals.shake_all_cameras.emit(block_shake)
+	
+	if _block_combo >= 3:
+		Engine.time_scale = 0.1
+		_block_combo = 0
+		get_tree().create_timer(0.5, false, false, true).timeout.connect(func():
+			Engine.time_scale = 1.0
+		)
 	
 	if _block_stamina <= 0.0:
 		on_block_end()
@@ -324,13 +342,13 @@ func handle_camera_rot(delta):
 		var viewport_size : Vector2 = get_viewport().get_visible_rect().size
 		var viewport_center_pos : Vector2 = viewport_size * 0.5
 		
-		var target_screen_pos : Vector2 = target_tracking_camera.unproject_position(current_target.global_position)
+		var target_screen_pos : Vector2 = _plr_camera.unproject_position(current_target.global_position)
 		var x_correction = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
 		
 		#print(x_correction)
-		if target_tracking_camera.is_position_behind(current_target.global_position):
-			var camera_look_dir : Vector3 = -target_tracking_camera.global_basis.z
-			camera_move_dir.x = camera_look_dir.signed_angle_to(target_tracking_camera.global_position.direction_to(current_target.global_position), target_tracking_camera.global_basis.y) * 10.0
+		if _plr_camera.is_position_behind(current_target.global_position):
+			var camera_look_dir : Vector3 = -_plr_camera.global_basis.z
+			camera_move_dir.x = camera_look_dir.signed_angle_to(_plr_camera.global_position.direction_to(current_target.global_position), _plr_camera.global_basis.y) * 10.0
 		elif abs(x_correction) > 0.1:
 			camera_move_dir.x = (x_correction / viewport_size.x) * 25000.0
 		
@@ -368,7 +386,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if current_target != null:
-		var target_to_camera_dir : Vector3 = (current_target.global_position - target_tracking_camera.global_position).normalized()
+		var target_to_camera_dir : Vector3 = (current_target.global_position - _plr_camera.global_position).normalized()
 		target_to_camera_dir = Vector3(target_to_camera_dir.x, 0.0, target_to_camera_dir.z)
 		
 		var target_to_chr_distance = current_target.global_position.distance_to(character.global_position) * 0.9
@@ -381,7 +399,6 @@ func _process(delta: float) -> void:
 	
 	if character != null and character.is_current_state("block") and _block_stamina > 0.0:
 		_block_stamina = clamp(_block_stamina - delta, 0.0, 100.0)
-		print(_block_stamina)
 		
 		if is_equal_approx(_block_stamina, 0.0):
 			block_stamina_empty.emit()

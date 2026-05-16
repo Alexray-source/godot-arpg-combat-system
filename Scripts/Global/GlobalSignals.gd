@@ -7,6 +7,7 @@ signal change_bgm(audio_stream : AudioStream, crossfade_duration : float)
 signal spawn_vfx(vfx_key : String, vfx_transform : Transform3D)
 signal spawn_vfx_attached(vfx_key : String, parent : Node3D)
 signal camera_changed(new_camera : Camera3D)
+signal shake_all_cameras(shake_info : ShakeInfo)
 signal plr_input_state_changed(new_state : bool)
 signal plr_hud_state_changed(new_state : bool)
 

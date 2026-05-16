@@ -43,6 +43,7 @@ var _bone_attachments : Dictionary[String, BoneAttachment3D]
 
 var _state_enter_anim_mapping : Dictionary[String, String]
 var _state_end_stop_anims : Array[String]
+var _look_dir : float
 
 func _ready() -> void:
 	_state_enter_anim_mapping = {
@@ -61,9 +62,14 @@ func _ready() -> void:
 	
 	state_machine.state_key_changed.connect(on_state_key_changed)
 	anim_tree.animation_started.connect(on_animation_started)
+	anim_tree.animation_finished.connect(on_animation_finished)
 
 func on_animation_started(anim_name):
 	_bypass_air_leg_animation = not blacklisted_air_anims.has(anim_name)
+
+func on_animation_finished(anim_name):
+	if state_machine.current_state_key == "block":
+		play_override_animation(_state_enter_anim_mapping["block"])
 
 func play_override_animation(anim_name : String):
 	var one_shot_property_path = "parameters/" + oneshot_node_name
@@ -94,8 +100,19 @@ func on_attack_blocked():
 
 func _process(_delta: float) -> void:
 	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor() or _bypass_air_leg_animation == false))
-
-	if combat_character.combat_target_override != null and _face_target == true:
+	
+	if combat_character.combat_target_override != null:
+		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
+		
+		var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
+		
+		var target_dir = chr_xz_pos.direction_to(target_xz_pos)
+		
+		_look_dir = global_basis.z.signed_angle_to(target_dir, Vector3.UP)
+	else:
+		_look_dir = 0.0
+	
+	if combat_character.combat_target_override != null and _face_target == true and state_machine.current_state_key == "block":
 		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
 		
 		var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
@@ -108,7 +125,7 @@ func _process(_delta: float) -> void:
 		basis = basis.orthonormalized().slerp(Basis.IDENTITY, _delta * 15.0) * _mesh_cached_scale
 	
 	#print(combat_character.velocity.dot(-global_basis.z))
-	anim_tree.set(movement_blend_prop_path, Vector2(combat_character.velocity.dot(global_basis.x), combat_character.velocity.dot(-global_basis.z)))
+	anim_tree.set(movement_blend_prop_path, Vector2(_look_dir, combat_character.velocity.dot(-global_basis.z)))
 
 func damage_visual(atk_info : AtkInfo) -> void:
 	if atk_info.dmg <= 0:
@@ -125,6 +142,15 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	
 	equipped_weapon_node.visible = equip_mode == WeaponEquipMode.EQUIP
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
+
+func block_vfx(weapon_name : String, vfx_preset : String):
+	var equipped_weapon_node : Node3D = equipped_weapons_visuals[weapon_name]
+	
+	if vfx_key_mapping.get(vfx_preset) == null:
+		return
+	
+	var vfx_key = vfx_key_mapping.get(vfx_preset)
+	GlobalSignals.spawn_vfx.emit(vfx_key, equipped_weapon_node.global_transform.orthonormalized())
 
 func slash_vfx(vfx_preset : String, bone_name : String, attached : bool = false):
 	if vfx_key_mapping.get(vfx_preset) == null:

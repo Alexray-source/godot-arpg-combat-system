@@ -155,6 +155,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		health_component.take_damage(atk_info.dmg - defence_reduction)
 		damage_hit.emit(atk_info)
 		_damage_sfx_player.play_damage_sfx(self, atk_info.atk_type)
+		GlobalSignals.spawn_vfx.emit("melee_damage", Transform3D(hurt_box.global_basis, hurt_box.global_position + hurt_box.hurtbox_center_offset))
 		
 		if stagger_immune == true:
 			return
@@ -175,9 +176,9 @@ func on_atk_hit(atk_info : AtkInfo):
 		if is_current_state("block") == true:
 			global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 			atk_blocked.emit()
-			dash(-6.0)
+			dash(-2.0)
 			#rescan_ground_state()
-			get_tree().create_timer(0.5).timeout.connect(rescan_ground_state)
+			#get_tree().create_timer(0.5).timeout.connect(rescan_ground_state)
 		
 
 #func on_throwable_hit(throwable : Throwable):

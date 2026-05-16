@@ -2,7 +2,6 @@
 
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_8y5mx"]
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
-[ext_resource type="PackedScene" uid="uid://obgfjc23nva" path="res://Scenes/Environment/throwable_ball.tscn" id="5_jah6w"]
 [ext_resource type="PackedScene" uid="uid://8dpovvpgxje5" path="res://Scenes/Chr/test_character.tscn" id="6_o1aaj"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="7_8o3yo"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
@@ -24,15 +23,16 @@ sky_material = SubResource("ProceduralSkyMaterial_yx20t")
 [sub_resource type="Environment" id="Environment_dorj5"]
 background_mode = 2
 sky = SubResource("Sky_lvb5c")
-tonemap_mode = 2
+tonemap_mode = 3
+tonemap_white = 2.0
 glow_enabled = true
-glow_levels/1 = 1.0
-glow_levels/2 = 1.0
+glow_levels/1 = 5.0
+glow_levels/2 = 3.0
 glow_levels/3 = 1.0
 glow_levels/4 = 1.0
 glow_levels/5 = 1.0
 glow_levels/6 = 1.0
-glow_hdr_threshold = 0.7
+glow_intensity = 1.0
 glow_hdr_scale = 0.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rnym6"]
@@ -103,15 +103,6 @@ transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.9899
 
 [node name="ThrowableCube4" parent="." unique_id=1649598834 instance=ExtResource("7_8y5mx")]
 transform = Transform3D(0.98992425, 0, -0.1415976, 0, 1, 0, 0.1415976, 0, 0.98992425, 16.430418, 1, -16.50803)
-
-[node name="ThrowableBall" parent="." unique_id=1154101426 instance=ExtResource("5_jah6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.999392, 0.5, -0.5642538)
-
-[node name="ThrowableBall2" parent="." unique_id=1116100622 instance=ExtResource("5_jah6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.005686, 0.5, -4.3278694)
-
-[node name="ThrowableBall3" parent="." unique_id=79941200 instance=ExtResource("5_jah6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6133919, 0.50000095, -16.35602)
 
 [node name="Control" type="Control" parent="." unique_id=790844773]
 visible = false

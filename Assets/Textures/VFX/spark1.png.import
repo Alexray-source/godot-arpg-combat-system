@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djhgs1l2u8rsx"
-path.s3tc="res://.godot/imported/HalfCircleExplosion2.png-73814edcb293f952a55741bfb3b6a0bf.s3tc.ctex"
-path.etc2="res://.godot/imported/HalfCircleExplosion2.png-73814edcb293f952a55741bfb3b6a0bf.etc2.ctex"
+uid="uid://b1dah7etwmnc"
+path.s3tc="res://.godot/imported/spark1.png-0746b5f73e226e84b33f1b82d6b06cdf.s3tc.ctex"
+path.etc2="res://.godot/imported/spark1.png-0746b5f73e226e84b33f1b82d6b06cdf.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/VFX/HalfCircleExplosion2.png"
-dest_files=["res://.godot/imported/HalfCircleExplosion2.png-73814edcb293f952a55741bfb3b6a0bf.s3tc.ctex", "res://.godot/imported/HalfCircleExplosion2.png-73814edcb293f952a55741bfb3b6a0bf.etc2.ctex"]
+source_file="res://Assets/Textures/VFX/spark1.png"
+dest_files=["res://.godot/imported/spark1.png-0746b5f73e226e84b33f1b82d6b06cdf.s3tc.ctex", "res://.godot/imported/spark1.png-0746b5f73e226e84b33f1b82d6b06cdf.etc2.ctex"]
 
 [params]
 

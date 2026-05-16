@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://bbuxbt056c112"]
+
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="1_3o5nq"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="6_ixdn0"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="7_a5gh6"]
+[ext_resource type="Texture2D" uid="uid://b1c07q0rdqqoq" path="res://Assets/Textures/VFX/spark2.png" id="8_ykw73"]
+[ext_resource type="Shader" uid="uid://dgbcqd71x226o" path="res://Shaders/ParticleBillboardShader.gdshader" id="9_qbr87"]
+[ext_resource type="Texture2D" uid="uid://djhgs1l2u8rsx" path="res://Assets/Textures/VFX/HalfCircleExplosion2.png" id="10_3o5nq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mdg6y"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_ykw73")
+
+[sub_resource type="Curve" id="Curve_pypo0"]
+_data = [Vector2(0, 1), 0.0, -0.8493012, 0, 0, Vector2(1, 0), -0.50215596, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ynfw2"]
+curve = SubResource("Curve_pypo0")
+
+[sub_resource type="Gradient" id="Gradient_jxgw4"]
+colors = PackedColorArray(2.2963562, 0.84242964, 0.84242964, 1, 1, 0.31640625, 0.31640625, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_thj84"]
+gradient = SubResource("Gradient_jxgw4")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_smf51"]
+_data = [Vector2(0, 0), 0.0, 5.992944, 0, 0, Vector2(0.27, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_pppel"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_rd5cb"]
+curve_x = SubResource("Curve_smf51")
+curve_y = SubResource("Curve_pppel")
+curve_z = SubResource("Curve_smf51")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jh531"]
+lifetime_randomness = 0.84
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+radial_velocity_min = 14.999977
+radial_velocity_max = 14.999977
+gravity = Vector3(0, -19.6, 0)
+scale_min = 0.79999995
+scale_max = 1.6999999
+scale_curve = SubResource("CurveXYZTexture_rd5cb")
+color_ramp = SubResource("GradientTexture1D_thj84")
+alpha_curve = SubResource("CurveTexture_ynfw2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pq40q"]
+size = Vector2(0.2, 0.4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfd0k"]
+render_priority = 0
+shader = ExtResource("9_qbr87")
+shader_parameter/particle_tex = ExtResource("10_3o5nq")
+shader_parameter/color_multiplier = 1.0
+shader_parameter/depth_offset = 2.0
+
+[sub_resource type="Curve" id="Curve_7vrry"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.10670731, 0.97630614), 0.0, 0.0, 0, 0, Vector2(0.1948052, 0.4888597), -2.2490175, -2.2490175, 0, 0, Vector2(1, 0), -0.021820623, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_dw421"]
+curve = SubResource("Curve_7vrry")
+
+[sub_resource type="Gradient" id="Gradient_yc0aa"]
+colors = PackedColorArray(2.0057733, 2.9776056, 3.357888, 1, 0, 0.14693981, 0.49495518, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jredo"]
+gradient = SubResource("Gradient_yc0aa")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_3o5nq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.22077921, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.720695, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_hf351"]
+curve = SubResource("Curve_3o5nq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kound"]
+angle_min = -179.99998
+angle_max = 180.00002
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_hf351")
+color_ramp = SubResource("GradientTexture1D_jredo")
+alpha_curve = SubResource("CurveTexture_dw421")
+sub_emitter_mode = 4
+sub_emitter_amount_at_start = 1
+sub_emitter_keep_velocity = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4mxw"]
+
+[node name="MeleeDamage" type="Node3D" unique_id=1517511568]
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=708909946 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("1_3o5nq")
+target_particle = NodePath("../GPUParticles3D3")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="GPUParticleTrigger2" type="Node" parent="." unique_id=146289569 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("1_3o5nq")
+target_particle = NodePath("../GPUParticles3D4")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=497882762 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("6_ixdn0")
+delay_time = 2.0
+target_trigger = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=1503592982]
+script = ExtResource("7_a5gh6")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=1018225142]
+material_override = SubResource("StandardMaterial3D_mdg6y")
+emitting = false
+amount = 15
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-11.645664, -16.999054, -5.718371, 20.961954, 21.095272, 15.424274)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_jh531")
+draw_pass_1 = SubResource("QuadMesh_pq40q")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="." unique_id=1351528654]
+layers = 2
+material_override = SubResource("ShaderMaterial_vfd0k")
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+fixed_fps = 60
+visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
+transform_align = 1
+process_material = SubResource("ParticleProcessMaterial_kound")
+draw_pass_1 = SubResource("QuadMesh_g4mxw")

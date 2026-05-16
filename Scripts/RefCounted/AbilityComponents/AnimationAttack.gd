@@ -46,10 +46,17 @@ func action() -> void:
 		_intended_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
 	
 	if _intended_target != null:
-		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
-		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(_intended_target.global_position.x, 0.0, _intended_target.global_position.z)
+		var intended_target_pos : Vector3 = _intended_target.global_position
 		
-		_current_atk_dir = (_intended_target.global_position - character.global_position).normalized()
+		if _intended_target is HurtBox:
+			intended_target_pos += _intended_target.hurtbox_center_offset
+		elif _intended_target is CombatCharacter:
+			intended_target_pos += _intended_target.hurt_box.hurtbox_center_offset
+		
+		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
+		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(intended_target_pos.x, 0.0, intended_target_pos.z)
+		
+		_current_atk_dir = (intended_target_pos - character.global_position).normalized()
 		
 		character.global_basis = Basis.looking_at((closest_hurtbox_pos_xz_plane - chr_pos_xz_plane).normalized(), Vector3.UP)
 	else:

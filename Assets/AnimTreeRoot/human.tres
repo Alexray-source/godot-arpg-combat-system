@@ -9,8 +9,8 @@ filters = ["%GeneralSkeleton:Foot_L", "%GeneralSkeleton:Foot_R", "%GeneralSkelet
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_172ob"]
 resource_local_to_scene = true
-fadein_time = 0.1
-fadeout_time = 0.25
+fadein_time = 0.02
+fadeout_time = 0.1
 autorestart_delay = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
@@ -33,8 +33,7 @@ animation = &"BaseAnimations/Idle_Sword"
 animation = &"BaseAnimations/Jog_Sword_L"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b5fc0"]
-animation = &"BaseAnimations/Jog_Sword_L"
-play_mode = 1
+animation = &"BaseAnimations/Jog_Sword_R"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjh2t"]
 animation = &"BaseAnimations/Jog_Sword"
@@ -43,17 +42,30 @@ animation = &"BaseAnimations/Jog_Sword"
 animation = &"BaseAnimations/Jog_Sword"
 play_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vsypv"]
+animation = &"BaseAnimations/Jog_Sword_L"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_acoqj"]
+animation = &"BaseAnimations/Jog_Sword_R"
+play_mode = 1
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3jnu7"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_vfdxc")
 blend_point_0/pos = Vector2(0, 0)
 blend_point_1/node = SubResource("AnimationNodeAnimation_j5ww8")
-blend_point_1/pos = Vector2(-1, 0)
+blend_point_1/pos = Vector2(-1, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_b5fc0")
-blend_point_2/pos = Vector2(1, 0)
+blend_point_2/pos = Vector2(1, 1)
 blend_point_3/node = SubResource("AnimationNodeAnimation_jjh2t")
 blend_point_3/pos = Vector2(0, 1)
 blend_point_4/node = SubResource("AnimationNodeAnimation_hamcw")
 blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_vsypv")
+blend_point_5/pos = Vector2(-1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_acoqj")
+blend_point_6/pos = Vector2(1, -1)
+sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72lp5"]
 animation = &"BaseAnimations/Knockback"
@@ -139,10 +151,11 @@ states/staggers_knockback/position = Vector2(845, 223)
 states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
 states/staggers_knockback_recover/position = Vector2(845, 351)
 transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks"), "base_idle", "base_movement", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_movement", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_movement", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_movement", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "base_movement", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_movement", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy")]
-graph_offset = Vector2(-234, -86)
+graph_offset = Vector2(-252, 68)
 
 [resource]
 resource_local_to_scene = true
+graph_offset = Vector2(-684, -138)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-620, -140)
