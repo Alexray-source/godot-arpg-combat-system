@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://0oqp3ebxlpo2"]
+
+[ext_resource type="AudioStream" uid="uid://cuiiwtaba7mvl" path="res://Assets/SFX/392483__gpag1__footsteps-boots_0.ogg" id="1_j7gk4"]
+[ext_resource type="AudioStream" uid="uid://y7bsjgutnlly" path="res://Assets/SFX/392483__gpag1__footsteps-boots_1.ogg" id="2_y2n88"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="3_j7gk4"]
+[ext_resource type="AudioStream" uid="uid://gnelj7u8l41d" path="res://Assets/SFX/392483__gpag1__footsteps-boots_2.ogg" id="3_pct25"]
+[ext_resource type="AudioStream" uid="uid://ctn3d11rjupoa" path="res://Assets/SFX/392483__gpag1__footsteps-boots_3.ogg" id="4_hvmym"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="4_y2n88"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pct25"]
+random_pitch = 1.1172872
+streams_count = 4
+stream_0/stream = ExtResource("1_j7gk4")
+stream_1/stream = ExtResource("2_y2n88")
+stream_2/stream = ExtResource("3_pct25")
+stream_3/stream = ExtResource("4_hvmym")
+
+[node name="Footstep" type="Node3D" unique_id=984145671]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=187589105]
+stream = SubResource("AudioStreamRandomizer_pct25")
+unit_size = 5.0
+autoplay = true
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=16358241 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("3_j7gk4")
+target_trigger = NodePath("DestroyTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=179168097 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("4_y2n88")
+node_to_destroy = NodePath("../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"

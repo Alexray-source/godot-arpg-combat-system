@@ -7,7 +7,7 @@ extends Node
 func _process(delta: float) -> void:
 	var lean_dir : float = 0.0
 	
-	if bypass == false:
+	if bypass == false and base_chr.is_current_state("ground_movement"):
 		lean_dir = -base_chr.move_dir.signed_angle_to(base_chr.velocity.normalized(), Vector3.UP)
 		lean_dir = clamp(lean_dir, -2.0,2.0)
 	

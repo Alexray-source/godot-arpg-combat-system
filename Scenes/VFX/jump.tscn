@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dcy2wjq11vjbp"]
+
+[ext_resource type="AudioStream" uid="uid://db8cg1ri5kyni" path="res://Assets/SFX/348245__newagesoup__punch-boxing-06-reverb.wav" id="1_v15fh"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="5_tg2h6"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="6_3huer"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pct25"]
+random_pitch = 1.1172872
+streams_count = 1
+stream_0/stream = ExtResource("1_v15fh")
+
+[node name="Footstep" type="Node3D" unique_id=984145671]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=187589105]
+stream = SubResource("AudioStreamRandomizer_pct25")
+unit_size = 5.0
+autoplay = true
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=16358241 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("5_tg2h6")
+target_trigger = NodePath("DestroyTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=179168097 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("6_3huer")
+node_to_destroy = NodePath("../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"

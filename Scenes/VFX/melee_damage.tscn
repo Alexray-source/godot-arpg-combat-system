@@ -21,7 +21,7 @@ point_count = 2
 curve = SubResource("Curve_pypo0")
 
 [sub_resource type="Gradient" id="Gradient_jxgw4"]
-colors = PackedColorArray(2.2963562, 0.84242964, 0.84242964, 1, 1, 0.31640625, 0.31640625, 1)
+colors = PackedColorArray(1.1471162, 0.4064759, 0.4064759, 1, 0.5625, 0.05493164, 0.05493164, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_thj84"]
 gradient = SubResource("Gradient_jxgw4")
@@ -45,11 +45,10 @@ lifetime_randomness = 0.84
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
 spread = 180.0
-radial_velocity_min = 14.999977
-radial_velocity_max = 14.999977
+radial_velocity_min = 6.9999776
+radial_velocity_max = 8.999977
 gravity = Vector3(0, -19.6, 0)
-scale_min = 0.79999995
-scale_max = 1.6999999
+scale_min = 0.7
 scale_curve = SubResource("CurveXYZTexture_rd5cb")
 color_ramp = SubResource("GradientTexture1D_thj84")
 alpha_curve = SubResource("CurveTexture_ynfw2")
@@ -89,7 +88,6 @@ curve = SubResource("Curve_3o5nq")
 angle_min = -179.99998
 angle_max = 180.00002
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_hf351")
 color_ramp = SubResource("GradientTexture1D_jredo")

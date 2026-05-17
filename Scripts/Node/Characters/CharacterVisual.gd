@@ -59,6 +59,7 @@ func _ready() -> void:
 	_legs_blend_path = "parameters/" + legs_air_blend_node_name
 	combat_character.damage_hit.connect(damage_visual)
 	combat_character.atk_blocked.connect(on_attack_blocked)
+	combat_character.dodge_dashed.connect(dash_vfx)
 	
 	state_machine.state_key_changed.connect(on_state_key_changed)
 	anim_tree.animation_started.connect(on_animation_started)
@@ -93,13 +94,13 @@ func on_state_key_changed(old_state_key : String , new_state_key : String) -> vo
 	if assigned_state_enter_anim != null:
 		play_override_animation(assigned_state_enter_anim)
 	
-	_face_target = state_machine.is_current_state_by_key("ground_movement") or state_machine.is_current_state_by_key("fly_movement")  or state_machine.is_current_state_by_key("block")
+	_face_target = state_machine.is_current_state_by_key("fly_movement") or state_machine.is_current_state_by_key("block")
 
 func on_attack_blocked():
 	play_override_animation(block_hit_anim_name)
 
 func _process(_delta: float) -> void:
-	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor() or _bypass_air_leg_animation == false))
+	anim_tree.set(_legs_blend_path + "/blend_amount", 1.0 - float(combat_character.is_on_floor() or _bypass_air_leg_animation == false or state_machine.is_current_state_by_key("fly_movement")))
 	
 	if combat_character.combat_target_override != null:
 		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
@@ -112,7 +113,7 @@ func _process(_delta: float) -> void:
 	else:
 		_look_dir = 0.0
 	
-	if combat_character.combat_target_override != null and _face_target == true and state_machine.current_state_key == "block":
+	if combat_character.combat_target_override != null and _face_target == true:
 		var target_xz_pos : Vector3 = Vector3(combat_character.combat_target_override.global_position.x, 0.0, combat_character.combat_target_override.global_position.z)
 		
 		var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
@@ -151,6 +152,11 @@ func block_vfx(weapon_name : String, vfx_preset : String):
 	
 	var vfx_key = vfx_key_mapping.get(vfx_preset)
 	GlobalSignals.spawn_vfx.emit(vfx_key, equipped_weapon_node.global_transform.orthonormalized())
+
+func dash_vfx():
+	print("dash")
+	var vel_look_basis : Basis = Basis.looking_at(combat_character.move_dir)
+	GlobalSignals.spawn_vfx.emit("dash", Transform3D(vel_look_basis, global_position + combat_character.hurt_box.hurtbox_center_offset))
 
 func slash_vfx(vfx_preset : String, bone_name : String, attached : bool = false):
 	if vfx_key_mapping.get(vfx_preset) == null:

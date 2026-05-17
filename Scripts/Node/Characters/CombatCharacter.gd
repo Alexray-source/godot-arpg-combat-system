@@ -41,6 +41,7 @@ signal atk_blocked()
 signal chr_died()
 signal atk_debounce_ended()
 signal enemies_hit(opponent_hurtboxes : Array[HurtBox])
+signal dodge_dashed()
 signal ability_finished()
 
 func _ready() -> void:
@@ -278,6 +279,7 @@ func dodge_dash():
 		return
 	
 	character_abilities.interrupt_active_ability()
+	dodge_dashed.emit()
 	set_state("dodge_dash")
 
 func block():

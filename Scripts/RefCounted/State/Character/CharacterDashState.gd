@@ -1,12 +1,12 @@
 class_name CharacterDashState extends CharacterState
 
-var dash_power : float = 25.0
+var dash_power : float = 22.0
 
 func on_enter() -> void:
 	if character is CombatCharacter:
 		character.invincible = true
 		character.global_basis = Basis.looking_at(Vector3(character.move_dir.x, 0.0, character.move_dir.z))
-		character.dash(dash_power, 0.2, character.move_dir)
+		character.dash(dash_power, 0.25, character.move_dir)
 
 func on_exit() -> void:
 	if character is CombatCharacter:

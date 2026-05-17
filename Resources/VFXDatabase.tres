@@ -11,6 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://dscvd5wo52w60" path="res://Scenes/VFX/block_melee.tscn" id="8_ejxyo"]
 [ext_resource type="PackedScene" uid="uid://blm6ls45l0clf" path="res://Scenes/VFX/projectile_hit.tscn" id="9_c1rtm"]
 [ext_resource type="PackedScene" uid="uid://bbuxbt056c112" path="res://Scenes/VFX/melee_damage.tscn" id="10_nb25o"]
+[ext_resource type="PackedScene" uid="uid://du8vn11c1c8op" path="res://Scenes/VFX/dash_vfx.tscn" id="11_moujg"]
+[ext_resource type="PackedScene" uid="uid://0oqp3ebxlpo2" path="res://Scenes/VFX/footstep.tscn" id="12_1rkb7"]
+[ext_resource type="PackedScene" uid="uid://dcy2wjq11vjbp" path="res://Scenes/VFX/jump.tscn" id="13_hdec8"]
 
 [resource]
 script = ExtResource("1_sq60v")
@@ -18,8 +21,11 @@ entries = Dictionary[String, PackedScene]({
 "ai_attack_indicator": ExtResource("4_7yb46"),
 "block_melee": ExtResource("8_ejxyo"),
 "blue_flash": ExtResource("5_s8pht"),
+"dash": ExtResource("11_moujg"),
 "enemy_slash": ExtResource("2_8yxse"),
+"footstep_generic": ExtResource("12_1rkb7"),
 "general_slash": ExtResource("1_q1kvh"),
+"jump_generic": ExtResource("13_hdec8"),
 "melee_damage": ExtResource("10_nb25o"),
 "muzzle": ExtResource("3_ig2jd"),
 "projectile_hit": ExtResource("9_c1rtm"),

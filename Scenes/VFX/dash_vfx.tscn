@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://du8vn11c1c8op"]
+
+[ext_resource type="Texture2D" uid="uid://b1p4pavtpaupu" path="res://Assets/Textures/UI/InputKeyboard/generic_button_square.svg" id="1_47woa"]
+[ext_resource type="ArrayMesh" uid="uid://3p0a6jyl00bv" path="res://Assets/Meshes/VFX/muzzle.res" id="2_2nrl2"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="3_m3m42"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_gy5lc"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_wnh44"]
+[ext_resource type="AudioStream" uid="uid://fbaupcmuudo6" path="res://Assets/SFX/swing6.ogg" id="6_gy5lc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2vv2"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_47woa")
+
+[sub_resource type="Curve" id="Curve_m3m42"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.23036647, 0.056345224), 0.0, 0.0, 0, 0, Vector2(0.73821986, 0.056345224), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_gy5lc"]
+curve = SubResource("Curve_m3m42")
+
+[sub_resource type="Curve" id="Curve_wnh44"]
+_data = [Vector2(0, 0.06954324), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xrx2i"]
+_data = [Vector2(0, 0), 0.0, 2.7383692, 0, 0, Vector2(0.19932431, 0.8301238), 0.6964452, 0.6964452, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_i4lhg"]
+curve_x = SubResource("Curve_wnh44")
+curve_y = SubResource("Curve_wnh44")
+curve_z = SubResource("Curve_xrx2i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qwgxu"]
+emission_shape_offset = Vector3(0, 0, -4)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.7
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_i4lhg")
+alpha_curve = SubResource("CurveTexture_gy5lc")
+
+[node name="DashVfx" type="Node3D" unique_id=1939743674]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1826881057]
+material_override = SubResource("StandardMaterial3D_j2vv2")
+emitting = false
+amount = 13
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+visibility_aabb = AABB(-5.96744, -5.7594585, -6.48143, 11.715365, 11.458918, 10.48143)
+process_material = SubResource("ParticleProcessMaterial_qwgxu")
+draw_pass_1 = ExtResource("2_2nrl2")
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=175709117 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("3_m3m42")
+target_particle = NodePath("../GPUParticles3D")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=1306762511 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("4_gy5lc")
+target_trigger = NodePath("DestroyTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=1539398321 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("5_wnh44")
+node_to_destroy = NodePath("../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=323853307]
+stream = ExtResource("6_gy5lc")
+unit_size = 25.0
+autoplay = true
