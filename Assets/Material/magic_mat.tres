@@ -6,4 +6,6 @@
 render_priority = 0
 shader = ExtResource("1_ureaf")
 shader_parameter/rim_factor = 0.4
+shader_parameter/edge_factor = -0.5
 shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/move_factor = Vector2(1, 0)

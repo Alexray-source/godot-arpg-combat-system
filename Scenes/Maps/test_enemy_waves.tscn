@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="20_bx8ag"]
+[ext_resource type="Script" uid="uid://b488mudfp1u7g" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveCollection.gd" id="20_m4vf5"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="21_nd2sr"]
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
@@ -85,35 +86,30 @@ size = Vector3(46, 156, 28.46106)
 [sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
 material = ExtResource("14_kn14b")
 
-[sub_resource type="Resource" id="Resource_4n2ml"]
+[sub_resource type="Resource" id="Resource_7555j"]
 script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("4_rn81q")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
-[sub_resource type="Resource" id="Resource_7rcam"]
+[sub_resource type="Resource" id="Resource_kiw6d"]
 script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q")])
+enemies = Array[PackedScene]([ExtResource("6_eu08s")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
-[sub_resource type="Resource" id="Resource_ema1o"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
-
-[sub_resource type="Resource" id="Resource_rn81q"]
+[sub_resource type="Resource" id="Resource_nnqa1"]
 script = ExtResource("3_4n2ml")
 enemies = Array[PackedScene]([ExtResource("7_jjisf")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
-[sub_resource type="Resource" id="Resource_mjli6"]
+[sub_resource type="Resource" id="Resource_7b5us"]
 script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf")])
+enemies = Array[PackedScene]([ExtResource("8_1xyem")])
 metadata/_custom_type_script = "uid://2x05qfkltv14"
 
-[sub_resource type="Resource" id="Resource_38hi7"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q"), ExtResource("6_eu08s"), ExtResource("7_jjisf"), ExtResource("8_1xyem")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
+[sub_resource type="Resource" id="Resource_31vy0"]
+script = ExtResource("20_m4vf5")
+waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_7555j"), SubResource("Resource_kiw6d"), SubResource("Resource_nnqa1"), SubResource("Resource_7b5us")])
+metadata/_custom_type_script = "uid://b488mudfp1u7g"
 
 [sub_resource type="Resource" id="Resource_jjisf"]
 script = ExtResource("10_jjisf")
@@ -158,6 +154,47 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=927437522]
 environment = SubResource("Environment_i18pj")
 
+[node name="Throwables" type="Node" parent="." unique_id=1027259767]
+
+[node name="ThrowableCube" parent="Throwables" unique_id=554461063 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209965, 1.0000005, -14.295042)
+
+[node name="ThrowableCube2" parent="Throwables" unique_id=998535108 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660257, 1, -17.464005)
+
+[node name="ThrowableCube3" parent="Throwables" unique_id=1789431283 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.475356, 1, -9.008946)
+
+[node name="ThrowableCube4" parent="Throwables" unique_id=954082382 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786633, 2.9999995, -9.36386)
+
+[node name="ThrowableCube6" parent="Throwables" unique_id=844239056 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355663, 1, 5.731777)
+
+[node name="ThrowableCube7" parent="Throwables" unique_id=1985501722 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981824, 1.000001, 8.090936)
+
+[node name="ThrowableCube8" parent="Throwables" unique_id=1386090068 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771572, 1.000001, 4.002225)
+
+[node name="ThrowableCube9" parent="Throwables" unique_id=1251095342 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899056, 1.000001, -5.239993)
+
+[node name="ThrowableCube10" parent="Throwables" unique_id=327985456 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.922761, 3.000001, -5.473497)
+
+[node name="ThrowableCube11" parent="Throwables" unique_id=1228922293 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355597, 1.000001, -5.67928)
+
+[node name="ThrowableCube5" parent="Throwables" unique_id=6648009 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.520404, 1, 17.271027)
+
+[node name="ThrowableCube12" parent="Throwables" unique_id=1528304291 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287379, 1, 14.564385)
+
+[node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
+transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530903, 3.0000007, 16.100836)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2033599363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
 material_override = ExtResource("1_rn81q")
@@ -167,45 +204,6 @@ mesh = SubResource("CylinderMesh_xcpuq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=880499533]
 shape = SubResource("CylinderShape3D_jjisf")
-
-[node name="ThrowableCube" parent="." unique_id=554461063 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209965, 1.0000005, -14.295042)
-
-[node name="ThrowableCube2" parent="." unique_id=998535108 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660257, 1, -17.464005)
-
-[node name="ThrowableCube3" parent="." unique_id=1789431283 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.475356, 1, -9.008946)
-
-[node name="ThrowableCube4" parent="." unique_id=954082382 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786633, 2.9999995, -9.36386)
-
-[node name="ThrowableCube6" parent="." unique_id=844239056 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355663, 1, 5.731777)
-
-[node name="ThrowableCube7" parent="." unique_id=1985501722 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981824, 1.000001, 8.090936)
-
-[node name="ThrowableCube8" parent="." unique_id=1386090068 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771572, 1.000001, 4.002225)
-
-[node name="ThrowableCube9" parent="." unique_id=1251095342 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899056, 1.000001, -5.239993)
-
-[node name="ThrowableCube10" parent="." unique_id=327985456 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.922761, 3.000001, -5.473497)
-
-[node name="ThrowableCube11" parent="." unique_id=1228922293 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355597, 1.000001, -5.67928)
-
-[node name="ThrowableCube5" parent="." unique_id=6648009 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.520404, 1, 17.271027)
-
-[node name="ThrowableCube12" parent="." unique_id=1528304291 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287379, 1, 14.564385)
-
-[node name="ThrowableCube13" parent="." unique_id=111861886 instance=ExtResource("6_embne")]
-transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530903, 3.0000007, 16.100836)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=792147931]
 
@@ -282,12 +280,9 @@ transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.999
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
 
-[node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
+[node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves")]
 script = ExtResource("20_bx8ag")
 enemy_waves = NodePath("../EnemyWaves")
-event_triggers = {
-1: NodePath("MultiTrigger")
-}
 
 [node name="MultiTrigger" type="Node" parent="EnemyWaveEvents" unique_id=907810051 node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_nd2sr")
@@ -348,7 +343,7 @@ metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_4n2ml"), SubResource("Resource_7rcam"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6"), SubResource("Resource_38hi7")])
+waves_collection = SubResource("Resource_31vy0")
 active_enemy_ai = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EnemyWavesCollection" format=3 uid="uid://tdq55bf3qiuo"]
+
+[ext_resource type="Script" uid="uid://b488mudfp1u7g" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveCollection.gd" id="1_xsrp5"]
+[ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="2_regq7"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="3_whcpu"]
+[ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="4_u56fx"]
+[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="5_62pps"]
+[ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="6_kpmyf"]
+
+[sub_resource type="Resource" id="Resource_4n2ml"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("3_whcpu")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_7rcam"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("3_whcpu"), ExtResource("3_whcpu")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_ema1o"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("3_whcpu"), ExtResource("4_u56fx")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_rn81q"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("5_62pps")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_mjli6"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("3_whcpu"), ExtResource("3_whcpu"), ExtResource("4_u56fx"), ExtResource("5_62pps")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_38hi7"]
+script = ExtResource("2_regq7")
+enemies = Array[PackedScene]([ExtResource("3_whcpu"), ExtResource("4_u56fx"), ExtResource("5_62pps"), ExtResource("6_kpmyf")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[resource]
+script = ExtResource("1_xsrp5")
+waves = Array[ExtResource("2_regq7")]([SubResource("Resource_4n2ml"), SubResource("Resource_7rcam"), SubResource("Resource_ema1o"), SubResource("Resource_rn81q"), SubResource("Resource_mjli6"), SubResource("Resource_38hi7")])
+metadata/_custom_type_script = "uid://b488mudfp1u7g"

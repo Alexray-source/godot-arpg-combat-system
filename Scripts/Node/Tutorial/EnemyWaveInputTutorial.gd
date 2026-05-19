@@ -4,6 +4,7 @@ const INPUT_TUTORIAL_UI = preload("res://Scenes/UI/TutorialUI.tscn")
 
 @export var enemy_wave_spawner : EnemyWaves
 @export var enemy_wave_tutorials : Dictionary[int, TutorialActionDisplay]
+@export var enabled : bool = false
 
 var current_tutorial_ui : InputTutorialUI
 
@@ -16,6 +17,9 @@ func _ready() -> void:
 		_should_be_visible_on_spawn = new_state)
 
 func evaluate_wave(new_wave_number : int):
+	if enabled == false:
+		return
+	
 	var actions_display : TutorialActionDisplay = enemy_wave_tutorials.get(new_wave_number)
 	print(actions_display)
 	if actions_display != null:

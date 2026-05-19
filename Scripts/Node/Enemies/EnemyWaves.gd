@@ -2,7 +2,7 @@ class_name EnemyWaves extends Node
 
 @export var spawn_origin : Node3D
 @export var spawn_radius : float = 10.0
-@export var waves : Array[EnemyWaveData]
+@export var waves_collection : EnemyWavesCollection
 @export var active_enemy_ai : bool = false
 
 var spawned_enemies : Array[Enemy]
@@ -43,7 +43,7 @@ func start_wave(wave_number : int):
 	new_wave.emit(_current_wave)
 	update_loaded_wave_data(wave_number)
 	
-	var enemy_wave_data : EnemyWaveData = waves[_current_wave-1]
+	var enemy_wave_data : EnemyWaveData = waves_collection.waves[_current_wave-1]
 	var enemy_wave_list : Array[PackedScene] = enemy_wave_data.enemies
 	
 	for enemy_scene : PackedScene in enemy_wave_list:
@@ -66,9 +66,9 @@ func start_wave(wave_number : int):
 			enemy.global_position = spawn_origin.global_position + Vector3(randf_range(-spawn_radius, spawn_radius), 0.0, randf_range(-spawn_radius, spawn_radius))
 
 func request_next_wave():
-	if spawned_enemies.size() == 0 and _current_wave < waves.size():
+	if spawned_enemies.size() == 0 and _current_wave < waves_collection.waves.size():
 		start_wave(_current_wave+1)
-	elif spawned_enemies.size() == 0 and _current_wave >= waves.size():
+	elif spawned_enemies.size() == 0 and _current_wave >= waves_collection.waves.size():
 		loaded_data.enemy_wave = 1
 		save_loader.save_to_disk(loaded_data)
 		finished.emit()
