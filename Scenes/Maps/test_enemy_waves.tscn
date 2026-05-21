@@ -3,12 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="1_pyddj"]
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_rn81q"]
 [ext_resource type="Script" uid="uid://djjvpfpq6jjrw" path="res://Scripts/Node/Enemies/EnemyWaves.gd" id="2_xcpuq"]
-[ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="3_4n2ml"]
-[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="4_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
-[ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="6_eu08s"]
-[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="7_jjisf"]
-[ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="8_1xyem"]
 [ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="9_yi1ag"]
 [ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="10_jjisf"]
 [ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="12_jjisf"]
@@ -23,12 +18,16 @@
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="20_bx8ag"]
-[ext_resource type="Script" uid="uid://b488mudfp1u7g" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveCollection.gd" id="20_m4vf5"]
+[ext_resource type="Resource" uid="uid://tdq55bf3qiuo" path="res://Resources/EnemyWaveCollections/test1.tres" id="20_elxb5"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="21_nd2sr"]
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
 [ext_resource type="Script" uid="uid://fneh7m0jye2c" path="res://Scripts/Node/Trigger/CameraTrigger.gd" id="22_x2r5p"]
 [ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="23_e0ggl"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="25_bx8ag"]
+[ext_resource type="Script" uid="uid://btrk3r7lf3wc" path="res://Scripts/Node/Environment/DestructibleObject.gd" id="25_nd2sr"]
+[ext_resource type="Script" uid="uid://d0skmk3674ko1" path="res://Scripts/Node/Trigger/StartEnemyWavesTrigger.gd" id="27_g8dp3"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="28_7rcam"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -86,31 +85,6 @@ size = Vector3(46, 156, 28.46106)
 [sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
 material = ExtResource("14_kn14b")
 
-[sub_resource type="Resource" id="Resource_7555j"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("4_rn81q")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
-
-[sub_resource type="Resource" id="Resource_kiw6d"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("6_eu08s")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
-
-[sub_resource type="Resource" id="Resource_nnqa1"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("7_jjisf")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
-
-[sub_resource type="Resource" id="Resource_7b5us"]
-script = ExtResource("3_4n2ml")
-enemies = Array[PackedScene]([ExtResource("8_1xyem")])
-metadata/_custom_type_script = "uid://2x05qfkltv14"
-
-[sub_resource type="Resource" id="Resource_31vy0"]
-script = ExtResource("20_m4vf5")
-waves = Array[ExtResource("3_4n2ml")]([SubResource("Resource_7555j"), SubResource("Resource_kiw6d"), SubResource("Resource_nnqa1"), SubResource("Resource_7b5us")])
-metadata/_custom_type_script = "uid://b488mudfp1u7g"
-
 [sub_resource type="Resource" id="Resource_jjisf"]
 script = ExtResource("10_jjisf")
 action_display_names = Dictionary[String, String]({
@@ -118,6 +92,7 @@ action_display_names = Dictionary[String, String]({
 "chr_primary_atk": "Primary Attack",
 "plr_target_lock": "Lock/Unlock Camera Targetting"
 })
+action_order = Array[String](["plr_target_lock", "chr_dash"])
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [sub_resource type="Resource" id="Resource_1xyem"]
@@ -127,6 +102,7 @@ action_display_names = Dictionary[String, String]({
 "chr_secondary_atk": "Secondary Attack",
 "plr_target_next": "Next Camera Target"
 })
+action_order = Array[String](["plr_target_next"])
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [sub_resource type="Resource" id="Resource_p0lev"]
@@ -143,6 +119,17 @@ action_display_names = Dictionary[String, String]({
 "chr_special_atk2": "Special Attack #2"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_elxb5"]
+top_radius = 0.815
+bottom_radius = 1.611
+height = 3.111
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bx8ag"]
+size = Vector3(3, 3.5256958, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nd2sr"]
+size = Vector3(3.6384277, 3.7802734, 3.5957031)
 
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
@@ -280,9 +267,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.999
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
 
-[node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves")]
+[node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
 script = ExtResource("20_bx8ag")
 enemy_waves = NodePath("../EnemyWaves")
+event_triggers = {
+1: NodePath("MultiTrigger")
+}
 
 [node name="MultiTrigger" type="Node" parent="EnemyWaveEvents" unique_id=907810051 node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_nd2sr")
@@ -343,7 +333,7 @@ metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves_collection = SubResource("Resource_31vy0")
+waves_collection = ExtResource("20_elxb5")
 active_enemy_ai = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
@@ -359,6 +349,7 @@ enemy_wave_tutorials = Dictionary[int, ExtResource("10_jjisf")]({
 4: SubResource("Resource_p0lev"),
 5: SubResource("Resource_m4vf5")
 })
+enabled = true
 
 [node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
 script = ExtResource("17_2grvq")
@@ -373,3 +364,45 @@ metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
 [node name="Camera3D" type="Camera3D" parent="." unique_id=508170288]
 transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 3.6519995, 10.988262)
 fov = 39.374996
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=1810181570 node_paths=PackedStringArray("object_center_point", "hurtbox", "dead_trigger")]
+script = ExtResource("25_nd2sr")
+health = 10
+object_center_point = NodePath("Node3D/CollisionShape3D")
+hurtbox = NodePath("HurtBox")
+dead_trigger = NodePath("../MultiTrigger")
+
+[node name="Node3D" type="StaticBody3D" parent="Node3D2" unique_id=1018595611]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2/Node3D" unique_id=280941444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4531524, 0)
+mesh = SubResource("CylinderMesh_elxb5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D" unique_id=1632032592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2628479, 0)
+shape = SubResource("BoxShape3D_bx8ag")
+
+[node name="HurtBox" type="Area3D" parent="Node3D2" unique_id=472689892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 9
+script = ExtResource("25_bx8ag")
+metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/HurtBox" unique_id=1014300862]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6098633, 0)
+shape = SubResource("BoxShape3D_nd2sr")
+
+[node name="StartEnemyWavesTrigger" type="Node" parent="." unique_id=13055706 node_paths=PackedStringArray("enemy_waves")]
+script = ExtResource("27_g8dp3")
+enemy_waves = NodePath("../EnemyWaves")
+metadata/_custom_type_script = "uid://d0skmk3674ko1"
+
+[node name="MultiTrigger" type="Node" parent="." unique_id=1212437086 node_paths=PackedStringArray("triggers")]
+script = ExtResource("21_nd2sr")
+triggers = [NodePath("DestroyTrigger"), NodePath("../StartEnemyWavesTrigger")]
+metadata/_custom_type_script = "uid://bxsi8tccwwxt6"
+
+[node name="DestroyTrigger" type="Node" parent="MultiTrigger" unique_id=2061276312 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("28_7rcam")
+node_to_destroy = NodePath("../../Node3D2")
+metadata/_custom_type_script = "uid://6bco6swhk10l"

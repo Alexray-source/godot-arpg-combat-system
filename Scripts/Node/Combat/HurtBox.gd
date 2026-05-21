@@ -5,10 +5,12 @@ signal hit (atk_info : AtkInfo)
 signal throwable_hit(throwable : Throwable)
 @warning_ignore_restore("unused_signal")
 
-@export var optional_owner : Node3D
+@export var is_targetable : bool = false
 @export var hurtbox_center_offset : Vector3
 
 func _ready() -> void:
+	if is_targetable == true:
+		add_to_group("targetable")
 	body_entered.connect(on_body_entered)
 
 func on_body_entered(entered_body : Node3D) -> void:

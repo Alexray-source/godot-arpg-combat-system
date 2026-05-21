@@ -13,7 +13,8 @@ behavior_tree = NodePath("BehaviorTreeRoot")
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("1_2t2r4")
 blackboard = Dictionary[String, Variant]({
-"character": NodePath("../MeleeChr")
+"character": NodePath("../MeleeChr"),
+"has_performed_mandatory_kick": 0.0
 })
 tree_data = ExtResource("5_d40jh")
 

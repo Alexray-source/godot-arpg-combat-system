@@ -4,6 +4,7 @@ class_name EnemyWaves extends Node
 @export var spawn_radius : float = 10.0
 @export var waves_collection : EnemyWavesCollection
 @export var active_enemy_ai : bool = false
+@export var auto_start : bool = false
 
 var spawned_enemies : Array[Enemy]
 var _current_wave : int = 0
@@ -18,12 +19,16 @@ func _ready() -> void:
 	save_loader = SaveDataHandler.new()
 	loaded_data = save_loader.load_from_disk()
 	
+	if auto_start == true:
+		start_from_loaded_data()
+
+func start_from_loaded_data():
 	if loaded_data != null:
 		start_wave(loaded_data.enemy_wave)
 	else:
 		if loaded_data == null:
 			loaded_data = SaveData.new()
-		request_next_wave()
+	request_next_wave()
 
 func update_enemy_ai_state(new_state : bool):
 	active_enemy_ai = new_state

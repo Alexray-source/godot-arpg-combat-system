@@ -93,8 +93,19 @@ func _process(delta: float) -> void:
 		_stat_mod_interrupt.process(delta)
 
 func lock_to_target(target : Node3D) -> void:
-	combat_target_override = target
-	character_abilities.target_override = target
+	if target == null:
+		combat_target_override = null
+		character_abilities.target_override = null
+		return
+	
+	var target_owner = target.get_parent_node_3d()
+	
+	if target is HurtBox and target_owner != null:
+		combat_target_override = target_owner
+		character_abilities.target_override = target_owner
+	else:
+		combat_target_override = target
+		character_abilities.target_override = target
 
 func on_floor_changed(is_floored) -> void:
 	if is_floored == false and state_machine.current_state == state_machine.get_state_by_key("knockback"):

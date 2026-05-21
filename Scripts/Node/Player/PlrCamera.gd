@@ -1,46 +1,54 @@
 class_name TargetTrackingCamera extends Node
 
 @export var camera : Camera3D
-@export var camera_scan_area : Area3D
-@export var camera_frustum_shape : CollisionShape3D
 @export var camera_scan_radius : float = 10.0
+@export var layer_owner : CharacterLayer
+var _nearby_targets_scan_area : Area3D
+var _nearby_targets_scan_shape : CollisionShape3D
 
 var targets_in_view : Array[Node3D]
+var nearby_targets : Array[Node3D]
+
+signal target_added(new_target : Node3D)
+signal target_removed(new_target : Node3D)
 
 func _ready() -> void:
-	recalculate_perspective_shape()
-	camera_scan_area.body_entered.connect(on_body_camera_view_entered)
-	camera_scan_area.body_exited.connect(on_body_camera_view_exited)
+	_nearby_targets_scan_area = Area3D.new()
+	_nearby_targets_scan_area.collision_mask = layer_owner.get_enemy_layer()
+	
+	_nearby_targets_scan_shape = CollisionShape3D.new()
+	initialize_nearby_target_scan_shape()
 
-func recalculate_perspective_shape() -> void:
-	var pyramid_shape_rid : RID = camera.get_pyramid_shape_rid()
+	_nearby_targets_scan_area.add_child(_nearby_targets_scan_shape)
 	
-	var camera_shape_points = PhysicsServer3D.shape_get_data(pyramid_shape_rid)
-	var convex_shape : ConvexPolygonShape3D = ConvexPolygonShape3D.new()
-	convex_shape.points = camera_shape_points
+	camera.add_child(_nearby_targets_scan_area)
 	
-	for point_id in convex_shape.points.size():
-		var point = convex_shape.points[point_id]
-		var normalized_point = point.normalized()
-		convex_shape.points[point_id] = normalized_point * camera_scan_radius
-	
-	camera_frustum_shape.shape = convex_shape
+	_nearby_targets_scan_area.area_entered.connect(on_body_nearby_area_entered)
+	_nearby_targets_scan_area.area_exited.connect(on_body_nearby_area_exited)
 
-func on_body_camera_view_entered(entered_area : Node3D):
-	if entered_area is CombatCharacter:
-		targets_in_view.append(entered_area)
+func initialize_nearby_target_scan_shape():
+	var sphere_shape : SphereShape3D = SphereShape3D.new()
+	sphere_shape.radius = camera_scan_radius
+	
+	_nearby_targets_scan_shape.shape = sphere_shape
+
+func on_body_nearby_area_entered(entered_body : Node3D):
+	if entered_body.is_in_group("targetable"):
+		nearby_targets.append(entered_body)
+		target_added.emit(entered_body)
 		cleanup_invalid_targets()
 
-func on_body_camera_view_exited(exited_area : Node3D):
-	if exited_area is CombatCharacter and targets_in_view.find(exited_area) != -1:
-		targets_in_view.erase(exited_area)
+func on_body_nearby_area_exited(exited_body : Node3D):
+	if exited_body.is_in_group("targetable") and nearby_targets.find(exited_body) != -1:
+		nearby_targets.erase(exited_body)
+		target_removed.emit(exited_body)
 		cleanup_invalid_targets()
 
 func cleanup_invalid_targets():
 	var new_target_list : Array[Node3D]
 	
-	for target in targets_in_view:
+	for target in nearby_targets:
 		if target != null and not target.is_queued_for_deletion():
 			new_target_list.append(target)
 	
-	targets_in_view = new_target_list
+	nearby_targets = new_target_list

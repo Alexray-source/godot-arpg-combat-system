@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EnemyWavesCollection" format=3 uid="uid://cwjoejx1a2rjk"]
+
+[ext_resource type="Script" uid="uid://b488mudfp1u7g" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveCollection.gd" id="1_p6yuj"]
+[ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="2_qd2pp"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="3_x8ifj"]
+[ext_resource type="PackedScene" uid="uid://dqqgjql3p6rkp" path="res://Scenes/Enemy/mage_enemy.tscn" id="4_6vipx"]
+[ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="5_kroxf"]
+[ext_resource type="PackedScene" uid="uid://dg8s5b8tpy6fd" path="res://Scenes/Enemy/flying_enemy.tscn" id="6_4ygvs"]
+
+[sub_resource type="Resource" id="Resource_7555j"]
+script = ExtResource("2_qd2pp")
+enemies = Array[PackedScene]([ExtResource("3_x8ifj")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_kiw6d"]
+script = ExtResource("2_qd2pp")
+enemies = Array[PackedScene]([ExtResource("4_6vipx")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_nnqa1"]
+script = ExtResource("2_qd2pp")
+enemies = Array[PackedScene]([ExtResource("5_kroxf")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_7b5us"]
+script = ExtResource("2_qd2pp")
+enemies = Array[PackedScene]([ExtResource("6_4ygvs")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[resource]
+script = ExtResource("1_p6yuj")
+waves = Array[ExtResource("2_qd2pp")]([SubResource("Resource_7555j"), SubResource("Resource_kiw6d"), SubResource("Resource_nnqa1"), SubResource("Resource_7b5us")])
+metadata/_custom_type_script = "uid://b488mudfp1u7g"

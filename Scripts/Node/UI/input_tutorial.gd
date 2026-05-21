@@ -4,6 +4,7 @@ class_name InputTutorialUI
 const TUTORIAL_INPUT_UI_ELEMENT : PackedScene = preload("res://Scenes/UI/tutorial_input_ui_element.tscn")
 
 @export var tutorial_actions : Dictionary[String, String]
+@export var action_order : Array[String]
 @export var tutorial_display_time : float = 10.0
 
 @export_subgroup("Nodes")
@@ -20,7 +21,7 @@ func _ready() -> void:
 		change_input_mode.bind(is_gamepad_connected)
 	)
 	
-	show_inputs(tutorial_actions, tutorial_display_time)
+	show_inputs(tutorial_actions, tutorial_display_time, action_order)
 	GlobalSignals.plr_hud_state_changed.connect(on_hud_state_changed)
 
 func on_hud_state_changed(new_state : bool):
@@ -33,19 +34,31 @@ func change_input_mode(is_gamepad_connected : bool):
 		input_mode = "keyboard"
 	input_mode_changed.emit(input_mode)
 
-func show_inputs(_tutorial_actions : Dictionary[String, String], _tutorial_display_time : float = 5.0) -> void:
-	for action_id in tutorial_actions:
-		var action_display_text = _tutorial_actions[action_id]
-		var new_input_ui_element : InputTutorialUIElement = TUTORIAL_INPUT_UI_ELEMENT.instantiate() as InputTutorialUIElement
+func create_input_entry(action_id : String, action_display_text : String ) -> InputTutorialUIElement:
+	var new_input_ui_element : InputTutorialUIElement = TUTORIAL_INPUT_UI_ELEMENT.instantiate() as InputTutorialUIElement
+	
+	new_input_ui_element.action_name = action_id
+	new_input_ui_element.action_display_text = action_display_text
+	new_input_ui_element.device = input_mode
+	
+	input_mode_changed.connect(func(new_input_mode): 
+		new_input_ui_element.device = new_input_mode
+		new_input_ui_element.update()
+	)
+	
+	return new_input_ui_element
+
+func show_inputs(_tutorial_actions : Dictionary[String, String], _tutorial_display_time : float = 5.0, _action_order : Array[String] = []) -> void:
+	for action_id in _action_order:
+		var new_input_ui_element : InputTutorialUIElement = create_input_entry(action_id, _tutorial_actions[action_id])
 		
-		new_input_ui_element.action_name = action_id
-		new_input_ui_element.action_display_text = action_display_text
-		new_input_ui_element.device = input_mode
+		input_elements_holder.add_child(new_input_ui_element)
+	
+	for action_id in _tutorial_actions:
+		if _action_order.has(action_id):
+			continue
 		
-		input_mode_changed.connect(func(new_input_mode): 
-			new_input_ui_element.device = new_input_mode
-			new_input_ui_element.update()
-		)
+		var new_input_ui_element : InputTutorialUIElement = create_input_entry(action_id, _tutorial_actions[action_id])
 		
 		input_elements_holder.add_child(new_input_ui_element)
 	

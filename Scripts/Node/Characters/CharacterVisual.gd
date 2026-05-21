@@ -107,9 +107,18 @@ func _process(_delta: float) -> void:
 		
 		var chr_xz_pos : Vector3 = Vector3(combat_character.global_position.x, 0.0, combat_character.global_position.z)
 		
+		
+		var forward_direction : Vector3 = -global_basis.z
+		var up_direction : Vector3 = global_basis.y
 		var target_dir = chr_xz_pos.direction_to(target_xz_pos)
 		
-		_look_dir = global_basis.z.signed_angle_to(target_dir, Vector3.UP)
+		var axis_plane = Plane(up_direction)
+		var forward_flat = axis_plane.project(forward_direction)
+		var up_flat = axis_plane.project(target_dir)
+		
+		_look_dir = -forward_flat.signed_angle_to(up_flat, up_direction)
+		
+		#_look_dir = global_basis.z.signed_angle_to(target_dir, Vector3.UP)
 	else:
 		_look_dir = 0.0
 	

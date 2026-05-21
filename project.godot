@@ -24,7 +24,6 @@ Sound="*uid://cf0n4p0hkejxr"
 
 [display]
 
-window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 display_server/driver.linuxbsd="wayland"
 window/vsync/vsync_mode=0
@@ -36,6 +35,7 @@ enabled=PackedStringArray("res://addons/atomai/plugin.cfg")
 [global_group]
 
 default_camera=""
+targetable=""
 
 [input]
 

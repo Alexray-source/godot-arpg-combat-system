@@ -32,4 +32,6 @@ func spawn_input_tutorial(actions_display : TutorialActionDisplay):
 	current_tutorial_ui = INPUT_TUTORIAL_UI.instantiate()
 	current_tutorial_ui.on_hud_state_changed(_should_be_visible_on_spawn)
 	current_tutorial_ui.tutorial_actions = actions_display.action_display_names
+	current_tutorial_ui.action_order = actions_display.action_order
+	
 	add_child(current_tutorial_ui)

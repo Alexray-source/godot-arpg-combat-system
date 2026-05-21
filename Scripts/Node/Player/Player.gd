@@ -12,6 +12,7 @@ const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 @export var camera_arm : ChrCamArm
 @export var target_tracking_camera : TargetTrackingCamera
 @export var hud : PlayerHUD
+@export var enemy_indicators : NearbyEnemyIndicatorsUI
 
 @export var camera_arm_center_rest_offset : Vector3 = Vector3(0.0,2.0,0.0)
 @export var camera_max_v_angle : float = PI * 0.2
@@ -65,6 +66,7 @@ func _ready() -> void:
 	
 	character = character_data.character_scene.instantiate()
 	add_child(character)
+	enemy_indicators.track_origin = character
 	camera_arm.target = character
 	#plr_state_machine.character = character
 	
@@ -75,11 +77,6 @@ func _ready() -> void:
 	plr_debounces = Debounces.new()
 	
 	hud._max_stamina = _block_stamina
-	
-	#plr_state_machine.input_events = input_events
-	#plr_state_machine.state_machine_setup()
-	#plr_state_machine._transition_to_state(plr_state_machine.get_state_by_key("movement"))
-	#plr_special_atk_state = plr_state_machine.get_state_by_key("special_atk")
 	
 	equipped_abilities_keys.resize(character_data.available_abilities.size())
 	
@@ -150,6 +147,14 @@ func on_ability_energy_changed():
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
 	GlobalSignals.shake_all_cameras.emit(hit_shake)
 	ability_energy = clampi(ability_energy + (7.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
+	
+	if current_target == null:
+		var first_hurtbox = enemy_hurtboxes.get(0)
+		
+		if first_hurtbox == null or (first_hurtbox != null and first_hurtbox.is_in_group("targetable") == false):
+			return
+		
+		set_lock_target(first_hurtbox)
 
 func deplete_ability_energy(amount : int):
 	ability_energy = clampi(ability_energy - amount, 0, max_ability_energy)
@@ -266,27 +271,27 @@ func on_died() -> void:
 func on_toggle_target_lock() -> void:
 	if current_target != null:
 		set_lock_target(null)
-	elif target_tracking_camera.targets_in_view.size() > 0:
-		set_lock_target(target_tracking_camera.targets_in_view.get(0))
+	elif target_tracking_camera.nearby_targets.size() > 0:
+		set_lock_target(target_tracking_camera.nearby_targets.get(0))
 
 func on_target_next() -> void:
 	print("searching new target")
-	if target_tracking_camera.targets_in_view.size() > 0:
+	if target_tracking_camera.nearby_targets.size() > 0:
 		
 		var current_index : int = 0
 		if current_target != null:
-			current_index = target_tracking_camera.targets_in_view.find(current_target)
+			current_index = target_tracking_camera.nearby_targets.find(current_target)
 			
 			current_index += 1
 			
-			if current_index >= target_tracking_camera.targets_in_view.size():
+			if current_index >= target_tracking_camera.nearby_targets.size():
 				current_index = 0
-				
-		var new_target : Node3D = target_tracking_camera.targets_in_view.get(current_index)
-		if new_target == current_target:
-			target_closest_enemy_to_character()
-		else:
-			set_lock_target(target_tracking_camera.targets_in_view.get(current_index))
+			print(current_index)
+		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
+		#if new_target == current_target:
+			#target_closest_enemy_to_character()
+		if new_target != current_target:
+			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
 	else:
 		target_closest_enemy_to_character()
 
@@ -297,9 +302,19 @@ func target_closest_enemy_to_character():
 	var scan_shape : SphereShape3D = SphereShape3D.new()
 	scan_shape.radius = 50.0
 	
-	var combat_chr_scanner : CombatCharacterScanner = CombatCharacterScanner.new()
-	combat_chr_scanner.blacklist = [character, current_target]
-	var closest_enemy = combat_chr_scanner.get_closest_character_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
+	#var combat_chr_scanner : CombatCharacterScanner = CombatCharacterScanner.new()
+	#combat_chr_scanner.blacklist = [character, current_target]
+	#var closest_enemy = combat_chr_scanner.get_closest_character_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
+	
+	var hurtbox_scanner : HurtBoxScanner = HurtBoxScanner.new()
+	hurtbox_scanner.scan_only_in_camera_frustum = false
+	
+	var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
+	
+	var closest_enemy
+	
+	if closest_hurtbox != null:
+		closest_enemy = closest_hurtbox.get_parent_node_3d()
 	
 	print("target outside camera : " + str(closest_enemy))
 	if closest_enemy != null and closest_enemy.is_inside_tree():

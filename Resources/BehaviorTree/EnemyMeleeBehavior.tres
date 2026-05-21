@@ -13,8 +13,10 @@
 [ext_resource type="Script" uid="uid://bjqa74mo2q804" path="res://Scripts/Resources/BT_Data/BT_RequestAtkTokenEnemyData.gd" id="11_2yww0"]
 [ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="11_6twoj"]
 [ext_resource type="Resource" uid="uid://dbcdsjm2m27gt" path="res://Resources/BehaviorTree/StandardThrowableToPlayer.tres" id="12_q5qd7"]
+[ext_resource type="Script" uid="uid://dmbun8oop6xgt" path="res://addons/atomai/Scripts/DataNodes/BT_CheckFloatBBData.gd" id="13_484js"]
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="13_ccn1i"]
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="14_dwotr"]
+[ext_resource type="Script" uid="uid://b8rauombb0847" path="res://addons/atomai/Scripts/DataNodes/BT_SetFloatBBData.gd" id="15_5hrey"]
 [ext_resource type="Script" uid="uid://bmpahmv7sooex" path="res://Scripts/Resources/BT_Data/BT_MoveToData.gd" id="15_61te7"]
 [ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="16_1o65i"]
 
@@ -161,6 +163,25 @@ script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_484js"), SubResource("Resource_f0syj")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
+[sub_resource type="Resource" id="Resource_dwotr"]
+resource_name = "Check Blackboard Float"
+script = ExtResource("13_484js")
+bb_float_key = "has_performed_mandatory_kick"
+only_once = true
+metadata/_custom_type_script = "uid://dmbun8oop6xgt"
+
+[sub_resource type="Resource" id="Resource_61te7"]
+script = ExtResource("15_5hrey")
+bb_float_key = "has_performed_mandatory_kick"
+new_float_value = 1.0
+metadata/_custom_type_script = "uid://b8rauombb0847"
+
+[sub_resource type="Resource" id="Resource_1o65i"]
+resource_name = "Sequence"
+script = ExtResource("6_sxmng")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_dwotr"), ExtResource("12_q5qd7"), SubResource("Resource_61te7")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
 [sub_resource type="Resource" id="Resource_g6g8b"]
 resource_name = "Random Probability"
 script = ExtResource("13_ccn1i")
@@ -246,10 +267,16 @@ script = ExtResource("6_sxmng")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_espkd"), SubResource("Resource_q5qd7"), SubResource("Resource_rac3i"), SubResource("Resource_gtqxs"), SubResource("Resource_kytlo")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
-[sub_resource type="Resource" id="Resource_ijynf"]
+[sub_resource type="Resource" id="Resource_m5o4t"]
 resource_name = "Selector"
 script = ExtResource("11_6twoj")
 children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_g6g8b"), SubResource("Resource_x18n6")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
+[sub_resource type="Resource" id="Resource_32lbj"]
+resource_name = "Selector"
+script = ExtResource("11_6twoj")
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_1o65i"), SubResource("Resource_m5o4t")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_ifrnt"]
@@ -265,5 +292,5 @@ metadata/_custom_type_script = "uid://br2lag68y1sfx"
 [resource]
 resource_name = "Sequence"
 script = ExtResource("6_sxmng")
-children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_2yww0"), SubResource("Resource_2u43t"), SubResource("Resource_5hrey"), SubResource("Resource_ijynf"), SubResource("Resource_ifrnt"), SubResource("Resource_5rl8s")])
+children = Array[ExtResource("1_q3yxe")]([SubResource("Resource_2yww0"), SubResource("Resource_2u43t"), SubResource("Resource_5hrey"), SubResource("Resource_32lbj"), SubResource("Resource_ifrnt"), SubResource("Resource_5rl8s")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"

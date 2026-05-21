@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://cydyfmt81qssv" path="res://Scripts/Node/Player/PlrCamera.gd" id="4_htcer"]
 [ext_resource type="Script" uid="uid://cwcf4ruoypqu1" path="res://Scripts/Node/Camera/ShakableCamera.gd" id="5_jlvik"]
 [ext_resource type="PackedScene" uid="uid://d3lhc887sn2gb" path="res://Scenes/UI/Hud.tscn" id="7_0u5uq"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="10_74mp2"]
+[ext_resource type="PackedScene" uid="uid://gsqmmqm6xi2m" path="res://Scenes/UI/nearby_enemy_indicator.tscn" id="10_jhyir"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("3_0u5uq")
@@ -28,15 +30,17 @@ shake_duration = 0.1
 shake_intensity = 0.1
 shake_speed = 2.0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_htcer"]
-points = PackedVector3Array(0, 0, 0, -0.7344628, 0.4131353, -0.53840834, -0.7344628, -0.4131353, -0.53840834, 0.7344628, 0.4131353, -0.53840834, 0.7344628, -0.4131353, -0.53840834)
+[sub_resource type="Resource" id="Resource_oikmp"]
+script = ExtResource("10_74mp2")
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
-[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("camera_arm", "target_tracking_camera", "hud")]
+[node name="Player" type="Node3D" unique_id=513661283 node_paths=PackedStringArray("camera_arm", "target_tracking_camera", "hud", "enemy_indicators")]
 script = ExtResource("1_mtuoh")
 character_data = SubResource("Resource_jlvik")
 camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("TargetTrackingCamera")
 hud = NodePath("Hud")
+enemy_indicators = NodePath("NearbyEnemyIndicator")
 camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
 block_shake = SubResource("Resource_jhyir")
 hit_shake = SubResource("Resource_74mp2")
@@ -51,23 +55,19 @@ pos_follow_speed = 8.0
 transform = Transform3D(1, 0, 0, 0, 0.99528396, -0.09700271, 0, 0.09700271, 0.99528396, 0, 0, -1.1281606)
 script = ExtResource("5_jlvik")
 
-[node name="Area3D" type="Area3D" parent="SpringArm3D/Camera3D" unique_id=1485957566]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SpringArm3D/Camera3D/Area3D" unique_id=896652275]
-shape = SubResource("ConvexPolygonShape3D_htcer")
-
 [node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828]
 script = ExtResource("4_0u5uq")
 metadata/_custom_type_script = "uid://cxdaamgqtbdpf"
 
 [node name="Hud" parent="." unique_id=416551460 instance=ExtResource("7_0u5uq")]
 
-[node name="TargetTrackingCamera" type="Node" parent="." unique_id=1807680240 node_paths=PackedStringArray("camera", "camera_scan_area", "camera_frustum_shape")]
+[node name="TargetTrackingCamera" type="Node" parent="." unique_id=1807680240 node_paths=PackedStringArray("camera")]
 script = ExtResource("4_htcer")
 camera = NodePath("../SpringArm3D/Camera3D")
-camera_scan_area = NodePath("../SpringArm3D/Camera3D/Area3D")
-camera_frustum_shape = NodePath("../SpringArm3D/Camera3D/Area3D/CollisionShape3D")
 camera_scan_radius = 50.0
+layer_owner = SubResource("Resource_oikmp")
 metadata/_custom_type_script = "uid://cydyfmt81qssv"
+
+[node name="NearbyEnemyIndicator" parent="." unique_id=1721917268 node_paths=PackedStringArray("target_tracking_camera", "camera") instance=ExtResource("10_jhyir")]
+target_tracking_camera = NodePath("../TargetTrackingCamera")
+camera = NodePath("../SpringArm3D/Camera3D")

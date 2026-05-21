@@ -8,5 +8,5 @@ class_name DelayTrigger
 func execute(params : Dictionary):
 	for repeat_index in range(repeat_count):
 		await get_tree().create_timer(delay_time).timeout
-		print("delay" + str(repeat_index))
+		#print("delay" + str(repeat_index))
 		target_trigger.execute(params)
