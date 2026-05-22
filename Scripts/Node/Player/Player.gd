@@ -118,13 +118,13 @@ func _ready() -> void:
 	input_events.special_atk2_input.connect(on_special_atk.bind(1))
 	input_events.special_atk3_input.connect(on_special_atk.bind(2))
 	
-	input_events.grapple_object_input.connect(on_grapple)
+	input_events.grapple_input.connect(on_grapple)
 	#input_events.grapple_enemy_input.connect(on_grapple.bind(true))
-	input_events.switch_grapple_mode.connect(func():
-		_grapple_enemies = not _grapple_enemies
-		hud.update_grapple_mode(_grapple_enemies)
-		print(_grapple_enemies)
-	)
+	#input_events.switch_grapple_mode.connect(func():
+		#_grapple_enemies = not _grapple_enemies
+		#hud.update_grapple_mode(_grapple_enemies)
+		#print(_grapple_enemies)
+	#)
 	
 	input_events.target_lock.connect(on_toggle_target_lock)
 	input_events.target_next.connect(on_target_next)
@@ -218,6 +218,8 @@ func on_grapple() -> void:
 		#character.grapple()
 		plr_debounces.add_debounce("grapple")
 		plr_debounces.remove_debounce_delayed("grapple", 0.5)
+		
+		_grapple_enemies = input_events.grapple_characters
 		
 		if _grapple_enemies == true:
 			character.perform_ability("grapple_enemy")

@@ -22,9 +22,9 @@ signal special_atk1_input
 signal special_atk2_input
 signal special_atk3_input
 
-signal grapple_object_input
-#signal grapple_enemy_input
-signal switch_grapple_mode
+signal grapple_input
+signal grapple_enemy_input
+#signal switch_grapple_mode
 
 signal target_lock
 signal target_next
@@ -35,9 +35,9 @@ var signal_mapping : Dictionary[String, Signal] = {
 	"chr_block" : block_start,
 	"chr_primary_atk" : primary_atk_input,
 	"chr_secondary_atk" : secondary_atk_input,
-	"chr_grapple_object" : grapple_object_input,
+	"chr_grapple" : grapple_input,
 	#"chr_grapple_enemy" : grapple_enemy_input,
-	"chr_grapple_mode" : switch_grapple_mode,
+	#"chr_grapple_mode" : switch_grapple_mode,
 	"plr_target_lock" : target_lock,
 	"plr_target_next" : target_next
 }
@@ -51,6 +51,8 @@ var special_atks : Dictionary[String, Signal] = {
 	"chr_special_atk2" : special_atk2_input,
 	"chr_special_atk3" : special_atk3_input,
 }
+
+var grapple_characters : bool = true
 
 func setup() -> void:
 	#print(Input.get_connected_joypads().size() > 0)
@@ -79,6 +81,8 @@ func change_input_mode(is_gamepad_connected : bool):
 func input_pressed(input : InputEvent):
 	if block_all_input == true:
 		return
+	
+	grapple_characters = not (Input.get_action_strength("chr_move_bwd") > 0.5)
 	
 	for action_name in signal_mapping:
 		if input.is_action_pressed(action_name) and Input.is_action_pressed("gamepad_action_btn") == false:
