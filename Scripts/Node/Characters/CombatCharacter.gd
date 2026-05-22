@@ -183,7 +183,9 @@ func on_atk_hit(atk_info : AtkInfo):
 		
 		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE and is_current_state("block") == false:
 			var bounce_atk_dir = self.global_position.direction_to(instigator.global_position)
-			instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
+			#instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
+			var deflect_atk_info : AtkInfo = AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir)
+			instigator.stagger(deflect_atk_info)
 		
 		if is_current_state("block") == true:
 			global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))

@@ -10,5 +10,6 @@ signal camera_changed(new_camera : Camera3D)
 signal shake_all_cameras(shake_info : ShakeInfo)
 signal plr_input_state_changed(new_state : bool)
 signal plr_hud_state_changed(new_state : bool)
+signal plr_chr_changed(new_chr : CombatCharacter)
 
 @warning_ignore_restore("unused_signal")

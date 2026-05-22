@@ -53,6 +53,7 @@ var attacking_enemies : Array[Enemy]
 var _block_stamina : float = 100.0
 var _block_combo : int = 0
 var _plr_camera : Camera3D
+var _grapple_enemies : bool = true
 
 signal ability_energy_changed()
 signal block_stamina_empty()
@@ -66,6 +67,7 @@ func _ready() -> void:
 	
 	character = character_data.character_scene.instantiate()
 	add_child(character)
+	character.add_to_group("player_chr")
 	enemy_indicators.track_origin = character
 	camera_arm.target = character
 	#plr_state_machine.character = character
@@ -116,8 +118,13 @@ func _ready() -> void:
 	input_events.special_atk2_input.connect(on_special_atk.bind(1))
 	input_events.special_atk3_input.connect(on_special_atk.bind(2))
 	
-	input_events.grapple_object_input.connect(on_grapple.bind(false))
-	input_events.grapple_enemy_input.connect(on_grapple.bind(true))
+	input_events.grapple_object_input.connect(on_grapple)
+	#input_events.grapple_enemy_input.connect(on_grapple.bind(true))
+	input_events.switch_grapple_mode.connect(func():
+		_grapple_enemies = not _grapple_enemies
+		hud.update_grapple_mode(_grapple_enemies)
+		print(_grapple_enemies)
+	)
 	
 	input_events.target_lock.connect(on_toggle_target_lock)
 	input_events.target_next.connect(on_target_next)
@@ -132,6 +139,8 @@ func _ready() -> void:
 	target_reticle.top_level = true
 	add_child(target_reticle)
 	target_reticle.visible = false
+	
+	GlobalSignals.plr_chr_changed.emit(character)
 
 func set_active_camera(new_camera : Camera3D):
 	current_camera = new_camera
@@ -204,13 +213,13 @@ func on_special_atk(atk_index : int) -> void:
 	elif ability_energy < ability_db_entry.ability_energy_cost:
 		hud.abilities_ui.insufficient_energy_notification(atk_index)
 	
-func on_grapple(targets_characters : bool) -> void:
+func on_grapple() -> void:
 	if character is CombatCharacter and plr_debounces.is_debounce_active("grapple") == false:
 		#character.grapple()
 		plr_debounces.add_debounce("grapple")
 		plr_debounces.remove_debounce_delayed("grapple", 0.5)
 		
-		if targets_characters == true:
+		if _grapple_enemies == true:
 			character.perform_ability("grapple_enemy")
 		else:
 			character.perform_ability("grapple_object")

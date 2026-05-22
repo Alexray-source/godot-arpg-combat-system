@@ -23,7 +23,8 @@ signal special_atk2_input
 signal special_atk3_input
 
 signal grapple_object_input
-signal grapple_enemy_input
+#signal grapple_enemy_input
+signal switch_grapple_mode
 
 signal target_lock
 signal target_next
@@ -35,7 +36,8 @@ var signal_mapping : Dictionary[String, Signal] = {
 	"chr_primary_atk" : primary_atk_input,
 	"chr_secondary_atk" : secondary_atk_input,
 	"chr_grapple_object" : grapple_object_input,
-	"chr_grapple_enemy" : grapple_enemy_input,
+	#"chr_grapple_enemy" : grapple_enemy_input,
+	"chr_grapple_mode" : switch_grapple_mode,
 	"plr_target_lock" : target_lock,
 	"plr_target_next" : target_next
 }
@@ -90,6 +92,12 @@ func input_pressed(input : InputEvent):
 		else:
 			if input.is_action_pressed(special_attack_action_name):
 				special_atks[special_attack_action_name].emit()
+	
+	#if input.is_action_pressed("chr_grapple_object"):
+		#if Input.get_action_strength("chr_move_bwd") > 0.8:
+			#grapple_object_input.emit()
+		#else:
+			#grapple_enemy_input.emit()
 	
 	if input_mode == InputMode.KEYBOARD and input is InputEventMouseMotion:
 		camera_move_dir = input.screen_relative

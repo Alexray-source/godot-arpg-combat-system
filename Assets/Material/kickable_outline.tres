@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c6vk11pufl8ku"]
+
+[ext_resource type="Shader" uid="uid://cj4slq8586qbx" path="res://Shaders/InverseHull.gdshader" id="1_jule3"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jule3")
+shader_parameter/OutlineSize = 0.2
+shader_parameter/OutlineColor = Color(1, 0.7734375, 0, 1)

@@ -1,14 +1,19 @@
 class_name Throwable extends RigidBody3D
 
+const OUTLINE_MAT : ShaderMaterial = preload("res://Assets/Material/kickable_outline.tres")
+
 @export var hurtbox : HurtBox
 @export var accepted_atk_types : Array[AtkInfo.AtkType]
 @export var damage : float = 20.0
 @export var allowed_target_hits : int = 1
+@export var mesh_instance : MeshInstance3D
 
 @export var hit_sfx_player : AudioStreamPlayer3D
 @export var shoot_sfx_player : AudioStreamPlayer3D
 
 var total_target_hits : int = 0
+var _highlight_origin : Node3D
+var _outline_mesh_instance : MeshInstance3D
 
 ##Other hurtboxes call this signal
 signal target_hit()
@@ -16,6 +21,28 @@ signal target_hit()
 func _ready() -> void:
 	hurtbox.hit.connect(on_hit)
 	target_hit.connect(on_target_hit)
+	
+	var outline_mesh : Mesh = mesh_instance.mesh
+	_outline_mesh_instance = MeshInstance3D.new()
+	_outline_mesh_instance.mesh = outline_mesh
+	_outline_mesh_instance.material_override = OUTLINE_MAT
+	
+	mesh_instance.add_child(_outline_mesh_instance)
+	
+	_highlight_origin = get_tree().get_first_node_in_group("player_chr")
+	
+	GlobalSignals.plr_chr_changed.connect(set_highlight_origin)
+	set_process(_highlight_origin != null)
+
+func set_highlight_origin(new_origin : Node3D):
+	_highlight_origin = new_origin
+	
+	set_process(_highlight_origin != null)
+
+func _process(_delta: float) -> void:
+	var dist : float = _highlight_origin.global_position.distance_to(global_position)
+	
+	_outline_mesh_instance.set_instance_shader_parameter("opacity", clampf(5.0 - dist, 0.0, 1.0 ))
 
 func throw(direction : Vector3, power : float) -> void:
 	linear_velocity = Vector3.ZERO
