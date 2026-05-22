@@ -128,6 +128,7 @@ func _ready() -> void:
 	
 	input_events.target_lock.connect(on_toggle_target_lock)
 	input_events.target_next.connect(on_target_next)
+	input_events.target_prev.connect(on_target_prev)
 	
 	input_events.jump_input.connect(character.jump)
 	input_events.dash_input.connect(on_dodge_dash)
@@ -285,8 +286,14 @@ func on_toggle_target_lock() -> void:
 	elif target_tracking_camera.nearby_targets.size() > 0:
 		set_lock_target(target_tracking_camera.nearby_targets.get(0))
 
-func on_target_next() -> void:
+func on_target_next(bypass_debounce : bool = false) -> void:
 	print("searching new target")
+	if bypass_debounce == false and plr_debounces.is_debounce_active("target_next"):
+		return
+	
+	plr_debounces.add_debounce("target_next")
+	plr_debounces.remove_debounce_delayed("target_next", 0.4)
+	
 	if target_tracking_camera.nearby_targets.size() > 0:
 		
 		var current_index : int = 0
@@ -303,7 +310,33 @@ func on_target_next() -> void:
 			#target_closest_enemy_to_character()
 		if new_target != current_target:
 			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
-	else:
+	elif current_target != null:
+		target_closest_enemy_to_character()
+
+func on_target_prev(bypass_debounce : bool = false) -> void:
+	print("searching new target")
+	if bypass_debounce == false and plr_debounces.is_debounce_active("target_prev"):
+		return
+	
+	plr_debounces.add_debounce("target_prev")
+	plr_debounces.remove_debounce_delayed("target_prev", 0.4)
+	
+	if target_tracking_camera.nearby_targets.size() > 0:
+		var current_index : int = 0
+		if current_target != null:
+			current_index = target_tracking_camera.nearby_targets.find(current_target)
+			
+			current_index -= 1
+			
+			if current_index < 0:
+				current_index = target_tracking_camera.nearby_targets.size() - 1
+			print(current_index)
+		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
+		#if new_target == current_target:
+			#target_closest_enemy_to_character()
+		if new_target != current_target:
+			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
+	elif current_target != null:
 		target_closest_enemy_to_character()
 
 func target_closest_enemy_to_character():

@@ -28,6 +28,8 @@ signal grapple_enemy_input
 
 signal target_lock
 signal target_next
+signal target_prev
+
 
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
@@ -39,7 +41,8 @@ var signal_mapping : Dictionary[String, Signal] = {
 	#"chr_grapple_enemy" : grapple_enemy_input,
 	#"chr_grapple_mode" : switch_grapple_mode,
 	"plr_target_lock" : target_lock,
-	"plr_target_next" : target_next
+	"plr_target_next" : target_next,
+	"plr_target_prev" : target_prev
 }
 
 var signal_mapping_end : Dictionary[String, Signal] = {
