@@ -1,4 +1,4 @@
-extends Control
+class_name WaveCounterUI extends Control
 
 @export var label : Label
 @export var wave_number : int = 0

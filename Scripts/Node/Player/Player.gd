@@ -39,6 +39,7 @@ var target_reticle : Node3D
 
 var input_events : PlrInputEvents
 var block_input : bool = false
+var allow_parry : bool = false
 
 var plr_debounces : Debounces
 var ability_energy : int = 0:
@@ -258,8 +259,10 @@ func on_atk_blocked() -> void:
 	if _block_combo >= 3:
 		Engine.time_scale = 0.1
 		_block_combo = 0
+		allow_parry = true
 		get_tree().create_timer(0.5, false, false, true).timeout.connect(func():
 			Engine.time_scale = 1.0
+			allow_parry = false
 		)
 	
 	if _block_stamina <= 0.0:

@@ -11,7 +11,7 @@ var _current_wave : int = 0
 var loaded_data : SaveData
 var save_loader : SaveDataHandler
 
-signal new_wave(new_wave_numbe : int)
+signal new_wave(new_wave_number : int)
 signal finished
 
 func _ready() -> void:

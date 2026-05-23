@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://h4d7kwuo8pxa"]
+
+[ext_resource type="Script" uid="uid://k56234nclxxb" path="res://Scripts/Node/UI/wave_count.gd" id="1_6ksgb"]
+[ext_resource type="Script" uid="uid://b12m054cwtg0d" path="res://Scripts/Node/Trigger/TweenTrigger.gd" id="2_gjnjq"]
+[ext_resource type="Script" uid="uid://cp6ugtfy5wjnj" path="res://Scripts/Resources/FlexibleTween/FlexibleTween.gd" id="3_eu2gt"]
+[ext_resource type="Script" uid="uid://dnm0egtw1jyxj" path="res://Scripts/Resources/FlexibleTween/UI_ModulateTween.gd" id="4_f5h4t"]
+[ext_resource type="Script" uid="uid://rjwa5l46bgcg" path="res://Scripts/Resources/FlexibleTween/UI_PositionTween.gd" id="5_qjco1"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="6_jb64u"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="6_qjco1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gjnjq"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_jb64u"]
+script = ExtResource("4_f5h4t")
+use_start_value = true
+start_value = Color(1, 1, 1, 0)
+target_value = Color(1, 1, 1, 1)
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_y6517"]
+script = ExtResource("5_qjco1")
+use_start_value = true
+start_value = Vector2(543, -32)
+target_value = Vector2(543, 50)
+transition = 1
+tween_time = 0.5
+metadata/_custom_type_script = "uid://rjwa5l46bgcg"
+
+[sub_resource type="Resource" id="Resource_f5h4t"]
+script = ExtResource("4_f5h4t")
+use_start_value = true
+start_value = Color(1, 1, 1, 1)
+target_value = Color(1, 1, 1, 0)
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_qjco1"]
+script = ExtResource("5_qjco1")
+use_start_value = true
+start_value = Vector2(543, 50)
+target_value = Vector2(543, -32)
+transition = 1
+easing = 0
+tween_time = 0.5
+metadata/_custom_type_script = "uid://rjwa5l46bgcg"
+
+[node name="WaveCount" type="Control" unique_id=1518111511 node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ksgb")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="." unique_id=223260108]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 50.0
+offset_right = 33.0
+offset_bottom = 95.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+text = "1 / 5"
+label_settings = SubResource("LabelSettings_gjnjq")
+horizontal_alignment = 1
+
+[node name="TweenTrigger" type="Node" parent="." unique_id=5256577 node_paths=PackedStringArray("target_node", "finished_trigger_callback")]
+script = ExtResource("2_gjnjq")
+target_node = NodePath("../Label")
+tweens_data = Array[ExtResource("3_eu2gt")]([SubResource("Resource_jb64u"), SubResource("Resource_y6517")])
+finished_trigger_callback = NodePath("DelayTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="DelayTrigger" type="Node" parent="TweenTrigger" unique_id=1217166088 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("6_jb64u")
+target_trigger = NodePath("../TweenTrigger2")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="TweenTrigger2" type="Node" parent="TweenTrigger" unique_id=1716647325 node_paths=PackedStringArray("target_node", "finished_trigger_callback")]
+script = ExtResource("2_gjnjq")
+target_node = NodePath("../../Label")
+tweens_data = Array[ExtResource("3_eu2gt")]([SubResource("Resource_f5h4t"), SubResource("Resource_qjco1")])
+finished_trigger_callback = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="DestroyTrigger" type="Node" parent="TweenTrigger/TweenTrigger2" unique_id=1228804736 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("6_qjco1")
+node_to_destroy = NodePath("../../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"

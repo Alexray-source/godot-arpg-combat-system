@@ -16,5 +16,5 @@ func execute(_params : Dictionary):
 	for tween_data in tweens_data:
 		var tween : Tween = tween_data.play(target_node)
 		
-		if tweens_data.find(tween_data) == tween_data.size()-1 and tween.finished.is_connected(finish) == false:
+		if tweens_data.find(tween_data) == tweens_data.size()-1 and tween.finished.is_connected(finish) == false:
 			tween.finished.connect(finish, CONNECT_ONE_SHOT)
