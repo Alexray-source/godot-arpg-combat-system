@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://btrk3r7lf3wc" path="res://Scripts/Node/Environment/DestructibleObject.gd" id="25_nd2sr"]
 [ext_resource type="Script" uid="uid://d0skmk3674ko1" path="res://Scripts/Node/Trigger/StartEnemyWavesTrigger.gd" id="27_g8dp3"]
 [ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="28_7rcam"]
+[ext_resource type="Script" uid="uid://c2xin8aw2qw5u" path="res://Scripts/Node/Trigger/ProcessModeTrigger.gd" id="29_7555j"]
+[ext_resource type="Script" uid="uid://tjhxgv8d0moi" path="res://Scripts/Node/Environment/GrappleAreaPoint.gd" id="29_m4vf5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -131,6 +133,10 @@ size = Vector3(3, 3.5256958, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd2sr"]
 size = Vector3(3.6384277, 3.7802734, 3.5957031)
 
+[sub_resource type="SphereMesh" id="SphereMesh_7rcam"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m4vf5"]
+
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
@@ -182,58 +188,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287379, 1, 14.564385)
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
 transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530903, 3.0000007, 16.100836)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2033599363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
-material_override = ExtResource("1_rn81q")
-mesh = SubResource("CylinderMesh_xcpuq")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=223224578]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=880499533]
-shape = SubResource("CylinderShape3D_jjisf")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=792147931]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=269918999]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.345253)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=2042665798]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.3453)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1181090968]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -37.345276, 0, -2.4520597e-05)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=386596645]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37.345276, 0, -2.125577e-05)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=75267099]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -26.407097, 0, 26.407074)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=1582463433]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 26.407097, 0, -26.40712)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=1904495788]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -26.407095, 0, -26.407122)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=1010322561]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 26.407095, 0, 26.407076)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
 [node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
 script = ExtResource("12_jjisf")
 enemy_waves = NodePath("../EnemyWaves")
@@ -244,6 +198,85 @@ bgm_changer = NodePath("BgmChanger")
 script = ExtResource("17_2grvq")
 crossfade_time = 2.0
 metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="Map" type="Node" parent="." unique_id=2040024117]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=2033599363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+material_override = ExtResource("1_rn81q")
+mesh = SubResource("CylinderMesh_xcpuq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/MeshInstance3D" unique_id=223224578]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MeshInstance3D/StaticBody3D" unique_id=880499533]
+shape = SubResource("CylinderShape3D_jjisf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map" unique_id=792147931]
+process_mode = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=269918999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.345253)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=2042665798]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -37.3453)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1181090968]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -37.345276, 0, -2.4520597e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=386596645]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 37.345276, 0, -2.125577e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=75267099]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -26.407097, 0, 26.407074)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1582463433]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 26.407097, 0, -26.40712)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1904495788]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -26.407095, 0, -26.407122)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1010322561]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 26.407095, 0, 26.407076)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=1888915510]
+transform = Transform3D(1, 0, 0, 0, 0.9992672, 0.038276188, 0, -0.038276188, 0.9992672, 0, -36.116486, 104.86757)
+use_collision = true
+size = Vector3(13.926758, 35, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=1602913456]
+transform = Transform3D(0.99973345, 0.023092145, 0, -0.023034409, 0.9972338, -0.070670515, -0.0016319335, 0.070651665, 0.9974997, -17.436619, -30.236757, 80.68241)
+use_collision = true
+size = Vector3(13.926758, 35, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map" unique_id=1454629516]
+transform = Transform3D(0.7915439, -0.054037005, -0.60871845, 0.068109326, 0.99767786, 0, 0.60730493, -0.041459404, 0.7933863, 5.029331, -26.601349, 60.92938)
+use_collision = true
+size = Vector3(13.926758, 35, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1598966132]
+transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -0.73908615, -17.46435, 32.448742)
+use_collision = true
+size = Vector3(13.926758, 35, 16.890625)
+material = ExtResource("1_rn81q")
 
 [node name="RenderCache" type="Node" parent="." unique_id=881205720]
 
@@ -265,7 +298,7 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.755762)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.699572, 106.45024)
 
 [node name="EnemyWaveEvents" type="Node" parent="." unique_id=1246679954 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
 script = ExtResource("20_bx8ag")
@@ -399,10 +432,50 @@ metadata/_custom_type_script = "uid://d0skmk3674ko1"
 
 [node name="MultiTrigger" type="Node" parent="." unique_id=1212437086 node_paths=PackedStringArray("triggers")]
 script = ExtResource("21_nd2sr")
-triggers = [NodePath("DestroyTrigger"), NodePath("../StartEnemyWavesTrigger")]
+triggers = [NodePath("DestroyTrigger"), NodePath("ProcessModeTrigger"), NodePath("../StartEnemyWavesTrigger")]
 metadata/_custom_type_script = "uid://bxsi8tccwwxt6"
 
 [node name="DestroyTrigger" type="Node" parent="MultiTrigger" unique_id=2061276312 node_paths=PackedStringArray("node_to_destroy")]
 script = ExtResource("28_7rcam")
 node_to_destroy = NodePath("../../Node3D2")
 metadata/_custom_type_script = "uid://6bco6swhk10l"
+
+[node name="ProcessModeTrigger" type="Node" parent="MultiTrigger" unique_id=1803258700 node_paths=PackedStringArray("target_node")]
+script = ExtResource("29_7555j")
+target_node = NodePath("../../Map/StaticBody3D")
+metadata/_custom_type_script = "uid://c2xin8aw2qw5u"
+
+[node name="Interactables" type="Node" parent="." unique_id=1888126952]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactables" unique_id=2063097643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.689805, -6.2292395, 88.95475)
+mesh = SubResource("SphereMesh_7rcam")
+
+[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D" unique_id=207183125]
+collision_layer = 8
+script = ExtResource("29_m4vf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D/Area3D" unique_id=1194918314]
+shape = SubResource("SphereShape3D_m4vf5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Interactables" unique_id=2008304875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1731906, -3.2004633, 69.86765)
+mesh = SubResource("SphereMesh_7rcam")
+
+[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D2" unique_id=319400076]
+collision_layer = 8
+script = ExtResource("29_m4vf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D2/Area3D" unique_id=1268637651]
+shape = SubResource("SphereShape3D_m4vf5")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Interactables" unique_id=427268058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1731906, 7.431325, 40.4263)
+mesh = SubResource("SphereMesh_7rcam")
+
+[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D3" unique_id=6378067]
+collision_layer = 8
+script = ExtResource("29_m4vf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D3/Area3D" unique_id=879956954]
+shape = SubResource("SphereShape3D_m4vf5")

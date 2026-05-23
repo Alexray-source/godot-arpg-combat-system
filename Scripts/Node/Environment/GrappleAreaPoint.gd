@@ -1,0 +1,1 @@
+class_name GrappleAreaPoint extends Area3D

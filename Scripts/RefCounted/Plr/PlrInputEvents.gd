@@ -15,6 +15,8 @@ signal jump_input
 signal dash_input
 signal block_start
 signal block_end
+signal sprint_start
+signal sprint_end
 
 signal primary_atk_input
 signal secondary_atk_input
@@ -34,6 +36,7 @@ signal target_prev
 var signal_mapping : Dictionary[String, Signal] = {
 	"chr_jump" : jump_input,
 	"chr_dash" : dash_input,
+	"chr_sprint" : sprint_start,
 	"chr_block" : block_start,
 	"chr_primary_atk" : primary_atk_input,
 	"chr_secondary_atk" : secondary_atk_input,
@@ -46,7 +49,8 @@ var signal_mapping : Dictionary[String, Signal] = {
 }
 
 var signal_mapping_end : Dictionary[String, Signal] = {
-	"chr_block" : block_end
+	"chr_block" : block_end,
+	"chr_sprint" : sprint_end
 }
 
 var special_atks : Dictionary[String, Signal] = {

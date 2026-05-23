@@ -53,6 +53,9 @@ play_mode = 1
 animation = &"BaseAnimations/Jog_Sword_R"
 play_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4i2hf"]
+animation = &"BaseAnimations/Run_Sword"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3jnu7"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_vfdxc")
 blend_point_0/pos = Vector2(0, 0)
@@ -68,6 +71,10 @@ blend_point_5/node = SubResource("AnimationNodeAnimation_vsypv")
 blend_point_5/pos = Vector2(-1, -1)
 blend_point_6/node = SubResource("AnimationNodeAnimation_acoqj")
 blend_point_6/pos = Vector2(1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_4i2hf")
+blend_point_7/pos = Vector2(0, 2)
+min_space = Vector2(-1, -2)
+max_space = Vector2(1, 2)
 sync = true
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_72lp5"]
@@ -182,26 +189,30 @@ states/base_idle/position = Vector2(-46, 130)
 states/base_jump/node = SubResource("AnimationNodeAnimation_ffspy")
 states/base_jump/position = Vector2(494, 323)
 states/base_movement/node = SubResource("AnimationNodeBlendSpace2D_3jnu7")
-states/base_movement/position = Vector2(420, 124)
+states/base_movement/position = Vector2(416, 124)
 states/staggers_knockback/node = SubResource("AnimationNodeAnimation_72lp5")
 states/staggers_knockback/position = Vector2(845, 223)
 states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
 states/staggers_knockback_recover/position = Vector2(845, 351)
 transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks"), "base_idle", "base_movement", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_movement", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_movement", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_movement", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "base_movement", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_movement", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_idle", "base_flying", SubResource("AnimationNodeStateMachineTransition_4i2hf"), "base_flying", "base_movement", SubResource("AnimationNodeStateMachineTransition_ggtfb"), "base_flying", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_7yy8x"), "base_flying", "base_idle", SubResource("AnimationNodeStateMachineTransition_3viv7"), "base_movement", "base_flying", SubResource("AnimationNodeStateMachineTransition_gbuy2"), "base_flying", "base_falling", SubResource("AnimationNodeStateMachineTransition_gmsxc"), "base_falling", "base_flying", SubResource("AnimationNodeStateMachineTransition_iqrp5"), "base_idle", "base_jump", SubResource("AnimationNodeStateMachineTransition_vsypv")]
-graph_offset = Vector2(-244, -80)
+graph_offset = Vector2(-120, 38)
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vsypv"]
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-878, -334)
+graph_offset = Vector2(-1031.3644, -162.11345)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
-nodes/StateMachine/position = Vector2(-620, -140)
+nodes/StateMachine/position = Vector2(-1040, -120)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_172ob")
-nodes/OneShot/position = Vector2(-260, -100)
+nodes/OneShot/position = Vector2(-500, -100)
 nodes/OverrideAnimation/node = SubResource("AnimationNodeAnimation_8m6ks")
-nodes/OverrideAnimation/position = Vector2(-720, 60)
+nodes/OverrideAnimation/position = Vector2(-960, 120)
 nodes/LegsAir/node = SubResource("AnimationNodeBlend2_2ddvq")
 nodes/LegsAir/position = Vector2(200, -120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u7gae")
 nodes/Animation/position = Vector2(-120, 140)
-node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"StateMachine", &"OneShot", 1, &"OverrideAnimation", &"LegsAir", 0, &"OneShot", &"LegsAir", 1, &"Animation"]
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vsypv")
+nodes/TimeScale/position = Vector2(-760, -160)
+node_connections = [&"output", 0, &"LegsAir", &"OneShot", 0, &"TimeScale", &"OneShot", 1, &"OverrideAnimation", &"LegsAir", 0, &"OneShot", &"LegsAir", 1, &"Animation", &"TimeScale", 0, &"StateMachine"]

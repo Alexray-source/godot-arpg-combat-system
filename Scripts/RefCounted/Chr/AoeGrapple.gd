@@ -18,7 +18,8 @@ signal grapple_finished
 
 var class_grapple_callbacks : Dictionary[String, Callable] = {
 	"Throwable" : throwable_grapple,
-	"CombatCharacter" : character_grapple_to_target
+	"CombatCharacter" : character_grapple_to_target,
+	"GrappleAreaPoint" : grapple_to_point
 }
 
 func setup() -> void:
@@ -34,10 +35,10 @@ func get_closest_grapple_object() -> Throwable:
 	shape_cast_params.shape = hit_shape
 	shape_cast_params.transform = hitbox_transform
 	shape_cast_params.collision_mask = scan_mask
-	shape_cast_params.collide_with_areas = false
+	shape_cast_params.collide_with_areas = true
 	shape_cast_params.collide_with_bodies = true
 
-	var closest_body : PhysicsBody3D
+	var closest_body : CollisionObject3D
 	var closest_dist : float = 10000.0
 	
 	var results = direct_space_state.intersect_shape(shape_cast_params)
@@ -119,6 +120,16 @@ func character_grapple_to_target(target_node : Node3D):
 	
 	_timer = instigator.get_tree().create_timer(2.0)
 	_timer.timeout.connect(on_timer_finish, CONNECT_ONE_SHOT)
+
+func grapple_to_point(target_node : Node3D):
+	#instigator.set_state("custom_movement")
+	if is_instance_valid(target_node) == false:
+		grapple_finished.emit()
+		return
+	
+	_current_target = target_node
+	
+	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 
 func on_timer_finish():
 	_timer = null

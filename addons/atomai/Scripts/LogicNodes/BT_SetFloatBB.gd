@@ -10,6 +10,7 @@ func tick(blackboard : Dictionary):
 		return SUCCESS
 	
 	blackboard.set(bb_float_key, new_float_value)
+	_finished = true
 
 func reset(_blackboard : Dictionary):
 	_finished = false

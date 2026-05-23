@@ -2,6 +2,7 @@ class_name CombatCharacter extends BaseCharacter
 
 @export var hurt_box : HurtBox
 @export var dash_component : DashComponent
+@export var sprint_component : SprintComponent
 @export var stagger_component : StaggerComponent
 @export var character_abilities : CharacterAbilities
 
@@ -306,6 +307,10 @@ func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 
 	dash_component.dash_time = duration
 	dash_component.dash_dir = direction
 	dash_component.action()
+
+func set_sprint(should_sprint : bool):
+	sprint_component.enable_sprint = should_sprint
+	sprint_component.action()
 
 func jump():
 	#if state_machine.is_current_state_by_key("dead") or state_machine.is_current_state():

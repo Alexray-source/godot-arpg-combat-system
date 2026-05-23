@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://dap2lw3d4xncc"]
 
-[ext_resource type="Shader" uid="uid://ds5x2ussuuo36" path="res://SlashMaterial.gdshader" id="1_gpng1"]
+[ext_resource type="Shader" uid="uid://ds5x2ussuuo36" path="res://Shaders/SlashMaterial.gdshader" id="1_gpng1"]
 [ext_resource type="Texture2D" uid="uid://inqjmr51q5eo" path="res://Assets/Textures/VFX/Slash/EnemySlash.png" id="2_gpng1"]
 [ext_resource type="Texture2D" uid="uid://c3gd5uggmttub" path="res://Assets/Textures/VFX/Slash/SlashMask1.png" id="3_1e100"]
 

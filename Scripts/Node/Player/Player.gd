@@ -132,6 +132,8 @@ func _ready() -> void:
 	
 	input_events.jump_input.connect(character.jump)
 	input_events.dash_input.connect(on_dodge_dash)
+	input_events.sprint_start.connect(character.set_sprint.bind(true))
+	input_events.sprint_end.connect(character.set_sprint.bind(false))
 	
 	input_events.block_start.connect(on_block_start)
 	input_events.block_end.connect(on_block_end)

@@ -13,4 +13,5 @@ func on_exit() -> void:
 		character.invincible = false
 
 func state_physics_process(_delta : float) -> void:
-	character.move_and_collide(character.velocity * _delta)
+	#character.move_and_collide(character.velocity * _delta)
+	character.move_and_slide()

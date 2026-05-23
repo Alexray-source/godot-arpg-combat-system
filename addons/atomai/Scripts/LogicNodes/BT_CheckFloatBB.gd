@@ -42,6 +42,8 @@ func tick(blackboard : Dictionary):
 		CompareMode.GREATER:
 			if key_value > target_value:
 				return set_result(SUCCESS)
+	
+	return FAILURE
 
 func reset(_blackboard : Dictionary):
 	_finished = false
