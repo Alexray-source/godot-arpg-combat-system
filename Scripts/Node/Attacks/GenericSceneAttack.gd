@@ -10,7 +10,7 @@ func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo
 	var scene_instance : SceneAttackInstance = scene.instantiate() as SceneAttackInstance
 	
 	scene_instance.spawn_transform = Transform3D(spawn_basis, spawn_pos)
-	scene_instance.atk_info = AtkInfo.new(dmg, atk_type, instigator, attack_dir)
+	scene_instance.atk_info = AtkInfo.new(dmg, atk_type, instigator, attack_dir, _intended_target)
 	instigator.get_parent_node_3d().add_child(scene_instance)
 	scene_instance.global_transform = scene_instance.spawn_transform 
 	scene_instance.reset_physics_interpolation()

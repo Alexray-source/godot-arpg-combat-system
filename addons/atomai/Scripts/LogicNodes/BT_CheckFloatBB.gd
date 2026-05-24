@@ -18,12 +18,12 @@ var _finished : bool = false
 func set_result(new_value):
 	_result = new_value
 	_finished = true
-	
+	print(_result)
 	return _result
 
 func tick(blackboard : Dictionary):
 	if _finished == true and only_once == true:
-		return SUCCESS
+		return _result
 	
 	var key_value = blackboard.get(bb_float_key)
 	
@@ -42,8 +42,7 @@ func tick(blackboard : Dictionary):
 		CompareMode.GREATER:
 			if key_value > target_value:
 				return set_result(SUCCESS)
-	
-	return FAILURE
+	return set_result(FAILURE)
 
 func reset(_blackboard : Dictionary):
 	_finished = false

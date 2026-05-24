@@ -31,7 +31,13 @@ func _ready() -> void:
 	var combat_chr_scanner = CombatCharacterScanner.new()
 	combat_chr_scanner.scan_only_in_camera_frustum = false
 	
-	_target = combat_chr_scanner.get_closest_character_to_position(main_object.global_position, _direct_space_state, scan_shape, main_object.global_transform, chr_layer_owner.get_enemy_layer())
+	_target = atk_info.intended_target
+	
+	if _target == null:
+		_target = combat_chr_scanner.get_closest_character_to_position(main_object.global_position, _direct_space_state, scan_shape, main_object.global_transform, chr_layer_owner.get_enemy_layer())
+	
+	if _target == null:
+		queue_free()
 	
 	var move_tween = create_tween()
 	move_tween.set_ease(Tween.EASE_IN)

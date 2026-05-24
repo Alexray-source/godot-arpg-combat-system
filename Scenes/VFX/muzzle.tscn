@@ -71,6 +71,7 @@ autoplay = true
 [node name="DelayTrigger" type="Node" parent="." unique_id=1711044873 node_paths=PackedStringArray("target_trigger")]
 script = ExtResource("4_awrwk")
 target_trigger = NodePath("DestroyTrigger")
+auto_trigger = true
 metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
 
 [node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=501866031 node_paths=PackedStringArray("node_to_destroy")]

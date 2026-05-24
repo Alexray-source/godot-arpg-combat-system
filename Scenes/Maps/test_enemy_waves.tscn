@@ -151,43 +151,43 @@ environment = SubResource("Environment_i18pj")
 [node name="Throwables" type="Node" parent="." unique_id=1027259767]
 
 [node name="ThrowableCube" parent="Throwables" unique_id=554461063 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209965, 1.0000005, -14.295042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209961, 25.849699, -50.72784)
 
 [node name="ThrowableCube2" parent="Throwables" unique_id=998535108 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660257, 1, -17.464005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660295, 25.849699, -53.8968)
 
 [node name="ThrowableCube3" parent="Throwables" unique_id=1789431283 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.475356, 1, -9.008946)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47536, 25.849699, -45.441746)
 
 [node name="ThrowableCube4" parent="Throwables" unique_id=954082382 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786633, 2.9999995, -9.36386)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786636, 27.849699, -45.796658)
 
 [node name="ThrowableCube6" parent="Throwables" unique_id=844239056 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355663, 1, 5.731777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355667, 25.849699, -30.70102)
 
 [node name="ThrowableCube7" parent="Throwables" unique_id=1985501722 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.981824, 1.000001, 8.090936)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9818277, 25.849699, -28.341862)
 
 [node name="ThrowableCube8" parent="Throwables" unique_id=1386090068 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771572, 1.000001, 4.002225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771568, 25.849699, -32.430573)
 
 [node name="ThrowableCube9" parent="Throwables" unique_id=1251095342 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899056, 1.000001, -5.239993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899053, 25.849699, -41.672787)
 
 [node name="ThrowableCube10" parent="Throwables" unique_id=327985456 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.922761, 3.000001, -5.473497)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.922757, 27.849699, -41.906292)
 
 [node name="ThrowableCube11" parent="Throwables" unique_id=1228922293 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355597, 1.000001, -5.67928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355593, 25.849699, -42.11208)
 
 [node name="ThrowableCube5" parent="Throwables" unique_id=6648009 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.520404, 1, 17.271027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5204, 25.849699, -19.16177)
 
 [node name="ThrowableCube12" parent="Throwables" unique_id=1528304291 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287379, 1, 14.564385)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287375, 25.849699, -21.868412)
 
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
-transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530903, 3.0000007, 16.100836)
+transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530865, 27.849699, -20.331959)
 
 [node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
 script = ExtResource("12_jjisf")
@@ -203,7 +203,7 @@ metadata/_custom_type_script = "uid://dfay20msmb3cw"
 [node name="Map" type="Node" parent="." unique_id=2040024117]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=2033599363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, 17.349699, -36.432796)
 material_override = ExtResource("1_rn81q")
 mesh = SubResource("CylinderMesh_xcpuq")
 
@@ -214,6 +214,7 @@ shape = SubResource("CylinderShape3D_jjisf")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map" unique_id=792147931]
 process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06913185, 36.597595, -36.44631)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=269918999]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 37.345253)
@@ -256,27 +257,99 @@ shape = SubResource("BoxShape3D_yi1ag")
 debug_color = Color(0, 0.85882354, 1, 1)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=1888915510]
-transform = Transform3D(1, 0, 0, 0, 0.9992672, 0.038276188, 0, -0.038276188, 0.9992672, 0, -36.116486, 104.86757)
+transform = Transform3D(1, 0, 0, 0, 0.9992672, 0.038276188, 0, -0.038276188, 0.9992672, 22.86343, -24.454586, 96.993126)
 use_collision = true
-size = Vector3(13.926758, 35, 16.890625)
+size = Vector3(13.926758, 25.006836, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map" unique_id=1460637233]
+transform = Transform3D(0.85959107, 0, 0.51098263, -0.019558465, 0.9992673, 0.032901872, -0.51060814, -0.038276188, 0.85896116, 13.70175, -20.611433, 102.17831)
+use_collision = true
+size = Vector3(13.926758, 25.006836, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map" unique_id=18205557]
+transform = Transform3D(0.6707879, -0.028387507, 0.7411058, 0, 0.9992672, 0.038276188, -0.74164927, -0.025675202, 0.6702963, 74.93531, -50.924587, 133.00403)
+use_collision = true
+size = Vector3(61.681396, 66.84961, 74.63049)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="Map" unique_id=1127962328]
+transform = Transform3D(0.6707879, -0.028387507, 0.7411058, 0, 0.9992672, 0.038276188, -0.74164927, -0.025675202, 0.6702963, 60.672176, -9.951462, 146.4342)
+use_collision = true
+size = Vector3(22.625366, 16.763184, 74.63049)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="Map" unique_id=262563181]
+transform = Transform3D(0.6707879, -0.028387507, 0.7411058, 0, 0.9992672, 0.038276188, -0.74164927, -0.025675202, 0.6702963, 86.8329, -9.951462, 117.50988)
+use_collision = true
+size = Vector3(22.625366, 16.763184, 74.63049)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Map" unique_id=1797272061]
+transform = Transform3D(0.6707879, -0.028387507, 0.7411058, 0, 0.9992672, 0.038276188, -0.74164927, -0.025675202, 0.6702963, 76.56281, -49.45761, 134.47603)
+use_collision = true
+size = Vector3(18.511475, 70.75336, 22.234802)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Map" unique_id=844486123]
+transform = Transform3D(0.6707879, -0.028387507, 0.7411058, 0, 0.9992672, 0.038276188, -0.74164927, -0.025675202, 0.6702963, 52.55718, -49.4043, 112.76403)
+use_collision = true
+size = Vector3(18.511475, 73.33774, 22.234802)
 material = ExtResource("1_rn81q")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=1602913456]
-transform = Transform3D(0.99973345, 0.023092145, 0, -0.023034409, 0.9972338, -0.070670515, -0.0016319335, 0.070651665, 0.9974997, -17.436619, -30.236757, 80.68241)
+transform = Transform3D(0.9891727, 0.14649495, -0.008757745, -0.14674744, 0.9866852, -0.070125766, -0.0016319335, 0.070651665, 0.9974997, -16.00994, -18.761776, 105.57023)
 use_collision = true
-size = Vector3(13.926758, 35, 16.890625)
+size = Vector3(13.926758, 29.20166, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map" unique_id=620987400]
+transform = Transform3D(0.72582525, 0.067302436, 0.6845788, -0.058688547, 0.9976324, -0.035854824, -0.68537116, -0.014152616, 0.7280565, -26.260223, -16.833664, 95.597336)
+use_collision = true
+size = Vector3(20.093506, 32.150513, 20.404297)
 material = ExtResource("1_rn81q")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Map" unique_id=1454629516]
-transform = Transform3D(0.7915439, -0.054037005, -0.60871845, 0.068109326, 0.99767786, 0, 0.60730493, -0.041459404, 0.7933863, 5.029331, -26.601349, 60.92938)
+transform = Transform3D(0.7915439, -0.054037005, -0.60871845, 0.068109326, 0.99767786, 0, 0.60730493, -0.041459404, 0.7933863, -29.208181, -12.167824, 64.784485)
 use_collision = true
 size = Vector3(13.926758, 35, 16.890625)
 material = ExtResource("1_rn81q")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1598966132]
-transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -0.73908615, -17.46435, 32.448742)
+[node name="CSGBox3D14" type="CSGBox3D" parent="Map" unique_id=554090836]
+transform = Transform3D(-0.42015913, 0.028683357, -0.906997, 0.068109326, 0.99767786, 0, 0.9048908, -0.061774954, -0.42113706, -26.527592, -10.815641, 59.2238)
 use_collision = true
 size = Vector3(13.926758, 35, 16.890625)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="Map" unique_id=1784736289]
+transform = Transform3D(-0.42015913, 0.028683357, -0.906997, 0.068109326, 0.99767786, 0, 0.9048908, -0.061774954, -0.42113706, -22.848227, -4.409643, 58.637524)
+use_collision = true
+size = Vector3(9.222656, 27.208984, 10.710083)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="Map" unique_id=1688066623]
+transform = Transform3D(-0.42015913, 0.028683363, -0.906997, 0.08247048, 0.99657094, -0.0066876784, 0.903695, -0.077610366, -0.4210839, -14.033064, -2.455433, 60.135517)
+use_collision = true
+size = Vector3(9.222656, 27.208984, 10.710083)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1598966132]
+transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -0.7927331, 7.3853493, -3.2842636)
+use_collision = true
+size = Vector3(13.926758, 35, 18.294312)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Map" unique_id=423345473]
+transform = Transform3D(-0.99707484, -0.028379474, 0.07096775, 0, 0.9285111, 0.37130463, -0.07643179, 0.37021852, -0.9257951, -2.2988381, 1.7156422, 16.363247)
+use_collision = true
+size = Vector3(13.926758, 35, 36.877045)
+material = ExtResource("1_rn81q")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map" unique_id=51590728]
+transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -3.6544123, -2.072874, 34.49637)
+use_collision = true
+size = Vector3(13.926758, 35, 18.294312)
 material = ExtResource("1_rn81q")
 
 [node name="RenderCache" type="Node" parent="." unique_id=881205720]
@@ -299,7 +372,7 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15.699572, 106.45024)
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 96.58131, -13.033972, 151.54544)
 
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
@@ -309,7 +382,7 @@ active_enemy_ai = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1496976322]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.6293945e-06, 26.332958, -36.43749)
 
 [node name="Node2" type="Node" parent="EnemyWaves" unique_id=203176248 node_paths=PackedStringArray("enemy_wave_spawner")]
 script = ExtResource("9_yi1ag")
@@ -400,10 +473,11 @@ script = ExtResource("19_hjdgx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=508170288]
-transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 3.6519995, 10.988262)
+transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 27.954823, -29.144444)
 fov = 39.374996
 
 [node name="Node3D2" type="Node3D" parent="." unique_id=1810181570 node_paths=PackedStringArray("object_center_point", "hurtbox", "dead_trigger")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, 24.849699, -36.432796)
 script = ExtResource("25_nd2sr")
 health = 10
 object_center_point = NodePath("Node3D/CollisionShape3D")
@@ -453,7 +527,7 @@ metadata/_custom_type_script = "uid://c2xin8aw2qw5u"
 [node name="Interactables" type="Node" parent="." unique_id=1888126952]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactables" unique_id=2063097643]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.689805, -6.2292395, 88.95475)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.83636, -6.2292395, 96.22792)
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D" unique_id=207183125]
@@ -464,7 +538,7 @@ script = ExtResource("29_m4vf5")
 shape = SubResource("SphereShape3D_m4vf5")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Interactables" unique_id=2008304875]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1731906, -3.2004633, 69.86765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1658397, 2.6935978, 105.189575)
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D2" unique_id=319400076]
@@ -474,8 +548,19 @@ script = ExtResource("29_m4vf5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D2/Area3D" unique_id=1268637651]
 shape = SubResource("SphereShape3D_m4vf5")
 
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Interactables" unique_id=374554493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.172857, 9.217857, 77.161606)
+mesh = SubResource("SphereMesh_7rcam")
+
+[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D4" unique_id=1755757597]
+collision_layer = 8
+script = ExtResource("29_m4vf5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D4/Area3D" unique_id=1070814699]
+shape = SubResource("SphereShape3D_m4vf5")
+
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Interactables" unique_id=427268058]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1731906, 7.431325, 40.4263)
+transform = Transform3D(0.9999397, 0.009686333, -0.005182484, -0.009671156, 0.999949, 0.0029453696, 0.0052107507, -0.002895068, 0.99998224, -8.843512, 20.565643, 49.52819)
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D3" unique_id=6378067]
