@@ -192,15 +192,7 @@ func on_atk_hit(atk_info : AtkInfo):
 			global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 			atk_blocked.emit()
 			dash(-2.0)
-			#rescan_ground_state()
-			#get_tree().create_timer(0.5).timeout.connect(rescan_ground_state)
 		
-
-#func on_throwable_hit(throwable : Throwable):
-	#set_state("knockback")
-	#knockback(atk_info)
-	#var inverted_xz_velocity = Vector3(-throwable.linear_velocity.x, 0.0, -throwable.linear_velocity.z) 
-	#throwable.throw(inverted_xz_velocity.normalized(), throwable.linear_velocity.length())
 
 func on_dash_end():
 	if is_current_state("knockback") == false:
