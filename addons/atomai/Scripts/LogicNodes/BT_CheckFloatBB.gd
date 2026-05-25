@@ -18,7 +18,7 @@ var _finished : bool = false
 func set_result(new_value):
 	_result = new_value
 	_finished = true
-	print(_result)
+	print(BT_ForceResult.ForcedResult.keys()[_result])
 	return _result
 
 func tick(blackboard : Dictionary):
@@ -42,6 +42,7 @@ func tick(blackboard : Dictionary):
 		CompareMode.GREATER:
 			if key_value > target_value:
 				return set_result(SUCCESS)
+	
 	return set_result(FAILURE)
 
 func reset(_blackboard : Dictionary):

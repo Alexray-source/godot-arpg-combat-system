@@ -27,7 +27,7 @@ func tick(blackboard : Dictionary):
 	var closest_throwable_dist : float = INF
 	var throwable_scanner = Body3DScanner.new()
 	
-	var throwable_scan_result : Array[Dictionary] = throwable_scanner.scan(direct_space_state, scan_shape, origin.transform.orthonormalized(), scan_layer)
+	var throwable_scan_result : Array[Dictionary] = throwable_scanner.scan(direct_space_state, scan_shape, origin.global_transform.orthonormalized(), scan_layer)
 
 	for result in throwable_scan_result:
 		var collider = result.get("collider")
@@ -37,7 +37,7 @@ func tick(blackboard : Dictionary):
 				closest_throwable_dist = collider.global_position.distance_to(origin.global_position)
 				closest_throwable = collider
 	
-	
+	print(closest_throwable)
 	if throw_target_node != null and closest_throwable != null:
 		var closest_throw_pos : Vector3 = closest_throwable.global_position + (-closest_throwable.global_position.direction_to(throw_target_node.global_position) * 2.0)
 		

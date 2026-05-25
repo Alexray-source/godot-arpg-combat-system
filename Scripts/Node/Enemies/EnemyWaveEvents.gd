@@ -10,7 +10,6 @@ func _ready() -> void:
 	enemy_waves.new_wave.connect(on_new_wave)
 
 func on_new_wave(wave_number : int):
-	print(wave_number)
 	if event_triggers.get(wave_number) == null:
 		return
 	
