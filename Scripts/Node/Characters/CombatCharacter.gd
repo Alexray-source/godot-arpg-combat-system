@@ -50,9 +50,11 @@ signal ability_finished()
 func _ready() -> void:
 	super()
 	collision_priority = 10.0
-	collision_layer = 2 + chr_layer.get_collision_layer()
+	collision_layer = 2 + 16 + chr_layer.get_collision_layer()
+	collision_mask = 1 + 2 + 16
 	
 	hurt_box.collision_layer = chr_layer.get_collision_layer()
+	hurt_box.collision_mask = 1 + 16
 	hurt_box.hit.connect(on_atk_hit)
 	#hurt_box.throwable_hit.connect(on_throwable_hit)
 	

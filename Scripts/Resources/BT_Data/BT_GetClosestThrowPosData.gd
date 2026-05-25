@@ -6,7 +6,7 @@ class_name BT_GetClosestThrowPosData extends BT_NodeData
 @export var throw_node_target_key : String
 @export var scan_radius : float = 25.0
 @export var scan_once : bool = true
-@export_custom(PROPERTY_HINT_LAYERS_3D_PHYSICS, "") var scan_layer : int = 1
+@export_custom(PROPERTY_HINT_LAYERS_3D_PHYSICS, "") var scan_layer : int = 16
 
 func _init() -> void:
 	resource_name = "Get Closest Throw Pos."

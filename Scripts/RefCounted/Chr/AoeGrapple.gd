@@ -8,6 +8,12 @@ var direct_space_state : PhysicsDirectSpaceState3D
 var instigator : BaseCharacter
 var grapple_finish_radius : float = 1.0
 var grapple_reel_in_speed : float = 35.0
+var grapple_mode : GrappleMode
+
+enum GrappleMode {
+	REEL,
+	PULL
+}
 
 var _current_target : Node3D
 var _grapple_line : GrappleLine
@@ -17,10 +23,9 @@ var _grapple_acceleration : float = 5.0
 
 signal grapple_finished
 
-var class_grapple_callbacks : Dictionary[String, Callable] = {
-	"Throwable" : throwable_grapple,
-	"CombatCharacter" : character_grapple_to_target,
-	"GrappleAreaPoint" : grapple_to_point
+var class_grapple_callbacks : Dictionary[GrappleMode, Array] = {
+	GrappleMode.PULL : ["Throwable"],
+	GrappleMode.REEL : ["CombatCharacter", "GrappleAreaPoint"]
 }
 
 func setup() -> void:
@@ -33,6 +38,10 @@ func on_grapple_finished():
 	if _grapple_line != null and is_instance_valid(_grapple_line):
 		_grapple_line.queue_free()
 
+func get_can_grapple_node(node_to_check : Node3D):
+	var grapple_mode_accepted_classes : Array = class_grapple_callbacks.get(grapple_mode)
+	return grapple_mode_accepted_classes.has(node_to_check.get_script().get_global_name())
+
 func get_closest_grapple_object() -> Throwable:
 	var shape_cast_params = PhysicsShapeQueryParameters3D.new()
 	shape_cast_params.shape = hit_shape
@@ -42,7 +51,7 @@ func get_closest_grapple_object() -> Throwable:
 	shape_cast_params.collide_with_bodies = true
 
 	var closest_body : CollisionObject3D
-	var closest_dist : float = 10000.0
+	var closest_dist : float = INF
 	
 	var results = direct_space_state.intersect_shape(shape_cast_params)
 	for hit in results:
@@ -51,8 +60,8 @@ func get_closest_grapple_object() -> Throwable:
 		
 		if collider_script == null:
 			continue
-		
-		var can_be_grappled : bool = class_grapple_callbacks.has(collider.get_script().get_global_name())
+		#print(collider)
+		var can_be_grappled : bool = get_can_grapple_node(collider)
 		if can_be_grappled and collider != instigator and ((scan_only_in_camera_frustum == true and instigator.get_viewport().get_camera_3d().is_position_in_frustum(collider.global_position)) or scan_only_in_camera_frustum == false):
 			var body_dist = collider.global_position.distance_to(instigator.global_position)
 			if body_dist < closest_dist:
@@ -74,9 +83,7 @@ func attempt_grapple_to_closest_object():
 		grapple_finished.emit()
 
 func perform_grapple(target_node : Node3D):
-	var class_callback : Callable = class_grapple_callbacks.get(target_node.get_script().get_global_name())
-	
-	if class_callback == null:
+	if get_can_grapple_node(target_node) == false:
 		grapple_finished.emit()
 		return
 	
@@ -101,7 +108,10 @@ func perform_grapple(target_node : Node3D):
 	
 	_grapple_line.set_end_node_animated(target_node)
 	_grapple_line.grapple_anim_finished.connect(func():
-		class_callback.call(target_node)
+		if grapple_mode == GrappleMode.PULL:
+			throwable_grapple(target_node)
+		else:
+			character_grapple_to_target(target_node)
 	, CONNECT_ONE_SHOT)
 
 func throwable_grapple(target_node : Throwable):
@@ -125,16 +135,6 @@ func character_grapple_to_target(target_node : Node3D):
 	
 	_timer = instigator.get_tree().create_timer(2.0)
 	_timer.timeout.connect(on_timer_finish, CONNECT_ONE_SHOT)
-
-func grapple_to_point(target_node : Node3D):
-	#instigator.set_state("custom_movement")
-	if is_instance_valid(target_node) == false:
-		grapple_finished.emit()
-		return
-	
-	_current_target = target_node
-	
-	instigator.velocity = instigator.global_position.direction_to(target_node.global_position) * grapple_reel_in_speed * instigator.get_physics_process_delta_time()
 
 func on_timer_finish():
 	_timer = null

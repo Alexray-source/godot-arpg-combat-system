@@ -17,7 +17,7 @@ func on_enter() -> void:
 func state_physics_process(delta : float) -> void:
 	var velocity_xz_plane : Vector3 = Vector3(character.velocity.x, 0.0, character.velocity.z)
 	
-	if velocity_xz_plane.length() > 0.0:
+	if velocity_xz_plane.is_zero_approx() == false:
 		character.global_basis = Basis.looking_at(velocity_xz_plane, character.up_direction)
 		
 	var move_dir_xz_plane = Vector3(character.move_dir.x, 0.0, character.move_dir.z)

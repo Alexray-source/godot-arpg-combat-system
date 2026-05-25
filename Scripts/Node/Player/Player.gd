@@ -3,6 +3,8 @@ extends Node3D
 const ABILITY_DB : AbilityDatabase = preload("res://Resources/AbilityDatabase.tres")
 const GAME_OVER_UI_SCENE : PackedScene = preload("res://Scenes/UI/GameOver.tscn")
 const TARGET_RETICLE_SCENE : PackedScene = preload("res://Scenes/UI/target_reticle.tscn")
+const INACTIVE_TARGET_RETICLE_SCENE : PackedScene = preload("res://Scenes/UI/inactive_target_reticle.tscn")
+
 
 const TITLE_SCREEN_PATH : String = "res://Scenes/UI/title.tscn"
 
@@ -36,6 +38,7 @@ var camera_center_offset : Vector3
 
 var current_target : Node3D
 var target_reticle : Node3D
+var inactive_target_reticle : Node3D
 
 var input_events : PlrInputEvents
 var block_input : bool = false
@@ -55,6 +58,7 @@ var _block_stamina : float = 100.0
 var _block_combo : int = 0
 var _plr_camera : Camera3D
 var _grapple_enemies : bool = true
+var _closest_target : Node3D
 
 signal ability_energy_changed()
 signal block_stamina_empty()
@@ -143,6 +147,13 @@ func _ready() -> void:
 	target_reticle.top_level = true
 	add_child(target_reticle)
 	target_reticle.visible = false
+	
+	inactive_target_reticle = INACTIVE_TARGET_RETICLE_SCENE.instantiate()
+	inactive_target_reticle.top_level = true
+	add_child(inactive_target_reticle)
+	inactive_target_reticle.visible = false
+	
+	target_tracking_camera.closest_target_changed.connect(on_closest_target_changed)
 	
 	GlobalSignals.plr_chr_changed.emit(character)
 
@@ -285,6 +296,12 @@ func on_died() -> void:
 	
 	add_child(game_over_ui)
 
+func on_closest_target_changed(new_target : Node3D) -> void:
+	_closest_target = new_target
+	
+	#if current_target == null:
+		#inactive_target_reticle.visible = true
+
 func on_toggle_target_lock() -> void:
 	if current_target != null:
 		set_lock_target(null)
@@ -362,7 +379,8 @@ func target_closest_enemy_to_character():
 	
 	var closest_enemy
 	
-	if closest_hurtbox != null:
+	print(closest_hurtbox.get_parent_node_3d() )
+	if closest_hurtbox != null and closest_hurtbox.get_parent_node_3d() != current_target.get_parent_node_3d():
 		closest_enemy = closest_hurtbox.get_parent_node_3d()
 	
 	print("target outside camera : " + str(closest_enemy))
@@ -377,13 +395,16 @@ func set_lock_target(new_target : Node3D) -> void:
 	
 	current_target = new_target
 	character.lock_to_target(new_target)
-	target_reticle.visible = current_target != null
+	#target_reticle.visible = current_target != null
+	#inactive_target_reticle.visible = current_target == null and _closest_target != null
 	
 	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == false:
 		current_target.tree_exiting.connect(handle_target_tree_exit.bind(current_target))
 
 func handle_target_tree_exit(_exiting_target : Node3D) -> void:
 	if current_target == _exiting_target:
+		target_tracking_camera.cleanup_invalid_targets()
+		
 		on_target_next()
 
 func _input(event: InputEvent) -> void:
@@ -445,6 +466,12 @@ func _process(delta: float) -> void:
 
 	if current_target != null:
 		target_reticle.global_position = current_target.global_position
+	
+	if _closest_target != null:
+		inactive_target_reticle.global_position = _closest_target.global_position
+	
+	target_reticle.visible = current_target != null
+	inactive_target_reticle.visible = current_target == null and _closest_target != null
 	
 	if block_input == true:
 		return

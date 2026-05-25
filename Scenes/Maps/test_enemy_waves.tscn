@@ -517,7 +517,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, 24.849699, -3
 script = ExtResource("25_nd2sr")
 health = 10
 object_center_point = NodePath("Node3D/CollisionShape3D")
-hurtbox = NodePath("HurtBox")
+hurtbox = NodePath("Node3D/HurtBox")
 dead_trigger = NodePath("../MultiTrigger")
 
 [node name="Node3D" type="StaticBody3D" parent="Node3D2" unique_id=1018595611]
@@ -530,13 +530,13 @@ mesh = SubResource("CylinderMesh_elxb5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2628479, 0)
 shape = SubResource("BoxShape3D_bx8ag")
 
-[node name="HurtBox" type="Area3D" parent="Node3D2" unique_id=472689892]
+[node name="HurtBox" type="Area3D" parent="Node3D2/Node3D" unique_id=472689892]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-collision_layer = 9
+collision_layer = 10
 script = ExtResource("25_bx8ag")
 metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/HurtBox" unique_id=1014300862]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D/HurtBox" unique_id=1014300862]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6098633, 0)
 shape = SubResource("BoxShape3D_nd2sr")
 
@@ -567,7 +567,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.88297, -6.229239, 127.9963
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D" unique_id=207183125]
-collision_layer = 8
+collision_layer = 16
 script = ExtResource("29_m4vf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D/Area3D" unique_id=1194918314]
@@ -578,7 +578,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1560435, -0.733701, 135.75
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D2" unique_id=319400076]
-collision_layer = 8
+collision_layer = 16
 script = ExtResource("29_m4vf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D2/Area3D" unique_id=1268637651]
@@ -589,7 +589,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.902058, 9.217854, 100.261
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D4" unique_id=1755757597]
-collision_layer = 8
+collision_layer = 16
 script = ExtResource("29_m4vf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D4/Area3D" unique_id=1070814699]
@@ -600,7 +600,7 @@ transform = Transform3D(0.9999397, 0.009686333, -0.005182484, -0.009671156, 0.99
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D3" unique_id=6378067]
-collision_layer = 8
+collision_layer = 16
 script = ExtResource("29_m4vf5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D3/Area3D" unique_id=879956954]

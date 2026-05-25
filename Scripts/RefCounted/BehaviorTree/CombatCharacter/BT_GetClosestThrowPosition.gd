@@ -8,10 +8,16 @@ var scan_layer : int = 1
 var scan_once : bool
 
 var _found_pos : bool = false
+var _finished : bool = false
 
 func tick(blackboard : Dictionary):
-	if _found_pos == true and scan_once == true:
+	if _found_pos == true and _finished == true:
 		return SUCCESS
+	elif _finished == true:
+		return FAILURE
+	
+	if scan_once == true:
+		_finished = true
 	
 	var scan_shape : SphereShape3D = SphereShape3D.new()
 	scan_shape.radius = scan_radius
@@ -50,3 +56,4 @@ func tick(blackboard : Dictionary):
 
 func reset(_blackboard : Dictionary):
 	_found_pos = false
+	_finished = false
