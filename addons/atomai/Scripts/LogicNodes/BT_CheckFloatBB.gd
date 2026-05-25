@@ -18,7 +18,7 @@ var _finished : bool = false
 func set_result(new_value):
 	_result = new_value
 	_finished = true
-	print(BT_ForceResult.ForcedResult.keys()[_result])
+	#print(BT_ForceResult.ForcedResult.keys()[_result])
 	return _result
 
 func tick(blackboard : Dictionary):

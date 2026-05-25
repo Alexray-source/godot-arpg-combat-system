@@ -17,11 +17,20 @@ autorestart_delay = 0.0
 resource_local_to_scene = true
 animation = &"PlayerSwordAnims/NinjaPrimary1"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3viv7"]
+animation = &"BaseAnimations/BrakeEnd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7yy8x"]
+animation = &"BaseAnimations/BrakeStart"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qbr8q"]
 animation = &"BaseAnimations/Fall_Sword"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_spv1o"]
 animation = &"BaseAnimations/FlyIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ggtfb"]
+animation = &"BaseAnimations/Brake"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_172ob"]
 animation = &"BaseAnimations/Idle_Sword"
@@ -177,15 +186,47 @@ advance_expression = "is_current_state(\"fly_movement\")"
 advance_mode = 2
 advance_expression = "is_on_floor() == false and velocity.y > 0.01"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acoqj"]
+advance_mode = 2
+advance_expression = "is_on_floor() == false and velocity.y < 0.01"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gupey"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4r1j2"]
+xfade_time = 0.4
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_spv1o"]
+advance_mode = 2
+advance_expression = "is_current_state(\"ground_movement\") and (abs(velocity.x) > 0.5 or abs(velocity.z) > 0.5)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgilq"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "is_current_state(\"ground_brake\")"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gjt82"]
+advance_mode = 2
+advance_expression = "is_current_state(\"ground_movement\") and (abs(velocity.x) < 0.5 or abs(velocity.z) < 0.5)"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vucap"]
 resource_local_to_scene = true
+states/BaseAnimations_BrakeEnd/node = SubResource("AnimationNodeAnimation_3viv7")
+states/BaseAnimations_BrakeEnd/position = Vector2(901, -254)
+states/BaseAnimations_BrakeStart/node = SubResource("AnimationNodeAnimation_7yy8x")
+states/BaseAnimations_BrakeStart/position = Vector2(1031, 8)
 states/Start/position = Vector2(-228, 124)
 states/base_falling/node = SubResource("AnimationNodeAnimation_qbr8q")
 states/base_falling/position = Vector2(-62, 323)
 states/base_flying/node = SubResource("AnimationNodeAnimation_spv1o")
 states/base_flying/position = Vector2(181, -139)
+states/base_ground_brake/node = SubResource("AnimationNodeAnimation_ggtfb")
+states/base_ground_brake/position = Vector2(1002, -139)
 states/base_idle/node = SubResource("AnimationNodeAnimation_172ob")
-states/base_idle/position = Vector2(-46, 130)
+states/base_idle/position = Vector2(-50, 106)
 states/base_jump/node = SubResource("AnimationNodeAnimation_ffspy")
 states/base_jump/position = Vector2(494, 323)
 states/base_movement/node = SubResource("AnimationNodeBlendSpace2D_3jnu7")
@@ -194,14 +235,14 @@ states/staggers_knockback/node = SubResource("AnimationNodeAnimation_72lp5")
 states/staggers_knockback/position = Vector2(845, 223)
 states/staggers_knockback_recover/node = SubResource("AnimationNodeAnimation_5ps18")
 states/staggers_knockback_recover/position = Vector2(845, 351)
-transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks"), "base_idle", "base_movement", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_movement", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_movement", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_movement", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "base_movement", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_movement", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_idle", "base_flying", SubResource("AnimationNodeStateMachineTransition_4i2hf"), "base_flying", "base_movement", SubResource("AnimationNodeStateMachineTransition_ggtfb"), "base_flying", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_7yy8x"), "base_flying", "base_idle", SubResource("AnimationNodeStateMachineTransition_3viv7"), "base_movement", "base_flying", SubResource("AnimationNodeStateMachineTransition_gbuy2"), "base_flying", "base_falling", SubResource("AnimationNodeStateMachineTransition_gmsxc"), "base_falling", "base_flying", SubResource("AnimationNodeStateMachineTransition_iqrp5"), "base_idle", "base_jump", SubResource("AnimationNodeStateMachineTransition_vsypv")]
-graph_offset = Vector2(-120, 38)
+transitions = ["base_jump", "base_falling", SubResource("AnimationNodeStateMachineTransition_72lp5"), "base_falling", "base_idle", SubResource("AnimationNodeStateMachineTransition_172ob"), "staggers_knockback_recover", "base_idle", SubResource("AnimationNodeStateMachineTransition_vucap"), "staggers_knockback", "staggers_knockback_recover", SubResource("AnimationNodeStateMachineTransition_bghwh"), "base_idle", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_f726w"), "base_jump", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_m23ht"), "base_falling", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_wml65"), "Start", "base_idle", SubResource("AnimationNodeStateMachineTransition_8m6ks"), "base_idle", "base_movement", SubResource("AnimationNodeStateMachineTransition_u7gae"), "base_movement", "base_idle", SubResource("AnimationNodeStateMachineTransition_2ddvq"), "base_falling", "base_movement", SubResource("AnimationNodeStateMachineTransition_qbr8q"), "base_movement", "base_falling", SubResource("AnimationNodeStateMachineTransition_jb0u1"), "base_movement", "base_jump", SubResource("AnimationNodeStateMachineTransition_5ps18"), "base_movement", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_ffspy"), "base_idle", "base_flying", SubResource("AnimationNodeStateMachineTransition_4i2hf"), "base_flying", "base_movement", SubResource("AnimationNodeStateMachineTransition_ggtfb"), "base_flying", "staggers_knockback", SubResource("AnimationNodeStateMachineTransition_7yy8x"), "base_flying", "base_idle", SubResource("AnimationNodeStateMachineTransition_3viv7"), "base_movement", "base_flying", SubResource("AnimationNodeStateMachineTransition_gbuy2"), "base_flying", "base_falling", SubResource("AnimationNodeStateMachineTransition_gmsxc"), "base_falling", "base_flying", SubResource("AnimationNodeStateMachineTransition_iqrp5"), "base_idle", "base_jump", SubResource("AnimationNodeStateMachineTransition_vsypv"), "base_idle", "base_falling", SubResource("AnimationNodeStateMachineTransition_acoqj"), "BaseAnimations_BrakeStart", "base_ground_brake", SubResource("AnimationNodeStateMachineTransition_gupey"), "BaseAnimations_BrakeEnd", "base_movement", SubResource("AnimationNodeStateMachineTransition_4r1j2"), "base_ground_brake", "base_movement", SubResource("AnimationNodeStateMachineTransition_spv1o"), "base_movement", "BaseAnimations_BrakeStart", SubResource("AnimationNodeStateMachineTransition_jgilq"), "base_ground_brake", "BaseAnimations_BrakeEnd", SubResource("AnimationNodeStateMachineTransition_gjt82")]
+graph_offset = Vector2(84, -346)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vsypv"]
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-1031.3644, -162.11345)
+graph_offset = Vector2(-1154, -198)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-1040, -120)

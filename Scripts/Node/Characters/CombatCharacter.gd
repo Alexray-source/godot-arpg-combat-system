@@ -20,6 +20,8 @@ var debounces : Debounces
 var health_component : HealthComponent
 var stagger_state : ChrStaggerState
 var knockback_state : ChrKnockbackState
+var ground_brake_state : CharacterGroundBrakeState
+var ground_movement_state : CharacterGroundState
 
 var prev_hit_info : AtkInfo
 var invincible : bool = false
@@ -78,6 +80,12 @@ func _ready() -> void:
 	
 	knockback_state = state_machine.get_state_by_key("knockback")
 	knockback_state.state_end.connect(on_knockback_end)
+	
+	ground_movement_state = state_machine.get_state_by_key("ground_movement")
+	ground_movement_state.braked.connect(set_state.bind("ground_brake"))
+	
+	ground_brake_state = state_machine.get_state_by_key("ground_brake")
+	ground_brake_state.state_end.connect(rescan_ground_state)
 	
 	var defence_class_stat_mod : StatModifierData = StatModifierData.new()
 	defence_class_stat_mod.stat = StatModifierData.Stats.DEFENSE
@@ -189,7 +197,8 @@ func on_atk_hit(atk_info : AtkInfo):
 			instigator.stagger(deflect_atk_info)
 		
 		if is_current_state("block") == true:
-			global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
+			if atk_info.atk_dir.is_zero_approx() == false:
+				global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
 			atk_blocked.emit()
 			dash(-2.0)
 		
@@ -274,7 +283,9 @@ func knockback(atk_info : AtkInfo):
 	velocity = Vector3.ZERO
 	#up_velocity = Vector3.ZERO
 	#global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
-	global_basis = Basis.looking_at(-atk_info.atk_dir)
+	
+	if atk_info.atk_dir.is_zero_approx() == false:
+		global_basis = Basis.looking_at(-atk_info.atk_dir)
 	interupt_atks.emit()
 	set_state("knockback")
 	end_attack_debounce()

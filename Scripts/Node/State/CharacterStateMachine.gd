@@ -5,6 +5,7 @@ class_name CharacterStateMachine extends StateMachine
 func _ready() -> void:
 	states = {
 		"ground_movement" : CharacterGroundState.new(),
+		"ground_brake" : CharacterGroundBrakeState.new(),
 		"air_movement" : CharacterAirState.new(),
 		"fly_movement" : CharacterFlyState.new(),
 		"attack" : CharacterPrimaryAttackState.new(),

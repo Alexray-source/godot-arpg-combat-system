@@ -24,4 +24,4 @@ func on_spawn_vfx_attached(vfx_key : String, parent_node : Node3D):
 	parent_node.add_child(vfx_instance)
 	vfx_instance.position = Vector3.ZERO
 	vfx_instance.basis = Basis.IDENTITY
-	print("spawned attached vfx")
+	#print("spawned attached vfx")

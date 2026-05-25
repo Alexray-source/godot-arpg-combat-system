@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://du8vn11c1c8op" path="res://Scenes/VFX/dash_vfx.tscn" id="11_moujg"]
 [ext_resource type="PackedScene" uid="uid://0oqp3ebxlpo2" path="res://Scenes/VFX/footstep.tscn" id="12_1rkb7"]
 [ext_resource type="PackedScene" uid="uid://dcy2wjq11vjbp" path="res://Scenes/VFX/jump.tscn" id="13_hdec8"]
+[ext_resource type="PackedScene" uid="uid://bdq6n2hpn3gig" path="res://Scenes/VFX/skid.tscn" id="14_ku5vi"]
 
 [resource]
 script = ExtResource("1_sq60v")
@@ -30,6 +31,7 @@ entries = Dictionary[String, PackedScene]({
 "muzzle": ExtResource("3_ig2jd"),
 "projectile_hit": ExtResource("9_c1rtm"),
 "shield_break": ExtResource("7_nc4x0"),
-"shield_summon": ExtResource("6_rmixs")
+"shield_summon": ExtResource("6_rmixs"),
+"skid": ExtResource("14_ku5vi")
 })
 metadata/_custom_type_script = "uid://1giy8nffy3qm"
