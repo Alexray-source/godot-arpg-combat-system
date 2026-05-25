@@ -7,12 +7,13 @@ var scan_mask : int = 1
 var direct_space_state : PhysicsDirectSpaceState3D
 var instigator : BaseCharacter
 var grapple_finish_radius : float = 1.0
-var grapple_reel_in_speed : float = 3000.0
+var grapple_reel_in_speed : float = 35.0
 
 var _current_target : Node3D
 var _grapple_line : GrappleLine
 var _timer : SceneTreeTimer
 var _instigator_prev_pos : Vector3
+var _grapple_acceleration : float = 5.0
 
 signal grapple_finished
 
@@ -27,6 +28,8 @@ func setup() -> void:
 
 func on_grapple_finished():
 	_current_target = null
+	_grapple_acceleration = 5.0
+	
 	if _grapple_line != null and is_instance_valid(_grapple_line):
 		_grapple_line.queue_free()
 
@@ -85,6 +88,8 @@ func perform_grapple(target_node : Node3D):
 	
 	if _grapple_line != null and is_instance_valid(_grapple_line):
 		_grapple_line.queue_free()
+	
+	_grapple_acceleration = 5.0
 	
 	_grapple_line = GrappleLine.new()
 	_grapple_line.start_node = instigator
@@ -147,15 +152,18 @@ func physics_process(delta : float):
 		var target_pos = _current_target.global_position + (instigator.global_basis.z * 0.5)
 		var instigator_real_velocity : Vector3 = instigator.global_position - _instigator_prev_pos
 		
-		instigator.velocity = instigator.global_position.direction_to(target_pos) * grapple_reel_in_speed * delta
+		_grapple_acceleration = clampf(_grapple_acceleration + (200.0 * delta), 0.0, grapple_reel_in_speed)
+		
+		instigator.velocity = instigator.global_position.direction_to(target_pos) * _grapple_acceleration
 		_instigator_prev_pos = instigator.global_position
-		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius or instigator_real_velocity.length() < 0.1:
-			instigator.velocity = Vector3(0.0,5.0,0.0)
-			#instigator.up_velocity = Vector3.ZERO
-			instigator.move_and_slide()
+		if instigator.global_position.distance_to(target_pos) < grapple_finish_radius or instigator_real_velocity.length() < 0.01:
 			#print("finished reeling to target")
 			
 			if _current_target is CombatCharacter and _current_target.is_on_floor() == false:
+				instigator.velocity = Vector3(0.0,5.0,0.0)
+				#instigator.up_velocity = Vector3.ZERO
+				instigator.move_and_slide()
+				
 				var atk_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
 				_current_target.stagger(atk_info)
 			

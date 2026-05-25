@@ -10,4 +10,5 @@ func on_enter() -> void:
 		combat_chr.character_abilities.perform_ability("primary_atk")
 
 func state_physics_process(_delta : float) -> void:
-	character.move_and_collide(character.velocity * _delta)
+	#character.move_and_collide(character.velocity * _delta)
+	character.move_and_slide()

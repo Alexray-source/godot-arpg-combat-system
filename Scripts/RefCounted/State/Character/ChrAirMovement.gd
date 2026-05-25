@@ -3,9 +3,15 @@ class_name CharacterAirState extends CharacterState
 var smoothed_move_dir : Vector3
 var up_velocity : Vector3
 
+var momentum_drag : float = 1.2
+var physics_velocity : Vector3
+
 func on_enter() -> void:
 	smoothed_move_dir = character.move_dir
 	up_velocity = character.velocity * character.up_direction
+	#character.move_velocity = character.velocity - up_velocity
+	
+	physics_velocity = character.velocity - up_velocity - character.move_velocity
 	#character.up_velocity = Vector3.ZERO
 
 func state_physics_process(delta : float) -> void:
@@ -17,19 +23,13 @@ func state_physics_process(delta : float) -> void:
 	var move_dir_xz_plane = Vector3(character.move_dir.x, 0.0, character.move_dir.z)
 	smoothed_move_dir = smoothed_move_dir.lerp(move_dir_xz_plane, delta * 10.0).normalized()
 	
-	character.move_velocity = smoothed_move_dir * character.move_speed
+	character.move_velocity = character.move_velocity.lerp(smoothed_move_dir * character.move_speed, delta * 7.0)
 	
-	#print(character.velocity + character.move_velocity)
 	up_velocity = character.calculate_gravity_force(up_velocity, delta)
 	
-	character.velocity = up_velocity + character.move_velocity
-	#character.velocity = up_velocity
-	#print(character.velocity)
-	#if character.move_dir.length() > 0.0:
-		#character.move_velocity = smoothed_move_dir * character.move_speed 
-		#character.velocity = character.move_velocity + up_velocity
-	#else:
-		#character.velocity = up_velocity
+	physics_velocity = physics_velocity.lerp(Vector3.ZERO, delta * momentum_drag)
+	
+	character.velocity = up_velocity + character.move_velocity + physics_velocity
 
 	
 	character.move_and_slide()

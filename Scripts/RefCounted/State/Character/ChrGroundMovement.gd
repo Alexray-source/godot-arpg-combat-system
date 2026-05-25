@@ -6,6 +6,7 @@ signal braked
 
 func on_enter() -> void:
 	smoothed_move_dir = Vector3(character.move_dir.x, 0.0, character.move_dir.z)
+	character.move_velocity = character.velocity
 
 func state_physics_process(delta : float) -> void:
 	var move_dir_xz_plane = Vector3(character.move_dir.x, 0.0, character.move_dir.z)

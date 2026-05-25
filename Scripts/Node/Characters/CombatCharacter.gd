@@ -117,7 +117,7 @@ func lock_to_target(target : Node3D) -> void:
 		character_abilities.target_override = target
 
 func on_floor_changed(is_floored) -> void:
-	if is_floored == false and state_machine.current_state == state_machine.get_state_by_key("knockback"):
+	if (is_floored == false and is_current_state("knockback")) or is_current_state("sp_attack"):
 		#print("Not checking floored: in knockback")
 		return
 	super(is_floored)
