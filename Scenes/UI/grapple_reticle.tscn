@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://doroy2gum1wly"]
 
-[ext_resource type="Texture2D" uid="uid://dmkycthjdi3u1" path="res://Assets/Textures/UI/InputKeyboard/flair_circle_target_a.png" id="1_n2kj2"]
+[ext_resource type="Texture2D" uid="uid://bnklgw443xcl7" path="res://Assets/Textures/UI/enemy_indicator.svg" id="2_0m38t"]
 
 [node name="Node3D" type="Node3D" unique_id=879635403]
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1161638584]
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=165208112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77188325, 0)
 layers = 524288
 offset = Vector2(0, 5)
-modulate = Color(0.44921875, 0.62564087, 1, 0.4862745)
-pixel_size = 0.0025
+modulate = Color(0, 0.3723039, 0.84765625, 1)
+pixel_size = 0.0015
 billboard = 1
 double_sided = false
 no_depth_test = true
 fixed_size = true
-texture = ExtResource("1_n2kj2")
+texture = ExtResource("2_0m38t")
