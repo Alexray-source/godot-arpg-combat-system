@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://d3lhc887sn2gb" path="res://Scenes/UI/Hud.tscn" id="7_0u5uq"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="10_74mp2"]
 [ext_resource type="PackedScene" uid="uid://gsqmmqm6xi2m" path="res://Scenes/UI/nearby_enemy_indicator.tscn" id="10_jhyir"]
+[ext_resource type="Script" uid="uid://dub8ou7ym2ind" path="res://Scripts/Node/UI/tutorial_spawner.gd" id="12_oikmp"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("3_0u5uq")
@@ -71,3 +72,7 @@ metadata/_custom_type_script = "uid://cydyfmt81qssv"
 [node name="NearbyEnemyIndicator" parent="." unique_id=1721917268 node_paths=PackedStringArray("target_tracking_camera", "camera") instance=ExtResource("10_jhyir")]
 target_tracking_camera = NodePath("../TargetTrackingCamera")
 camera = NodePath("../SpringArm3D/Camera3D")
+
+[node name="TutorialUI_Spawner" type="Node" parent="." unique_id=895293591]
+script = ExtResource("12_oikmp")
+metadata/_custom_type_script = "uid://dub8ou7ym2ind"

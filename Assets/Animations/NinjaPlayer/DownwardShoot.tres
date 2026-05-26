@@ -406,11 +406,14 @@ tracks/55/path = NodePath("..")
 tracks/55/interp = 1
 tracks/55/loop_wrap = true
 tracks/55/keys = {
-"times": PackedFloat32Array(0.33333334),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.33333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [&"downwards_shot"],
 "method": &"ability_event_trigger"
+}, {
+"args": [],
+"method": &"end_attack_debounce"
 }]
 }
 tracks/56/type = "method"

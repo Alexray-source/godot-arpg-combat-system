@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="28_7rcam"]
 [ext_resource type="Script" uid="uid://c2xin8aw2qw5u" path="res://Scripts/Node/Trigger/ProcessModeTrigger.gd" id="29_7555j"]
 [ext_resource type="Script" uid="uid://tjhxgv8d0moi" path="res://Scripts/Node/Environment/GrappleAreaPoint.gd" id="29_m4vf5"]
+[ext_resource type="Script" uid="uid://cbwskurqdqwpm" path="res://Scripts/Node/Tutorial/TutorialAreaPopup.gd" id="31_kiw6d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -87,16 +88,6 @@ size = Vector3(46, 156, 28.46106)
 [sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
 material = ExtResource("14_kn14b")
 
-[sub_resource type="Resource" id="Resource_jjisf"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_dash": "Dodge / Dash",
-"chr_primary_atk": "Primary Attack",
-"plr_target_lock": "Lock/Unlock Camera Targetting"
-})
-action_order = Array[String](["plr_target_lock", "chr_dash"])
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
 [sub_resource type="Resource" id="Resource_1xyem"]
 script = ExtResource("10_jjisf")
 action_display_names = Dictionary[String, String]({
@@ -136,6 +127,35 @@ size = Vector3(3.6384277, 3.7802734, 3.5957031)
 [sub_resource type="SphereMesh" id="SphereMesh_7rcam"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m4vf5"]
+
+[sub_resource type="Resource" id="Resource_nnqa1"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_jump": "Jump"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_7b5us"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_dash": "Dash"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_31vy0"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_grapple": "Grapple hook"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_0i20c"]
+script = ExtResource("10_jjisf")
+action_display_names = Dictionary[String, String]({
+"chr_primary_atk": "Primary Attack",
+"plr_target_lock": "Lock/Unlock Camera Targetting"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7555j"]
 size = Vector3(60.0459, 32.35327, 1)
@@ -432,7 +452,7 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
 [node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -4.5114098, 25.923418, 3.7136507)
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, 101.39668, -11.538758, 183.27226)
 
 [node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("2_xcpuq")
@@ -448,7 +468,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.62
 script = ExtResource("9_yi1ag")
 enemy_wave_spawner = NodePath("..")
 enemy_wave_tutorials = Dictionary[int, ExtResource("10_jjisf")]({
-1: SubResource("Resource_jjisf"),
 2: SubResource("Resource_1xyem"),
 4: SubResource("Resource_p0lev"),
 5: SubResource("Resource_m4vf5")
@@ -632,30 +651,43 @@ shape = SubResource("SphereShape3D_m4vf5")
 
 [node name="AreaTriggers" type="Node" parent="." unique_id=397373122]
 
-[node name="Area3D" type="Area3D" parent="AreaTriggers" unique_id=764599409]
+[node name="TutorialTriggers" type="Node" parent="AreaTriggers" unique_id=1482376968 node_paths=PackedStringArray("area_tutorial_mapping")]
+script = ExtResource("31_kiw6d")
+area_tutorial_mapping = {
+NodePath("Area3D"): SubResource("Resource_nnqa1"),
+NodePath("Area3D2"): SubResource("Resource_7b5us"),
+NodePath("Area3D3"): SubResource("Resource_31vy0"),
+NodePath("Area3D4"): SubResource("Resource_0i20c")
+}
+
+[node name="Area3D" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=764599409]
 transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 96.57512, 0, 172.19356)
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/Area3D" unique_id=79365838]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D" unique_id=79365838]
 shape = SubResource("BoxShape3D_7555j")
 debug_color = Color(0.078125, 1, 0, 1)
 
-[node name="Area3D2" type="Area3D" parent="AreaTriggers" unique_id=39062742]
+[node name="Area3D2" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=39062742]
 transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 81.117134, 0, 159.22276)
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/Area3D2" unique_id=1484659507]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D2" unique_id=1484659507]
 shape = SubResource("BoxShape3D_7555j")
 debug_color = Color(0.078125, 1, 0, 1)
 
-[node name="Area3D3" type="Area3D" parent="AreaTriggers" unique_id=93433687]
+[node name="Area3D3" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=93433687]
 transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 58.483322, 0, 140.23074)
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/Area3D3" unique_id=1355230791]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D3" unique_id=1355230791]
 shape = SubResource("BoxShape3D_7555j")
 debug_color = Color(0.078125, 1, 0, 1)
 
-[node name="Area3D4" type="Area3D" parent="AreaTriggers" unique_id=2138676195]
+[node name="Area3D4" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=2138676195]
 transform = Transform3D(0.99999994, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 0.99999994, -7.0260735, 28.044212, -8.204272)
+collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/Area3D4" unique_id=2146185484]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D4" unique_id=2146185484]
 shape = SubResource("BoxShape3D_7555j")
 debug_color = Color(0.078125, 1, 0, 1)

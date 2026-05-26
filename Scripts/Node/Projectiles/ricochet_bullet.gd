@@ -22,8 +22,6 @@ func _ready() -> void:
 		#set_physics_process(false)
 		#get_tree().create_timer(ricochet_delay).timeout.connect(set_physics_process.bind(true))
 
-
-
 func ricochet(intersected_hurtbox : HurtBox):
 	if allowed_ricoshots == 0:
 		return

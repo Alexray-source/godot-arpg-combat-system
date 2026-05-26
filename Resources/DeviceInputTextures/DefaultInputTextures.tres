@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dimiuvp6g5wix" path="res://Assets/Textures/UI/InputController/xbox_stick_l_press.svg" id="13_rly2r"]
 [ext_resource type="Texture2D" uid="uid://bbyr0q6j1thtc" path="res://Assets/Textures/UI/InputController/xb_x.svg" id="16_gw0nm"]
 [ext_resource type="Texture2D" uid="uid://dfd2wki2sot7l" path="res://Assets/Textures/UI/InputController/xb_y.svg" id="19_j1nyp"]
+[ext_resource type="Texture2D" uid="uid://41xlbfp2cqq2" path="res://Assets/Textures/UI/InputController/xbox_button_color_a.svg" id="20_gw0nm"]
 
 [sub_resource type="Resource" id="Resource_hv4bh"]
 script = ExtResource("1_hv4bh")
@@ -42,6 +43,7 @@ textures = Dictionary[String, Texture2D]({
 "chr_dash": ExtResource("11_g6far"),
 "chr_grapple_enemy": ExtResource("12_gw0nm"),
 "chr_grapple_object": ExtResource("13_j1nyp"),
+"chr_jump": ExtResource("20_gw0nm"),
 "chr_primary_atk": ExtResource("8_gba3v"),
 "chr_secondary_atk": ExtResource("9_txcya"),
 "chr_special_atk1": ExtResource("16_gw0nm"),

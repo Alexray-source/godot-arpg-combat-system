@@ -38,7 +38,7 @@ metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 [sub_resource type="Resource" id="Resource_o0ika"]
 script = ExtResource("1_f8i7n")
 ability_data = ExtResource("12_y07hn")
-ability_energy_cost = 0
+ability_energy_cost = 45
 ability_icon = ExtResource("9_5yina")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
@@ -77,13 +77,14 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 [sub_resource type="Resource" id="Resource_i47es"]
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_7qyh0")
+ability_energy_cost = 15
 ability_icon = ExtResource("6_in3r3")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [sub_resource type="Resource" id="Resource_xyhbj"]
 script = ExtResource("1_f8i7n")
 ability_data = ExtResource("13_bipbt")
-ability_energy_cost = 0
+ability_energy_cost = 10
 ability_icon = ExtResource("11_y07hn")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
@@ -107,7 +108,7 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 [sub_resource type="Resource" id="Resource_5yina"]
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_5ps18")
-ability_energy_cost = 50
+ability_energy_cost = 38
 ability_icon = ExtResource("7_jhoc3")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
