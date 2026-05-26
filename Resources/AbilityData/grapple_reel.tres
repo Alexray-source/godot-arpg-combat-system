@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GrappleAbilityData" format=3 uid="uid://c0knc2ghybhkk"]
+
+[ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="1_r4osy"]
+
+[resource]
+script = ExtResource("1_r4osy")
+animations = Array[String](["PlayerGrappleAnims/GrappleShoot"])
+show_closest_indicator = true
+metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
