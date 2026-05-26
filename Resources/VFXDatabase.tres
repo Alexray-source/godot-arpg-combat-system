@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://0oqp3ebxlpo2" path="res://Scenes/VFX/footstep.tscn" id="12_1rkb7"]
 [ext_resource type="PackedScene" uid="uid://dcy2wjq11vjbp" path="res://Scenes/VFX/jump.tscn" id="13_hdec8"]
 [ext_resource type="PackedScene" uid="uid://bdq6n2hpn3gig" path="res://Scenes/VFX/skid.tscn" id="14_ku5vi"]
+[ext_resource type="PackedScene" uid="uid://bcf0m4gnugr2x" path="res://Scenes/VFX/hard_ground_impact.tscn" id="15_mbdrt"]
 
 [resource]
 script = ExtResource("1_sq60v")
@@ -26,6 +27,7 @@ entries = Dictionary[String, PackedScene]({
 "enemy_slash": ExtResource("2_8yxse"),
 "footstep_generic": ExtResource("12_1rkb7"),
 "general_slash": ExtResource("1_q1kvh"),
+"hard_impact": ExtResource("15_mbdrt"),
 "jump_generic": ExtResource("13_hdec8"),
 "melee_damage": ExtResource("10_nb25o"),
 "muzzle": ExtResource("3_ig2jd"),

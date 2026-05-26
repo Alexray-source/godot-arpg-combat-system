@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="9_jah6w"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="9_w7dut"]
 [ext_resource type="Script" uid="uid://cprjbahpjer87" path="res://Scripts/Node/DebugUI/button_press.gd" id="10_f4dah"]
-[ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="12_06c0b"]
+[ext_resource type="PackedScene" uid="uid://dobbltvy06yps" path="res://Scenes/Enemy/melee_enemy.tscn" id="10_w7dut"]
 [ext_resource type="PackedScene" uid="uid://ctn5w2esnxwch" path="res://Scenes/Enemy/brute_enemy.tscn" id="12_fa6kx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="13_fa6kx"]
 
@@ -46,6 +46,7 @@ size = Vector3(100, 0.001, 100)
 material = ExtResource("9_f4dah")
 
 [node name="Node3D" type="Node3D" unique_id=569510052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -219.13107, 0, -196.95253)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675439066]
 environment = SubResource("Environment_dorj5")
@@ -174,9 +175,6 @@ mesh = SubResource("BoxMesh_w7dut")
 [node name="ShieldVisual" parent="RenderCache" unique_id=229986644 instance=ExtResource("9_jah6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6330957, -13.267851, -0.5667343)
 
-[node name="FlintlockBullet" parent="RenderCache" unique_id=351752051 instance=ExtResource("12_06c0b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.857524, -3.1741867, 4.2915225)
-
 [node name="VFXSpawner" type="Node" parent="." unique_id=254847410]
 script = ExtResource("13_fa6kx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
@@ -187,4 +185,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.446879, 0, 4.4533954)
 [node name="BehaviorTreeRoot" parent="Enemy" index="0" unique_id=1147936652]
 active = true
 
+[node name="Enemy2" parent="." unique_id=1059513390 instance=ExtResource("10_w7dut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.145233, 0.0005002022, -2.087967)
+
+[node name="BehaviorTreeRoot" parent="Enemy2" index="0" unique_id=1147936652]
+active = true
+
 [editable path="Enemy"]
+[editable path="Enemy2"]

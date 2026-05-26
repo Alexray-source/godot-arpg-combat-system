@@ -23,6 +23,7 @@ signal secondary_atk_input
 signal special_atk1_input
 signal special_atk2_input
 signal special_atk3_input
+signal special_atk4_input
 
 signal grapple_input
 signal grapple_enemy_input
@@ -57,6 +58,7 @@ var special_atks : Dictionary[String, Signal] = {
 	"chr_special_atk1" : special_atk1_input,
 	"chr_special_atk2" : special_atk2_input,
 	"chr_special_atk3" : special_atk3_input,
+	"chr_special_atk4" : special_atk4_input
 }
 
 var grapple_characters : bool = true

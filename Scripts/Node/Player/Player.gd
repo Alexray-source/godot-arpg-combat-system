@@ -122,6 +122,7 @@ func _ready() -> void:
 	input_events.special_atk1_input.connect(on_special_atk.bind(0))
 	input_events.special_atk2_input.connect(on_special_atk.bind(1))
 	input_events.special_atk3_input.connect(on_special_atk.bind(2))
+	input_events.special_atk4_input.connect(on_special_atk.bind(3))
 	
 	input_events.grapple_input.connect(on_grapple)
 	#input_events.grapple_enemy_input.connect(on_grapple.bind(true))

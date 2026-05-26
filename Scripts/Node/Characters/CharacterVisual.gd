@@ -52,7 +52,7 @@ func _ready() -> void:
 		"block" = block_anim_name
 	}
 	
-	_state_end_stop_anims = ["block"]
+	_state_end_stop_anims = ["block", "knockback"]
 	
 	_mesh_cached_scale = scale.x
 	
@@ -83,13 +83,17 @@ func stop_override_anim():
 	var one_shot_property_path = "parameters/" + oneshot_node_name
 	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 
+func interrupt_override_anim():
+	var one_shot_property_path = "parameters/" + oneshot_node_name
+	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
+
 func on_state_key_changed(old_state_key : String , new_state_key : String) -> void:
 	var one_shot_property_path = "parameters/" + oneshot_node_name
 	var assigned_state_enter_anim = _state_enter_anim_mapping.get(new_state_key)
 	var state_end_stop_override_anim = _state_end_stop_anims.has(old_state_key)
 	
 	if state_end_stop_override_anim == true:
-		stop_override_anim()
+		interrupt_override_anim()
 	
 	if assigned_state_enter_anim != null:
 		play_override_animation(assigned_state_enter_anim)

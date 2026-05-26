@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AnimationAttackData" format=3 uid="uid://ct7nrn8a1kun"]
+
+[ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="1_ydkpg"]
+[ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="2_pkej6"]
+[ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="3_wk23i"]
+
+[sub_resource type="Resource" id="Resource_m23ht"]
+script = ExtResource("2_pkej6")
+projectile_scene = ExtResource("1_ydkpg")
+projectile_origin_path = NodePath("MaleBaseRigV2")
+metadata/_custom_type_script = "uid://b1stykuxcqnl5"
+
+[resource]
+script = ExtResource("3_wk23i")
+dmg = 15
+animations = Array[String](["PlayerGunSpecialAnims/DownwardShootAtk"])
+atk_type = 5
+atk_data = SubResource("Resource_m23ht")
+targeting_range = 15.0
+metadata/_custom_type_script = "uid://bob1v7bks8do5"

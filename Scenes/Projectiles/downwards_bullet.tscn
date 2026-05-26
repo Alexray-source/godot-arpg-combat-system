@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bp2tldlio2b1e"]
+[gd_scene format=3 uid="uid://cenfejricf48k"]
 
-[ext_resource type="Script" uid="uid://buqi4b1fvv7m" path="res://Scripts/Node/Projectiles/projectile.gd" id="1_dlnts"]
+[ext_resource type="Script" uid="uid://buqi4b1fvv7m" path="res://Scripts/Node/Projectiles/projectile.gd" id="1_8xx2r"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
 top_radius = 0.0
@@ -8,9 +8,7 @@ bottom_radius = 0.1
 height = 0.3
 
 [node name="FlintlockBullet" type="Node3D" unique_id=351752051]
-script = ExtResource("1_dlnts")
-speed = 400.0
-re_evaluate_atk_dir_on_ready = true
+script = ExtResource("1_8xx2r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1781501788]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)

@@ -7,9 +7,13 @@ func on_enter() -> void:
 	character.is_on_floor_changed.connect(on_floor_changed)
 	if character is CombatCharacter:
 		#character.knockback()
-		knockback_dir = character.global_basis.z
+		#knockback_dir = character.global_basis.z
 		character.velocity = (knockback_dir * knockback_speed)
-		character.velocity.y = 15.0
+		
+		if knockback_speed <= 20.0:
+			character.velocity.y = 15.0
+		else:
+			on_floor_changed(character.is_on_floor())
 		character.move_and_slide()
 		
 

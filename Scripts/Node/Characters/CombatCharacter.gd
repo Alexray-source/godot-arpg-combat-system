@@ -51,7 +51,7 @@ func _ready() -> void:
 	super()
 	collision_priority = 10.0
 	collision_layer = 2 + 16 + chr_layer.get_collision_layer()
-	collision_mask = 1 + 2 + 16
+	collision_mask = 1 + 2 + 16 + 512
 	
 	hurt_box.collision_layer = chr_layer.get_collision_layer()
 	hurt_box.collision_mask = 1 + 16
@@ -127,6 +127,9 @@ func on_floor_changed(is_floored) -> void:
 func _get_can_attack():
 	return (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("flying_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")) and stagger_immune == false
 
+func _is_atk_stunned():
+	return is_current_state("stagger") or is_current_state("knockback") or is_current_state("downed") or is_current_state("no_movement")
+
 func primary_attack():
 	if not _get_can_attack():
 		return
@@ -151,7 +154,7 @@ func on_ability_finished():
 	on_atk_finished()
 
 func perform_ability(ability_name : StringName):
-	if state_machine.is_current_state_by_key("knockback") == true or state_machine.is_current_state_by_key("dead") == true:
+	if _is_atk_stunned() == true or state_machine.is_current_state_by_key("dead") == true:
 		return
 	set_special_atk_state(ability_name)
 
@@ -183,7 +186,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		if stagger_immune == true:
 			return
 		
-		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE:
+		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
 			knockback(atk_info)
 		else:
 			stagger(atk_info)
@@ -224,6 +227,14 @@ func on_stagger_end():
 	rescan_ground_state()
 
 func on_knockback_end():
+	if knockback_state.knockback_speed > 20.0:
+		var flat_forward_dir : Vector3 = Vector3(-global_basis.z.x, 0.0, -global_basis.z.z).normalized()
+		global_basis = Basis.looking_at(flat_forward_dir)
+		GlobalSignals.spawn_vfx.emit("hard_impact", global_transform.orthonormalized())
+		knockback(AtkInfo.new(25, AtkInfo.AtkType.MASSIVE, null, global_basis.z, self))
+		return
+
+	
 	set_state("no_movement")
 	get_tree().create_timer(0.7).timeout.connect(rescan_ground_state, PROPERTY_HINT_ONESHOT)
 
@@ -289,6 +300,14 @@ func knockback(atk_info : AtkInfo):
 	if atk_info.atk_dir.is_zero_approx() == false:
 		global_basis = Basis.looking_at(-atk_info.atk_dir)
 	interupt_atks.emit()
+	
+	if atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
+		knockback_state.knockback_speed = 74.0
+	else:
+		knockback_state.knockback_speed = 8.0
+	
+	knockback_state.knockback_dir = atk_info.atk_dir
+	
 	set_state("knockback")
 	end_attack_debounce()
 
@@ -304,9 +323,15 @@ func dodge_dash():
 func block():
 	set_state("block")
 
+func local_dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = Vector3(0,0,-1.0)):
+	dash_component.dash_intensity = dash_power
+	dash_component.dash_time = duration
+	dash_component.dash_dir = (direction.x * global_basis.x) + (direction.y * global_basis.y) + (direction.z * global_basis.z)
+	dash_component.action()
+
 func dash(dash_power : float = 2.0, duration : float = 0.5, direction : Vector3 = -global_basis.z):
 	##TEMPORARY WORKAROUND, MAKE THIS FUNCTION COMPATIBLE ON Y-AXIS TOO LATER
-	direction.y = 0.0
+	#direction.y = 0.0
 	
 	dash_component.dash_intensity = dash_power
 	dash_component.dash_time = duration

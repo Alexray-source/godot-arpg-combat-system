@@ -5,12 +5,13 @@
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_ehw7o"]
 [ext_resource type="Script" uid="uid://8k8ew07c3gmb" path="res://Scripts/Node/State/CharacterStateMachine.gd" id="3_u1pys"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="4_f04ns"]
+[ext_resource type="Resource" uid="uid://c0knc2ghybhkk" path="res://Resources/AbilityData/grapple_reel.tres" id="6_f726w"]
+[ext_resource type="Resource" uid="uid://ddeysuhby14xe" path="res://Resources/AbilityData/grapple_pull.tres" id="7_m23ht"]
 [ext_resource type="PackedScene" uid="uid://bp2tldlio2b1e" path="res://Scenes/Projectiles/flintlock_bullet.tscn" id="8_3m4by"]
 [ext_resource type="Script" uid="uid://ju3pqhikphx7" path="res://Scripts/Node/CharacterComponents/StaggerComponent.gd" id="8_4ty7g"]
 [ext_resource type="Script" uid="uid://b1stykuxcqnl5" path="res://Scripts/Resources/AttackData/ProjectileAttackData.gd" id="8_smxw8"]
 [ext_resource type="Script" uid="uid://v1xgi18be404" path="res://Scripts/Node/CharacterComponents/DashComponent.gd" id="9_efloy"]
 [ext_resource type="Script" uid="uid://c4ge8e721k3f8" path="res://Scripts/Resources/AttackData/AoeAttackData.gd" id="9_smxw8"]
-[ext_resource type="Script" uid="uid://b0kk2hdi6hymk" path="res://Scripts/Resources/AbilityData/GrappleAbilityData.gd" id="12_7ch4d"]
 [ext_resource type="Animation" uid="uid://bcaje6hlqmm2l" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast1.tres" id="13_u7gae"]
 [ext_resource type="Animation" uid="uid://bolvdqglfcc7k" path="res://Assets/Animations/NinjaPlayer/NinjaPrimaryFast2.tres" id="14_2ddvq"]
 [ext_resource type="AnimationLibrary" uid="uid://8ehkuiwucb7r" path="res://Assets/Animations/General/BaseAnimations.glb" id="14_qbr8q"]
@@ -25,6 +26,7 @@
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="19_172ob"]
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="19_jb0u1"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://coygqchle5bnk" path="res://Assets/AnimTreeRoot/human.tres" id="20_jb0u1"]
+[ext_resource type="AnimationLibrary" uid="uid://p3vnete7pjs2" path="res://Assets/Animations/NinjaPlayer/PlayerGunSpecialAnims.glb" id="20_m23ht"]
 [ext_resource type="Shader" uid="uid://u85hcwww5dj3" path="res://Shaders/CelShaderV3.gdshader" id="25_2ddvq"]
 [ext_resource type="Script" uid="uid://cryu2x6h6fk1h" path="res://Scripts/Node/Characters/ChrMovementLean.gd" id="27_vucap"]
 [ext_resource type="Script" uid="uid://wxfseqj3vqli" path="res://Scripts/Node/CharacterComponents/SprintComponent.gd" id="28_bghwh"]
@@ -36,19 +38,6 @@ metadata/_custom_type_script = "uid://xo7cr35aaie1"
 [sub_resource type="Resource" id="Resource_rqp8f"]
 script = ExtResource("3_ehw7o")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
-
-[sub_resource type="Resource" id="Resource_7ch4d"]
-script = ExtResource("12_7ch4d")
-animations = Array[String](["PlayerGrappleAnims/GrappleShoot"])
-show_closest_indicator = true
-metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
-
-[sub_resource type="Resource" id="Resource_172ob"]
-script = ExtResource("12_7ch4d")
-animations = Array[String](["PlayerGrappleAnims/GrappleShootObject"])
-grapple_mode = 1
-show_closest_indicator = true
-metadata/_custom_type_script = "uid://b0kk2hdi6hymk"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_u7gae"]
 size = Vector3(2, 2, 2)
@@ -151,8 +140,8 @@ script = ExtResource("17_7ch4d")
 anim_tree = NodePath("../AnimationTree")
 character = NodePath("..")
 abilities_data = Dictionary[StringName, ExtResource("18_172ob")]({
-&"grapple_enemy": SubResource("Resource_7ch4d"),
-&"grapple_object": SubResource("Resource_172ob"),
+&"grapple_enemy": ExtResource("6_f726w"),
+&"grapple_object": ExtResource("7_m23ht"),
 &"primary_atk": SubResource("Resource_vucap"),
 &"secondary_atk": SubResource("Resource_smxw8")
 })
@@ -172,6 +161,7 @@ root_node = NodePath("../MaleBaseRigV2")
 libraries/BaseAnimations = ExtResource("14_qbr8q")
 libraries/FastSword = SubResource("AnimationLibrary_m23ht")
 libraries/PlayerGrappleAnims = ExtResource("15_jb0u1")
+libraries/PlayerGunSpecialAnims = ExtResource("20_m23ht")
 libraries/PlayerSwordAnims = ExtResource("15_172ob")
 playback_default_blend_time = 0.1
 
@@ -233,30 +223,30 @@ vfx_key_mapping = Dictionary[String, String]({
 [node name="GeneralSkeleton" parent="MaleBaseRigV2/Armature_003" parent_id_path=PackedInt32Array(1179849529, 653949451) index="0" unique_id=758744942]
 bones/0/position = Vector3(-4.0395705e-09, 8.2718056e-25, 0)
 bones/0/rotation = Quaternion(6.497199e-10, 0.7071068, -6.4971983e-10, 0.7071068)
-bones/1/position = Vector3(-0.032040607, 4.7018604, -6.096496e-09)
-bones/1/rotation = Quaternion(0.84448737, 0.0658597, 0.52846175, -0.05684926)
-bones/2/rotation = Quaternion(0.11923163, 0.8030266, 0.57063234, -0.12373729)
-bones/3/rotation = Quaternion(0.62940997, -0.03749507, 0.013117768, 0.7760575)
+bones/1/position = Vector3(-0.032040607, 4.77317, -6.227541e-09)
+bones/1/rotation = Quaternion(0.846291, 0.03869025, 0.53114253, -0.013495822)
+bones/2/rotation = Quaternion(0.12097762, 0.8357274, 0.52587444, -0.10188351)
+bones/3/rotation = Quaternion(0.6195746, -0.042834233, 0.029408855, 0.78321636)
 bones/4/rotation = Quaternion(-0.23095533, 0.013072655, 0.011864342, 0.9728042)
 bones/5/rotation = Quaternion(-0.24985354, 1.4681747e-07, -2.028288e-08, 0.96828365)
 bones/6/rotation = Quaternion(-0.70353603, 9.405424e-09, -9.580076e-08, 0.71065956)
-bones/7/rotation = Quaternion(-0.1549484, 0.90444136, 0.39671478, 0.02438068)
-bones/8/rotation = Quaternion(0.6940029, -0.0031492002, -0.10981966, 0.7115403)
+bones/7/rotation = Quaternion(-0.16096196, 0.8636482, 0.47440735, 0.05604228)
+bones/8/rotation = Quaternion(0.65082425, 0.0033340666, -0.10981422, 0.75123733)
 bones/9/rotation = Quaternion(-0.4458139, -0.07526616, 0.100205995, 0.88630915)
 bones/10/rotation = Quaternion(-0.22486934, -0.016925221, 0.0073658954, 0.97421414)
 bones/11/rotation = Quaternion(-0.70353603, -1.5318218e-08, 7.675357e-08, 0.71065956)
-bones/12/position = Vector3(-0.032040555, 4.8715544, -6.408326e-09)
-bones/12/rotation = Quaternion(0.07527228, 0.8411797, -0.09177041, 0.527569)
+bones/12/position = Vector3(-0.032040566, 4.942864, -6.5393713e-09)
+bones/12/rotation = Quaternion(0.063808285, 0.8429729, -0.07349838, 0.5290778)
 bones/13/rotation = Quaternion(0.098986365, -0.50804275, 0.016171657, 0.8554723)
 bones/14/rotation = Quaternion(0.022005027, -0.37581408, -0.18415481, 0.90794635)
-bones/14/scale = Vector3(0.9999509, 0.9999509, 0.9999509)
-bones/15/rotation = Quaternion(0.00021260753, -0.00018865241, -0.113008104, 0.99359405)
-bones/15/scale = Vector3(1.000049, 1.000049, 1.0000491)
-bones/16/rotation = Quaternion(0.009089066, -0.01754345, 0.3281508, 0.9444187)
-bones/17/rotation = Quaternion(0.28191173, 0.65848297, 0.6735389, 0.1824042)
-bones/18/rotation = Quaternion(0.30574313, -0.8002234, 0.0020521975, 0.5159065)
-bones/19/rotation = Quaternion(0.032775667, 0.026625374, -0.62842715, 0.7767215)
-bones/20/rotation = Quaternion(-0.06808734, 0.05017758, 0.00875765, 0.99637836)
+bones/14/scale = Vector3(1.006022, 1.006022, 1.006022)
+bones/15/rotation = Quaternion(0.0026945183, -0.0023937882, -0.106637664, 0.9942915)
+bones/15/scale = Vector3(0.9940141, 0.99401414, 0.9940141)
+bones/16/rotation = Quaternion(-0.0008817992, -0.005939395, 0.34408438, 0.93891966)
+bones/17/rotation = Quaternion(0.2785167, 0.66046107, 0.6715353, 0.18777665)
+bones/18/rotation = Quaternion(0.28513002, -0.8098218, -0.008256437, 0.5126611)
+bones/19/rotation = Quaternion(0.0338116, 0.025296794, -0.5969453, 0.80117)
+bones/20/rotation = Quaternion(-0.06060521, -0.0024159835, -0.072532594, 0.9955201)
 bones/21/rotation = Quaternion(0.18912874, -0.036068253, 0.026023725, 0.9809445)
 bones/22/rotation = Quaternion(0.27312142, -1.17978935e-07, -7.1506044e-08, 0.96197957)
 bones/23/rotation = Quaternion(0.30522484, 2.3587556e-07, 2.3612212e-07, 0.95228034)
@@ -274,9 +264,9 @@ bones/34/rotation = Quaternion(-0.17964402, 0.061213627, -0.03253647, 0.98128605
 bones/35/rotation = Quaternion(-0.04818252, 0.0032040358, -0.0045290818, 0.9988232)
 bones/36/rotation = Quaternion(-0.76348156, -0.10378604, -0.08586241, 0.6316266)
 bones/37/rotation = Quaternion(-0.00025132287, 0.000100824254, 0.52488565, 0.85117275)
-bones/38/rotation = Quaternion(0.5484021, -0.7380788, 0.29993704, -0.2540329)
-bones/39/rotation = Quaternion(0.47022843, 0.59826773, -0.22022922, 0.6102951)
-bones/40/rotation = Quaternion(0.04150534, -0.0077757724, 0.18203482, 0.9823849)
+bones/38/rotation = Quaternion(0.54949427, -0.7470569, 0.26498666, -0.2640913)
+bones/39/rotation = Quaternion(0.44971126, 0.5789697, -0.19689877, 0.65098745)
+bones/40/rotation = Quaternion(0.041287754, -0.008858984, 0.20767367, 0.97728634)
 bones/41/rotation = Quaternion(-0.09906762, -0.40131226, -0.15976027, 0.89644337)
 bones/42/rotation = Quaternion(0.7414094, 0.013142947, -0.042490073, 0.6695774)
 bones/43/rotation = Quaternion(0.5851851, 2.2953148e-07, 1.0747353e-07, 0.8108998)
@@ -298,16 +288,16 @@ bones/57/rotation = Quaternion(-0.7649727, -0.092154354, -0.0762387, 0.6328603)
 bones/58/rotation = Quaternion(-0.00024322113, -0.00011888271, -0.5857752, 0.81047356)
 
 [node name="BoneAttachment3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="1" unique_id=1169500303]
-transform = Transform3D(0.91720575, -0.3800857, 0.11903727, -0.027804673, -0.3592304, -0.9327818, 0.39731854, 0.85228515, -0.34007347, -1.7216923, 5.762374, 1.0616454)
+transform = Transform3D(0.8448545, -0.54616755, 0.0015899241, -0.22617525, -0.35252827, -0.914685, 0.49713776, 0.7677923, -0.4188424, -1.9737992, 5.99636, 0.95219743)
 
 [node name="BlockVFXMarker" type="Marker3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton/BoneAttachment3D/Katana" parent_id_path=PackedInt32Array(1179849529, 8756220) index="1" unique_id=1874889946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2215, 2.049)
 
 [node name="EquippedGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="2" unique_id=1643015151]
-transform = Transform3D(-0.7262313, -0.47429007, -0.49753264, 0.62580574, -0.15680167, -0.7639904, 0.28435323, -0.8662353, 0.41070807, 0.9757556, 5.4106874, -2.3266106)
+transform = Transform3D(-0.76058483, -0.53715503, -0.3808615, 0.50807387, -0.10858737, -0.8614809, 0.4188696, -0.84365463, 0.3533764, 1.1173501, 5.5487714, -2.3365314)
 
 [node name="EquippedGun2" type="BoneAttachment3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="3" unique_id=658771142]
-transform = Transform3D(-0.76010066, -0.5454749, -0.35299554, 0.5508847, -0.2530092, -0.7952441, 0.34449166, -0.7989649, 0.4928306, 1.4611064, 5.635809, -1.6157098)
+transform = Transform3D(-0.8318202, -0.4640309, -0.3237759, 0.48357862, -0.28412658, -0.8351667, 0.29378062, -0.84618396, 0.45797977, 1.530234, 5.8015804, -1.5836163)
 bone_name = "LowerArm_R"
 bone_idx = 19
 
@@ -317,7 +307,7 @@ mesh = SubResource("CylinderMesh_vucap")
 surface_material_override/0 = SubResource("ShaderMaterial_bghwh")
 
 [node name="HolsteredGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="4" unique_id=2089154445]
-transform = Transform3D(0.9000466, -0.026408294, -0.43499255, 0.051150035, -0.9848611, 0.16562559, -0.43278146, -0.17132066, -0.8850703, -1.4955277e-09, 4.70186, 0.032040607)
+transform = Transform3D(0.9000467, 0.01825729, -0.43541098, 0.051150016, -0.99664193, 0.063942865, -0.43278128, -0.079822846, -0.89795804, -1.4955281e-09, 4.7731695, 0.032040607)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=589933870]
 root_node = NodePath("../MaleBaseRigV2")

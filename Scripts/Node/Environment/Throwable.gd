@@ -47,7 +47,7 @@ func _process(_delta: float) -> void:
 func throw(direction : Vector3, power : float) -> void:
 	linear_velocity = Vector3.ZERO
 	apply_central_impulse(direction * power)
-	apply_torque_impulse(direction.rotated(Vector3.UP, PI*0.5) * randf_range(2.0, 6.0))
+	apply_torque_impulse(direction.rotated(Vector3.UP, PI*0.5) * randf_range(0.05, 0.4))
 
 func throw_to_position(target_position : Vector3, speed : float = 0.1) -> void:
 	var g = get_gravity()

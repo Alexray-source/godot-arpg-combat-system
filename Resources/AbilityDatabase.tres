@@ -8,6 +8,12 @@
 [ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="5_jhoc3"]
 [ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="6_in3r3"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="7_jhoc3"]
+[ext_resource type="Resource" uid="uid://c0knc2ghybhkk" path="res://Resources/AbilityData/grapple_reel.tres" id="8_i47es"]
+[ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="9_5yina"]
+[ext_resource type="Resource" uid="uid://ddeysuhby14xe" path="res://Resources/AbilityData/grapple_pull.tres" id="10_s1o2a"]
+[ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="11_y07hn"]
+[ext_resource type="Resource" uid="uid://ct7nrn8a1kun" path="res://Resources/AbilityData/downwards_shot.tres" id="12_y07hn"]
+[ext_resource type="Resource" uid="uid://gt5et0uvodvl" path="res://Resources/AbilityData/ricochet_shot.tres" id="13_bipbt"]
 
 [sub_resource type="Resource" id="Resource_qbr8q"]
 script = ExtResource("5_jhoc3")
@@ -27,6 +33,27 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 [sub_resource type="Resource" id="Resource_s1o2a"]
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_3m4by")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[sub_resource type="Resource" id="Resource_o0ika"]
+script = ExtResource("1_f8i7n")
+ability_data = ExtResource("12_y07hn")
+ability_energy_cost = 0
+ability_icon = ExtResource("9_5yina")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[sub_resource type="Resource" id="Resource_bipbt"]
+script = ExtResource("1_f8i7n")
+ability_data = ExtResource("10_s1o2a")
+ability_energy_cost = 0
+ability_icon = ExtResource("11_y07hn")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
+[sub_resource type="Resource" id="Resource_y07hn"]
+script = ExtResource("1_f8i7n")
+ability_data = ExtResource("8_i47es")
+ability_energy_cost = 0
+ability_icon = ExtResource("9_5yina")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ch4d"]
@@ -53,6 +80,13 @@ ability_data = SubResource("Resource_7qyh0")
 ability_icon = ExtResource("6_in3r3")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
+[sub_resource type="Resource" id="Resource_xyhbj"]
+script = ExtResource("1_f8i7n")
+ability_data = ExtResource("13_bipbt")
+ability_energy_cost = 0
+ability_icon = ExtResource("11_y07hn")
+metadata/_custom_type_script = "uid://cxsekofi2bc0h"
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_jb0u1"]
 radius = 4.0
 
@@ -63,7 +97,7 @@ metadata/_custom_type_script = "uid://c4ge8e721k3f8"
 
 [sub_resource type="Resource" id="Resource_5ps18"]
 script = ExtResource("3_h7bsk")
-dmg = 8
+dmg = 5
 animations = Array[String](["PlayerSwordAnims/SpinAtk"])
 atk_type = 1
 atk_data = SubResource("Resource_ffspy")
@@ -81,7 +115,11 @@ metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 script = ExtResource("2_331pm")
 database = Dictionary[String, ExtResource("1_f8i7n")]({
 "bomb": SubResource("Resource_s1o2a"),
+"downwards_shot": SubResource("Resource_o0ika"),
+"grapple_pull": SubResource("Resource_bipbt"),
+"grapple_reel": SubResource("Resource_y07hn"),
 "kick": SubResource("Resource_i47es"),
+"ricochet_shot": SubResource("Resource_xyhbj"),
 "spin": SubResource("Resource_5yina")
 })
 metadata/_custom_type_script = "uid://qmau8jwbnm1q"

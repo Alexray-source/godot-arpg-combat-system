@@ -3,6 +3,7 @@ class_name Projectile extends Node3D
 @export var speed : float = 100.0
 @export var max_lifetime : float = 5.0
 @export var hit_vfx : String = "projectile_hit"
+@export var re_evaluate_atk_dir_on_ready : bool = false
 
 var direct_space_state : PhysicsDirectSpaceState3D
 var ray_params : PhysicsRayQueryParameters3D
@@ -17,7 +18,13 @@ func _ready() -> void:
 	ray_params = PhysicsRayQueryParameters3D.new()
 	ray_params.collide_with_areas = true
 	ray_params.collide_with_bodies = true
-	ray_params.collision_mask = 13
+	ray_params.collision_mask = 15
+	
+	if re_evaluate_atk_dir_on_ready == true and atk_info.intended_target != null:
+		atk_info.atk_dir = atk_info.instigator.global_position.direction_to(atk_info.intended_target.global_position)
+	
+	global_basis = Basis.looking_at(atk_info.atk_dir)
+
 
 func _physics_process(delta: float) -> void:
 	lifetime += delta

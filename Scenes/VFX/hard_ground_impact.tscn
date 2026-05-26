@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bcf0m4gnugr2x"]
+
+[ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="1_20ok7"]
+[ext_resource type="Script" uid="uid://bsriddx5tc2y3" path="res://Scripts/Node/Trigger/CameraShakeTriggerProximity.gd" id="1_tjxuy"]
+[ext_resource type="Script" uid="uid://0iqr1rfhwdvv" path="res://Scripts/Resources/ShakeInfo/ShakeInfo.gd" id="2_20ok7"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_dlq0y"]
+
+[sub_resource type="Resource" id="Resource_vutgs"]
+script = ExtResource("2_20ok7")
+shake_duration = 5.0
+shake_intensity = 2.0
+shake_speed = 2.0
+shake_decay = 2.0
+metadata/_custom_type_script = "uid://0iqr1rfhwdvv"
+
+[sub_resource type="Resource" id="Resource_d2f7w"]
+script = ExtResource("3_dlq0y")
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[node name="HardGroundImpact" type="Node3D" unique_id=507697911 node_paths=PackedStringArray("triggers")]
+script = ExtResource("1_20ok7")
+triggers = [NodePath("CameraShakeTriggerProximity")]
+auto_trigger = true
+
+[node name="CameraShakeTriggerProximity" type="Node" parent="." unique_id=1735764245 node_paths=PackedStringArray("scan_center")]
+script = ExtResource("1_tjxuy")
+scan_center = NodePath("..")
+scan_radius = 1000.0
+shake_info = SubResource("Resource_vutgs")
+chr_layer = SubResource("Resource_d2f7w")
+metadata/_custom_type_script = "uid://bsriddx5tc2y3"

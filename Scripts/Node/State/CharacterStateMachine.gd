@@ -16,6 +16,7 @@ func _ready() -> void:
 		"knockback" : ChrKnockbackState.new(),
 		"custom_movement" : CharacterCustomMovementState.new(),
 		"no_movement" : CharacterState.new(),
+		"downed" : CharacterState.new(),
 		"dead" : CharacterDeadState.new()
 	}
 
