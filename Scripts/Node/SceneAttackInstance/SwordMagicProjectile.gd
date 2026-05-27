@@ -23,7 +23,7 @@ func _ready() -> void:
 	_physics_shape_query_params = PhysicsShapeQueryParameters3D.new()
 	_physics_shape_query_params.collide_with_areas = true
 	_physics_shape_query_params.collide_with_bodies = true
-	_physics_shape_query_params.collision_mask = 13
+	_physics_shape_query_params.collision_mask = 12
 	
 	_direct_space_state = get_viewport().world_3d.direct_space_state
 	

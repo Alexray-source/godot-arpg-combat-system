@@ -96,7 +96,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660295, 25.849699, -53.89
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47536, 25.849699, -45.441746)
 
 [node name="ThrowableCube4" parent="Throwables" unique_id=954082382 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.786636, 27.849699, -45.796658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15302563, 27.849699, -45.100906)
 
 [node name="ThrowableCube6" parent="Throwables" unique_id=844239056 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355667, 25.849699, -30.70102)
@@ -111,7 +111,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771568, 25.849699, -32.430
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899053, 25.849699, -41.672787)
 
 [node name="ThrowableCube10" parent="Throwables" unique_id=327985456 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.922757, 27.849699, -41.906292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.836215, 27.8497, -21.11278)
 
 [node name="ThrowableCube11" parent="Throwables" unique_id=1228922293 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355593, 25.849699, -42.11208)
@@ -123,7 +123,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5204, 25.849699, -19.16177)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287375, 25.849699, -21.868412)
 
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
-transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530865, 27.849699, -20.331959)
+transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, -16.673128, 27.8497, -39.630356)
 
 [node name="Map" type="Node" parent="." unique_id=2040024117]
 
@@ -210,9 +210,9 @@ size = Vector3(18.511475, 70.75336, 22.234802)
 material = ExtResource("1_rn81q")
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="Map" unique_id=844486123]
-transform = Transform3D(0.6704266, 0, 0.74197584, 0, 1, 0, -0.74197584, 0, 0.6704266, 60.067005, -49.4043, 143.43613)
+transform = Transform3D(0.6704266, 0, 0.74197584, 0, 1, 0, -0.74197584, 0, 0.6704266, 60.43486, -49.4043, 143.76851)
 use_collision = true
-size = Vector3(18.511475, 73.33774, 22.234802)
+size = Vector3(18.511475, 73.33774, 23.226364)
 material = ExtResource("1_rn81q")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=1602913456]

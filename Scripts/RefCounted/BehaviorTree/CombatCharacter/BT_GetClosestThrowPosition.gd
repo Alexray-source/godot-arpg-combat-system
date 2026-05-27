@@ -43,9 +43,9 @@ func tick(blackboard : Dictionary):
 				closest_throwable_dist = collider.global_position.distance_to(origin.global_position)
 				closest_throwable = collider
 	
-	print(closest_throwable)
+	#print(closest_throwable)
 	if throw_target_node != null and closest_throwable != null:
-		var closest_throw_pos : Vector3 = closest_throwable.global_position + (-closest_throwable.global_position.direction_to(throw_target_node.global_position) * 2.0)
+		var closest_throw_pos : Vector3 = closest_throwable.global_position + (-closest_throwable.global_position.direction_to(throw_target_node.global_position) * 1.5)
 		
 
 		_found_pos = true

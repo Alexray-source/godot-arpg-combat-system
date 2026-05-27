@@ -13,9 +13,9 @@
 
 [sub_resource type="Resource" id="Resource_vutgs"]
 script = ExtResource("2_20ok7")
-shake_duration = 5.0
-shake_intensity = 0.4
-shake_speed = 10.0
+shake_duration = 10.0
+shake_intensity = 0.7
+shake_speed = 4.0
 shake_decay = 4.0
 metadata/_custom_type_script = "uid://0iqr1rfhwdvv"
 

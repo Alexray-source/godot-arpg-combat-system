@@ -7,7 +7,7 @@ var scan_mask : int = 1
 var direct_space_state : PhysicsDirectSpaceState3D
 var instigator : BaseCharacter
 var grapple_finish_radius : float = 1.0
-var grapple_reel_in_speed : float = 35.0
+var grapple_reel_in_speed : float = 42.0
 #var grapple_mode : GrappleMode
 
 enum GrappleMode {
@@ -73,6 +73,14 @@ func get_closest_grapple_object() -> Throwable:
 	var closest_body : CollisionObject3D
 	var closest_dot_result : float = -1.0
 	
+	var node_list : Array[Node3D]
+	
+	var closest_tracker : ClosestFacingNode3DTracker = ClosestFacingNode3DTracker.new()
+	closest_tracker.only_in_camera = scan_only_in_camera_frustum
+	closest_tracker.camera = instigator.get_viewport().get_camera_3d()
+	closest_tracker.ignore_y = true
+	closest_tracker.scan_transform = instigator.global_transform
+	
 	var results = direct_space_state.intersect_shape(shape_cast_params)
 	for hit in results:
 		var collider = hit.get("collider")
@@ -82,13 +90,20 @@ func get_closest_grapple_object() -> Throwable:
 			continue
 		#print(collider)
 		var can_be_grappled : bool = get_grapple_mode_from_node(collider) != GrappleMode.INVALID
-		if can_be_grappled and collider != instigator and ((scan_only_in_camera_frustum == true and instigator.get_viewport().get_camera_3d().is_position_in_frustum(collider.global_position)) or scan_only_in_camera_frustum == false):
-			var direction_to_collider = instigator.global_position.direction_to(collider.global_position)
-			var body_dot_direction_result = -instigator.global_basis.z.dot(direction_to_collider)
-			#if (body_dot_direction_result > closest_dot_result and not collider is CombatCharacter) or collider is CombatCharacter and body_dot_direction_result > 0.8:
-			if (body_dot_direction_result > closest_dot_result):
-				closest_dot_result = body_dot_direction_result
-				closest_body = collider
+		if can_be_grappled == true and collider != instigator:
+			node_list.append(collider)
+	
+	closest_tracker.node_list = node_list
+	closest_tracker.poll(0.0)
+	closest_body = closest_tracker.get_closest_facing_node()
+	
+		#if can_be_grappled and collider != instigator and ((scan_only_in_camera_frustum == true and instigator.get_viewport().get_camera_3d().is_position_in_frustum(collider.global_position)) or scan_only_in_camera_frustum == false):
+			#var direction_to_collider = instigator.global_position.direction_to(collider.global_position)
+			#var body_dot_direction_result = -instigator.global_basis.z.dot(direction_to_collider)
+			##if (body_dot_direction_result > closest_dot_result and not collider is CombatCharacter) or collider is CombatCharacter and body_dot_direction_result > 0.8:
+			#if (body_dot_direction_result > closest_dot_result):
+				#closest_dot_result = body_dot_direction_result
+				#closest_body = collider
 	
 	return closest_body
 
@@ -102,8 +117,12 @@ func attempt_grapple_to_closest_object(priority_target : Node3D):
 	#var body_dot_direction_result = -instigator.global_basis.z.dot(direction_to_collider)
 	
 	if priority_target != null:
-		var direction_to_priority_target = instigator.global_position.direction_to(priority_target.global_position)
-		var priority_dot_direction_result = -instigator.global_basis.z.dot(direction_to_priority_target)
+		var from_pos = Vector3(instigator.global_position.x, 0.0, instigator.global_position.z)
+		var to_pos = Vector3(priority_target.global_position.x, 0.0, priority_target.global_position.z)
+		var look_vector = Vector3(-instigator.global_basis.z.x, 0.0, -instigator.global_basis.z.z).normalized()
+		
+		var direction_to_priority_target = from_pos.direction_to(to_pos)
+		var priority_dot_direction_result = look_vector.dot(direction_to_priority_target)
 		
 		if priority_dot_direction_result > 0.8:
 			closest_body = priority_target

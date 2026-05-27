@@ -320,7 +320,7 @@ func on_target_next(bypass_debounce : bool = false) -> void:
 	if current_target == null:
 		return
 	
-	print("searching new target")
+	#print("searching new target")
 	if bypass_debounce == false and plr_debounces.is_debounce_active("target_next"):
 		return
 	
@@ -328,21 +328,24 @@ func on_target_next(bypass_debounce : bool = false) -> void:
 	plr_debounces.remove_debounce_delayed("target_next", 0.4)
 	
 	if target_tracking_camera.nearby_targets.size() > 0:
+		var camera = target_tracking_camera.camera
+		var current_target_viewport_pos = camera.unproject_position(current_target.global_position)
 		
-		var current_index : int = 0
-		current_index = target_tracking_camera.nearby_targets.find(current_target)
-		
-		current_index += 1
-		
-		if current_index >= target_tracking_camera.nearby_targets.size():
-			current_index = 0
-		print(current_index)
-		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
+		var diff : float = INF
+		var new_target : Node3D
+		for target in target_tracking_camera.nearby_targets:
+			if target == current_target or camera.is_position_in_frustum(target.global_position) == false:
+				continue
+			
+			var target_viewport_pos : Vector2 = camera.unproject_position(target.global_position)
+			var target_diff : float = current_target_viewport_pos.x - target_viewport_pos.x
+			
+			if target_diff < 0.0 and abs(target_diff) < diff:
+				diff = target_diff
+				new_target = target
 
-		if new_target != current_target:
-			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
-	else:
-		target_closest_enemy_to_character()
+		if new_target != null and new_target != current_target:
+			set_lock_target(new_target)
 
 func on_target_prev(bypass_debounce : bool = false) -> void:
 	if current_target == null:
@@ -355,21 +358,24 @@ func on_target_prev(bypass_debounce : bool = false) -> void:
 	plr_debounces.remove_debounce_delayed("target_prev", 0.4)
 	
 	if target_tracking_camera.nearby_targets.size() > 0:
-		var current_index : int = 0
-		current_index = target_tracking_camera.nearby_targets.find(current_target)
+		var camera = target_tracking_camera.camera
+		var current_target_viewport_pos = camera.unproject_position(current_target.global_position)
 		
-		current_index -= 1
-		
-		if current_index < 0:
-			current_index = target_tracking_camera.nearby_targets.size() - 1
-		print(current_index)
-		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
-		#if new_target == current_target:
-			#target_closest_enemy_to_character()
-		if new_target != current_target:
-			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
-	else:
-		target_closest_enemy_to_character()
+		var diff : float = INF
+		var new_target : Node3D
+		for target in target_tracking_camera.nearby_targets:
+			if target == current_target or camera.is_position_in_frustum(target.global_position) == false:
+				continue
+			
+			var target_viewport_pos : Vector2 = camera.unproject_position(target.global_position)
+			var target_diff : float = current_target_viewport_pos.x - target_viewport_pos.x
+			
+			if target_diff > 0.0 and target_diff < diff:
+				diff = target_diff
+				new_target = target
+
+		if new_target != null and new_target != current_target:
+			set_lock_target(new_target)
 
 func target_closest_enemy_to_character():
 	if is_instance_valid(self) == false or get_world_3d() == null:
@@ -377,19 +383,19 @@ func target_closest_enemy_to_character():
 	
 	var scan_shape : SphereShape3D = SphereShape3D.new()
 	scan_shape.radius = 50.0
-	
-	#var combat_chr_scanner : CombatCharacterScanner = CombatCharacterScanner.new()
-	#combat_chr_scanner.blacklist = [character, current_target]
-	#var closest_enemy = combat_chr_scanner.get_closest_character_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
-	
+
 	var hurtbox_scanner : HurtBoxScanner = HurtBoxScanner.new()
 	hurtbox_scanner.scan_only_in_camera_frustum = false
 	
 	var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
 	
+	if closest_hurtbox == null:
+		set_lock_target(null)
+		return
+	
 	var closest_enemy
 	
-	print(closest_hurtbox.get_parent_node_3d() )
+	#print(closest_hurtbox.get_parent_node_3d() )
 	if closest_hurtbox != null and closest_hurtbox.get_parent_node_3d() != current_target.get_parent_node_3d():
 		closest_enemy = closest_hurtbox.get_parent_node_3d()
 	
@@ -414,8 +420,9 @@ func set_lock_target(new_target : Node3D) -> void:
 func handle_target_tree_exit(_exiting_target : Node3D) -> void:
 	if current_target == _exiting_target:
 		target_tracking_camera.cleanup_invalid_targets()
-		
-		on_target_next()
+
+		target_closest_enemy_to_character()
+		#on_target_next()
 
 func _input(event: InputEvent) -> void:
 	input_events.input_pressed(event)

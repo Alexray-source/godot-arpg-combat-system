@@ -175,7 +175,7 @@ func on_atk_hit(atk_info : AtkInfo):
 	
 	var defence_factor =  clampf(_stat_modifier_stack.get_stat_stack_value(StatModifierData.Stats.DEFENSE), 0.0, 1.0)
 
-	if invincible == false and defence_factor < 1.0 and is_current_state("block") == false:
+	if invincible == false and defence_factor < 1.0 and (is_current_state("block") == false or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_ABILITY):
 		var defence_reduction : int = roundi(atk_info.dmg * defence_factor)
 		
 		health_component.take_damage(atk_info.dmg - defence_reduction)
@@ -183,10 +183,10 @@ func on_atk_hit(atk_info : AtkInfo):
 		_damage_sfx_player.play_damage_sfx(self, atk_info.atk_type)
 		GlobalSignals.spawn_vfx.emit("melee_damage", Transform3D(hurt_box.global_basis, hurt_box.global_position + hurt_box.hurtbox_center_offset))
 		
-		if stagger_immune == true:
+		if stagger_immune == true and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
 			return
 		
-		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
+		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_ABILITY:
 			knockback(atk_info)
 		else:
 			stagger(atk_info)
@@ -195,7 +195,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		
 		_damage_sfx_player.play_damage_sfx(self, AtkInfo.AtkType.DEFLECT_INSTIGATOR)
 		
-		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE and is_current_state("block") == false:
+		if instigator != null and instigator is CombatCharacter and atk_info.atk_type != AtkInfo.AtkType.PROJECTILE and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_PROJECTILE and is_current_state("block") == false and is_current_state("dodge_dash") == false:
 			var bounce_atk_dir = self.global_position.direction_to(instigator.global_position)
 			#instigator.on_atk_hit(AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir))
 			var deflect_atk_info : AtkInfo = AtkInfo.new(0, AtkInfo.AtkType.DEFLECT, self, bounce_atk_dir)
@@ -290,7 +290,7 @@ func stagger(atk_info : AtkInfo):
 	interupt_atks.emit()
 
 func knockback(atk_info : AtkInfo):
-	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
+	if (stagger_immune == true and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_DIRECTIONAL) or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO

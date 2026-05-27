@@ -45,6 +45,7 @@ func setup() -> void:
 		
 		_closest_node_tracker = ClosestFacingNode3DTracker.new()
 		_closest_node_tracker.only_in_camera = true
+		_closest_node_tracker.ignore_y = true
 		_closest_node_tracker.camera = character.get_viewport().get_camera_3d()
 		_closest_node_tracker.closest_node_changed.connect(on_closest_node_changed)
 		

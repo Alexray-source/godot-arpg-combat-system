@@ -15,15 +15,16 @@ func tick(blackboard : Dictionary):
 	var delta = blackboard.get("delta")
 	accumulated_time += delta
 	#print(accumulated_time)
-	if accumulated_time > max_strafe_time:
-		_finished = true
-		return SUCCESS
-	
 	var character : BaseCharacter = blackboard_object_get(blackboard, character_bb_key)
 	var target : Node3D = blackboard_object_get(blackboard, target_bb_key)
 	
 	if character == null or target == null:
 		return FAILURE
+		
+	if accumulated_time > max_strafe_time:
+		_finished = true
+		character.move_dir = Vector3.ZERO
+		return SUCCESS
 	
 	#var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, _strafe_angle)
 	var move_dir : Vector3 = character.global_position.direction_to(target.global_position).rotated(Vector3.UP, PI*0.5)

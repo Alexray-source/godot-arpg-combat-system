@@ -25,9 +25,9 @@ size = Vector3(179, 156, 14)
 [sub_resource type="Resource" id="Resource_1xyem"]
 script = ExtResource("4_x24mm")
 action_display_names = Dictionary[String, String]({
-"chr_grapple_enemy": "Grapple Enemy",
+"chr_grapple": "Grapple Enemy",
 "chr_secondary_atk": "Secondary Attack",
-"plr_target_next": "Next Camera Target"
+"plr_target_next": "Target other enemies on screen"
 })
 action_order = Array[String](["plr_target_next"])
 metadata/_custom_type_script = "uid://kylthr61qii5"
@@ -35,15 +35,24 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 [sub_resource type="Resource" id="Resource_p0lev"]
 script = ExtResource("4_x24mm")
 action_display_names = Dictionary[String, String]({
-"chr_grapple_object": "Grapple Objects",
-"chr_special_atk1": "Special Attack #1"
+"chr_grapple": "Grapple Objects",
+"chr_special_atk1": "Kick nearby boxes"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
 [sub_resource type="Resource" id="Resource_m4vf5"]
 script = ExtResource("4_x24mm")
 action_display_names = Dictionary[String, String]({
-"chr_special_atk2": "Special Attack #2"
+"chr_special_atk2": "Special Attack #2",
+"chr_special_atk3": "Special Attack #3",
+"chr_special_atk4": "Special Attack #4"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_u0f61"]
+script = ExtResource("4_x24mm")
+action_display_names = Dictionary[String, String]({
+"chr_block": "Block"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
@@ -115,6 +124,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.62
 script = ExtResource("3_luq7x")
 enemy_wave_spawner = NodePath("..")
 enemy_wave_tutorials = Dictionary[int, ExtResource("4_x24mm")]({
+1: SubResource("Resource_u0f61"),
 2: SubResource("Resource_1xyem"),
 4: SubResource("Resource_p0lev"),
 5: SubResource("Resource_m4vf5")

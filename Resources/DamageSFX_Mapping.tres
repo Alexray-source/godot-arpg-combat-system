@@ -48,11 +48,27 @@ stream_0/stream = ExtResource("10_ku5pj")
 stream_1/stream = ExtResource("11_4bty0")
 stream_2/stream = ExtResource("12_r34rp")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x53po"]
+random_pitch = 1.2599211
+streams_count = 4
+stream_0/stream = ExtResource("1_j54uj")
+stream_1/stream = ExtResource("2_xjgv4")
+stream_2/stream = ExtResource("4_e71g0")
+stream_3/stream = ExtResource("3_tjrbb")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r34rp"]
 streams_count = 3
 stream_0/stream = ExtResource("7_jmbjo")
 stream_1/stream = ExtResource("8_q0dj1")
 stream_2/stream = ExtResource("9_bac12")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5i7a8"]
+random_pitch = 1.2599211
+streams_count = 4
+stream_0/stream = ExtResource("1_j54uj")
+stream_1/stream = ExtResource("2_xjgv4")
+stream_2/stream = ExtResource("4_e71g0")
+stream_3/stream = ExtResource("3_tjrbb")
 
 [resource]
 script = ExtResource("1_ixn54")
@@ -62,8 +78,10 @@ mapping = Dictionary[int, AudioStream]({
 2: SubResource("AudioStreamRandomizer_jmbjo"),
 3: SubResource("AudioStreamRandomizer_tjrbb"),
 4: SubResource("AudioStreamRandomizer_4bty0"),
-5: SubResource("AudioStreamRandomizer_r34rp"),
-6: ExtResource("13_4bty0"),
-7: ExtResource("14_r34rp")
+5: SubResource("AudioStreamRandomizer_x53po"),
+6: SubResource("AudioStreamRandomizer_r34rp"),
+7: ExtResource("13_4bty0"),
+8: ExtResource("14_r34rp"),
+9: SubResource("AudioStreamRandomizer_5i7a8")
 })
 metadata/_custom_type_script = "uid://btseebhsl3qtr"

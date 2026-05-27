@@ -13,7 +13,7 @@ albedo_color = Color(0.44209558, 0.15686277, 0.9019608, 1)
 
 [node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox", "mesh_instance", "hit_sfx_player")]
 collision_layer = 16
-collision_mask = 541
+collision_mask = 543
 angular_damp_mode = 1
 script = ExtResource("1_ifau6")
 hurtbox = NodePath("HurtBox")

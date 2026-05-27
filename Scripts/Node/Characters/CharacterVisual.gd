@@ -172,7 +172,7 @@ func block_vfx(weapon_name : String, vfx_preset : String):
 	GlobalSignals.spawn_vfx.emit(vfx_key, equipped_weapon_node.global_transform.orthonormalized())
 
 func dash_vfx():
-	print("dash")
+	#print("dash")
 	var vel_look_basis : Basis = Basis.looking_at(combat_character.move_dir)
 	GlobalSignals.spawn_vfx.emit("dash", Transform3D(vel_look_basis, global_position + combat_character.hurt_box.hurtbox_center_offset))
 
