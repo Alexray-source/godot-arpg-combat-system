@@ -14,11 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://d33v3hbkkepnu" path="res://Assets/Textures/UI/InputController/xbox_button_color_y.svg" id="9_txcya"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="10_g6far"]
 [ext_resource type="Texture2D" uid="uid://2gd38hhffsn" path="res://Assets/Textures/UI/playstation_trigger_l1_alternative.png" id="11_g6far"]
-[ext_resource type="Texture2D" uid="uid://fckxps3t3pis" path="res://Assets/Textures/UI/InputController/xbox_stick_r_press.svg" id="12_01dh1"]
 [ext_resource type="Texture2D" uid="uid://ml53vujwdkrv" path="res://Assets/Textures/UI/playstation_trigger_l2.png" id="12_gw0nm"]
 [ext_resource type="Texture2D" uid="uid://bfdjijrht5u28" path="res://Assets/Textures/UI/playstation_trigger_r2.png" id="13_j1nyp"]
-[ext_resource type="Texture2D" uid="uid://dimiuvp6g5wix" path="res://Assets/Textures/UI/InputController/xbox_stick_l_press.svg" id="13_rly2r"]
 [ext_resource type="Texture2D" uid="uid://bbyr0q6j1thtc" path="res://Assets/Textures/UI/InputController/xb_x.svg" id="16_gw0nm"]
+[ext_resource type="Texture2D" uid="uid://dyujastfkmq0b" path="res://Assets/Textures/UI/InputController/playstation_stick_r_horizontal.svg" id="18_g6far"]
 [ext_resource type="Texture2D" uid="uid://dfd2wki2sot7l" path="res://Assets/Textures/UI/InputController/xb_y.svg" id="19_j1nyp"]
 [ext_resource type="Texture2D" uid="uid://41xlbfp2cqq2" path="res://Assets/Textures/UI/InputController/xbox_button_color_a.svg" id="20_gw0nm"]
 
@@ -41,15 +40,14 @@ metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
 script = ExtResource("1_hv4bh")
 textures = Dictionary[String, Texture2D]({
 "chr_dash": ExtResource("11_g6far"),
-"chr_grapple_enemy": ExtResource("12_gw0nm"),
-"chr_grapple_object": ExtResource("13_j1nyp"),
+"chr_grapple": ExtResource("12_gw0nm"),
 "chr_jump": ExtResource("20_gw0nm"),
 "chr_primary_atk": ExtResource("8_gba3v"),
 "chr_secondary_atk": ExtResource("9_txcya"),
 "chr_special_atk1": ExtResource("16_gw0nm"),
 "chr_special_atk2": ExtResource("19_j1nyp"),
-"plr_target_lock": ExtResource("12_01dh1"),
-"plr_target_next": ExtResource("13_rly2r")
+"plr_target_lock": ExtResource("13_j1nyp"),
+"plr_target_next": ExtResource("18_g6far")
 })
 metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
 

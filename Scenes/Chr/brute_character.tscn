@@ -266,30 +266,30 @@ vfx_key_mapping = Dictionary[String, String]({
 
 [node name="GeneralSkeleton" parent="MaleBaseRigV2/Armature_003" parent_id_path=PackedInt32Array(1179849529, 653949451) index="0" unique_id=758744942]
 bones/0/position = Vector3(-4.0395705e-09, 8.2718056e-25, 0)
-bones/1/position = Vector3(-0.032040607, 4.741365, -6.169093e-09)
-bones/1/rotation = Quaternion(0.8457613, 0.05082406, 0.53011906, -0.032841712)
-bones/2/rotation = Quaternion(0.14637464, 0.8217319, 0.5320312, -0.14238684)
-bones/3/rotation = Quaternion(0.61805296, -0.04364556, 0.031888332, 0.78427595)
+bones/1/position = Vector3(-0.032040607, 4.771457, -6.224393e-09)
+bones/1/rotation = Quaternion(0.84627384, 0.039344076, 0.5310945, -0.014537617)
+bones/2/rotation = Quaternion(0.13085145, 0.83409196, 0.52341175, -0.11492871)
+bones/3/rotation = Quaternion(0.6174328, -0.043975193, 0.032896057, 0.7847043)
 bones/4/rotation = Quaternion(-0.23095533, 0.013072655, 0.011864342, 0.9728042)
 bones/5/rotation = Quaternion(-0.24985354, 1.4681747e-07, -2.028288e-08, 0.96828365)
 bones/6/rotation = Quaternion(-0.70353603, 9.405424e-09, -9.580076e-08, 0.71065956)
-bones/7/rotation = Quaternion(-0.18552883, 0.89737, 0.3916906, 0.08297442)
-bones/8/rotation = Quaternion(0.6826268, -0.0014064291, -0.109855786, 0.7224614)
+bones/7/rotation = Quaternion(-0.1711125, 0.8727769, 0.45178378, 0.069803)
+bones/8/rotation = Quaternion(0.65829307, 0.0022373667, -0.10984201, 0.74470127)
 bones/9/rotation = Quaternion(-0.4458139, -0.07526616, 0.100205995, 0.88630915)
 bones/10/rotation = Quaternion(-0.22486934, -0.016925221, 0.0073658954, 0.97421414)
 bones/11/rotation = Quaternion(-0.70353603, -1.5318218e-08, 7.675357e-08, 0.71065956)
-bones/12/position = Vector3(-0.03204057, 4.911059, -6.4809234e-09)
-bones/12/rotation = Quaternion(0.06884101, 0.842235, -0.081518225, 0.5284467)
+bones/12/position = Vector3(-0.032040574, 4.941151, -6.536224e-09)
+bones/12/rotation = Quaternion(0.063935295, 0.8429552, -0.073700756, 0.52906257)
 bones/13/rotation = Quaternion(0.098986365, -0.50804275, 0.016171657, 0.8554723)
 bones/14/rotation = Quaternion(0.022005027, -0.37581408, -0.18415481, 0.90794635)
-bones/14/scale = Vector3(1.0060773, 1.0060774, 1.0060774)
-bones/15/rotation = Quaternion(0.0021224332, -0.0018854858, -0.108106576, 0.9941353)
-bones/15/scale = Vector3(0.9939593, 0.99395937, 0.9939593)
-bones/16/rotation = Quaternion(0.007615778, -0.015829062, 0.3305163, 0.9436369)
-bones/17/rotation = Quaternion(0.27678514, 0.6614547, 0.670504, 0.19050518)
-bones/18/rotation = Quaternion(0.29230806, -0.80654705, -0.004677526, 0.5138249)
-bones/19/rotation = Quaternion(0.03345796, 0.025762774, -0.6079856, 0.7928243)
-bones/20/rotation = Quaternion(-0.063270584, 0.015860891, -0.044356983, 0.99688405)
+bones/14/scale = Vector3(1.0068532, 1.0068532, 1.0068532)
+bones/15/rotation = Quaternion(0.0029084384, -0.0025838527, -0.106088296, 0.9943491)
+bones/15/scale = Vector3(0.9931936, 0.9931936, 0.9931936)
+bones/16/rotation = Quaternion(0.0013265003, -0.008509721, 0.34057084, 0.9401794)
+bones/17/rotation = Quaternion(0.2772939, 0.6611637, 0.67080766, 0.1897043)
+bones/18/rotation = Quaternion(0.28462407, -0.8100498, -0.008508316, 0.5125779)
+bones/19/rotation = Quaternion(0.033836253, 0.025263838, -0.59616417, 0.80175126)
+bones/20/rotation = Quaternion(-0.060415246, -0.0037006992, -0.07451025, 0.99538165)
 bones/21/rotation = Quaternion(0.18912874, -0.036068253, 0.026023725, 0.9809445)
 bones/22/rotation = Quaternion(0.27312142, -1.17978935e-07, -7.1506044e-08, 0.96197957)
 bones/23/rotation = Quaternion(0.30522484, 2.3587556e-07, 2.3612212e-07, 0.95228034)
@@ -307,9 +307,9 @@ bones/34/rotation = Quaternion(-0.17964402, 0.061213627, -0.03253647, 0.98128605
 bones/35/rotation = Quaternion(-0.04818252, 0.0032040358, -0.0045290818, 0.9988232)
 bones/36/rotation = Quaternion(-0.76348156, -0.10378604, -0.08586241, 0.6316266)
 bones/37/rotation = Quaternion(-0.00025132287, 0.000100824254, 0.52488565, 0.85117275)
-bones/38/rotation = Quaternion(0.54908043, -0.74299634, 0.28134876, -0.25944188)
-bones/39/rotation = Quaternion(0.46528777, 0.5936643, -0.2145236, 0.6205237)
-bones/40/rotation = Quaternion(0.04152454, -0.0076728626, 0.17959863, 0.9828333)
+bones/38/rotation = Quaternion(0.5494687, -0.74675643, 0.2662327, -0.2637408)
+bones/39/rotation = Quaternion(0.4536803, 0.58273876, -0.20134008, 0.6434686)
+bones/40/rotation = Quaternion(0.04136554, -0.008488476, 0.1989041, 0.97910875)
 bones/41/rotation = Quaternion(-0.09906762, -0.40131226, -0.15976027, 0.89644337)
 bones/42/rotation = Quaternion(0.7414094, 0.013142947, -0.042490073, 0.6695774)
 bones/43/rotation = Quaternion(0.5851851, 2.2953148e-07, 1.0747353e-07, 0.8108998)
@@ -334,14 +334,14 @@ bones/58/rotation = Quaternion(-0.00024322113, -0.00011888271, -0.5857752, 0.810
 material_override = SubResource("ShaderMaterial_7gh6p")
 
 [node name="BoneAttachment3D" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="1" unique_id=1169500303]
-transform = Transform3D(0.9074626, -0.42983246, 0.06283128, -0.101772666, -0.35183552, -0.9370408, 0.4223102, 0.8388369, -0.36082995, -1.8074625, 5.868896, 1.0550311)
+transform = Transform3D(0.86198616, -0.5202493, 0.008582652, -0.20321232, -0.35189378, -0.9212104, 0.47899666, 0.7869335, -0.40626448, -1.9383051, 5.978115, 0.9830388)
 visible = false
 
 [node name="EquippedGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="2" unique_id=1643015151]
-transform = Transform3D(-0.7602902, -0.51375175, -0.4125645, 0.54342246, -0.13267028, -0.83623064, 0.3726155, -0.8547802, 0.37775663, 1.0793595, 5.497962, -2.3403068)
+transform = Transform3D(-0.7644547, -0.53830653, -0.3736146, 0.5017779, -0.11171414, -0.86573184, 0.42140332, -0.8435037, 0.35309112, 1.1255852, 5.5511737, -2.338718)
 
 [node name="HolsteredGun" parent="MaleBaseRigV2/Armature_003/GeneralSkeleton" index="3" unique_id=2089154445]
-transform = Transform3D(0.9000465, -0.0016668905, -0.4357903, 0.05115, -0.99267644, 0.109438084, -0.43278146, -0.120790064, -0.89337, -1.4955273e-09, 4.7413645, 0.032040607)
+transform = Transform3D(0.9000466, 0.017185232, -0.4354545, 0.05115002, -0.99648124, 0.06639644, -0.4327814, -0.08203341, -0.8977587, -1.4955268e-09, 4.7714567, 0.032040607)
 visible = false
 
 [editable path="MaleBaseRigV2"]
