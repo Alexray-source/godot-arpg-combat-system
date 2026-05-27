@@ -44,8 +44,7 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 script = ExtResource("4_x24mm")
 action_display_names = Dictionary[String, String]({
 "chr_special_atk2": "Special Attack #2",
-"chr_special_atk3": "Special Attack #3",
-"chr_special_atk4": "Special Attack #4"
+"chr_special_atk3": "Special Attack #3"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
@@ -53,6 +52,13 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 script = ExtResource("4_x24mm")
 action_display_names = Dictionary[String, String]({
 "chr_block": "Block"
+})
+metadata/_custom_type_script = "uid://kylthr61qii5"
+
+[sub_resource type="Resource" id="Resource_luq7x"]
+script = ExtResource("4_x24mm")
+action_display_names = Dictionary[String, String]({
+"chr_special_atk4": "Special Attack #4"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
@@ -127,7 +133,8 @@ enemy_wave_tutorials = Dictionary[int, ExtResource("4_x24mm")]({
 1: SubResource("Resource_u0f61"),
 2: SubResource("Resource_1xyem"),
 4: SubResource("Resource_p0lev"),
-5: SubResource("Resource_m4vf5")
+5: SubResource("Resource_m4vf5"),
+6: SubResource("Resource_luq7x")
 })
 enabled = true
 

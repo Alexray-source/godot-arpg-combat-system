@@ -55,8 +55,9 @@ func _physics_process(_delta: float) -> void:
 func spawn_sword_pillar():
 	_follow_target = true
 	show_indicator(decal.global_transform)
-	await get_tree().create_timer(0.35).timeout
+	await get_tree().create_timer(0.25).timeout
 	_follow_target = false
+	await get_tree().create_timer(0.1).timeout
 	decal.visible = false
 	
 	var aoe_hitbox : AoeHitbox = AoeHitbox.new()

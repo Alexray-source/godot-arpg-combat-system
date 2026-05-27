@@ -12,7 +12,7 @@ metadata/_custom_type_script = "uid://b1stykuxcqnl5"
 
 [resource]
 script = ExtResource("3_dr2cm")
-dmg = 10
+dmg = 7
 animations = Array[String](["PlayerGunSpecialAnims/RicochetAttack"])
 atk_type = 2
 atk_data = SubResource("Resource_m23ht")
