@@ -4,22 +4,38 @@
 [ext_resource type="Script" uid="uid://bsriddx5tc2y3" path="res://Scripts/Node/Trigger/CameraShakeTriggerProximity.gd" id="1_tjxuy"]
 [ext_resource type="Script" uid="uid://0iqr1rfhwdvv" path="res://Scripts/Resources/ShakeInfo/ShakeInfo.gd" id="2_20ok7"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="3_dlq0y"]
+[ext_resource type="Texture2D" uid="uid://t33lrfawgab1" path="res://Assets/Textures/VFX/Ground_crack.png" id="5_dlq0y"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="6_khi3s"]
+[ext_resource type="Script" uid="uid://b12m054cwtg0d" path="res://Scripts/Node/Trigger/TweenTrigger.gd" id="7_i0hlc"]
+[ext_resource type="Script" uid="uid://cp6ugtfy5wjnj" path="res://Scripts/Resources/FlexibleTween/FlexibleTween.gd" id="8_kg0nt"]
+[ext_resource type="Script" uid="uid://dnm0egtw1jyxj" path="res://Scripts/Resources/FlexibleTween/UI_ModulateTween.gd" id="9_o4nur"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="10_n8laq"]
 
 [sub_resource type="Resource" id="Resource_vutgs"]
 script = ExtResource("2_20ok7")
 shake_duration = 5.0
-shake_intensity = 2.0
-shake_speed = 2.0
-shake_decay = 2.0
+shake_intensity = 0.4
+shake_speed = 10.0
+shake_decay = 4.0
 metadata/_custom_type_script = "uid://0iqr1rfhwdvv"
 
 [sub_resource type="Resource" id="Resource_d2f7w"]
 script = ExtResource("3_dlq0y")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
+[sub_resource type="Resource" id="Resource_or4h8"]
+script = ExtResource("9_o4nur")
+use_start_value = true
+start_value = Color(1, 1, 1, 1)
+target_value = Color(1, 1, 1, 0)
+transition = 3
+easing = 0
+tween_time = 5.0
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
 [node name="HardGroundImpact" type="Node3D" unique_id=507697911 node_paths=PackedStringArray("triggers")]
 script = ExtResource("1_20ok7")
-triggers = [NodePath("CameraShakeTriggerProximity")]
+triggers = [NodePath("CameraShakeTriggerProximity"), NodePath("DelayTrigger")]
 auto_trigger = true
 
 [node name="CameraShakeTriggerProximity" type="Node" parent="." unique_id=1735764245 node_paths=PackedStringArray("scan_center")]
@@ -29,3 +45,27 @@ scan_radius = 1000.0
 shake_info = SubResource("Resource_vutgs")
 chr_layer = SubResource("Resource_d2f7w")
 metadata/_custom_type_script = "uid://bsriddx5tc2y3"
+
+[node name="Decal" type="Decal" parent="." unique_id=1239872523]
+size = Vector3(5, 5, 5)
+texture_albedo = ExtResource("5_dlq0y")
+upper_fade = 0.0013461311
+lower_fade = 0.0007731492
+cull_mask = 262145
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=1773014113 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("6_khi3s")
+target_trigger = NodePath("TweenTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="TweenTrigger" type="Node" parent="DelayTrigger" unique_id=577229168 node_paths=PackedStringArray("target_node", "finished_trigger_callback")]
+script = ExtResource("7_i0hlc")
+target_node = NodePath("../../Decal")
+tweens_data = Array[ExtResource("8_kg0nt")]([SubResource("Resource_or4h8")])
+finished_trigger_callback = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger/TweenTrigger" unique_id=1305598892 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("10_n8laq")
+node_to_destroy = NodePath("../../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"

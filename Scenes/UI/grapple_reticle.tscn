@@ -8,7 +8,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77188325, 0)
 layers = 524288
 offset = Vector2(0, 5)
-modulate = Color(0, 0.3723039, 0.84765625, 1)
+modulate = Color(0.83203125, 0.83203125, 0.83203125, 1)
 pixel_size = 0.0015
 billboard = 1
 double_sided = false
