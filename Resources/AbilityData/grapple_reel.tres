@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_r4osy")
 animations = Array[String](["PlayerGrappleAnims/GrappleShoot"])
+targeting_range = 200.0
 show_closest_indicator = true
 metadata/_custom_type_script = "uid://b0kk2hdi6hymk"

@@ -57,7 +57,6 @@ var attacking_enemies : Array[Enemy]
 var _block_stamina : float = 100.0
 var _block_combo : int = 0
 var _plr_camera : Camera3D
-var _grapple_enemies : bool = true
 var _closest_target : Node3D
 
 signal ability_energy_changed()
@@ -235,12 +234,12 @@ func on_grapple() -> void:
 		plr_debounces.add_debounce("grapple")
 		plr_debounces.remove_debounce_delayed("grapple", 0.5)
 		
-		_grapple_enemies = input_events.grapple_characters
+		character.perform_ability("grapple")
 		
-		if _grapple_enemies == true:
-			character.perform_ability("grapple_enemy")
-		else:
-			character.perform_ability("grapple_object")
+		#if _grapple_enemies == true:
+			#character.perform_ability("grapple_enemy")
+		#else:
+			#character.perform_ability("grapple_object")
 		
 func on_dodge_dash() -> void:
 	var abs_move_dir : Vector3 = input_events.move_dir.abs()
@@ -304,12 +303,21 @@ func on_closest_target_changed(new_target : Node3D) -> void:
 		#inactive_target_reticle.visible = true
 
 func on_toggle_target_lock() -> void:
+	if plr_debounces.is_debounce_active("target_lock"):
+		return
+		
+	plr_debounces.add_debounce("target_lock")
+	plr_debounces.remove_debounce_delayed("target_lock", 0.5)
+	
 	if current_target != null:
 		set_lock_target(null)
 	elif target_tracking_camera.nearby_targets.size() > 0:
 		set_lock_target(target_tracking_camera.nearby_targets.get(0))
 
 func on_target_next(bypass_debounce : bool = false) -> void:
+	if current_target == null:
+		return
+	
 	print("searching new target")
 	if bypass_debounce == false and plr_debounces.is_debounce_active("target_next"):
 		return
@@ -320,24 +328,24 @@ func on_target_next(bypass_debounce : bool = false) -> void:
 	if target_tracking_camera.nearby_targets.size() > 0:
 		
 		var current_index : int = 0
-		if current_target != null:
-			current_index = target_tracking_camera.nearby_targets.find(current_target)
-			
-			current_index += 1
-			
-			if current_index >= target_tracking_camera.nearby_targets.size():
-				current_index = 0
-			print(current_index)
+		current_index = target_tracking_camera.nearby_targets.find(current_target)
+		
+		current_index += 1
+		
+		if current_index >= target_tracking_camera.nearby_targets.size():
+			current_index = 0
+		print(current_index)
 		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
-		#if new_target == current_target:
-			#target_closest_enemy_to_character()
+
 		if new_target != current_target:
 			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
-	elif current_target != null:
+	else:
 		target_closest_enemy_to_character()
 
 func on_target_prev(bypass_debounce : bool = false) -> void:
-	print("searching new target")
+	if current_target == null:
+		return
+	
 	if bypass_debounce == false and plr_debounces.is_debounce_active("target_prev"):
 		return
 	
@@ -346,20 +354,19 @@ func on_target_prev(bypass_debounce : bool = false) -> void:
 	
 	if target_tracking_camera.nearby_targets.size() > 0:
 		var current_index : int = 0
-		if current_target != null:
-			current_index = target_tracking_camera.nearby_targets.find(current_target)
-			
-			current_index -= 1
-			
-			if current_index < 0:
-				current_index = target_tracking_camera.nearby_targets.size() - 1
-			print(current_index)
+		current_index = target_tracking_camera.nearby_targets.find(current_target)
+		
+		current_index -= 1
+		
+		if current_index < 0:
+			current_index = target_tracking_camera.nearby_targets.size() - 1
+		print(current_index)
 		var new_target : Node3D = target_tracking_camera.nearby_targets.get(current_index)
 		#if new_target == current_target:
 			#target_closest_enemy_to_character()
 		if new_target != current_target:
 			set_lock_target(target_tracking_camera.nearby_targets.get(current_index))
-	elif current_target != null:
+	else:
 		target_closest_enemy_to_character()
 
 func target_closest_enemy_to_character():

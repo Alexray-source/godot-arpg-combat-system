@@ -61,7 +61,6 @@ var special_atks : Dictionary[String, Signal] = {
 	"chr_special_atk4" : special_atk4_input
 }
 
-var grapple_characters : bool = true
 
 func setup() -> void:
 	#print(Input.get_connected_joypads().size() > 0)
@@ -90,8 +89,6 @@ func change_input_mode(is_gamepad_connected : bool):
 func input_pressed(input : InputEvent):
 	if block_all_input == true:
 		return
-	
-	grapple_characters = not (Input.get_action_strength("chr_move_bwd") > 0.5)
 	
 	for action_name in signal_mapping:
 		if input.is_action_pressed(action_name) and Input.is_action_pressed("gamepad_action_btn") == false:
