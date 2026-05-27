@@ -12,5 +12,6 @@ signal plr_input_state_changed(new_state : bool)
 signal plr_hud_state_changed(new_state : bool)
 signal plr_chr_changed(new_chr : CombatCharacter)
 signal plr_show_tutorial_action(tutorial_action : TutorialActionDisplay)
+signal new_area_reached(new_area_name : String)
 
 @warning_ignore_restore("unused_signal")

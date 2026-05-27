@@ -63,11 +63,13 @@ signal ability_energy_changed()
 signal block_stamina_empty()
 
 func _ready() -> void:
+	_plr_camera = target_tracking_camera.camera
+	_plr_camera.make_current()
+	
 	GlobalSignals.camera_changed.connect(set_active_camera)
 	GlobalSignals.plr_input_state_changed.connect(set_input_state)
 	
 	set_active_camera(get_viewport().get_camera_3d())
-	_plr_camera = target_tracking_camera.camera
 	
 	character = character_data.character_scene.instantiate()
 	add_child(character)

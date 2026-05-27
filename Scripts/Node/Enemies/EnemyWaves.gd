@@ -74,6 +74,6 @@ func request_next_wave():
 	if spawned_enemies.size() == 0 and _current_wave < waves_collection.waves.size():
 		start_wave(_current_wave+1)
 	elif spawned_enemies.size() == 0 and _current_wave >= waves_collection.waves.size():
-		loaded_data.enemy_wave = 1
-		save_loader.save_to_disk(loaded_data)
+		#loaded_data.enemy_wave = 1
+		#save_loader.save_to_disk(loaded_data)
 		finished.emit()

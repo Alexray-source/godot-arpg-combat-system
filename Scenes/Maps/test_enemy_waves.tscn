@@ -1,36 +1,19 @@
 [gd_scene format=3 uid="uid://b38qdar3spbj2"]
 
-[ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="1_pyddj"]
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_rn81q"]
-[ext_resource type="Script" uid="uid://djjvpfpq6jjrw" path="res://Scripts/Node/Enemies/EnemyWaves.gd" id="2_xcpuq"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
-[ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="9_yi1ag"]
-[ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="10_jjisf"]
-[ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="12_jjisf"]
+[ext_resource type="PackedScene" uid="uid://c7txhe1xofx58" path="res://Scenes/Maps/sub_areas/area_1.tscn" id="12_1xyem"]
+[ext_resource type="Script" uid="uid://b7d2dkrcftm0a" path="res://Scripts/Node/Level/level_area_loader.gd" id="12_jjisf"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="13_38hi7"]
-[ext_resource type="Script" uid="uid://dv7h2qq8f8at2" path="res://Scripts/Node/Trigger/BlockInputTrigger.gd" id="14_g8dp3"]
+[ext_resource type="PackedScene" uid="uid://bedl40a3fgecw" path="res://Scenes/Maps/sub_areas/area_2.tscn" id="13_mjli6"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="14_kn14b"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="15_2grvq"]
-[ext_resource type="Script" uid="uid://ccaek2qbo6oci" path="res://Scripts/Node/Trigger/EnemyWavesUpdateAITrigger.gd" id="16_nd2sr"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
-[ext_resource type="Script" uid="uid://bepfnmc0ag8m4" path="res://Scripts/Node/Trigger/ToggleHudTrigger.gd" id="17_7rcam"]
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
-[ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="20_bx8ag"]
-[ext_resource type="Resource" uid="uid://tdq55bf3qiuo" path="res://Resources/EnemyWaveCollections/test1.tres" id="20_elxb5"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
-[ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="21_nd2sr"]
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
-[ext_resource type="Script" uid="uid://fneh7m0jye2c" path="res://Scripts/Node/Trigger/CameraTrigger.gd" id="22_x2r5p"]
-[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="23_e0ggl"]
-[ext_resource type="Script" uid="uid://d077tphh7g7c1" path="res://Scripts/Node/Enemies/EnemyWaveUI.gd" id="23_kiw6d"]
-[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="25_bx8ag"]
-[ext_resource type="Script" uid="uid://btrk3r7lf3wc" path="res://Scripts/Node/Environment/DestructibleObject.gd" id="25_nd2sr"]
-[ext_resource type="Script" uid="uid://d0skmk3674ko1" path="res://Scripts/Node/Trigger/StartEnemyWavesTrigger.gd" id="27_g8dp3"]
-[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="28_7rcam"]
-[ext_resource type="Script" uid="uid://c2xin8aw2qw5u" path="res://Scripts/Node/Trigger/ProcessModeTrigger.gd" id="29_7555j"]
 [ext_resource type="Script" uid="uid://tjhxgv8d0moi" path="res://Scripts/Node/Environment/GrappleAreaPoint.gd" id="29_m4vf5"]
-[ext_resource type="Script" uid="uid://cbwskurqdqwpm" path="res://Scripts/Node/Tutorial/TutorialAreaPopup.gd" id="31_kiw6d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pyddj"]
 sky_top_color = Color(0.10620117, 0.20288078, 0.46875, 1)
@@ -82,88 +65,16 @@ height = 15.0
 height = 15.0
 radius = 26.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
-size = Vector3(65.96289, 156, 75.30371)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kiw6d"]
-size = Vector3(179, 156, 14)
-
 [sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
 material = ExtResource("14_kn14b")
-
-[sub_resource type="Resource" id="Resource_1xyem"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_grapple_enemy": "Grapple Enemy",
-"chr_secondary_atk": "Secondary Attack",
-"plr_target_next": "Next Camera Target"
-})
-action_order = Array[String](["plr_target_next"])
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="Resource" id="Resource_p0lev"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_grapple_object": "Grapple Objects",
-"chr_special_atk1": "Special Attack #1"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="Resource" id="Resource_m4vf5"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_special_atk2": "Special Attack #2"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_elxb5"]
-top_radius = 0.815
-bottom_radius = 1.611
-height = 3.111
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bx8ag"]
-size = Vector3(3, 3.5256958, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_nd2sr"]
-size = Vector3(3.6384277, 3.7802734, 3.5957031)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7rcam"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m4vf5"]
 
-[sub_resource type="Resource" id="Resource_nnqa1"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_jump": "Jump"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="Resource" id="Resource_7b5us"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_dash": "Dash"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="Resource" id="Resource_31vy0"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_grapple": "Grapple hook"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="Resource" id="Resource_0i20c"]
-script = ExtResource("10_jjisf")
-action_display_names = Dictionary[String, String]({
-"chr_primary_atk": "Primary Attack",
-"plr_target_lock": "Lock/Unlock Camera Targetting"
-})
-metadata/_custom_type_script = "uid://kylthr61qii5"
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_7555j"]
-size = Vector3(60.0459, 32.35327, 1)
-
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
+
+[node name="Areas" type="Node" parent="." unique_id=636129847]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
 transform = Transform3D(-0.18027645, -0.95853794, -0.22069344, 0.07028695, -0.2363495, 0.96912265, -0.9811015, 0.15919812, 0.10998092, 0, 0, 0)
@@ -214,17 +125,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287375, 25.849699, -21.8684
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
 transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, 7.3530865, 27.849699, -20.331959)
 
-[node name="Node" type="Node" parent="." unique_id=683829750 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
-script = ExtResource("12_jjisf")
-enemy_waves = NodePath("../EnemyWaves")
-target_scene_path = "res://Scenes/UI/prototype_test_end.tscn"
-bgm_changer = NodePath("BgmChanger")
-
-[node name="BgmChanger" type="Node" parent="Node" unique_id=89251606]
-script = ExtResource("17_2grvq")
-crossfade_time = 2.0
-metadata/_custom_type_script = "uid://dfay20msmb3cw"
-
 [node name="Map" type="Node" parent="." unique_id=2040024117]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Map" unique_id=2033599363]
@@ -236,56 +136,6 @@ mesh = SubResource("CylinderMesh_xcpuq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/MeshInstance3D/StaticBody3D" unique_id=880499533]
 shape = SubResource("CylinderShape3D_jjisf")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map" unique_id=792147931]
-process_mode = 4
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06913185, 36.597595, -36.44631)
-collision_layer = 512
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=269918999]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.345253)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=2042665798]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.0981468e-06, 0, -61.3453)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1181090968]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -61.345276, 0, -2.556967e-05)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=386596645]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 61.345276, 0, -2.0206697e-05)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1386553359]
-transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 0, -3.2112002e-06, 73.348145, 0)
-shape = SubResource("BoxShape3D_kiw6d")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=75267099]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -43.377663, 0, 43.37764)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1582463433]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 43.377663, 0, -43.377686)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1904495788]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -43.37766, 0, -43.377686)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
-
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="Map/StaticBody3D" unique_id=1010322561]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 43.37766, 0, 43.37764)
-shape = SubResource("BoxShape3D_yi1ag")
-debug_color = Color(0, 0.85882354, 1, 1)
 
 [node name="CSGBox3D17" type="CSGBox3D" parent="Map" unique_id=1514846524]
 transform = Transform3D(1, 0, 0, 0, 0.9992672, 0.038276188, 0, -0.038276188, 0.9992672, 3.6299858, -20.653227, 132.53673)
@@ -459,96 +309,6 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 [node name="GeneralSlash2" parent="RenderCache" unique_id=1023199983 instance=ExtResource("21_x2r5p")]
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
-[node name="Player" parent="." unique_id=513661283 instance=ExtResource("1_pyddj")]
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -3.3944566, 25.109734, 0.38586044)
-
-[node name="EnemyWaves" type="Node" parent="." unique_id=549023968 node_paths=PackedStringArray("spawn_origin")]
-script = ExtResource("2_xcpuq")
-spawn_origin = NodePath("EnemySpawnEpicenter")
-waves_collection = ExtResource("20_elxb5")
-active_enemy_ai = true
-metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
-
-[node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1496976322]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.6293945e-06, 25.67955, -36.43749)
-
-[node name="Node2" type="Node" parent="EnemyWaves" unique_id=203176248 node_paths=PackedStringArray("enemy_wave_spawner")]
-script = ExtResource("9_yi1ag")
-enemy_wave_spawner = NodePath("..")
-enemy_wave_tutorials = Dictionary[int, ExtResource("10_jjisf")]({
-2: SubResource("Resource_1xyem"),
-4: SubResource("Resource_p0lev"),
-5: SubResource("Resource_m4vf5")
-})
-enabled = true
-
-[node name="EnemyWaveEvents" type="Node" parent="EnemyWaves" unique_id=1246679954 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
-script = ExtResource("20_bx8ag")
-enemy_waves = NodePath("..")
-event_triggers = {
-1: NodePath("MultiTrigger")
-}
-
-[node name="MultiTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents" unique_id=907810051 node_paths=PackedStringArray("triggers")]
-script = ExtResource("21_nd2sr")
-triggers = [NodePath("EnemyWavesUpdateAITrigger"), NodePath("BlockInputTrigger"), NodePath("CameraTrigger"), NodePath("ToggleHudTrigger"), NodePath("DelayTrigger"), NodePath("DelayTrigger2")]
-
-[node name="EnemyWavesUpdateAITrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=405273354 node_paths=PackedStringArray("enemy_waves")]
-script = ExtResource("16_nd2sr")
-enemy_waves = NodePath("../../..")
-enable_ai = false
-metadata/_custom_type_script = "uid://ccaek2qbo6oci"
-
-[node name="BlockInputTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=542281353]
-script = ExtResource("14_g8dp3")
-metadata/_custom_type_script = "uid://dv7h2qq8f8at2"
-
-[node name="CameraTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=1946619285 node_paths=PackedStringArray("target_camera")]
-script = ExtResource("22_x2r5p")
-target_camera = NodePath("../../../../Camera3D")
-
-[node name="ToggleHudTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=1312878322]
-script = ExtResource("17_7rcam")
-is_visible = false
-metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
-
-[node name="DelayTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=1432997871 node_paths=PackedStringArray("target_trigger")]
-script = ExtResource("23_e0ggl")
-delay_time = 2.0
-target_trigger = NodePath("CameraTrigger2")
-
-[node name="CameraTrigger2" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger/DelayTrigger" unique_id=566108322]
-script = ExtResource("22_x2r5p")
-reset_to_default = true
-tween_time = 2.0
-
-[node name="DelayTrigger2" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger" unique_id=87774914 node_paths=PackedStringArray("target_trigger")]
-script = ExtResource("23_e0ggl")
-delay_time = 4.0
-target_trigger = NodePath("MultiTrigger")
-
-[node name="MultiTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger/DelayTrigger2" unique_id=1541380748 node_paths=PackedStringArray("triggers")]
-script = ExtResource("21_nd2sr")
-triggers = [NodePath("BlockInputTrigger"), NodePath("EnemyWavesUpdateAITrigger"), NodePath("ToggleHudTrigger")]
-
-[node name="EnemyWavesUpdateAITrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger/DelayTrigger2/MultiTrigger" unique_id=1344488377 node_paths=PackedStringArray("enemy_waves")]
-script = ExtResource("16_nd2sr")
-enemy_waves = NodePath("../../../../..")
-metadata/_custom_type_script = "uid://ccaek2qbo6oci"
-
-[node name="BlockInputTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger/DelayTrigger2/MultiTrigger" unique_id=1698954097]
-script = ExtResource("14_g8dp3")
-block_input = false
-metadata/_custom_type_script = "uid://dv7h2qq8f8at2"
-
-[node name="ToggleHudTrigger" type="Node" parent="EnemyWaves/EnemyWaveEvents/MultiTrigger/DelayTrigger2/MultiTrigger" unique_id=133227370]
-script = ExtResource("17_7rcam")
-metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
-
-[node name="EnemyWaveUI" type="Node" parent="EnemyWaves" unique_id=827625361 node_paths=PackedStringArray("enemy_waves")]
-script = ExtResource("23_kiw6d")
-enemy_waves = NodePath("..")
-
 [node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
 script = ExtResource("17_2grvq")
 auto_start = true
@@ -558,58 +318,6 @@ metadata/_custom_type_script = "uid://dfay20msmb3cw"
 [node name="VFXSpawner" type="Node" parent="." unique_id=832207028]
 script = ExtResource("19_hjdgx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=508170288]
-transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 27.954823, -29.144444)
-fov = 39.374996
-
-[node name="Node3D2" type="Node3D" parent="." unique_id=1810181570 node_paths=PackedStringArray("object_center_point", "hurtbox", "dead_trigger")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8146973e-06, 24.849699, -36.432796)
-script = ExtResource("25_nd2sr")
-health = 10
-object_center_point = NodePath("Node3D/CollisionShape3D")
-hurtbox = NodePath("Node3D/HurtBox")
-dead_trigger = NodePath("../MultiTrigger")
-
-[node name="Node3D" type="StaticBody3D" parent="Node3D2" unique_id=1018595611]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2/Node3D" unique_id=280941444]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4531524, 0)
-mesh = SubResource("CylinderMesh_elxb5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D" unique_id=1632032592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2628479, 0)
-shape = SubResource("BoxShape3D_bx8ag")
-
-[node name="HurtBox" type="Area3D" parent="Node3D2/Node3D" unique_id=472689892 groups=["targetable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-collision_layer = 10
-script = ExtResource("25_bx8ag")
-metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D/HurtBox" unique_id=1014300862]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6098633, 0)
-shape = SubResource("BoxShape3D_nd2sr")
-
-[node name="StartEnemyWavesTrigger" type="Node" parent="." unique_id=13055706 node_paths=PackedStringArray("enemy_waves")]
-script = ExtResource("27_g8dp3")
-enemy_waves = NodePath("../EnemyWaves")
-metadata/_custom_type_script = "uid://d0skmk3674ko1"
-
-[node name="MultiTrigger" type="Node" parent="." unique_id=1212437086 node_paths=PackedStringArray("triggers")]
-script = ExtResource("21_nd2sr")
-triggers = [NodePath("DestroyTrigger"), NodePath("ProcessModeTrigger"), NodePath("../StartEnemyWavesTrigger")]
-metadata/_custom_type_script = "uid://bxsi8tccwwxt6"
-
-[node name="DestroyTrigger" type="Node" parent="MultiTrigger" unique_id=2061276312 node_paths=PackedStringArray("node_to_destroy")]
-script = ExtResource("28_7rcam")
-node_to_destroy = NodePath("../../Node3D2")
-metadata/_custom_type_script = "uid://6bco6swhk10l"
-
-[node name="ProcessModeTrigger" type="Node" parent="MultiTrigger" unique_id=1803258700 node_paths=PackedStringArray("target_node")]
-script = ExtResource("29_7555j")
-target_node = NodePath("../../Map/StaticBody3D")
-metadata/_custom_type_script = "uid://c2xin8aw2qw5u"
 
 [node name="Interactables" type="Node" parent="." unique_id=1888126952]
 
@@ -657,45 +365,12 @@ script = ExtResource("29_m4vf5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D3/Area3D" unique_id=879956954]
 shape = SubResource("SphereShape3D_m4vf5")
 
-[node name="AreaTriggers" type="Node" parent="." unique_id=397373122]
-
-[node name="TutorialTriggers" type="Node" parent="AreaTriggers" unique_id=1482376968 node_paths=PackedStringArray("area_tutorial_mapping")]
-script = ExtResource("31_kiw6d")
-area_tutorial_mapping = {
-NodePath("Area3D"): SubResource("Resource_nnqa1"),
-NodePath("Area3D2"): SubResource("Resource_7b5us"),
-NodePath("Area3D3"): SubResource("Resource_31vy0"),
-NodePath("Area3D4"): SubResource("Resource_0i20c")
-}
-
-[node name="Area3D" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=764599409]
-transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 96.57512, 0, 172.19356)
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D" unique_id=79365838]
-shape = SubResource("BoxShape3D_7555j")
-debug_color = Color(0.078125, 1, 0, 1)
-
-[node name="Area3D2" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=39062742]
-transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 81.117134, 0, 159.22276)
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D2" unique_id=1484659507]
-shape = SubResource("BoxShape3D_7555j")
-debug_color = Color(0.078125, 1, 0, 1)
-
-[node name="Area3D3" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=93433687]
-transform = Transform3D(0.6427876, 0, 0.7660443, 0, 1, 0, -0.7660443, 0, 0.6427876, 58.483322, 0, 140.23074)
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D3" unique_id=1355230791]
-shape = SubResource("BoxShape3D_7555j")
-debug_color = Color(0.078125, 1, 0, 1)
-
-[node name="Area3D4" type="Area3D" parent="AreaTriggers/TutorialTriggers" unique_id=2138676195]
-transform = Transform3D(0.99999994, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, 0.99999994, -7.0260735, 28.044212, -8.204272)
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaTriggers/TutorialTriggers/Area3D4" unique_id=2146185484]
-shape = SubResource("BoxShape3D_7555j")
-debug_color = Color(0.078125, 1, 0, 1)
+[node name="LevelAreaLoader" type="Node" parent="." unique_id=1496405907 node_paths=PackedStringArray("areas_holder")]
+script = ExtResource("12_jjisf")
+areas = Dictionary[String, PackedScene]({
+"area1": ExtResource("12_1xyem"),
+"area2": ExtResource("13_mjli6")
+})
+default_area_key = "area1"
+areas_holder = NodePath("../Areas")
+metadata/_custom_type_script = "uid://b7d2dkrcftm0a"

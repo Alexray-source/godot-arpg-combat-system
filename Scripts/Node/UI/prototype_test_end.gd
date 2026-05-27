@@ -6,6 +6,10 @@ extends Panel
 @export var result_bgm : BgmChanger
 
 func _ready() -> void:
+	##Only for prototype
+	var save_handler : SaveDataHandler = SaveDataHandler.new()
+	save_handler.delete_from_disk()
+	
 	main_section.modulate = Color(1.0,1.0,1.0)
 	promo_section.modulate = Color(1.0,1.0,1.0,0.0)
 	
