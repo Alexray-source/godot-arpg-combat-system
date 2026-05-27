@@ -8,9 +8,9 @@ script = ExtResource("2_ocjks")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
-top_radius = 0.0
+top_radius = 0.1
 bottom_radius = 0.1
-height = 0.3
+height = 1.0
 
 [node name="FlintlockBullet" type="Node3D" unique_id=351752051]
 script = ExtResource("1_207l6")
