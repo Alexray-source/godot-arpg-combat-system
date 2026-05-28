@@ -80,12 +80,14 @@ func physics_process(delta: float) -> void:
 		if _3d_closest_indicator.visible and _closest_node != null:
 			_3d_closest_indicator.global_position = _closest_node.global_position
 			
-			if target_override != null:
-				var direction_to_priority_target = character.global_position.direction_to(target_override.global_position)
-				var priority_dot_direction_result = -character.global_basis.z.dot(direction_to_priority_target)
-				
-				if priority_dot_direction_result > 0.8:
-					_3d_closest_indicator.global_position = target_override.global_position
+			#if target_override != null and character.move_dir.length() > 0.01:
+				#var direction_to_priority_target = character.global_position.direction_to(target_override.global_position)
+				#var priority_dot_direction_result = -character.global_basis.z.dot(direction_to_priority_target)
+				#
+				#if priority_dot_direction_result > 0.8:
+					#_3d_closest_indicator.global_position = target_override.global_position
+			if target_override != null and character.move_dir.length() < 0.1:
+				_3d_closest_indicator.global_position = target_override.global_position
 	
 	_aoe_grapple.physics_process(delta)
 
@@ -128,8 +130,8 @@ func cancel() -> void:
 func ability_event() -> void:
 	_aoe_grapple.hitbox_transform = Transform3D(character.global_basis.orthonormalized(), character.global_position) 
 	print("Grapple Event")
-	_aoe_grapple.attempt_grapple_to_closest_object(target_override)
-	#if target_override != null and grapple_mode == AoeGrapple.GrappleMode.REEL:
-		#_aoe_grapple.perform_grapple(target_override)
-	#else:
-		#_aoe_grapple.attempt_grapple_to_closest_object()
+	#_aoe_grapple.attempt_grapple_to_closest_object(target_override)
+	if target_override != null and character.move_dir.length() <= 0.1:
+		_aoe_grapple.perform_grapple(target_override)
+	else:
+		_aoe_grapple.attempt_grapple_to_closest_object(target_override)

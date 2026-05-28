@@ -4,11 +4,11 @@ class_name PlayerHUD extends Control
 @export var abilities_ui : AbilitiesUIComponent
 @export var health_bar : ProgressBar
 @export var stamina_bar : ProgressBar
-@export var grapple_mode_tex_rect : TextureRect
+@export var target_indicator_rect : TextureRect
 
 @export_subgroup("Temporary Testing")
-@export var grapple_chr_texture : Texture2D
-@export var grapple_obj_texture : Texture2D
+@export var target_inactive_color : Color
+@export var target_active_color : Color
 
 var _stamina : float = 100.0
 var _max_stamina : float = 100.0
@@ -39,8 +39,8 @@ func show_insufficient_ability_energy(icon_index : int):
 func update_health_bar(health : int, max_health : int):
 	health_bar.value = health / float(max_health)
 
-func update_grapple_mode(target_characters : bool):
-	if target_characters == true:
-		grapple_mode_tex_rect.texture = grapple_chr_texture
+func update_target_mode(is_active : bool):
+	if is_active == true:
+		target_indicator_rect.self_modulate = target_active_color
 	else:
-		grapple_mode_tex_rect.texture = grapple_obj_texture
+		target_indicator_rect.self_modulate = target_inactive_color

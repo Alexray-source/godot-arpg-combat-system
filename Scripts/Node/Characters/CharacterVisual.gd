@@ -46,6 +46,8 @@ var _state_end_stop_anims : Array[String]
 var _look_dir : float
 
 func _ready() -> void:
+	mesh_instance.layers = 2
+	
 	_state_enter_anim_mapping = {
 		"dead" = dead_anim_name,
 		"dodge_dash" = dash_anim_name,
@@ -100,7 +102,7 @@ func on_state_key_changed(old_state_key : String , new_state_key : String) -> vo
 	
 	_face_target = state_machine.is_current_state_by_key("fly_movement") or state_machine.is_current_state_by_key("block")
 
-func on_attack_blocked():
+func on_attack_blocked(_atk_info : AtkInfo):
 	play_override_animation(block_hit_anim_name)
 
 func _process(_delta: float) -> void:

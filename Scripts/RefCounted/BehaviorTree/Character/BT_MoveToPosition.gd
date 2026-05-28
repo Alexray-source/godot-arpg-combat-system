@@ -5,6 +5,7 @@ var target_position_bb_key : String
 var target_success_radius : float = 1.0
 var timeout_time : float = 5.0
 var accumulated_time : float = 0.0
+var ignore_y : bool = false
 
 var _reached_target : bool = false
 
@@ -26,9 +27,15 @@ func tick(blackboard : Dictionary):
 	
 	accumulated_time += delta
 	
-	base_chr.move_dir = base_chr.global_position.direction_to(target_position)
+	var chr_pos : Vector3 = base_chr.global_position
 	
-	if base_chr.global_position.distance_to(target_position) < target_success_radius:
+	if ignore_y == true:
+		chr_pos = Vector3(chr_pos.x, 0.0, chr_pos.z)
+		target_position = Vector3(target_position.x, 0.0, target_position.z)
+	
+	base_chr.move_dir = chr_pos.direction_to(target_position)
+	
+	if chr_pos.distance_to(target_position) < target_success_radius:
 		_reached_target = true
 		base_chr.move_dir = Vector3.ZERO
 		return SUCCESS

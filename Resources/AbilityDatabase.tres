@@ -6,14 +6,16 @@
 [ext_resource type="Script" uid="uid://bob1v7bks8do5" path="res://Scripts/Resources/AbilityData/AnimationAttackData.gd" id="3_h7bsk"]
 [ext_resource type="PackedScene" uid="uid://nqa4lbapbmbd" path="res://Scenes/SceneAttacks/bomb.tscn" id="4_in3r3"]
 [ext_resource type="Script" uid="uid://buegejwwr60aa" path="res://Scripts/Resources/AttackData/SceneAttackData.gd" id="5_jhoc3"]
-[ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="6_in3r3"]
-[ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="7_jhoc3"]
+[ext_resource type="Texture2D" uid="uid://brasiho07txmy" path="res://Assets/Textures/UI/ability_3.svg" id="6_xyhbj"]
 [ext_resource type="Resource" uid="uid://c0knc2ghybhkk" path="res://Resources/AbilityData/grapple_reel.tres" id="8_i47es"]
 [ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="9_5yina"]
 [ext_resource type="Resource" uid="uid://ddeysuhby14xe" path="res://Resources/AbilityData/grapple_pull.tres" id="10_s1o2a"]
 [ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="11_y07hn"]
+[ext_resource type="Texture2D" uid="uid://m8ysads5q5r0" path="res://Assets/Textures/UI/ability_1.svg" id="12_flr55"]
 [ext_resource type="Resource" uid="uid://ct7nrn8a1kun" path="res://Resources/AbilityData/downwards_shot.tres" id="12_y07hn"]
 [ext_resource type="Resource" uid="uid://gt5et0uvodvl" path="res://Resources/AbilityData/ricochet_shot.tres" id="13_bipbt"]
+[ext_resource type="Texture2D" uid="uid://ccwedhqc2xscp" path="res://Assets/Textures/UI/ability_4.svg" id="14_4tu34"]
+[ext_resource type="Texture2D" uid="uid://hftg7opp5340" path="res://Assets/Textures/UI/ability_2.svg" id="15_uee13"]
 
 [sub_resource type="Resource" id="Resource_qbr8q"]
 script = ExtResource("5_jhoc3")
@@ -39,7 +41,7 @@ metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 script = ExtResource("1_f8i7n")
 ability_data = ExtResource("12_y07hn")
 ability_energy_cost = 45
-ability_icon = ExtResource("9_5yina")
+ability_icon = ExtResource("6_xyhbj")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [sub_resource type="Resource" id="Resource_bipbt"]
@@ -78,14 +80,14 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_7qyh0")
 ability_energy_cost = 10
-ability_icon = ExtResource("6_in3r3")
+ability_icon = ExtResource("12_flr55")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [sub_resource type="Resource" id="Resource_xyhbj"]
 script = ExtResource("1_f8i7n")
 ability_data = ExtResource("13_bipbt")
 ability_energy_cost = 17
-ability_icon = ExtResource("11_y07hn")
+ability_icon = ExtResource("14_4tu34")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jb0u1"]
@@ -109,7 +111,7 @@ metadata/_custom_type_script = "uid://bob1v7bks8do5"
 script = ExtResource("1_f8i7n")
 ability_data = SubResource("Resource_5ps18")
 ability_energy_cost = 28
-ability_icon = ExtResource("7_jhoc3")
+ability_icon = ExtResource("15_uee13")
 metadata/_custom_type_script = "uid://cxsekofi2bc0h"
 
 [resource]

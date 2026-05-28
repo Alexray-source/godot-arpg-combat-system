@@ -30,7 +30,8 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 [sub_resource type="Resource" id="Resource_2uqjv"]
 script = ExtResource("8_gemq8")
 action_display_names = Dictionary[String, String]({
-"chr_dash": "Dash"
+"chr_dash": "Dash",
+"chr_run": "Run"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 

@@ -14,7 +14,10 @@ func get_closest_hurtbox_to_position(origin : Vector3, direct_space_state, hit_s
 			
 			var camera_requirements = ((scan_only_in_camera_frustum == true and found_hurtbox.get_viewport().get_camera_3d().is_position_in_frustum(found_hurtbox.global_position)) or scan_only_in_camera_frustum == false)
 			
-			if camera_requirements == true and blacklist.find(found_hurtbox) == -1 and (found_hurtbox.global_position - origin).length() < closest_distance:
+			var distance = (found_hurtbox.global_position - origin).length()
+			
+			if camera_requirements == true and blacklist.find(found_hurtbox) == -1 and distance < closest_distance:
+				closest_distance = distance
 				closest_hurtbox = found_hurtbox
 	
 	return closest_hurtbox

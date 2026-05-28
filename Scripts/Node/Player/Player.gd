@@ -172,7 +172,7 @@ func on_ability_energy_changed():
 
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
 	GlobalSignals.shake_all_cameras.emit(hit_shake)
-	ability_energy = clampi(ability_energy + (7.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
+	ability_energy = clampi(ability_energy + (8.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
 	
 	if current_target == null:
 		var first_hurtbox = enemy_hurtboxes.get(0)
@@ -262,14 +262,15 @@ func on_block_end() -> void:
 	print("block release")
 	if character != null and character.is_current_state("block"):
 		character.rescan_ground_state()
+		character.debounces.remove_debounce("attack")
 
-func on_atk_blocked() -> void:
+func on_atk_blocked(atk_info : AtkInfo) -> void:
 	_block_stamina = clampf(_block_stamina - 25.0, 0.0, 100.0)
-	_block_combo += 1
+	#_block_combo += 1
 	
 	GlobalSignals.shake_all_cameras.emit(block_shake)
 	
-	if _block_combo >= 3:
+	if atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE:
 		Engine.time_scale = 0.1
 		_block_combo = 0
 		allow_parry = true
@@ -313,8 +314,11 @@ func on_toggle_target_lock() -> void:
 	
 	if current_target != null:
 		set_lock_target(null)
-	elif target_tracking_camera.nearby_targets.size() > 0:
-		set_lock_target(target_tracking_camera.nearby_targets.get(0))
+	elif _closest_target != null:
+		set_lock_target(_closest_target)
+	else:
+		target_closest_enemy_to_character()
+		#set_lock_target(target_tracking_camera.nearby_targets.get(0))
 
 func on_target_next(bypass_debounce : bool = false) -> void:
 	if current_target == null:
@@ -396,7 +400,7 @@ func target_closest_enemy_to_character():
 	var closest_enemy
 	
 	#print(closest_hurtbox.get_parent_node_3d() )
-	if closest_hurtbox != null and closest_hurtbox.get_parent_node_3d() != current_target.get_parent_node_3d():
+	if current_target == null or closest_hurtbox.get_parent_node_3d() != current_target.get_parent_node_3d():
 		closest_enemy = closest_hurtbox.get_parent_node_3d()
 	
 	print("target outside camera : " + str(closest_enemy))
@@ -408,6 +412,7 @@ func target_closest_enemy_to_character():
 func set_lock_target(new_target : Node3D) -> void:
 	if current_target != null and current_target.tree_exiting.is_connected(handle_target_tree_exit) == true:
 		current_target.tree_exiting.disconnect(handle_target_tree_exit)
+	
 	
 	current_target = new_target
 	character.lock_to_target(new_target)
@@ -440,19 +445,21 @@ func handle_camera_rot(delta):
 	var camera_move_dir : Vector2 = Vector2(-input_events.camera_move_dir.x - chr_movement_camera_influence, -input_events.camera_move_dir.y,)
 	
 	if current_target != null:
+		camera_move_dir = Vector2.ZERO
 		#camera_move_dir = Vector2.ZERO
 		var viewport_size : Vector2 = get_viewport().get_visible_rect().size
 		var viewport_center_pos : Vector2 = viewport_size * 0.5
 		
 		var target_screen_pos : Vector2 = _plr_camera.unproject_position(current_target.global_position)
 		var x_correction = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
+		var y_correction = -((target_screen_pos - viewport_center_pos).y / viewport_size.y)
 		
 		#print(x_correction)
 		if _plr_camera.is_position_behind(current_target.global_position):
 			var camera_look_dir : Vector3 = -_plr_camera.global_basis.z
 			camera_move_dir.x = camera_look_dir.signed_angle_to(_plr_camera.global_position.direction_to(current_target.global_position), _plr_camera.global_basis.y) * 10.0
-		elif abs(x_correction) > 0.1:
-			camera_move_dir.x = (x_correction / viewport_size.x) * 25000.0
+		elif abs(x_correction) > 0.1 or abs(y_correction) > 0.1:
+			camera_move_dir = Vector2((x_correction / viewport_size.x) * 25000.0, (y_correction / viewport_size.y) * 2500.0)
 		
 	
 	camera_rot_y_accel = lerp(camera_rot_y_accel, camera_move_dir.x, delta * 10.0)
@@ -487,6 +494,8 @@ func _process(delta: float) -> void:
 	if _closest_target != null:
 		inactive_target_reticle.global_position = _closest_target.global_position
 	
+	
+	hud.update_target_mode(current_target != null)
 	target_reticle.visible = current_target != null
 	inactive_target_reticle.visible = current_target == null and _closest_target != null
 	

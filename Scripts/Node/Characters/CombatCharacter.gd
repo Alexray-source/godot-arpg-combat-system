@@ -183,7 +183,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		_damage_sfx_player.play_damage_sfx(self, atk_info.atk_type)
 		GlobalSignals.spawn_vfx.emit("melee_damage", Transform3D(hurt_box.global_basis, hurt_box.global_position + hurt_box.hurtbox_center_offset))
 		
-		if stagger_immune == true and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
+		if stagger_immune == true:
 			return
 		
 		if atk_info.atk_type == AtkInfo.AtkType.MASSIVE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_PROJECTILE or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL or atk_info.atk_type == AtkInfo.AtkType.MASSIVE_ABILITY:
@@ -204,7 +204,7 @@ func on_atk_hit(atk_info : AtkInfo):
 		if is_current_state("block") == true:
 			if atk_info.atk_dir.is_zero_approx() == false:
 				global_basis = Basis.looking_at(Vector3(-atk_info.atk_dir.x, 0.0, -atk_info.atk_dir.z))
-			atk_blocked.emit()
+			atk_blocked.emit(atk_info)
 			dash(-2.0)
 		
 
@@ -290,7 +290,7 @@ func stagger(atk_info : AtkInfo):
 	interupt_atks.emit()
 
 func knockback(atk_info : AtkInfo):
-	if (stagger_immune == true and atk_info.atk_type != AtkInfo.AtkType.MASSIVE_DIRECTIONAL) or state_machine.is_current_state_by_key("dead"):
+	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	velocity = Vector3.ZERO

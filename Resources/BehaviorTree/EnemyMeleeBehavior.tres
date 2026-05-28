@@ -125,6 +125,7 @@ character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 target_success_radius = 5.0
 timeout_result = 0
+ignore_y = true
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
 [sub_resource type="Resource" id="Resource_qh7sx"]
@@ -154,7 +155,7 @@ metadata/_custom_type_script = "uid://cxmedjxpldotm"
 [sub_resource type="Resource" id="Resource_f0syj"]
 resource_name = "Request enemy for combat token"
 script = ExtResource("11_2yww0")
-token_lifetime = 4.0
+token_lifetime = 5.5
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_5hrey"]
@@ -216,6 +217,7 @@ script = ExtResource("15_61te7")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
 target_success_radius = 1.5
+ignore_y = true
 metadata/_custom_type_script = "uid://bmpahmv7sooex"
 
 [sub_resource type="Resource" id="Resource_ccn1i"]

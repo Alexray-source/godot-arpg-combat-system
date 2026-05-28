@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://cj836noe0hvrg" path="res://Scripts/Node/UI/AbilitiesUIComponent.gd" id="1_6d7lo"]
 [ext_resource type="Script" uid="uid://5vy7h2bb2fjm" path="res://Scripts/Node/UI/HUD.gd" id="1_b2arx"]
 [ext_resource type="PackedScene" uid="uid://vkfcfqy35fmy" path="res://Scenes/UI/ability_icon.tscn" id="1_ks3ap"]
-[ext_resource type="Texture2D" uid="uid://c6udca7n8v6j5" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridRed.png" id="2_xq4qh"]
 [ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="5_dva25"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="6_xq4qh"]
 [ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="7_45mfi"]
-[ext_resource type="Texture2D" uid="uid://dbk71swqy7mgp" path="res://Assets/Textures/Mat/Checkerboard/BlockoutGridBlue.png" id="8_dva25"]
 [ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="8_knqh6"]
+[ext_resource type="Texture2D" uid="uid://dmkycthjdi3u1" path="res://Assets/Textures/UI/InputKeyboard/flair_circle_target_a.png" id="10_knqh6"]
+[ext_resource type="Texture2D" uid="uid://bfdjijrht5u28" path="res://Assets/Textures/UI/playstation_trigger_r2.png" id="11_qwgca"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ov73"]
 bg_color = Color(0.109375, 0.109375, 0.109375, 1)
@@ -25,6 +25,8 @@ expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.10980392)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duido"]
 bg_color = Color(0.33686393, 0.79296875, 0.13009644, 1)
@@ -33,14 +35,41 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xq4qh"]
+bg_color = Color(0.109375, 0.109375, 0.109375, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.23529412)
+shadow_size = 16
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npgtc"]
 bg_color = Color(1, 0.796875, 0, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
-[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar", "stamina_bar", "grapple_mode_tex_rect")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45mfi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.42352942)
+shadow_size = 23
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knqh6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.08627451)
+shadow_size = 53
+
+[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar", "stamina_bar", "target_indicator_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,9 +80,9 @@ script = ExtResource("1_b2arx")
 abilities_ui = NodePath("Control")
 health_bar = NodePath("ProgressBar")
 stamina_bar = NodePath("ProgressBar2")
-grapple_mode_tex_rect = NodePath("")
-grapple_chr_texture = ExtResource("2_xq4qh")
-grapple_obj_texture = ExtResource("8_dva25")
+target_indicator_rect = NodePath("TextureRect")
+target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
+target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
 
 [node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons")]
 layout_mode = 1
@@ -77,9 +106,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -32.0
-offset_right = 64.0
-offset_bottom = 32.0
+offset_top = -27.0
+offset_right = 54.0
+offset_bottom = 27.0
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("5_dva25")
@@ -90,9 +119,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -32.0
-offset_right = 32.0
-offset_bottom = 64.0
+offset_left = -27.0
+offset_right = 27.0
+offset_bottom = 54.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("6_xq4qh")
@@ -105,10 +134,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -32.0
+offset_left = -54.0
+offset_top = -27.0
 offset_right = 0.0
-offset_bottom = 32.0
+offset_bottom = 27.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -122,9 +151,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -64.0
-offset_right = 32.0
+offset_left = -27.0
+offset_top = -54.0
+offset_right = 27.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -154,8 +183,76 @@ layout_mode = 0
 offset_left = 465.0
 offset_top = 204.0
 offset_right = 497.0
-offset_bottom = 208.0
+offset_bottom = 210.0
 pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_xq4qh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_npgtc")
 max_value = 1.0
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1792337067]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -131.0
+offset_right = 121.0
+offset_bottom = -67.0
+grow_vertical = 0
+texture = ExtResource("10_knqh6")
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect" unique_id=320483259]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = 6.0
+offset_right = 12.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("11_qwgca")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="TextureRect/TextureRect2" unique_id=1447531479]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -2.5
+offset_right = 1.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_45mfi")
+
+[node name="Panel" type="Panel" parent="TextureRect" unique_id=309357162]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -2.5
+offset_right = 1.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_knqh6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1194880785]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

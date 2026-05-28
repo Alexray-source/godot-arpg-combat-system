@@ -44,10 +44,15 @@ func on_grapple_finished():
 	#return grapple_mode_accepted_classes.has(node_to_check.get_script().get_global_name())
 
 func get_grapple_mode_from_node(node : Node) -> GrappleMode:
+	var script = node.get_script()
+	
+	if script == null:
+		return GrappleMode.REEL
+	
 	var node_class_name = node.get_script().get_global_name()
 	
 	if node_class_name.is_empty() == true :
-		return GrappleMode.INVALID
+		return GrappleMode.REEL
 	
 	return get_grapple_mode_from_class(node_class_name)
 
@@ -116,16 +121,16 @@ func attempt_grapple_to_closest_object(priority_target : Node3D):
 	#var direction_to_collider = instigator.global_position.direction_to(closest_body.global_position)
 	#var body_dot_direction_result = -instigator.global_basis.z.dot(direction_to_collider)
 	
-	if priority_target != null:
-		var from_pos = Vector3(instigator.global_position.x, 0.0, instigator.global_position.z)
-		var to_pos = Vector3(priority_target.global_position.x, 0.0, priority_target.global_position.z)
-		var look_vector = Vector3(-instigator.global_basis.z.x, 0.0, -instigator.global_basis.z.z).normalized()
-		
-		var direction_to_priority_target = from_pos.direction_to(to_pos)
-		var priority_dot_direction_result = look_vector.dot(direction_to_priority_target)
-		
-		if priority_dot_direction_result > 0.8:
-			closest_body = priority_target
+	#if priority_target != null:
+		#var from_pos = Vector3(instigator.global_position.x, 0.0, instigator.global_position.z)
+		#var to_pos = Vector3(priority_target.global_position.x, 0.0, priority_target.global_position.z)
+		#var look_vector = Vector3(-instigator.global_basis.z.x, 0.0, -instigator.global_basis.z.z).normalized()
+		#
+		#var direction_to_priority_target = from_pos.direction_to(to_pos)
+		#var priority_dot_direction_result = look_vector.dot(direction_to_priority_target)
+		#
+		#if priority_dot_direction_result > 0.8:
+			#closest_body = priority_target
 	
 	var attached_script = closest_body.get_script()
 	if attached_script != null:
@@ -214,7 +219,7 @@ func physics_process(delta : float):
 			if _current_target is CombatCharacter and _current_target.is_on_floor() == false:
 				instigator.velocity = Vector3(0.0,5.0,0.0)
 				#instigator.up_velocity = Vector3.ZERO
-				instigator.move_and_slide()
+				#instigator.move_and_slide()
 				
 				var atk_info = AtkInfo.new(0, AtkInfo.AtkType.ABILITY, instigator, instigator.global_position.direction_to(target_pos))
 				_current_target.stagger(atk_info)

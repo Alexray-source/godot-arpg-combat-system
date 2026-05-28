@@ -6,19 +6,30 @@ class_name CharacterAbilities extends Node
 @export var debug : bool = false
 var _abilities : Dictionary[StringName, AbilityComponent]
 var chr_layer : CharacterLayer
-var target_override : Node3D
+var target_override : Node3D:
+	set(value):
+		target_override = value
+		target_override_changed.emit(value)
 
 var active_ability : AbilityComponent
 
 signal ability_finished
 signal ability_hit(hurtboxes_hit : Array[HurtBox])
+signal target_override_changed(new_target : Node3D)
 
 func setup() -> void:
 	for ability_key in abilities_data:
 		create_and_store_ability_component(ability_key)
+		
+	target_override_changed.connect(update_abilities_target_override)
 
 func reset() -> void:
 	_abilities.clear()
+
+func update_abilities_target_override(new_target : Node3D):
+	for ability_key in _abilities:
+		var ability = _abilities[ability_key]
+		ability.target_override = new_target
 
 func add_ability_data(ability_key : StringName, ability_data : AbilityData):
 	abilities_data[ability_key] = ability_data
