@@ -27,6 +27,9 @@ func _ready() -> void:
 	on_floor_changed(is_on_floor())
 	
 	is_on_floor_changed.connect(on_floor_changed)
+	
+	if chr_movement_type == ChrMovementType.FLYING:
+		motion_mode = CharacterBody3D.MOTION_MODE_FLOATING
 
 func on_floor_changed(_is_floored : bool) -> void:
 	rescan_ground_state()
@@ -51,6 +54,9 @@ func calculate_gravity_force(up_velocity : Vector3, delta : float):
 	return up_velocity
 
 func _physics_process(_delta: float) -> void:
+	if chr_movement_type == ChrMovementType.FLYING:
+		return
+	
 	if is_on_floor() != prev_is_on_floor:
 		is_on_floor_changed.emit(is_on_floor())
 		

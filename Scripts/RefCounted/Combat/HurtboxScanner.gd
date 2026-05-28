@@ -6,7 +6,7 @@ var scan_only_in_camera_frustum : bool = false
 func get_closest_hurtbox_to_position(origin : Vector3, direct_space_state, hit_shape, hitbox_transform, scan_mask):
 	var results = scan(direct_space_state, hit_shape, hitbox_transform, scan_mask)
 	var closest_hurtbox : HurtBox = null
-	var closest_distance : float = 10000.0
+	var closest_distance : float = INF
 	
 	for result in results:
 		if result.get("collider") is HurtBox:
@@ -16,7 +16,7 @@ func get_closest_hurtbox_to_position(origin : Vector3, direct_space_state, hit_s
 			
 			var distance = (found_hurtbox.global_position - origin).length()
 			
-			if camera_requirements == true and blacklist.find(found_hurtbox) == -1 and distance < closest_distance:
+			if camera_requirements == true and blacklist.has(found_hurtbox) == false and distance < closest_distance:
 				closest_distance = distance
 				closest_hurtbox = found_hurtbox
 	

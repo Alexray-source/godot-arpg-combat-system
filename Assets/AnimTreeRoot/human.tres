@@ -15,7 +15,7 @@ autorestart_delay = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8m6ks"]
 resource_local_to_scene = true
-animation = &"PlayerSwordAnims/NinjaPrimary1"
+animation = &"BaseAnimations/Dead"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3viv7"]
 animation = &"BaseAnimations/BrakeEnd"
@@ -262,7 +262,7 @@ graph_offset = Vector2(-228, -184)
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-1126.3257, -276.1058)
+graph_offset = Vector2(-1350.37, 85.95)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-1040, -120)

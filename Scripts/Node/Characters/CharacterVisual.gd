@@ -143,7 +143,7 @@ func _process(_delta: float) -> void:
 	#print(combat_character.velocity.dot(-global_basis.z))
 	anim_tree.set(movement_blend_prop_path, Vector2(_look_dir, combat_character.velocity.length() / 6.0))
 	
-	if state_machine.is_current_state_by_key("ground_movement") and not is_equal_approx(combat_character.move_dir.length(), 0.0):
+	if state_machine.is_current_state_by_key("ground_movement") and not is_equal_approx(combat_character.move_dir.length(), 0.0) and anim_tree.get("parameters/OneShot/active") == false:
 		anim_tree.set("parameters/TimeScale/scale", combat_character.velocity.length() / 8.0)
 	else:
 		anim_tree.set("parameters/TimeScale/scale", 1.0)

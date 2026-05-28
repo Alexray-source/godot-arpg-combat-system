@@ -7,6 +7,7 @@ const NODE_WITH_CHILDREN_UI_SCENE : PackedScene = preload("res://addons/atomai/S
 	set(value):
 		tree_data = value
 		rebuild_ui()
+		reset_navigation()
 
 @export var tree_container : VBoxContainer
 
@@ -80,6 +81,12 @@ func create_tree_branch_ui(composite : BT_CompositeData):
 		composite.children_changed.connect(rebuild_ui)
 	
 	return node_ui
+
+func reset_navigation():
+	zoom_scale = 1.0
+	tree_container.scale = Vector2(zoom_scale,zoom_scale)
+	tree_container.position = Vector2.ZERO
+	redraw_lines()
 
 func _ready() -> void:
 	rebuild_ui()

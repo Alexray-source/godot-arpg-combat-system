@@ -386,10 +386,14 @@ func target_closest_enemy_to_character():
 		return
 	
 	var scan_shape : SphereShape3D = SphereShape3D.new()
-	scan_shape.radius = 50.0
+	scan_shape.radius = targeting_cancel_distance_treshold
 
 	var hurtbox_scanner : HurtBoxScanner = HurtBoxScanner.new()
 	hurtbox_scanner.scan_only_in_camera_frustum = false
+	hurtbox_scanner.blacklist = []
+	
+	if current_target is CombatCharacter:
+		hurtbox_scanner.blacklist.append(current_target.hurt_box)
 	
 	var closest_hurtbox = hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, get_world_3d().direct_space_state, scan_shape, character.global_transform, character.chr_layer.get_enemy_layer())
 	
@@ -400,7 +404,7 @@ func target_closest_enemy_to_character():
 	var closest_enemy
 	
 	#print(closest_hurtbox.get_parent_node_3d() )
-	if current_target == null or closest_hurtbox.get_parent_node_3d() != current_target.get_parent_node_3d():
+	if current_target == null or closest_hurtbox.get_parent_node_3d() != current_target:
 		closest_enemy = closest_hurtbox.get_parent_node_3d()
 	
 	print("target outside camera : " + str(closest_enemy))

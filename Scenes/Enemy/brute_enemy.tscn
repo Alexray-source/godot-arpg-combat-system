@@ -184,6 +184,7 @@ metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 resource_name = "Request enemy for combat token"
 script = ExtResource("13_ej8u3")
 token_lifetime = 6.0
+chr_must_be_in_camera = false
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_l24v5"]
@@ -298,6 +299,15 @@ script = ExtResource("17_3erts")
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_7y58b")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
+[sub_resource type="Resource" id="Resource_nyi41"]
+resource_name = "Get Closest Chr."
+script = ExtResource("4_5ny8y")
+origin_node_scan_key = "character"
+found_character_target_key = "enemy_character"
+scan_radius = 5.0
+scan_layer = 4
+metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+
 [sub_resource type="Resource" id="Resource_vrfs7"]
 resource_name = "Get Closest Chr."
 script = ExtResource("4_5ny8y")
@@ -325,6 +335,18 @@ optional_vfx_start = ExtResource("18_hvlvc")
 optional_vfx_end = ExtResource("18_hvlvc")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 
+[sub_resource type="Resource" id="Resource_y80lc"]
+resource_name = "Sequence"
+script = ExtResource("7_ynyrs")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_vrfs7"), SubResource("Resource_ej8u3"), SubResource("Resource_fxq8x")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_fkikf"]
+resource_name = "Selector"
+script = ExtResource("12_7lipo")
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_nyi41"), SubResource("Resource_y80lc")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
+
 [sub_resource type="Resource" id="Resource_tj720"]
 resource_name = "Combat Chr. Ability"
 script = ExtResource("16_2wy4d")
@@ -337,12 +359,13 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_88bjm"]
 resource_name = "Sequence"
 script = ExtResource("7_ynyrs")
-children = Array[ExtResource("3_3abfe")]([SubResource("Resource_vrfs7"), SubResource("Resource_ej8u3"), SubResource("Resource_fxq8x"), SubResource("Resource_tj720")])
+children = Array[ExtResource("3_3abfe")]([SubResource("Resource_fkikf"), SubResource("Resource_tj720")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_4win8"]
 resource_name = "Random Probability"
 script = ExtResource("17_3erts")
+probability = 0.67
 children = Array[ExtResource("3_3abfe")]([SubResource("Resource_88bjm")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
