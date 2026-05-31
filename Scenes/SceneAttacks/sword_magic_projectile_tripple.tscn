@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://01xbwylgcey8"]
+
+[ext_resource type="Script" uid="uid://cqnhwwba5vx1v" path="res://Scripts/Node/SceneAttackInstance/SwordFloorPillarRow.gd" id="1_bdftb"]
+[ext_resource type="PackedScene" uid="uid://mpxpmsxnccw2" path="res://Scenes/SceneAttacks/sword_magic_projectile.tscn" id="2_bdftb"]
+[ext_resource type="Script" uid="uid://lxeigsym74ss" path="res://Scripts/Resources/SceneAtttackTransformer/SceneAttackRandomPosition.gd" id="3_bdftb"]
+[ext_resource type="Script" uid="uid://1dfcee0lqvqa" path="res://Scripts/Resources/SceneAtttackTransformer/SceneAttackRepeater.gd" id="4_adu5q"]
+
+[sub_resource type="Resource" id="Resource_bhtid"]
+script = ExtResource("3_bdftb")
+horizontal_randomness = 8.0
+metadata/_custom_type_script = "uid://lxeigsym74ss"
+
+[sub_resource type="Resource" id="Resource_8qn6o"]
+script = ExtResource("4_adu5q")
+count = 3
+interval = 1.0
+scene_attack_transformer = SubResource("Resource_bhtid")
+metadata/_custom_type_script = "uid://1dfcee0lqvqa"
+
+[node name="SwordProjectileTripple" type="Node3D" unique_id=1911210441]
+script = ExtResource("1_bdftb")
+scene_attack = ExtResource("2_bdftb")
+scene_transformer = SubResource("Resource_8qn6o")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_rn81q"]
 [ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
+[ext_resource type="Script" uid="uid://bjgfp4usdei5y" path="res://Scripts/Node/Environment/TeleportArea.gd" id="9_mjli6"]
 [ext_resource type="PackedScene" uid="uid://c7txhe1xofx58" path="res://Scenes/Maps/sub_areas/area_1.tscn" id="12_1xyem"]
 [ext_resource type="Script" uid="uid://b7d2dkrcftm0a" path="res://Scripts/Node/Level/level_area_loader.gd" id="12_jjisf"]
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="13_38hi7"]
@@ -9,7 +10,6 @@
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="14_kn14b"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="15_2grvq"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
-[ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="18_hjdgx"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
@@ -68,11 +68,34 @@ radius = 26.0
 [sub_resource type="BoxMesh" id="BoxMesh_pe36k"]
 material = ExtResource("14_kn14b")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_p0lev"]
+size = Vector3(149.1626, 5, 142.07251)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_38hi7"]
+size = Vector3(28.852417, 5, 127.8457)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjli6"]
+size = Vector3(99.67914, 5, 127.8457)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn14b"]
+size = Vector3(83.75531, 5, 49.856323)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2grvq"]
+size = Vector3(83.75531, 5, 61.344177)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjdgx"]
+size = Vector3(207.42871, 5, 190.49074)
+
 [sub_resource type="SphereMesh" id="SphereMesh_7rcam"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_m4vf5"]
 
 [node name="TestEnemyWaves" type="Node3D" unique_id=538602564]
+
+[node name="BgmChanger" type="Node" parent="." unique_id=819114482]
+script = ExtResource("17_2grvq")
+auto_start = true
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
 
 [node name="Areas" type="Node" parent="." unique_id=636129847]
 
@@ -309,61 +332,135 @@ transform = Transform3D(1, 0, 0, 0, -0.019015998, -0.99981916, 0, 0.99981916, -0
 [node name="GeneralSlash2" parent="RenderCache" unique_id=1023199983 instance=ExtResource("21_x2r5p")]
 transform = Transform3D(-1, 0, -8.742278e-08, -8.740697e-08, -0.019015998, 0.99981916, -1.6624313e-09, 0.99981916, 0.019015998, 26.461864, -16.28962, 8.977146)
 
-[node name="BgmChanger" type="Node" parent="." unique_id=1853723761]
-script = ExtResource("17_2grvq")
-auto_start = true
-bgm = ExtResource("18_hjdgx")
-metadata/_custom_type_script = "uid://dfay20msmb3cw"
-
 [node name="VFXSpawner" type="Node" parent="." unique_id=832207028]
 script = ExtResource("19_hjdgx")
 metadata/_custom_type_script = "uid://dvv5wdkgd3ff8"
 
 [node name="Interactables" type="Node" parent="." unique_id=1888126952]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactables" unique_id=2063097643]
+[node name="TeleportAreas" type="Node" parent="Interactables" unique_id=1141219442]
+
+[node name="Area3D" type="Area3D" parent="Interactables/TeleportAreas" unique_id=1076014170 node_paths=PackedStringArray("teleport_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.0565, -32.894356, 153.79724)
+collision_mask = 2
+script = ExtResource("9_mjli6")
+teleport_point = NodePath("../../RespawnPoints/Cliff1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D" unique_id=664135508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41870117, 0, 7.256714)
+shape = SubResource("BoxShape3D_p0lev")
+
+[node name="Area3D2" type="Area3D" parent="Interactables/TeleportAreas" unique_id=1687312576 node_paths=PackedStringArray("teleport_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.6882, -32.89435, 152.49512)
+collision_mask = 2
+script = ExtResource("9_mjli6")
+teleport_point = NodePath("../../RespawnPoints/Cliff2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D2" unique_id=1598527082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.57379, 0, 14.370117)
+shape = SubResource("BoxShape3D_38hi7")
+
+[node name="Area3D5" type="Area3D" parent="Interactables/TeleportAreas" unique_id=1086437910 node_paths=PackedStringArray("teleport_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180.8581, -32.89435, 152.49512)
+collision_mask = 2
+script = ExtResource("9_mjli6")
+teleport_point = NodePath("../../RespawnPoints/Cliff3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D5" unique_id=42536051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 95.98715, 0, 14.370117)
+shape = SubResource("BoxShape3D_mjli6")
+
+[node name="Area3D3" type="Area3D" parent="Interactables/TeleportAreas" unique_id=1459401921 node_paths=PackedStringArray("teleport_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.6882, -32.89435, 13.227524)
+collision_mask = 2
+script = ExtResource("9_mjli6")
+teleport_point = NodePath("../../RespawnPoints/Cliff4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D3" unique_id=365767776]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 122.26871, 0, 53.364807)
+shape = SubResource("BoxShape3D_kn14b")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D3" unique_id=2022940604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.99881, 0, 59.108734)
+shape = SubResource("BoxShape3D_2grvq")
+
+[node name="Area3D4" type="Area3D" parent="Interactables/TeleportAreas" unique_id=1598351292 node_paths=PackedStringArray("teleport_point")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.942841, -32.89435, -73.23998)
+collision_mask = 2
+script = ExtResource("9_mjli6")
+teleport_point = NodePath("../../RespawnPoints/Arena")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/TeleportAreas/Area3D4" unique_id=1213692020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9050293, 0, 18.305267)
+shape = SubResource("BoxShape3D_hjdgx")
+
+[node name="Grapples" type="Node" parent="Interactables" unique_id=1187236254]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interactables/Grapples" unique_id=2063097643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.101887, -4.500261, 132.40515)
 mesh = SubResource("SphereMesh_7rcam")
 
-[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D" unique_id=207183125]
+[node name="Area3D" type="Area3D" parent="Interactables/Grapples/MeshInstance3D" unique_id=207183125]
 collision_layer = 16
 script = ExtResource("29_m4vf5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D/Area3D" unique_id=1194918314]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Grapples/MeshInstance3D/Area3D" unique_id=1194918314]
 shape = SubResource("SphereShape3D_m4vf5")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Interactables" unique_id=2008304875]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Interactables/Grapples" unique_id=2008304875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.774813, 1.404696, 130.52623)
 mesh = SubResource("SphereMesh_7rcam")
 
-[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D2" unique_id=319400076]
+[node name="Area3D" type="Area3D" parent="Interactables/Grapples/MeshInstance3D2" unique_id=319400076]
 collision_layer = 16
 script = ExtResource("29_m4vf5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D2/Area3D" unique_id=1268637651]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Grapples/MeshInstance3D2/Area3D" unique_id=1268637651]
 shape = SubResource("SphereShape3D_m4vf5")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Interactables" unique_id=374554493]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Interactables/Grapples" unique_id=374554493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.220974, -0.2898183, 108.65985)
 mesh = SubResource("SphereMesh_7rcam")
 
-[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D4" unique_id=1755757597]
+[node name="Area3D" type="Area3D" parent="Interactables/Grapples/MeshInstance3D4" unique_id=1755757597]
 collision_layer = 16
 script = ExtResource("29_m4vf5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D4/Area3D" unique_id=1070814699]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Grapples/MeshInstance3D4/Area3D" unique_id=1070814699]
 shape = SubResource("SphereShape3D_m4vf5")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Interactables" unique_id=427268058]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Interactables/Grapples" unique_id=427268058]
 transform = Transform3D(0.9999397, 0.009686333, -0.005182484, -0.009671156, 0.999949, 0.0029453696, 0.0052107507, -0.002895068, 0.99998224, -4.0938787, 20.565643, 52.402218)
 mesh = SubResource("SphereMesh_7rcam")
 
-[node name="Area3D" type="Area3D" parent="Interactables/MeshInstance3D3" unique_id=6378067]
+[node name="Area3D" type="Area3D" parent="Interactables/Grapples/MeshInstance3D3" unique_id=6378067]
 collision_layer = 16
 script = ExtResource("29_m4vf5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/MeshInstance3D3/Area3D" unique_id=879956954]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Grapples/MeshInstance3D3/Area3D" unique_id=879956954]
 shape = SubResource("SphereShape3D_m4vf5")
+
+[node name="RespawnPoints" type="Node" parent="Interactables" unique_id=54875064]
+
+[node name="Arena" type="Marker3D" parent="Interactables/RespawnPoints" unique_id=839166073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.82291, -19.403988)
+gizmo_extents = 5.0
+
+[node name="Cliff1" type="Marker3D" parent="Interactables/RespawnPoints" unique_id=377068515]
+transform = Transform3D(0.6704266, 0, 0.74197584, 0, 1, 0, -0.74197584, 0, 0.6704266, 59.119335, -11.663157, 140.10446)
+gizmo_extents = 5.0
+
+[node name="Cliff2" type="Marker3D" parent="Interactables/RespawnPoints" unique_id=1109334773]
+transform = Transform3D(-0.05059293, 0, 0.99871933, 0, 1, 0, -0.99871933, 0, -0.05059293, 9.938548, -7.349555, 132.94763)
+gizmo_extents = 5.0
+
+[node name="Cliff3" type="Marker3D" parent="Interactables/RespawnPoints" unique_id=1047089038]
+transform = Transform3D(0.8902128, 0, -0.45554498, 0, 1, 0, 0.45554498, 0, 0.8902128, -64.912704, -7.349555, 132.20105)
+gizmo_extents = 5.0
+
+[node name="Cliff4" type="Marker3D" parent="Interactables/RespawnPoints" unique_id=1225759055]
+transform = Transform3D(0.9998905, 0, -0.0147999525, 0, 1, 0, 0.0147999525, 0, 0.9998905, -11.292645, 9.87083, 75.38634)
+gizmo_extents = 5.0
 
 [node name="LevelAreaLoader" type="Node" parent="." unique_id=1496405907 node_paths=PackedStringArray("areas_holder")]
 script = ExtResource("12_jjisf")

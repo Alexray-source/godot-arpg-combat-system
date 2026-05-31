@@ -7,6 +7,7 @@ class_name AnimationAttackData extends AbilityData
 @export var atk_type : AtkInfo.AtkType
 @export var atk_data : AttackData
 @export var targeting_range : float
+@export var face_target : bool = true
 
 func create_ability_component() -> AbilityComponent:
 	var ability = AnimationAttack.new()
@@ -17,6 +18,7 @@ func create_ability_component() -> AbilityComponent:
 	ability.atk_type = atk_type
 	ability.attack_data = atk_data
 	ability.targeting_range = targeting_range
+	ability.face_target = true
 	
 	return ability
 	

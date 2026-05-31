@@ -9,8 +9,10 @@ func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo
 
 	var projectile_origin : Node3D = instigator.get_node(projectile_origin_path)
 
+	projectile.spawn_transform = Transform3D(Basis.IDENTITY, projectile_origin.global_position + (-instigator.global_basis.z * 0.6))
+
 	instigator.get_parent_node_3d().add_child(projectile)
-	projectile.global_position = projectile_origin.global_position + (-instigator.global_basis.z * 0.6)
+	#projectile.global_position = projectile_origin.global_position + (-instigator.global_basis.z * 0.6)
 	#projectile.global_basis = Basis.looking_at(attack_dir)
 	projectile.reset_physics_interpolation()
 	

@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" uid="uid://hn6rkxb48y75" path="res://Scripts/Node/Projectiles/ricochet_bullet.gd" id="1_207l6"]
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="2_ocjks"]
+[ext_resource type="Script" uid="uid://dsfbu6klh7tm3" path="res://Scripts/Resources/ProjectileHit/ProjectileHit.gd" id="3_ocjks"]
 
 [sub_resource type="Resource" id="Resource_oc3f7"]
 script = ExtResource("2_ocjks")
 metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="Resource" id="Resource_h5yrp"]
+script = ExtResource("3_ocjks")
+metadata/_custom_type_script = "uid://dsfbu6klh7tm3"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
 top_radius = 0.1
@@ -17,6 +22,7 @@ script = ExtResource("1_207l6")
 allowed_ricoshots = 15
 owning_layer = SubResource("Resource_oc3f7")
 speed = 400.0
+hit_event = SubResource("Resource_h5yrp")
 re_evaluate_atk_dir_on_ready = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1781501788]

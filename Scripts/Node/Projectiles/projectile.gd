@@ -3,8 +3,10 @@ class_name Projectile extends Node3D
 @export var speed : float = 100.0
 @export var max_lifetime : float = 5.0
 @export var hit_vfx : String = "projectile_hit"
+@export var hit_event : ProjectileHit
 @export var re_evaluate_atk_dir_on_ready : bool = false
 
+var spawn_transform : Transform3D
 var direct_space_state : PhysicsDirectSpaceState3D
 var ray_params : PhysicsRayQueryParameters3D
 var atk_info : AtkInfo
@@ -23,6 +25,7 @@ func _ready() -> void:
 	if re_evaluate_atk_dir_on_ready == true and atk_info.intended_target != null:
 		atk_info.atk_dir = atk_info.instigator.global_position.direction_to(atk_info.intended_target.global_position)
 	
+	global_position = spawn_transform.origin + (-atk_info.instigator.global_basis.z * 0.6)
 	global_basis = Basis.looking_at(atk_info.atk_dir)
 
 
@@ -43,7 +46,8 @@ func _physics_process(delta: float) -> void:
 	if intersected_collider != null:
 		if intersected_collider is HurtBox:
 			#print("hurtbox")
-			intersected_collider.hit.emit(atk_info)
+			#intersected_collider.hit.emit(atk_info)
+			hit_event.on_hit(intersected_collider, atk_info)
 			hit.emit(intersected_collider)
 		GlobalSignals.spawn_vfx.emit(hit_vfx, Transform3D(Basis.IDENTITY, result.get("position")))
 		queue_free()

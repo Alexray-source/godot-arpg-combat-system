@@ -126,12 +126,6 @@ func _ready() -> void:
 	input_events.special_atk4_input.connect(on_special_atk.bind(3))
 	
 	input_events.grapple_input.connect(on_grapple)
-	#input_events.grapple_enemy_input.connect(on_grapple.bind(true))
-	#input_events.switch_grapple_mode.connect(func():
-		#_grapple_enemies = not _grapple_enemies
-		#hud.update_grapple_mode(_grapple_enemies)
-		#print(_grapple_enemies)
-	#)
 	
 	input_events.target_lock.connect(on_toggle_target_lock)
 	input_events.target_next.connect(on_target_next)
@@ -455,15 +449,18 @@ func handle_camera_rot(delta):
 		var viewport_center_pos : Vector2 = viewport_size * 0.5
 		
 		var target_screen_pos : Vector2 = _plr_camera.unproject_position(current_target.global_position)
-		var x_correction = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
-		var y_correction = -((target_screen_pos - viewport_center_pos).y / viewport_size.y)
+		var x_correction_factor = -((target_screen_pos - viewport_center_pos).x / viewport_size.x)
+		var y_correction_factor = -((target_screen_pos - viewport_center_pos).y / viewport_size.y)
+		
+		var x_correction = clampf(x_correction_factor * 125.0, -50.0,50.0)
+		var y_correction = clampf(y_correction_factor * 20.0, -25.0,25.0)
 		
 		#print(x_correction)
 		if _plr_camera.is_position_behind(current_target.global_position):
 			var camera_look_dir : Vector3 = -_plr_camera.global_basis.z
 			camera_move_dir.x = camera_look_dir.signed_angle_to(_plr_camera.global_position.direction_to(current_target.global_position), _plr_camera.global_basis.y) * 10.0
-		elif abs(x_correction) > 0.1 or abs(y_correction) > 0.1:
-			camera_move_dir = Vector2((x_correction / viewport_size.x) * 25000.0, (y_correction / viewport_size.y) * 2500.0)
+		elif abs(x_correction) > 1.0 or abs(y_correction) > 1.0:
+			camera_move_dir = Vector2(x_correction , y_correction)
 		
 	
 	camera_rot_y_accel = lerp(camera_rot_y_accel, camera_move_dir.x, delta * 10.0)

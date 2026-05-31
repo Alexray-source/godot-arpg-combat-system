@@ -18,6 +18,6 @@ func evaluate_wave(new_wave_number : int):
 	
 	var actions_display : TutorialActionDisplay = enemy_wave_tutorials.get(new_wave_number)
 	print(actions_display)
-	if actions_display != null:
+	#if actions_display != null:
 		#spawn_input_tutorial(actions_display)
-		GlobalSignals.plr_show_tutorial_action.emit(actions_display)
+	GlobalSignals.plr_show_tutorial_action.emit(actions_display)

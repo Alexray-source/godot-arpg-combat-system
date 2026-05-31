@@ -1,4 +1,4 @@
-extends SceneAttackInstance
+class_name SwordFloorPillar extends SceneAttackInstance
 
 @export var main_object : Node3D
 @export var decal : Decal
@@ -7,6 +7,7 @@ extends SceneAttackInstance
 @export var chr_layer_owner : CharacterLayer
 @export var hitbox : BoxShape3D
 @export var travel_time : float = 1.0
+@export var tween_to_target : bool = true
 
 var target_scan_range : float = 50.0
 
@@ -17,6 +18,7 @@ var _start_pos : Vector3
 var _follow_target : bool = false
 
 func _ready() -> void:
+	super()
 	_physics_shape_query_params = PhysicsShapeQueryParameters3D.new()
 	_physics_shape_query_params.collide_with_areas = true
 	_physics_shape_query_params.collide_with_bodies = true
@@ -39,11 +41,17 @@ func _ready() -> void:
 	if _target == null:
 		queue_free()
 	
-	var move_tween = create_tween()
-	move_tween.set_ease(Tween.EASE_IN)
-	move_tween.set_trans(Tween.TRANS_QUAD)
-	move_tween.tween_method(move_to_target, 0.0, 1.0, travel_time)
-	move_tween.finished.connect(spawn_sword_pillar, CONNECT_ONE_SHOT)
+	if tween_to_target == true:
+		var move_tween = create_tween()
+		move_tween.set_ease(Tween.EASE_IN)
+		move_tween.set_trans(Tween.TRANS_QUAD)
+		move_tween.tween_method(move_to_target, 0.0, 1.0, travel_time)
+		move_tween.finished.connect(spawn_sword_pillar, CONNECT_ONE_SHOT)
+	else:
+		#_follow_target = true
+		var timer = get_tree().create_timer(travel_time)
+		timer.timeout.connect(spawn_sword_pillar, CONNECT_ONE_SHOT)
+		
 
 func move_to_target(factor : float):
 	main_object.global_position = spawn_transform.origin.lerp(_target.global_position, factor)
@@ -53,7 +61,8 @@ func _physics_process(_delta: float) -> void:
 		main_object.global_position = _target.global_position
 
 func spawn_sword_pillar():
-	_follow_target = true
+	if tween_to_target == true:
+		_follow_target = true
 	show_indicator(decal.global_transform)
 	await get_tree().create_timer(0.25).timeout
 	_follow_target = false

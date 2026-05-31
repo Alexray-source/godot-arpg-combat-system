@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://edm1vayi6vqq"]
+
+[ext_resource type="Script" uid="uid://dwa0qs6s7lg2y" path="res://Scripts/Node/Projectiles/TargetThrowableProjectile.gd" id="1_bh44f"]
+[ext_resource type="Script" uid="uid://drkp7unmxb2te" path="res://Scripts/Resources/ProjectileHit/ProjectileHitThrow.gd" id="2_bh44f"]
+[ext_resource type="Script" uid="uid://b73wk0pwlex7c" path="res://Scripts/Resources/ProjectileHit/ProjectileHitAoe.gd" id="3_o20sh"]
+
+[sub_resource type="Resource" id="Resource_o20sh"]
+script = ExtResource("2_bh44f")
+metadata/_custom_type_script = "uid://drkp7unmxb2te"
+
+[sub_resource type="Resource" id="Resource_270bf"]
+script = ExtResource("3_o20sh")
+aoe_hit_event = SubResource("Resource_o20sh")
+metadata/_custom_type_script = "uid://b73wk0pwlex7c"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
+top_radius = 0.0
+bottom_radius = 0.1
+height = 0.3
+
+[node name="FlintlockBullet" type="Node3D" unique_id=351752051]
+script = ExtResource("1_bh44f")
+speed = 400.0
+hit_event = SubResource("Resource_270bf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1781501788]
+transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_04s36")

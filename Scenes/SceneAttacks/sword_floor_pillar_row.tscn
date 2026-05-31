@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c0f0e3pkac40t"]
+
+[ext_resource type="Script" uid="uid://cqnhwwba5vx1v" path="res://Scripts/Node/SceneAttackInstance/SwordFloorPillarRow.gd" id="1_q2gvi"]
+[ext_resource type="PackedScene" uid="uid://hw1rm0oxtv5s" path="res://Scenes/SceneAttacks/sword_floor_pillar_static.tscn" id="2_5hypu"]
+[ext_resource type="Script" uid="uid://yx4kicntev7b" path="res://Scripts/Resources/SceneAtttackTransformer/SceneAttackRow.gd" id="3_5hypu"]
+
+[sub_resource type="Resource" id="Resource_ebubu"]
+script = ExtResource("3_5hypu")
+gap = 8.0
+metadata/_custom_type_script = "uid://yx4kicntev7b"
+
+[node name="SwordFloorPillarRow" type="Node3D" unique_id=1911210441]
+script = ExtResource("1_q2gvi")
+scene_attack = ExtResource("2_5hypu")
+scene_transformer = SubResource("Resource_ebubu")
+spawn_at_target = true

@@ -1,5 +1,6 @@
 class_name StatModifierInterruptHit extends StatModifierInterrupt
 
+var hit_count : int = 1
 var hurtbox : HurtBox
 var allowed_atk_types : Array[AtkInfo.AtkType]
 
@@ -8,6 +9,9 @@ func setup():
 
 func on_hit(atk_info : AtkInfo):
 	if allowed_atk_types.has(atk_info.atk_type):
-		hurtbox.hit.disconnect(on_hit)
+		hit_count -= 1
 		
-		interrupt.emit()
+		if hit_count <= 0:
+			hurtbox.hit.disconnect(on_hit)
+			
+			interrupt.emit()

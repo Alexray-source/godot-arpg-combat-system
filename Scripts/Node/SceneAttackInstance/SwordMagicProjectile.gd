@@ -20,6 +20,7 @@ var _direct_space_state  : PhysicsDirectSpaceState3D
 var _physics_shape_query_params : PhysicsShapeQueryParameters3D
 
 func _ready() -> void:
+	super()
 	_physics_shape_query_params = PhysicsShapeQueryParameters3D.new()
 	_physics_shape_query_params.collide_with_areas = true
 	_physics_shape_query_params.collide_with_bodies = true

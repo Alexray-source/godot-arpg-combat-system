@@ -9,7 +9,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifau6"]
 albedo_color = Color(0.44209558, 0.15686277, 0.9019608, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_fb08b"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1aaj"]
+size = Vector3(1.1, 1.1, 1.1)
 
 [node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox", "mesh_instance", "hit_sfx_player")]
 collision_layer = 16
@@ -27,10 +30,10 @@ mesh = SubResource("BoxMesh_wrd4j")
 surface_material_override/0 = SubResource("StandardMaterial3D_ifau6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1236279868]
-shape = SubResource("BoxShape3D_o1aaj")
+shape = SubResource("BoxShape3D_fb08b")
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
-collision_layer = 2
+collision_layer = 16
 collision_mask = 15
 script = ExtResource("2_fb08b")
 metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"

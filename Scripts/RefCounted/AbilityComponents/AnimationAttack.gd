@@ -1,5 +1,10 @@
 class_name AnimationAttack extends AbilityComponent
 
+enum TargetMode {
+	DIRECT,
+	CLOSEST_INTERACTABLE
+}
+
 var targeting_range : float = 10.0
 var animations : Array[String]
 var dmg : int = 10
@@ -7,6 +12,7 @@ var atk_type : AtkInfo.AtkType = AtkInfo.AtkType.MELEE
 var attack_data : AttackData
 var animation_node_name : String
 var oneshot_node_name : String
+var face_target : bool = true
 
 var _intended_target : Node3D
 var _animation_chainer : AnimationChainer
@@ -41,6 +47,8 @@ func action() -> void:
 	_interrupted = false
 	_intended_target = target_override
 
+	var attack_target = _intended_target
+
 	#print(closest_target)
 	if _intended_target == null:
 		_intended_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())
@@ -58,7 +66,8 @@ func action() -> void:
 		
 		_current_atk_dir = (intended_target_pos - character.global_position).normalized()
 		
-		character.global_basis = Basis.looking_at((closest_hurtbox_pos_xz_plane - chr_pos_xz_plane).normalized(), Vector3.UP)
+		if face_target == true:
+			character.global_basis = Basis.looking_at((closest_hurtbox_pos_xz_plane - chr_pos_xz_plane).normalized(), Vector3.UP)
 	else:
 		_current_atk_dir = -character.global_basis.z
 	
@@ -74,5 +83,5 @@ func ability_event() -> void:
 	
 	var attack = attack_data.create_attack()
 	attack.hurtboxes_hit.connect(ability_hit.emit, CONNECT_ONE_SHOT)
-	attack.attack(character, 2 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir, _intended_target)
+	attack.attack(character, 2 + 16 + chr_layer.get_enemy_layer(), dmg, atk_type, _current_atk_dir, _intended_target)
 	

@@ -16,9 +16,10 @@ func spawn_input_tutorial(actions_display : TutorialActionDisplay):
 	if current_tutorial_ui != null:
 		current_tutorial_ui.queue_free()
 	
-	current_tutorial_ui = INPUT_TUTORIAL_UI.instantiate()
-	current_tutorial_ui.on_hud_state_changed(_should_be_visible_on_spawn)
-	current_tutorial_ui.tutorial_actions = actions_display.action_display_names
-	current_tutorial_ui.action_order = actions_display.action_order
-	
-	add_child(current_tutorial_ui)
+	if actions_display != null:
+		current_tutorial_ui = INPUT_TUTORIAL_UI.instantiate()
+		current_tutorial_ui.on_hud_state_changed(_should_be_visible_on_spawn)
+		current_tutorial_ui.tutorial_actions = actions_display.action_display_names
+		current_tutorial_ui.action_order = actions_display.action_order
+		
+		add_child(current_tutorial_ui)
