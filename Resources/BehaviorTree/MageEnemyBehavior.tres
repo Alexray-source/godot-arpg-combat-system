@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://bjqa74mo2q804" path="res://Scripts/Resources/BT_Data/BT_RequestAtkTokenEnemyData.gd" id="12_p57hi"]
 [ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="12_uos83"]
 [ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="13_p57hi"]
+[ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="17_1lurp"]
 
 [sub_resource type="Resource" id="Resource_87k5q"]
 resource_name = "Is Character Staggered"
@@ -104,7 +105,7 @@ metadata/_custom_type_script = "uid://cxmedjxpldotm"
 [sub_resource type="Resource" id="Resource_f0syj"]
 resource_name = "Request enemy for combat token"
 script = ExtResource("12_p57hi")
-token_lifetime = 7.0
+token_lifetime = 3.0
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_1m0gs"]
@@ -163,6 +164,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_dp3hr"]
 resource_name = "Random Probability"
 script = ExtResource("7_dp3hr")
+probability = 0.2
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_ulxum")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
@@ -189,6 +191,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_1lurp"]
 resource_name = "Random Probability"
 script = ExtResource("7_dp3hr")
+probability = 0.4
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_uos83")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
@@ -215,6 +218,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_qhmi4"]
 resource_name = "Random Probability"
 script = ExtResource("7_dp3hr")
+probability = 0.4
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_b88ew")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
@@ -241,6 +245,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_ae3f5"]
 resource_name = "Random Probability"
 script = ExtResource("7_dp3hr")
+probability = 0.3
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_i1mt4")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 
@@ -278,29 +283,30 @@ interval = 0.7
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_1mi77"]
-resource_name = "Get Closest Chr."
-script = ExtResource("2_enx01")
-origin_node_scan_key = "character"
-found_character_target_key = "enemy_character"
-scan_radius = 100.0
-scan_layer = 4
-metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
+resource_name = "Set Random Pos Within Radius"
+script = ExtResource("11_sj6dd")
+origin_node_bb_key = "enemy_character"
+target_pos_key = "enemy_character_pos"
+horizontal_randomness = 0.0
+metadata/_custom_type_script = "uid://b8ahg0borfp5m"
+
+[sub_resource type="Resource" id="Resource_nx0c7"]
+resource_name = "Set Random Pos Within Radius"
+script = ExtResource("11_sj6dd")
+origin_node_bb_key = "enemy_character"
+target_pos_key = "enemy_character_pos"
+horizontal_randomness = 2.0
+metadata/_custom_type_script = "uid://b8ahg0borfp5m"
 
 [sub_resource type="Resource" id="Resource_xrwpk"]
 resource_name = "Chr. Teleport To Position"
 script = ExtResource("12_uos83")
 character_bb_key = "character"
 target_pos_bb_key = "enemy_character_pos"
-randomnness_radius = 2.0
+randomnness_radius = 0.0
 optional_vfx_start = ExtResource("12_1lurp")
 optional_vfx_end = ExtResource("12_1lurp")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
-
-[sub_resource type="Resource" id="Resource_nx0c7"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-interval = 0.15
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_euqri"]
 resource_name = "Combat Chr. Ability"
@@ -328,14 +334,24 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_d43gv"]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_v6jj4"), SubResource("Resource_0x26q"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_1mi77"), SubResource("Resource_xrwpk"), SubResource("Resource_nx0c7"), SubResource("Resource_euqri"), SubResource("Resource_hce7c"), SubResource("Resource_etsn4")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_v6jj4"), SubResource("Resource_0x26q"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_1mi77"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_nx0c7"), SubResource("Resource_xrwpk"), SubResource("Resource_euqri"), SubResource("Resource_hce7c"), SubResource("Resource_etsn4")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_v4std"]
 resource_name = "Random Probability"
 script = ExtResource("7_dp3hr")
+probability = 0.4
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d43gv")])
 metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_vfy7p"]
+resource_name = "Get Closest Throw Pos."
+script = ExtResource("17_1lurp")
+origin_node_scan_key = "character"
+found_throw_pos_key = "a"
+throw_node_target_key = "enemy_character"
+scan_radius = 100.0
+metadata/_custom_type_script = "uid://u5sb7r7p12ev"
 
 [sub_resource type="Resource" id="Resource_hqnwr"]
 resource_name = "Combat Chr. Ability"
@@ -355,7 +371,7 @@ metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 [sub_resource type="Resource" id="Resource_e50yl"]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_hqnwr"), SubResource("Resource_ad1v1")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_vfy7p"), SubResource("Resource_hqnwr"), SubResource("Resource_ad1v1")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [sub_resource type="Resource" id="Resource_kd7b7"]

@@ -14,12 +14,12 @@ void vertex() {
 void fragment() {
 	vec3 color_mask_value = texture(color_mask, UV + (TIME * move_factor)).rgb;
 	
-	ALBEDO = color * color_mask_value;
+	ALBEDO = color * color_mask_value * COLOR.rgb;
 	
 	float fresnel = dot(NORMAL, VIEW);
 	float exp_fresnel = pow(fresnel, rim_factor) + edge_factor;
 	
-	ALPHA = (1.0 - exp_fresnel) * color_mask_value.r;
+	ALPHA = (1.0 - exp_fresnel) * color_mask_value.r * COLOR.a;
 }
 
 //void light() {

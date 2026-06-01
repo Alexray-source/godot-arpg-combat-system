@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cg60wxn4781cb"]
+
+[ext_resource type="Texture2D" uid="uid://clsv8e2om47by" path="res://Assets/Textures/VFX/Muzzle/Muzzle.png" id="1_sn2u8"]
+[ext_resource type="ArrayMesh" uid="uid://3p0a6jyl00bv" path="res://Assets/Meshes/VFX/muzzle.res" id="2_tiqg5"]
+[ext_resource type="AudioStream" uid="uid://bq2it1lulr352" path="res://Assets/SFX/402789__acidsnowflake__small-pistol-gunshot-indoors.ogg" id="3_l7rne"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_7gpkt"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_mba4k"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="6_a8c12"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i6doe"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_sn2u8")
+
+[sub_resource type="Curve" id="Curve_awrwk"]
+_data = [Vector2(0.016000003, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.5391467, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bxl3u"]
+curve = SubResource("Curve_awrwk")
+
+[sub_resource type="Curve" id="Curve_581aj"]
+_data = [Vector2(0, 0.41511035), 0.0, 0.5517826, 0, 0, Vector2(1, 0.7682512), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_cidr6"]
+_data = [Vector2(0, 0.017826796), 0.0, 2.3450768, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_412hx"]
+curve_x = SubResource("Curve_581aj")
+curve_y = SubResource("Curve_581aj")
+curve_z = SubResource("Curve_cidr6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4nljn"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.7
+scale_max = 0.7
+scale_curve = SubResource("CurveXYZTexture_412hx")
+color = Color(1.4352342, 0.60300004, 2.7769997, 1)
+alpha_curve = SubResource("CurveTexture_bxl3u")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxl3u"]
+random_pitch = 1.0696088
+streams_count = 1
+stream_0/stream = ExtResource("3_l7rne")
+
+[node name="Muzzle" type="Node3D" unique_id=847841904]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=906888332]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_i6doe")
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_4nljn")
+draw_pass_1 = ExtResource("2_tiqg5")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=803308115]
+stream = SubResource("AudioStreamRandomizer_bxl3u")
+volume_db = 6.0
+unit_size = 25.0
+max_db = 6.0
+autoplay = true
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=1711044873 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("4_7gpkt")
+target_trigger = NodePath("DestroyTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=501866031 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("5_mba4k")
+node_to_destroy = NodePath("../..")
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=2072985533 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("6_a8c12")
+target_particle = NodePath("../GPUParticles3D")
+auto_trigger = true

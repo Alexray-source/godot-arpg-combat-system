@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bx5cd5ef7j1ck"]
+
+[ext_resource type="Shader" uid="uid://dp5cn8memhif1" path="res://Shaders/MagicVFX.gdshader" id="1_suby4"]
+[ext_resource type="Texture2D" uid="uid://c61vqknr8vof5" path="res://Assets/Textures/VFX/vfx_lines_plane.png" id="2_suby4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_suby4")
+shader_parameter/modulate = Color(0.30980387, 0.9490196, 0.88909316, 1)
+shader_parameter/albedo_tex = ExtResource("2_suby4")
+shader_parameter/red_as_alpha = false
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll = Vector2(2, -1)
+shader_parameter/uv_rot_scroll = 0.0

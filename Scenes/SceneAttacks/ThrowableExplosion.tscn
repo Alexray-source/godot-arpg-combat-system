@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d1irpnnxh80e4"]
+
+[ext_resource type="Script" uid="uid://cri4rtcqmlkvg" path="res://Scripts/Node/SceneAttackInstance/ThrowableExplosion.gd" id="1_hfv45"]
+
+[node name="ThrowableExplosion" type="Node3D" unique_id=1620021860]
+script = ExtResource("1_hfv45")
+vfx_key = "throwable_explosion"
+attack_indicator = "blue_flash"
+life_time = 15.0

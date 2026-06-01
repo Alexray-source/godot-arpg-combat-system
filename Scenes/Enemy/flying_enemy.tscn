@@ -128,7 +128,7 @@ metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 [sub_resource type="Resource" id="Resource_vqomc"]
 resource_name = "Request enemy for combat token"
 script = ExtResource("12_tmoux")
-token_lifetime = 5.0
+token_lifetime = 3.0
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_pvm6y"]

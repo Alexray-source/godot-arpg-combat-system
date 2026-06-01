@@ -467,3 +467,17 @@ tracks/61/keys = {
 "method": &"local_dash"
 }]
 }
+tracks/62/type = "method"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath(".")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(2.1666667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["rifle_muzzle", "muzzle"],
+"method": &"block_vfx"
+}]
+}

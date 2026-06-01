@@ -1,28 +1,36 @@
 [gd_scene format=3 uid="uid://edm1vayi6vqq"]
 
 [ext_resource type="Script" uid="uid://dwa0qs6s7lg2y" path="res://Scripts/Node/Projectiles/TargetThrowableProjectile.gd" id="1_bh44f"]
-[ext_resource type="Script" uid="uid://drkp7unmxb2te" path="res://Scripts/Resources/ProjectileHit/ProjectileHitThrow.gd" id="2_bh44f"]
-[ext_resource type="Script" uid="uid://b73wk0pwlex7c" path="res://Scripts/Resources/ProjectileHit/ProjectileHitAoe.gd" id="3_o20sh"]
+[ext_resource type="PackedScene" uid="uid://d1irpnnxh80e4" path="res://Scenes/SceneAttacks/ThrowableExplosion.tscn" id="2_vvp70"]
+[ext_resource type="Script" uid="uid://bkjpytncqvvcq" path="res://Scripts/Resources/ProjectileHit/ProjectileHitScene.gd" id="2_xob12"]
+[ext_resource type="Texture2D" uid="uid://dm3dcxfksvsj5" path="res://Assets/Textures/VFX/GradientGlowSmall.png" id="4_xob12"]
+[ext_resource type="PackedScene" uid="uid://y6go4w7klykv" path="res://Assets/MeshScenes/VFX/MagicBullet.glb" id="5_vvp70"]
+[ext_resource type="Material" uid="uid://dtvbslansudlu" path="res://Assets/Material/VFX/magic_bullet_top.tres" id="6_c51lm"]
+[ext_resource type="Material" uid="uid://b6sgwmg0xhvjo" path="res://Assets/Material/VFX/magic_bullet_trail.tres" id="7_g4mpn"]
+[ext_resource type="Material" uid="uid://bx5cd5ef7j1ck" path="res://Assets/Material/VFX/magic_bullet_lines.tres" id="8_6yt0m"]
 
-[sub_resource type="Resource" id="Resource_o20sh"]
-script = ExtResource("2_bh44f")
-metadata/_custom_type_script = "uid://drkp7unmxb2te"
-
-[sub_resource type="Resource" id="Resource_270bf"]
-script = ExtResource("3_o20sh")
-aoe_hit_event = SubResource("Resource_o20sh")
-metadata/_custom_type_script = "uid://b73wk0pwlex7c"
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_04s36"]
-top_radius = 0.0
-bottom_radius = 0.1
-height = 0.3
+[sub_resource type="Resource" id="Resource_vvp70"]
+script = ExtResource("2_xob12")
+scene_attack = ExtResource("2_vvp70")
+metadata/_custom_type_script = "uid://bkjpytncqvvcq"
 
 [node name="FlintlockBullet" type="Node3D" unique_id=351752051]
 script = ExtResource("1_bh44f")
-speed = 400.0
-hit_event = SubResource("Resource_270bf")
+speed = 25.0
+hit_event = SubResource("Resource_vvp70")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1781501788]
-transform = Transform3D(1.9106855e-15, 4.371139e-08, -1, 1, -4.371139e-08, 0, -4.371139e-08, -1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CylinderMesh_04s36")
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1839921893]
+modulate = Color(0, 0.9882353, 0.7102941, 1)
+pixel_size = 0.005
+billboard = 1
+texture = ExtResource("4_xob12")
+
+[node name="MagicBullet" parent="." unique_id=785887135 instance=ExtResource("5_vvp70")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Circle_002" parent="MagicBullet" index="0" unique_id=1847962505]
+surface_material_override/0 = ExtResource("6_c51lm")
+surface_material_override/1 = ExtResource("7_g4mpn")
+surface_material_override/2 = ExtResource("8_6yt0m")
+
+[editable path="MagicBullet"]

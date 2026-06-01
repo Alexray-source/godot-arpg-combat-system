@@ -33,6 +33,7 @@ enum WeaponEquipMode {
 
 @export_subgroup("Attack VFX")
 @export var bone_vfx_rot_offsets : Dictionary[String, Vector3]
+@export var vfx_weapon_rot_offsets : Dictionary[String, Vector3]
 @export var vfx_key_mapping : Dictionary[String, String]
 
 var _legs_blend_path : String
@@ -166,9 +167,18 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 
 func block_vfx(weapon_name : String, vfx_preset : String):
 	var equipped_weapon_node : Node3D = equipped_weapons_visuals[weapon_name]
+	var target_transform : Transform3D = equipped_weapon_node.global_transform
 	
 	if vfx_key_mapping.get(vfx_preset) == null:
 		return
+	
+	var weapon_vfx_rot_offset = vfx_weapon_rot_offsets.get(weapon_name)
+	
+	if weapon_vfx_rot_offset != null:
+		target_transform = target_transform.rotated_local(Vector3.RIGHT, weapon_vfx_rot_offset.x)
+		target_transform = target_transform.rotated_local(Vector3.UP, weapon_vfx_rot_offset.y)
+		target_transform = target_transform.rotated_local(Vector3.FORWARD, weapon_vfx_rot_offset.z)
+		
 	
 	var vfx_key = vfx_key_mapping.get(vfx_preset)
 	GlobalSignals.spawn_vfx.emit(vfx_key, equipped_weapon_node.global_transform.orthonormalized())

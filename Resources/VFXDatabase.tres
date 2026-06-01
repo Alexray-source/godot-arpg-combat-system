@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://dcy2wjq11vjbp" path="res://Scenes/VFX/jump.tscn" id="13_hdec8"]
 [ext_resource type="PackedScene" uid="uid://bdq6n2hpn3gig" path="res://Scenes/VFX/skid.tscn" id="14_ku5vi"]
 [ext_resource type="PackedScene" uid="uid://bcf0m4gnugr2x" path="res://Scenes/VFX/hard_ground_impact.tscn" id="15_mbdrt"]
+[ext_resource type="PackedScene" uid="uid://cg60wxn4781cb" path="res://Scenes/VFX/magic_muzzle.tscn" id="16_swwoy"]
+[ext_resource type="PackedScene" uid="uid://b0djjl6dvipr7" path="res://Scenes/VFX/throwable_explosion.tscn" id="17_hm3st"]
+[ext_resource type="PackedScene" uid="uid://ddwwy731qyib4" path="res://Scenes/VFX/telekinesis_muzzle.tscn" id="18_achp0"]
 
 [resource]
 script = ExtResource("1_sq60v")
@@ -29,11 +32,14 @@ entries = Dictionary[String, PackedScene]({
 "general_slash": ExtResource("1_q1kvh"),
 "hard_impact": ExtResource("15_mbdrt"),
 "jump_generic": ExtResource("13_hdec8"),
+"magic_muzzle": ExtResource("16_swwoy"),
 "melee_damage": ExtResource("10_nb25o"),
 "muzzle": ExtResource("3_ig2jd"),
 "projectile_hit": ExtResource("9_c1rtm"),
 "shield_break": ExtResource("7_nc4x0"),
 "shield_summon": ExtResource("6_rmixs"),
-"skid": ExtResource("14_ku5vi")
+"skid": ExtResource("14_ku5vi"),
+"telekinesis_muzzle": ExtResource("18_achp0"),
+"throwable_explosion": ExtResource("17_hm3st")
 })
 metadata/_custom_type_script = "uid://1giy8nffy3qm"

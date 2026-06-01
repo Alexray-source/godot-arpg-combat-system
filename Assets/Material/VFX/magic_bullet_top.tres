@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dtvbslansudlu"]
+
+[ext_resource type="Shader" uid="uid://dp5cn8memhif1" path="res://Shaders/MagicVFX.gdshader" id="1_qf22j"]
+[ext_resource type="Texture2D" uid="uid://bknw3qdh67nj1" path="res://Assets/Textures/VFX/shockwave_pattern_4.png" id="2_8ukmk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qf22j")
+shader_parameter/modulate = Color(0, 1.896, 1.0291457, 1)
+shader_parameter/albedo_tex = ExtResource("2_8ukmk")
+shader_parameter/red_as_alpha = true
+shader_parameter/uv_scale = Vector2(2, 1)
+shader_parameter/uv_scroll = Vector2(1, 0)
+shader_parameter/uv_rot_scroll = 0.0

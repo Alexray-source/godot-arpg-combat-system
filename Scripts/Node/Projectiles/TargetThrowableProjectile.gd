@@ -15,7 +15,7 @@ func _ready() -> void:
 	hurtbox_scanner.scan_only_in_camera_frustum = false
 	var closest_hurtbox : HurtBox = hurtbox_scanner.get_closest_hurtbox_to_position(spawn_transform.origin, direct_space_state, scan_shape, spawn_transform, 16)
 	
-	print(closest_hurtbox.get_parent_node_3d())
+	#print(closest_hurtbox.get_parent_node_3d())
 	
 	global_position = spawn_transform.origin + (-atk_info.instigator.global_basis.z * 0.6)
 	

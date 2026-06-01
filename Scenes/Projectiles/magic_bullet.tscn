@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bpth0v2hh7dha"]
+
+[ext_resource type="Script" uid="uid://dlgfv7262egfg" path="res://Scripts/Node/Projectiles/ShapeProjectile.gd" id="1_b7l44"]
+[ext_resource type="Script" uid="uid://dsfbu6klh7tm3" path="res://Scripts/Resources/ProjectileHit/ProjectileHit.gd" id="2_gd41t"]
+[ext_resource type="Texture2D" uid="uid://dm3dcxfksvsj5" path="res://Assets/Textures/VFX/GradientGlowSmall.png" id="3_gd41t"]
+[ext_resource type="PackedScene" uid="uid://y6go4w7klykv" path="res://Assets/MeshScenes/VFX/MagicBullet.glb" id="4_tipar"]
+[ext_resource type="Shader" uid="uid://dp5cn8memhif1" path="res://Shaders/MagicVFX.gdshader" id="5_gp0es"]
+[ext_resource type="Texture2D" uid="uid://bknw3qdh67nj1" path="res://Assets/Textures/VFX/shockwave_pattern_4.png" id="6_gp0es"]
+[ext_resource type="Texture2D" uid="uid://18emv1aj1a2p" path="res://Assets/Textures/VFX/PurplePierceFXAlpha.png" id="7_htgr5"]
+[ext_resource type="Texture2D" uid="uid://c61vqknr8vof5" path="res://Assets/Textures/VFX/vfx_lines_plane.png" id="8_gp0es"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gd41t"]
+
+[sub_resource type="Resource" id="Resource_mumgg"]
+script = ExtResource("2_gd41t")
+metadata/_custom_type_script = "uid://dsfbu6klh7tm3"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htgr5"]
+render_priority = 0
+shader = ExtResource("5_gp0es")
+shader_parameter/modulate = Color(0.8209376, 0.56000006, 1.896, 1)
+shader_parameter/albedo_tex = ExtResource("6_gp0es")
+shader_parameter/red_as_alpha = true
+shader_parameter/uv_scale = Vector2(2, 1)
+shader_parameter/uv_scroll = Vector2(1, 0)
+shader_parameter/uv_rot_scroll = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8tjb"]
+render_priority = 0
+shader = ExtResource("5_gp0es")
+shader_parameter/modulate = Color(1, 1, 1, 1)
+shader_parameter/albedo_tex = ExtResource("7_htgr5")
+shader_parameter/red_as_alpha = true
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll = Vector2(0, 0)
+shader_parameter/uv_rot_scroll = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fafwn"]
+render_priority = 0
+shader = ExtResource("5_gp0es")
+shader_parameter/modulate = Color(0.34476098, 0.30980387, 0.9490196, 1)
+shader_parameter/albedo_tex = ExtResource("8_gp0es")
+shader_parameter/red_as_alpha = false
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll = Vector2(2, -1)
+shader_parameter/uv_rot_scroll = 0.0
+
+[node name="FlintlockBullet" type="Node3D" unique_id=351752051 node_paths=PackedStringArray("target_projectile")]
+script = ExtResource("1_b7l44")
+target_projectile = NodePath(".")
+hitbox = SubResource("BoxShape3D_gd41t")
+speed = 75.0
+hit_event = SubResource("Resource_mumgg")
+re_evaluate_atk_dir_on_ready = true
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2101125607]
+modulate = Color(0.495, 0, 0.99, 1)
+pixel_size = 0.0025
+billboard = 1
+texture = ExtResource("3_gd41t")
+
+[node name="MagicBullet" parent="." unique_id=785887135 instance=ExtResource("4_tipar")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+
+[node name="Circle_002" parent="MagicBullet" index="0" unique_id=1847962505]
+surface_material_override/0 = SubResource("ShaderMaterial_htgr5")
+surface_material_override/1 = SubResource("ShaderMaterial_g8tjb")
+surface_material_override/2 = SubResource("ShaderMaterial_fafwn")
+
+[editable path="MagicBullet"]

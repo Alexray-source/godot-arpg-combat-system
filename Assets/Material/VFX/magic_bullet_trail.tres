@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b6sgwmg0xhvjo"]
+
+[ext_resource type="Shader" uid="uid://dp5cn8memhif1" path="res://Shaders/MagicVFX.gdshader" id="1_tctd2"]
+[ext_resource type="Texture2D" uid="uid://18emv1aj1a2p" path="res://Assets/Textures/VFX/PurplePierceFXAlpha.png" id="2_tctd2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tctd2")
+shader_parameter/modulate = Color(0.9479265, 1.825, 0.9821872, 1)
+shader_parameter/albedo_tex = ExtResource("2_tctd2")
+shader_parameter/red_as_alpha = true
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_scroll = Vector2(0, 0)
+shader_parameter/uv_rot_scroll = 2.0

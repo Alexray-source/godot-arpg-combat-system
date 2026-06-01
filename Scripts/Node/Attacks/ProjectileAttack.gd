@@ -2,6 +2,7 @@ class_name ProjectileAttack extends Attack
 
 var projectile_scene : PackedScene
 var projectile_origin_path : NodePath
+var spawn_offset : Vector3 = Vector3(0.0,2.0,-1.1)
 
 func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo.AtkType, attack_dir : Vector3, _intended_target : Node3D = null):
 	var projectile : Projectile = projectile_scene.instantiate() as Projectile
@@ -9,7 +10,7 @@ func attack(instigator : Node3D, _atk_layer : int, dmg : int, atk_type : AtkInfo
 
 	var projectile_origin : Node3D = instigator.get_node(projectile_origin_path)
 
-	projectile.spawn_transform = Transform3D(Basis.IDENTITY, projectile_origin.global_position + (-instigator.global_basis.z * 0.6))
+	projectile.spawn_transform = Transform3D(Basis.IDENTITY, projectile_origin.global_position + (instigator.global_basis * spawn_offset))
 
 	instigator.get_parent_node_3d().add_child(projectile)
 	#projectile.global_position = projectile_origin.global_position + (-instigator.global_basis.z * 0.6)

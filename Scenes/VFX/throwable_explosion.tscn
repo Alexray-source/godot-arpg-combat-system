@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b0djjl6dvipr7"]
+
+[ext_resource type="Shader" uid="uid://4vwarwqtchff" path="res://Shaders/MagicMaterial.gdshader" id="1_uhsia"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="2_28d7t"]
+[ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="3_yfhsn"]
+[ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="4_yfhsn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rimcp"]
+render_priority = 0
+shader = ExtResource("1_uhsia")
+shader_parameter/rim_factor = 1.084
+shader_parameter/edge_factor = 0.0
+shader_parameter/color = Color(0, 1.8247963, 1.4090434, 1)
+shader_parameter/move_factor = Vector2(1, 0)
+
+[sub_resource type="Curve" id="Curve_uhsia"]
+_data = [Vector2(0, 1), 0.0, -0.856347, 0, 0, Vector2(1, 0), -0.9105953, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rimcp"]
+curve = SubResource("Curve_uhsia")
+
+[sub_resource type="Curve" id="Curve_28d7t"]
+_data = [Vector2(0, 0), 0.0, 7.9919276, 0, 0, Vector2(0.26041666, 0.7966701), 0.8013943, 0.8013943, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yfhsn"]
+curve = SubResource("Curve_28d7t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_llu18"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_yfhsn")
+alpha_curve = SubResource("CurveTexture_rimcp")
+
+[sub_resource type="SphereMesh" id="SphereMesh_b74ia"]
+
+[node name="ThrowableExplosion" type="Node3D" unique_id=970764305]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=536035074]
+material_override = SubResource("ShaderMaterial_rimcp")
+emitting = false
+amount = 1
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_llu18")
+draw_pass_1 = SubResource("SphereMesh_b74ia")
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=1750356749 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("2_28d7t")
+delay_time = 5.0
+target_trigger = NodePath("DestroyTrigger")
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="DestroyTrigger" type="Node" parent="DelayTrigger" unique_id=380173321 node_paths=PackedStringArray("node_to_destroy")]
+script = ExtResource("3_yfhsn")
+node_to_destroy = NodePath("../..")
+metadata/_custom_type_script = "uid://6bco6swhk10l"
+
+[node name="GPUParticleTrigger" type="Node" parent="." unique_id=545491191 node_paths=PackedStringArray("target_particle")]
+script = ExtResource("4_yfhsn")
+target_particle = NodePath("../GPUParticles3D")
+auto_trigger = true
+metadata/_custom_type_script = "uid://c17wdn5p60m84"
