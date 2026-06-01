@@ -5,6 +5,7 @@ class_name Projectile extends Node3D
 @export var hit_vfx : String = "projectile_hit"
 @export var hit_event : ProjectileHit
 @export var re_evaluate_atk_dir_on_ready : bool = false
+@export var target_movement_prediction : bool = true
 
 var spawn_transform : Transform3D
 var direct_space_state : PhysicsDirectSpaceState3D
@@ -22,11 +23,20 @@ func _ready() -> void:
 	ray_params.collide_with_bodies = true
 	ray_params.collision_mask = 15
 	
+	var atk_dir = atk_info.atk_dir
+	
 	if re_evaluate_atk_dir_on_ready == true and atk_info.intended_target != null:
-		atk_info.atk_dir = atk_info.instigator.global_position.direction_to(atk_info.intended_target.global_position)
+		atk_dir = atk_info.instigator.global_position.direction_to(atk_info.intended_target.global_position)
+	
+	if target_movement_prediction == true and atk_info.intended_target is CharacterBody3D:
+		var projectile_travel_time = spawn_transform.origin.distance_to(atk_info.intended_target.global_position) / speed
+		var target_predicted_travel = atk_info.intended_target.velocity * projectile_travel_time
+		var target_predicted_position = atk_info.intended_target.global_position + target_predicted_travel
+		
+		atk_dir = atk_info.instigator.global_position.direction_to(target_predicted_position)
 	
 	global_position = spawn_transform.origin + (-atk_info.instigator.global_basis.z * 0.6)
-	global_basis = Basis.looking_at(atk_info.atk_dir)
+	global_basis = Basis.looking_at(atk_dir)
 
 
 func _physics_process(delta: float) -> void:
