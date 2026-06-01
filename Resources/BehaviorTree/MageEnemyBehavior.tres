@@ -5,19 +5,19 @@
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="2_enx01"]
 [ext_resource type="Script" uid="uid://m1kmxukx1j0c" path="res://Scripts/Resources/BT_Data/BT_StrafeData.gd" id="3_6dmt4"]
 [ext_resource type="Script" uid="uid://bmfskk16f8qgu" path="res://addons/atomai/Scripts/DataNodes/BT_SequenceData.gd" id="4_ocyu0"]
+[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="5_ulxum"]
+[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="6_xw67g"]
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="7_dp3hr"]
 [ext_resource type="Script" uid="uid://drdwdmew2dpjs" path="res://Scripts/Resources/BT_Data/BT_CharacterIsStaggeredData.gd" id="7_p57hi"]
+[ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="8_dp3hr"]
+[ext_resource type="Script" uid="uid://b8ahg0borfp5m" path="res://Scripts/Resources/BT_Data/BT_SetRandomPosRadiusData.gd" id="8_p57hi"]
 [ext_resource type="Script" uid="uid://brxeu6dvx3qwg" path="res://addons/atomai/Scripts/DataNodes/BT_SelectorData.gd" id="8_sj6dd"]
 [ext_resource type="Script" uid="uid://bvc8oipe7tv0h" path="res://addons/atomai/Scripts/DataNodes/BT_InvertDecoratorData.gd" id="8_uos83"]
 [ext_resource type="Script" uid="uid://cxmedjxpldotm" path="res://Scripts/Resources/BT_Data/BT_StaggerCounterData.gd" id="9_1lurp"]
 [ext_resource type="Script" uid="uid://br2lag68y1sfx" path="res://Scripts/Resources/BT_Data/BT_SetStaggerImmuneData.gd" id="10_wtyqw"]
-[ext_resource type="Script" uid="uid://b8ahg0borfp5m" path="res://Scripts/Resources/BT_Data/BT_SetRandomPosRadiusData.gd" id="11_sj6dd"]
-[ext_resource type="Script" uid="uid://bfvgv8bo2lpxb" path="res://Scripts/Resources/BT_Data/BT_CombatChrAbilityData.gd" id="11_xw67g"]
 [ext_resource type="PackedScene" uid="uid://hqokgsqqffo1" path="res://Scenes/VFX/fan_teleport.tscn" id="12_1lurp"]
 [ext_resource type="Script" uid="uid://bjqa74mo2q804" path="res://Scripts/Resources/BT_Data/BT_RequestAtkTokenEnemyData.gd" id="12_p57hi"]
-[ext_resource type="Script" uid="uid://c16m3e3f00l2d" path="res://Scripts/Resources/BT_Data/BT_TeleportToPosData.gd" id="12_uos83"]
-[ext_resource type="Script" uid="uid://dxq3xgpsnnlv8" path="res://addons/atomai/Scripts/DataNodes/BT_WaitData.gd" id="13_p57hi"]
-[ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="17_1lurp"]
+[ext_resource type="Script" uid="uid://cknijcek4d72h" path="res://addons/atomai/Scripts/DataNodes/BT_ForceResultData.gd" id="13_uos83"]
 
 [sub_resource type="Resource" id="Resource_87k5q"]
 resource_name = "Is Character Staggered"
@@ -58,7 +58,7 @@ metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 [sub_resource type="Resource" id="Resource_xt0d4"]
 resource_name = "Check Stagger Count"
 script = ExtResource("9_1lurp")
-stagger_count_treshold = 8
+stagger_count_treshold = 6
 metadata/_custom_type_script = "uid://cxmedjxpldotm"
 
 [sub_resource type="Resource" id="Resource_cbwj5"]
@@ -75,7 +75,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("3_6dmt4")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-max_strafe_time = 1.0
+max_strafe_time = 6.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_0vih5"]
@@ -105,7 +105,7 @@ metadata/_custom_type_script = "uid://cxmedjxpldotm"
 [sub_resource type="Resource" id="Resource_f0syj"]
 resource_name = "Request enemy for combat token"
 script = ExtResource("12_p57hi")
-token_lifetime = 3.0
+token_lifetime = 7.0
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_1m0gs"]
@@ -114,270 +114,110 @@ script = ExtResource("8_sj6dd")
 children = Array[ExtResource("1_anmjm")]([SubResource("Resource_b1ig1"), SubResource("Resource_f0syj")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
-[sub_resource type="Resource" id="Resource_lnsaq"]
-resource_name = "Get Closest Chr."
-script = ExtResource("2_enx01")
-origin_node_scan_key = "character"
-found_character_target_key = "enemy_character"
-scan_radius = 100.0
-scan_layer = 4
-metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
-
-[sub_resource type="Resource" id="Resource_wa0v5"]
-resource_name = "Set Random Pos Within Radius"
-script = ExtResource("11_sj6dd")
-origin_node_bb_key = "enemy_character"
-target_pos_key = "enemy_character_pos"
-horizontal_randomness = 0.0
-metadata/_custom_type_script = "uid://b8ahg0borfp5m"
-
-[sub_resource type="Resource" id="Resource_pa78t"]
-resource_name = "Chr. Teleport To Position"
-script = ExtResource("12_uos83")
-character_bb_key = "character"
-target_pos_bb_key = "enemy_character_pos"
-randomnness_radius = 10.0
-optional_vfx_start = ExtResource("12_1lurp")
-optional_vfx_end = ExtResource("12_1lurp")
-metadata/_custom_type_script = "uid://c16m3e3f00l2d"
-
-[sub_resource type="Resource" id="Resource_01bsr"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "shoot_spin"
-indicator_vfx = "ai_attack_indicator"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_rxkmm"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
-[sub_resource type="Resource" id="Resource_ulxum"]
-resource_name = "Sequence"
-script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_lnsaq"), SubResource("Resource_wa0v5"), SubResource("Resource_pa78t"), SubResource("Resource_01bsr"), SubResource("Resource_rxkmm"), SubResource("Resource_pa78t"), SubResource("Resource_01bsr"), SubResource("Resource_rxkmm"), SubResource("Resource_pa78t"), SubResource("Resource_01bsr"), SubResource("Resource_rxkmm")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_dp3hr"]
-resource_name = "Random Probability"
-script = ExtResource("7_dp3hr")
-probability = 0.2
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_ulxum")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_egtvu"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "sword_pillars"
-indicator_vfx = "ai_attack_indicator"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_h211i"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
 [sub_resource type="Resource" id="Resource_uos83"]
-resource_name = "Sequence"
-script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_egtvu"), SubResource("Resource_h211i")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_1lurp"]
-resource_name = "Random Probability"
-script = ExtResource("7_dp3hr")
-probability = 0.4
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_uos83")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_iyoa6"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "homing_swords"
-indicator_vfx = "ai_attack_indicator"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_buxwk"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
-[sub_resource type="Resource" id="Resource_b88ew"]
-resource_name = "Sequence"
-script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_iyoa6"), SubResource("Resource_buxwk")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_qhmi4"]
-resource_name = "Random Probability"
-script = ExtResource("7_dp3hr")
-probability = 0.4
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_b88ew")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_d582m"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "shield"
-indicator_vfx = "ai_attack_indicator"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_3lf32"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+resource_name = "Check Stagger Count"
+script = ExtResource("9_1lurp")
+stagger_count_treshold = 8
+metadata/_custom_type_script = "uid://cxmedjxpldotm"
 
 [sub_resource type="Resource" id="Resource_i1mt4"]
-resource_name = "Sequence"
-script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d582m"), SubResource("Resource_3lf32")])
-metadata/_custom_type_script = "uid://bmfskk16f8qgu"
-
-[sub_resource type="Resource" id="Resource_ae3f5"]
-resource_name = "Random Probability"
-script = ExtResource("7_dp3hr")
-probability = 0.3
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_i1mt4")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
-
-[sub_resource type="Resource" id="Resource_v6jj4"]
-resource_name = "Get Closest Chr."
-script = ExtResource("2_enx01")
-origin_node_scan_key = "character"
-found_character_target_key = "enemy_character"
-scan_radius = 100.0
-scan_layer = 4
-metadata/_custom_type_script = "uid://b4gg7ghyitmyq"
-
-[sub_resource type="Resource" id="Resource_0x26q"]
 resource_name = "Set Random Pos Within Radius"
-script = ExtResource("11_sj6dd")
-origin_node_bb_key = "enemy_character"
-target_pos_key = "enemy_character_pos"
-horizontal_randomness = 0.0
+script = ExtResource("8_p57hi")
+target_pos_key = "teleport_flee_pos"
+horizontal_randomness = 15.0
 metadata/_custom_type_script = "uid://b8ahg0borfp5m"
 
-[sub_resource type="Resource" id="Resource_0dnxt"]
+[sub_resource type="Resource" id="Resource_qhmi4"]
 resource_name = "Chr. Teleport To Position"
-script = ExtResource("12_uos83")
+script = ExtResource("8_dp3hr")
 character_bb_key = "character"
-target_pos_bb_key = "enemy_character_pos"
-randomnness_radius = 10.0
+target_pos_bb_key = "teleport_flee_pos"
 optional_vfx_start = ExtResource("12_1lurp")
 optional_vfx_end = ExtResource("12_1lurp")
 metadata/_custom_type_script = "uid://c16m3e3f00l2d"
-
-[sub_resource type="Resource" id="Resource_ndqvy"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-interval = 0.7
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
-
-[sub_resource type="Resource" id="Resource_1mi77"]
-resource_name = "Set Random Pos Within Radius"
-script = ExtResource("11_sj6dd")
-origin_node_bb_key = "enemy_character"
-target_pos_key = "enemy_character_pos"
-horizontal_randomness = 0.0
-metadata/_custom_type_script = "uid://b8ahg0borfp5m"
-
-[sub_resource type="Resource" id="Resource_nx0c7"]
-resource_name = "Set Random Pos Within Radius"
-script = ExtResource("11_sj6dd")
-origin_node_bb_key = "enemy_character"
-target_pos_key = "enemy_character_pos"
-horizontal_randomness = 2.0
-metadata/_custom_type_script = "uid://b8ahg0borfp5m"
-
-[sub_resource type="Resource" id="Resource_xrwpk"]
-resource_name = "Chr. Teleport To Position"
-script = ExtResource("12_uos83")
-character_bb_key = "character"
-target_pos_bb_key = "enemy_character_pos"
-randomnness_radius = 0.0
-optional_vfx_start = ExtResource("12_1lurp")
-optional_vfx_end = ExtResource("12_1lurp")
-metadata/_custom_type_script = "uid://c16m3e3f00l2d"
-
-[sub_resource type="Resource" id="Resource_euqri"]
-resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
-character_bb_key = "character"
-target_node_bb_key = "enemy_character"
-ability_name = "triple_combo"
-indicator_vfx = "ai_attack_indicator"
-metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
-
-[sub_resource type="Resource" id="Resource_hce7c"]
-resource_name = "Set Random Pos Within Radius"
-script = ExtResource("11_sj6dd")
-origin_node_bb_key = "enemy_character"
-target_pos_key = "enemy_character_pos"
-horizontal_randomness = 0.0
-metadata/_custom_type_script = "uid://b8ahg0borfp5m"
-
-[sub_resource type="Resource" id="Resource_etsn4"]
-resource_name = "Wait"
-script = ExtResource("13_p57hi")
-interval = 4.0
-metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_d43gv"]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_v6jj4"), SubResource("Resource_0x26q"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_1mi77"), SubResource("Resource_0dnxt"), SubResource("Resource_ndqvy"), SubResource("Resource_nx0c7"), SubResource("Resource_xrwpk"), SubResource("Resource_euqri"), SubResource("Resource_hce7c"), SubResource("Resource_etsn4")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_uos83"), SubResource("Resource_i1mt4"), SubResource("Resource_qhmi4")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
+[sub_resource type="Resource" id="Resource_ae3f5"]
+resource_name = "Force Result"
+script = ExtResource("13_uos83")
+metadata/_custom_type_script = "uid://cknijcek4d72h"
+
 [sub_resource type="Resource" id="Resource_v4std"]
-resource_name = "Random Probability"
-script = ExtResource("7_dp3hr")
-probability = 0.4
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d43gv")])
-metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+resource_name = "Selector"
+script = ExtResource("8_sj6dd")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_d43gv"), SubResource("Resource_ae3f5")])
+metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
-[sub_resource type="Resource" id="Resource_vfy7p"]
-resource_name = "Get Closest Throw Pos."
-script = ExtResource("17_1lurp")
-origin_node_scan_key = "character"
-found_throw_pos_key = "a"
-throw_node_target_key = "enemy_character"
-scan_radius = 100.0
-metadata/_custom_type_script = "uid://u5sb7r7p12ev"
+[sub_resource type="Resource" id="Resource_b88ew"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+interval = 0.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
-[sub_resource type="Resource" id="Resource_hqnwr"]
+[sub_resource type="Resource" id="Resource_au65u"]
 resource_name = "Combat Chr. Ability"
-script = ExtResource("11_xw67g")
+script = ExtResource("5_ulxum")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-ability_name = "shoot_throwables"
+ability_name = "homing_ground_pillar"
 indicator_vfx = "ai_attack_indicator"
 metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 
-[sub_resource type="Resource" id="Resource_ad1v1"]
+[sub_resource type="Resource" id="Resource_jobeu"]
 resource_name = "Wait"
-script = ExtResource("13_p57hi")
+script = ExtResource("6_xw67g")
 interval = 2.0
+randomness = 0.2
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
-[sub_resource type="Resource" id="Resource_e50yl"]
+[sub_resource type="Resource" id="Resource_b00bd"]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_vfy7p"), SubResource("Resource_hqnwr"), SubResource("Resource_ad1v1")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_b88ew"), SubResource("Resource_au65u"), SubResource("Resource_jobeu")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
-[sub_resource type="Resource" id="Resource_kd7b7"]
+[sub_resource type="Resource" id="Resource_enx01"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_jbajh"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("5_ulxum")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+indicator_vfx = "ai_attack_indicator"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_1ypsu"]
+resource_name = "Wait"
+script = ExtResource("6_xw67g")
+interval = 1.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_f774v"]
+resource_name = "Sequence"
+script = ExtResource("4_ocyu0")
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_enx01"), SubResource("Resource_jbajh"), SubResource("Resource_1ypsu")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
+[sub_resource type="Resource" id="Resource_7lo0a"]
+resource_name = "Random Probability"
+script = ExtResource("7_dp3hr")
+probability = 0.7
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_f774v")])
+metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_anmjm"]
 resource_name = "Selector"
 script = ExtResource("8_sj6dd")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_dp3hr"), SubResource("Resource_1lurp"), SubResource("Resource_qhmi4"), SubResource("Resource_ae3f5"), SubResource("Resource_v4std"), SubResource("Resource_e50yl")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_7lo0a"), SubResource("Resource_b00bd")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_xovdh"]
@@ -393,5 +233,5 @@ metadata/_custom_type_script = "uid://br2lag68y1sfx"
 [resource]
 resource_name = "Sequence"
 script = ExtResource("4_ocyu0")
-children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_kd7b7"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g")])
+children = Array[ExtResource("1_anmjm")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_v4std"), SubResource("Resource_b00bd"), SubResource("Resource_anmjm"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
