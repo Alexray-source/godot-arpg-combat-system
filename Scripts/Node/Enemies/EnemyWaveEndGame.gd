@@ -12,7 +12,7 @@ func _ready() -> void:
 func transition():
 	await get_tree().create_timer(1.5).timeout
 	
-	bgm_changer.change_bgm()
+	bgm_changer.execute({})
 	
 	var fade_in : Control = FADE_IN_SCENE.instantiate()
 	fade_in.top_level = true

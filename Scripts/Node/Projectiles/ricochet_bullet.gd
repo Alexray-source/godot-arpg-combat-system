@@ -41,7 +41,7 @@ func ricochet(intersected_hurtbox : HurtBox):
 	hurtbox_scanner.blacklist = scan_blacklist
 	#var closest_hurtbox : HurtBox = hurtbox_scanner.get_closest_hurtbox_to_position(intersected_hurtbox.global_position, get_world_3d().direct_space_state, _scan_shape, intersected_hurtbox.global_transform.orthonormalized(), 2 + owning_layer.get_enemy_layer())
 
-	var nearby_hurtboxes : Array[HurtBox] = hurtbox_scanner.get_nearby_hurtboxes_from_position(get_world_3d().direct_space_state, _scan_shape, intersected_hurtbox.global_transform.orthonormalized(), 2 + owning_layer.get_enemy_layer())
+	var nearby_hurtboxes : Array[HurtBox] = hurtbox_scanner.get_nearby_hurtboxes_from_position(get_world_3d().direct_space_state, _scan_shape, intersected_hurtbox.global_transform.orthonormalized(), 16 + owning_layer.get_enemy_layer())
 	
 	#if closest_hurtbox == null:
 		#return

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bedl40a3fgecw" path="res://Scenes/Maps/sub_areas/area_2.tscn" id="13_mjli6"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="14_kn14b"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="15_2grvq"]
+[ext_resource type="PackedScene" uid="uid://cx1ccpdd8gpeo" path="res://Scenes/Maps/sub_areas/area_3.tscn" id="15_p0lev"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
@@ -94,7 +95,6 @@ size = Vector3(207.42871, 5, 190.49074)
 
 [node name="BgmChanger" type="Node" parent="." unique_id=819114482]
 script = ExtResource("17_2grvq")
-auto_start = true
 metadata/_custom_type_script = "uid://dfay20msmb3cw"
 
 [node name="Areas" type="Node" parent="." unique_id=636129847]
@@ -466,7 +466,8 @@ gizmo_extents = 5.0
 script = ExtResource("12_jjisf")
 areas = Dictionary[String, PackedScene]({
 "area1": ExtResource("12_1xyem"),
-"area2": ExtResource("13_mjli6")
+"area2": ExtResource("13_mjli6"),
+"area3": ExtResource("15_p0lev")
 })
 default_area_key = "area1"
 areas_holder = NodePath("../Areas")

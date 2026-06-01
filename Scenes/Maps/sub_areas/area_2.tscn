@@ -13,9 +13,10 @@
 [ext_resource type="Script" uid="uid://bepfnmc0ag8m4" path="res://Scripts/Node/Trigger/ToggleHudTrigger.gd" id="10_7kxmk"]
 [ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="11_enkjg"]
 [ext_resource type="Script" uid="uid://d077tphh7g7c1" path="res://Scripts/Node/Enemies/EnemyWaveUI.gd" id="12_raxvt"]
-[ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="13_lbb6q"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="14_tfj08"]
 [ext_resource type="AudioStream" uid="uid://c0078nfv36bky" path="res://Assets/Music/Peritune_Swift Strike_loop.ogg" id="16_luq7x"]
+[ext_resource type="Script" uid="uid://doirtubookf6t" path="res://Scripts/Node/Enemies/EnemyWavesEndTriggerConnector.gd" id="16_x24mm"]
+[ext_resource type="Script" uid="uid://d33j3ufbus5bg" path="res://Scripts/Node/Trigger/AreaReachedTrigger.gd" id="17_x24mm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
 size = Vector3(65.96289, 156, 75.30371)
@@ -206,17 +207,6 @@ metadata/_custom_type_script = "uid://bepfnmc0ag8m4"
 script = ExtResource("12_raxvt")
 enemy_waves = NodePath("..")
 
-[node name="Node" type="Node" parent="." unique_id=1841652559 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
-script = ExtResource("13_lbb6q")
-enemy_waves = NodePath("../EnemyWaves")
-target_scene_path = "res://Scenes/UI/prototype_test_end.tscn"
-bgm_changer = NodePath("BgmChanger")
-
-[node name="BgmChanger" type="Node" parent="Node" unique_id=814033636]
-script = ExtResource("14_tfj08")
-crossfade_time = 2.0
-metadata/_custom_type_script = "uid://dfay20msmb3cw"
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1688933925]
 transform = Transform3D(1, 0, 0, 0, 0.9745058, 0.22436261, 0, -0.22436261, 0.9745058, 0, 27.954823, -29.144444)
 fov = 39.374996
@@ -227,6 +217,16 @@ gizmo_extents = 6.72
 
 [node name="BgmChanger" type="Node" parent="." unique_id=1666058300]
 script = ExtResource("14_tfj08")
-auto_start = true
 bgm = ExtResource("16_luq7x")
+auto_trigger = true
 metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="EnemyWavesTriggerConnector" type="Node" parent="." unique_id=1623688478 node_paths=PackedStringArray("enemy_waves", "callback_trigger")]
+script = ExtResource("16_x24mm")
+enemy_waves = NodePath("../EnemyWaves")
+callback_trigger = NodePath("AreaReachedTrigger")
+
+[node name="AreaReachedTrigger" type="Node" parent="EnemyWavesTriggerConnector" unique_id=1675434287]
+script = ExtResource("17_x24mm")
+new_area_name = "area3"
+metadata/_custom_type_script = "uid://d33j3ufbus5bg"

@@ -56,10 +56,10 @@ func action() -> void:
 	if _intended_target != null:
 		var intended_target_pos : Vector3 = _intended_target.global_position
 		
-		if _intended_target is HurtBox:
-			intended_target_pos += _intended_target.hurtbox_center_offset
-		elif _intended_target is CombatCharacter:
-			intended_target_pos += _intended_target.hurt_box.hurtbox_center_offset
+		#if _intended_target is HurtBox:
+			#intended_target_pos += _intended_target.hurtbox_center_offset
+		#elif _intended_target is CombatCharacter:
+			#intended_target_pos += _intended_target.hurt_box.hurtbox_center_offset
 		
 		var chr_pos_xz_plane : Vector3 = Vector3(character.global_position.x, 0.0, character.global_position.z)
 		var closest_hurtbox_pos_xz_plane : Vector3 = Vector3(intended_target_pos.x, 0.0, intended_target_pos.z)

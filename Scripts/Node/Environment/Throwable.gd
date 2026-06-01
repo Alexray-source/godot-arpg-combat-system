@@ -85,6 +85,15 @@ func on_hit(atk_info : AtkInfo) -> void:
 		
 		if intended_target != null:
 			throw_dir = global_position.direction_to(intended_target.global_position)
+
+			if intended_target.get_parent_node_3d() != null and intended_target is CharacterBody3D:
+				var travel_time = global_position.distance_to(intended_target.global_position) / (80.0 * mass)
+				var target_predicted_travel = intended_target.velocity * travel_time
+				var target_predicted_position = atk_info.intended_target.global_position + target_predicted_travel
+				
+				throw_dir = global_position.direction_to(target_predicted_position)
+
+			
 			#throw_to_position(intended_target.global_position, 0.025)
 			#throw(throw_dir, 50.0 * mass)
 		#else:

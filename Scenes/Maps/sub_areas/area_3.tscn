@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://cx1ccpdd8gpeo"]
+
+[ext_resource type="Script" uid="uid://dl5wooa1rix3b" path="res://Scripts/Node/Level/sub_area.gd" id="1_khwry"]
+[ext_resource type="Script" uid="uid://djjvpfpq6jjrw" path="res://Scripts/Node/Enemies/EnemyWaves.gd" id="2_prmfq"]
+[ext_resource type="Script" uid="uid://b488mudfp1u7g" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveCollection.gd" id="3_21vvo"]
+[ext_resource type="Script" uid="uid://2x05qfkltv14" path="res://Scripts/Resources/EnemyWaveData/EnemyWaveData.gd" id="4_khwry"]
+[ext_resource type="Script" uid="uid://d0skmk3674ko1" path="res://Scripts/Node/Trigger/StartEnemyWavesTrigger.gd" id="4_rennw"]
+[ext_resource type="PackedScene" uid="uid://cqo6wg72vmnds" path="res://Scenes/Enemy/boss_enemy.tscn" id="5_prmfq"]
+[ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="6_hewak"]
+[ext_resource type="AudioStream" uid="uid://ccrxrgg7xqh7h" path="res://Assets/Music/1444286_Rose-at-Nightfall-BLACK-RO.mp3" id="10_bgb63"]
+[ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="12_c0xiv"]
+[ext_resource type="Script" uid="uid://buqi4b1fvv7m" path="res://Scripts/Node/Projectiles/projectile.gd" id="13_uo4ei"]
+[ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="14_iouf8"]
+[ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="15_0qhvk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yi1ag"]
+size = Vector3(65.96289, 156, 75.30371)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kiw6d"]
+size = Vector3(179, 156, 14)
+
+[sub_resource type="Resource" id="Resource_rekhb"]
+script = ExtResource("4_khwry")
+enemies = Array[PackedScene]([ExtResource("5_prmfq")])
+metadata/_custom_type_script = "uid://2x05qfkltv14"
+
+[sub_resource type="Resource" id="Resource_cvvif"]
+script = ExtResource("3_21vvo")
+waves = Array[ExtResource("4_khwry")]([SubResource("Resource_rekhb")])
+metadata/_custom_type_script = "uid://b488mudfp1u7g"
+
+[node name="Area3" type="Node" unique_id=1869561025 node_paths=PackedStringArray("spawn_point")]
+script = ExtResource("1_khwry")
+spawn_point = NodePath("Marker3D")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=664512366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06913185, 36.597595, -36.44631)
+collision_layer = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=73213188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61.345253)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1182863827]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 2.0981468e-06, 0, -61.3453)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1924298699]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -61.345276, 0, -2.556967e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=1113089567]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 61.345276, 0, -2.0206697e-05)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" unique_id=1421109004]
+transform = Transform3D(-4.3711385e-08, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, -4.371139e-08, 0, -3.2112002e-06, 73.348145, 0)
+shape = SubResource("BoxShape3D_kiw6d")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=599633567]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, -43.377663, 0, 43.37764)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" unique_id=947945270]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 43.377663, 0, -43.377686)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" unique_id=493932781]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -43.37766, 0, -43.377686)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" unique_id=1178925765]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, 43.37766, 0, 43.37764)
+shape = SubResource("BoxShape3D_yi1ag")
+debug_color = Color(0, 0.85882354, 1, 1)
+
+[node name="BgmChanger" type="Node" parent="." unique_id=1666058300]
+script = ExtResource("15_0qhvk")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="DelayTrigger" type="Node" parent="." unique_id=1792413514 node_paths=PackedStringArray("target_trigger")]
+script = ExtResource("12_c0xiv")
+delay_time = 3.0
+target_trigger = NodePath("StartEnemyWavesTrigger")
+auto_trigger = true
+metadata/_custom_type_script = "uid://dlyjlwfyr7l4v"
+
+[node name="StartEnemyWavesTrigger" type="Node" parent="DelayTrigger" unique_id=1161890447 node_paths=PackedStringArray("enemy_waves")]
+script = ExtResource("4_rennw")
+enemy_waves = NodePath("../../EnemyWaves")
+metadata/_custom_type_script = "uid://d0skmk3674ko1"
+
+[node name="EnemyWaves" type="Node" parent="." unique_id=712771738 node_paths=PackedStringArray("spawn_origin")]
+script = ExtResource("2_prmfq")
+spawn_origin = NodePath("EnemySpawnEpicenter")
+waves_collection = SubResource("Resource_cvvif")
+active_enemy_ai = true
+metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
+
+[node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1932032868]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.74049e-06, 25.67955, -58.044037)
+
+[node name="EnemyWaveEvents" type="Node" parent="EnemyWaves" unique_id=515841360 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
+script = ExtResource("6_hewak")
+enemy_waves = NodePath("..")
+event_triggers = {
+1: NodePath("BgmChanger")
+}
+
+[node name="BgmChanger" type="Node" parent="EnemyWaves/EnemyWaveEvents" unique_id=1308075669]
+script = ExtResource("15_0qhvk")
+bgm = ExtResource("10_bgb63")
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="Node" type="Node" parent="." unique_id=1841652559 node_paths=PackedStringArray("enemy_waves", "bgm_changer")]
+script = ExtResource("14_iouf8")
+enemy_waves = NodePath("../EnemyWaves")
+target_scene_path = "res://Scenes/UI/prototype_test_end.tscn"
+bgm_changer = NodePath("BgmChanger")
+
+[node name="BgmChanger" type="Node" parent="Node" unique_id=814033636]
+script = ExtResource("15_0qhvk")
+crossfade_time = 2.0
+metadata/_custom_type_script = "uid://dfay20msmb3cw"
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1651920791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -16)
+gizmo_extents = 6.72
+script = ExtResource("13_uo4ei")

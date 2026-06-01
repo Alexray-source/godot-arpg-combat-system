@@ -19,5 +19,5 @@ func _ready() -> void:
 	tween.tween_property(main_section, "modulate", Color(1.0,1.0,1.0,0.0), 0.15)
 	tween.tween_property(promo_section, "modulate", Color(1.0,1.0,1.0,1.0), 0.15)
 	
-	result_bgm.change_bgm()
+	result_bgm.execute({})
 	

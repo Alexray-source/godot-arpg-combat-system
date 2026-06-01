@@ -1,14 +1,7 @@
-class_name BgmChanger extends Node
+class_name BgmChanger extends Trigger
 
-@export var auto_start : bool = false
 @export var bgm : AudioStream
 @export var crossfade_time : float = 0.5
 
-func _ready() -> void:
-	if auto_start == false:
-		return
-	
-	change_bgm()
-
-func change_bgm():
+func execute(_params : Dictionary):
 	GlobalSignals.change_bgm.emit(bgm, crossfade_time)

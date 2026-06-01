@@ -21,19 +21,19 @@ func _ready() -> void:
 	ray_params = PhysicsRayQueryParameters3D.new()
 	ray_params.collide_with_areas = true
 	ray_params.collide_with_bodies = true
-	ray_params.collision_mask = 15
+	ray_params.collision_mask = 15 + 16
 	
 	var atk_dir = atk_info.atk_dir
 	
 	if re_evaluate_atk_dir_on_ready == true and atk_info.intended_target != null:
-		atk_dir = atk_info.instigator.global_position.direction_to(atk_info.intended_target.global_position)
+		atk_dir = spawn_transform.origin.direction_to(atk_info.intended_target.global_position)
 	
 	if target_movement_prediction == true and atk_info.intended_target is CharacterBody3D:
 		var projectile_travel_time = spawn_transform.origin.distance_to(atk_info.intended_target.global_position) / speed
 		var target_predicted_travel = atk_info.intended_target.velocity * projectile_travel_time
 		var target_predicted_position = atk_info.intended_target.global_position + target_predicted_travel
 		
-		atk_dir = atk_info.instigator.global_position.direction_to(target_predicted_position)
+		atk_dir = spawn_transform.origin.direction_to(target_predicted_position)
 	
 	global_position = spawn_transform.origin + (-atk_info.instigator.global_basis.z * 0.6)
 	global_basis = Basis.looking_at(atk_dir)
