@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://b1jh45y0xj7n1"]
+
+[ext_resource type="Script" uid="uid://03y6ctix12sq" path="res://Scripts/Node/UI/boss_bar.gd" id="1_ccdn5"]
+[ext_resource type="Script" uid="uid://b12m054cwtg0d" path="res://Scripts/Node/Trigger/TweenTrigger.gd" id="2_g5742"]
+[ext_resource type="Script" uid="uid://cp6ugtfy5wjnj" path="res://Scripts/Resources/FlexibleTween/FlexibleTween.gd" id="3_smymi"]
+[ext_resource type="Script" uid="uid://dnm0egtw1jyxj" path="res://Scripts/Resources/FlexibleTween/UI_ModulateTween.gd" id="4_8wc30"]
+[ext_resource type="Script" uid="uid://dld81ybmmeahh" path="res://Scripts/Resources/FlexibleTween/UI_ScaleTween.gd" id="5_smymi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_au65p"]
+bg_color = Color(0.109375, 0.109375, 0.109375, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.1015625, 0.1015625, 0.1015625, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.10980392)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccdn5"]
+bg_color = Color(0.33686393, 0.79296875, 0.13009644, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Resource" id="Resource_7b8dh"]
+script = ExtResource("4_8wc30")
+use_start_value = true
+start_value = Color(1, 1, 1, 0)
+target_value = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_8wc30"]
+script = ExtResource("5_smymi")
+use_start_value = true
+start_value = Vector2(0, 1)
+target_value = Vector2(1, 1)
+transition = 1
+metadata/_custom_type_script = "uid://dld81ybmmeahh"
+
+[sub_resource type="Resource" id="Resource_xwlu2"]
+script = ExtResource("4_8wc30")
+use_start_value = true
+start_value = Color(1, 1, 1, 1)
+target_value = Color(1, 1, 1, 0)
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_smymi"]
+script = ExtResource("5_smymi")
+start_value = Vector2(1, 1)
+target_value = Vector2(0, 1)
+transition = 1
+easing = 0
+metadata/_custom_type_script = "uid://dld81ybmmeahh"
+
+[node name="BossBar" type="Control" unique_id=1549076937 node_paths=PackedStringArray("boss_bar", "boss_label", "boss_spawned_trigger", "boss_died_trigger")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ccdn5")
+boss_bar = NodePath("VBoxContainer/ProgressBar")
+boss_label = NodePath("VBoxContainer/Label")
+boss_spawned_trigger = NodePath("TweenIn")
+boss_died_trigger = NodePath("TweenOut")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1944173008]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -338.0
+offset_top = 31.0
+offset_right = 338.0
+offset_bottom = 89.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2051637657]
+layout_mode = 2
+text = "Boss Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer" unique_id=1975063197]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_au65p")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ccdn5")
+max_value = 1.0
+show_percentage = false
+
+[node name="TweenIn" type="Node" parent="." unique_id=1085542892 node_paths=PackedStringArray("target_node")]
+script = ExtResource("2_g5742")
+target_node = NodePath("../VBoxContainer")
+tweens_data = Array[ExtResource("3_smymi")]([SubResource("Resource_7b8dh"), SubResource("Resource_8wc30")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="TweenOut" type="Node" parent="." unique_id=1194151571 node_paths=PackedStringArray("target_node")]
+script = ExtResource("2_g5742")
+target_node = NodePath("../VBoxContainer")
+tweens_data = Array[ExtResource("3_smymi")]([SubResource("Resource_xwlu2"), SubResource("Resource_smymi")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
