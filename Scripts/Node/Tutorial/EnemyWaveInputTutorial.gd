@@ -1,13 +1,9 @@
 extends Node
 
-
 @export var enemy_wave_spawner : EnemyWaves
 @export var enemy_wave_tutorials : Dictionary[int, TutorialActionDisplay]
 @export var enabled : bool = false
 
-#var current_tutorial_ui : InputTutorialUI
-
-var _should_be_visible_on_spawn : bool = true
 
 func _ready() -> void:
 	enemy_wave_spawner.new_wave.connect(evaluate_wave)

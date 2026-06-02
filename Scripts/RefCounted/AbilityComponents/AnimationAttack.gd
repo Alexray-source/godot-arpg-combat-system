@@ -47,8 +47,6 @@ func action() -> void:
 	_interrupted = false
 	_intended_target = target_override
 
-	var attack_target = _intended_target
-
 	#print(closest_target)
 	if _intended_target == null:
 		_intended_target = _hurtbox_scanner.get_closest_hurtbox_to_position(character.global_position, character.get_world_3d().direct_space_state, _target_scan_shape, character.global_transform, chr_layer.get_enemy_layer())

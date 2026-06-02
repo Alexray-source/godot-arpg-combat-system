@@ -166,7 +166,7 @@ func on_ability_energy_changed():
 
 func on_enemies_hit(enemy_hurtboxes : Array[HurtBox]):
 	GlobalSignals.shake_all_cameras.emit(hit_shake)
-	ability_energy = clampi(ability_energy + (8.0 * enemy_hurtboxes.size()), 0, max_ability_energy)
+	ability_energy = clampi(ability_energy + (8 * enemy_hurtboxes.size()), 0, max_ability_energy)
 	
 	if current_target == null:
 		var first_hurtbox = enemy_hurtboxes.get(0)
@@ -500,7 +500,7 @@ func _process(delta: float) -> void:
 		inactive_target_reticle.global_position = _closest_target.global_position
 		
 		if _closest_target is HurtBox:
-			target_reticle.global_position = _closest_target.global_position + _closest_target.hurtbox_center_offset
+			inactive_target_reticle.global_position = _closest_target.global_position + _closest_target.hurtbox_center_offset
 	
 	
 	hud.update_target_mode(current_target != null)

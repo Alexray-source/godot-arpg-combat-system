@@ -17,7 +17,7 @@ var _stamina_bar_screen_pos : Vector2
 func _ready() -> void:
 	GlobalSignals.plr_hud_state_changed.connect(on_hud_state_changed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	stamina_bar.value = _stamina/_max_stamina
 	stamina_bar.global_position = _stamina_bar_screen_pos - (stamina_bar.size * stamina_bar.pivot_offset_ratio)
 

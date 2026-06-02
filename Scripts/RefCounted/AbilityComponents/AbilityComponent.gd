@@ -1,7 +1,9 @@
 @abstract class_name AbilityComponent extends RefCounted
 
+@warning_ignore_start("unused_signal")
 signal ability_finished
 signal ability_hit(hurtboxes_hit : Array[HurtBox])
+@warning_ignore_restore("unused_signal")
 
 var chr_layer : CharacterLayer
 var character : Node3D

@@ -26,7 +26,7 @@ signal special_atk3_input
 signal special_atk4_input
 
 signal grapple_input
-signal grapple_enemy_input
+#signal grapple_enemy_input
 #signal switch_grapple_mode
 
 signal target_lock
@@ -65,8 +65,8 @@ var special_atks : Dictionary[String, Signal] = {
 func setup() -> void:
 	#print(Input.get_connected_joypads().size() > 0)
 	change_input_mode(Input.get_connected_joypads().size() > 0)
-	Input.joy_connection_changed.connect(func(_device : int, is_connected : bool):
-		change_input_mode.bind(is_connected)
+	Input.joy_connection_changed.connect(func(_device : int, is_gamepad_connected : bool):
+		change_input_mode.bind(is_gamepad_connected)
 	)
 
 func disconnect_all_events():

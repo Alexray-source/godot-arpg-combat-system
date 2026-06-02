@@ -130,7 +130,7 @@ func _get_can_attack():
 	return (state_machine.current_state == state_machine.get_state_by_key("ground_movement") or state_machine.current_state == state_machine.get_state_by_key("air_movement") or state_machine.current_state == state_machine.get_state_by_key("flying_movement") or state_machine.current_state == state_machine.get_state_by_key("attack")) and stagger_immune == false
 
 func _is_atk_stunned():
-	return is_current_state("stagger") or is_current_state("knockback") or is_current_state("downed") or is_current_state("no_movement")
+	return (is_current_state("stagger") and stagger_immune == false) or is_current_state("knockback") or is_current_state("downed") or is_current_state("no_movement")
 
 func primary_attack():
 	if not _get_can_attack():
@@ -285,7 +285,7 @@ func reset_stagger_count():
 	_stagger_count = 0
 
 func stagger(atk_info : AtkInfo):
-	if stagger_immune == true and state_machine.is_current_state_by_key("knockback") == false or state_machine.is_current_state_by_key("dead"):
+	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
 		return
 	character_abilities.interrupt_active_ability()
 	increment_stagger_count()

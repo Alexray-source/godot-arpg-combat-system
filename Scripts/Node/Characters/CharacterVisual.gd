@@ -71,7 +71,7 @@ func _ready() -> void:
 func on_animation_started(anim_name):
 	_bypass_air_leg_animation = not blacklisted_air_anims.has(anim_name)
 
-func on_animation_finished(anim_name):
+func on_animation_finished(_anim_name):
 	if state_machine.current_state_key == "block":
 		play_override_animation(_state_enter_anim_mapping["block"])
 
@@ -91,7 +91,7 @@ func interrupt_override_anim():
 	anim_tree.set(one_shot_property_path + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 
 func on_state_key_changed(old_state_key : String , new_state_key : String) -> void:
-	var one_shot_property_path = "parameters/" + oneshot_node_name
+	#var one_shot_property_path = "parameters/" + oneshot_node_name
 	var assigned_state_enter_anim = _state_enter_anim_mapping.get(new_state_key)
 	var state_end_stop_override_anim = _state_end_stop_anims.has(old_state_key)
 	

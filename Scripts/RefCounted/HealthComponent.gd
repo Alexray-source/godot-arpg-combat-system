@@ -26,7 +26,7 @@ func take_damage(dmg : int):
 	#print("taking damage")
 	
 	health -= dmg
-	health_changed.emit()
+	#health_changed.emit()
 	if debug == true:
 		print(health)
 	

@@ -4,6 +4,8 @@ var knockback_dir : Vector3
 var knockback_speed : float = 8.0
 
 func on_enter() -> void:
+	character.motion_mode = CharacterBody3D.MOTION_MODE_GROUNDED
+	
 	character.is_on_floor_changed.connect(on_floor_changed)
 	if character is CombatCharacter:
 		#character.knockback()

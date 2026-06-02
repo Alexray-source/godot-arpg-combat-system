@@ -23,16 +23,16 @@
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="20_dmmxv"]
 [ext_resource type="Script" uid="uid://01rxhysxuuc1" path="res://Scripts/Node/Enemies/BossObserver.gd" id="22_ov7s3"]
 
-[sub_resource type="Resource" id="Resource_87k5q"]
+[sub_resource type="Resource" id="Resource_ov7s3"]
 resource_name = "Is Character Staggered"
 script = ExtResource("4_ov7s3")
 character_bb_key = "character"
 metadata/_custom_type_script = "uid://drdwdmew2dpjs"
 
-[sub_resource type="Resource" id="Resource_sj6dd"]
+[sub_resource type="Resource" id="Resource_hdxt1"]
 resource_name = "Invert Decorator"
 script = ExtResource("5_856mc")
-children = Array[ExtResource("3_ivtii")]([SubResource("Resource_87k5q")])
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_ov7s3")])
 metadata/_custom_type_script = "uid://bvc8oipe7tv0h"
 
 [sub_resource type="Resource" id="Resource_1jxw1"]
@@ -56,7 +56,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 [sub_resource type="Resource" id="Resource_p57hi"]
 resource_name = "Selector"
 script = ExtResource("9_2314x")
-children = Array[ExtResource("3_ivtii")]([SubResource("Resource_sj6dd"), SubResource("Resource_pnltp")])
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_hdxt1"), SubResource("Resource_pnltp")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
 [sub_resource type="Resource" id="Resource_xt0d4"]
@@ -79,7 +79,7 @@ resource_name = "Chr. Strafe"
 script = ExtResource("11_hdxt1")
 character_bb_key = "character"
 target_node_bb_key = "enemy_character"
-max_strafe_time = 1.0
+max_strafe_time = 2.0
 metadata/_custom_type_script = "uid://m1kmxukx1j0c"
 
 [sub_resource type="Resource" id="Resource_0vih5"]
@@ -109,7 +109,7 @@ metadata/_custom_type_script = "uid://cxmedjxpldotm"
 [sub_resource type="Resource" id="Resource_f0syj"]
 resource_name = "Request enemy for combat token"
 script = ExtResource("12_d4738")
-token_lifetime = 3.0
+token_lifetime = 4.0
 metadata/_custom_type_script = "uid://bjqa74mo2q804"
 
 [sub_resource type="Resource" id="Resource_1m0gs"]
@@ -158,6 +158,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
 interval = 1.5
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_ulxum"]
@@ -185,6 +186,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_h211i"]
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_uos83"]
@@ -212,6 +214,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_buxwk"]
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_b88ew"]
@@ -239,6 +242,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_3lf32"]
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_i1mt4"]
@@ -285,6 +289,7 @@ metadata/_custom_type_script = "uid://c16m3e3f00l2d"
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
 interval = 0.7
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_1mi77"]
@@ -334,6 +339,7 @@ metadata/_custom_type_script = "uid://b8ahg0borfp5m"
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
 interval = 4.0
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_d43gv"]
@@ -353,7 +359,6 @@ metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
 resource_name = "Get Closest Throw Pos."
 script = ExtResource("19_hcl20")
 origin_node_scan_key = "character"
-found_throw_pos_key = "a"
 throw_node_target_key = "enemy_character"
 scan_radius = 100.0
 metadata/_custom_type_script = "uid://u5sb7r7p12ev"
@@ -371,6 +376,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
 interval = 2.0
+debug = null
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_e50yl"]
@@ -379,13 +385,52 @@ script = ExtResource("8_2jnm4")
 children = Array[ExtResource("3_ivtii")]([SubResource("Resource_vfy7p"), SubResource("Resource_hqnwr"), SubResource("Resource_ad1v1")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
+[sub_resource type="Resource" id="Resource_3dbwk"]
+resource_name = "Random Probability"
+script = ExtResource("18_2e0mq")
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_e50yl")])
+metadata/_custom_type_script = "uid://b8a22kvt7ypwd"
+
+[sub_resource type="Resource" id="Resource_776tr"]
+resource_name = "Combat Chr. Ability"
+script = ExtResource("16_0ghqu")
+character_bb_key = "character"
+target_node_bb_key = "enemy_character"
+ability_name = "primary_atk"
+indicator_vfx = "ai_attack_indicator"
+metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
+
+[sub_resource type="Resource" id="Resource_2314x"]
+resource_name = "Wait"
+script = ExtResource("17_uh4xs")
+interval = 1.5
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_w7qnf"]
+resource_name = "Wait"
+script = ExtResource("17_uh4xs")
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_2jnm4"]
+resource_name = "Sequence"
+script = ExtResource("8_2jnm4")
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_776tr"), SubResource("Resource_2314x"), SubResource("Resource_776tr"), SubResource("Resource_w7qnf"), SubResource("Resource_776tr")])
+metadata/_custom_type_script = "uid://bmfskk16f8qgu"
+
 [sub_resource type="Resource" id="Resource_kd7b7"]
 resource_name = "Selector"
 script = ExtResource("9_2314x")
-children = Array[ExtResource("3_ivtii")]([SubResource("Resource_dp3hr"), SubResource("Resource_1lurp"), SubResource("Resource_qhmi4"), SubResource("Resource_ae3f5"), SubResource("Resource_v4std"), SubResource("Resource_e50yl")])
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_dp3hr"), SubResource("Resource_1lurp"), SubResource("Resource_qhmi4"), SubResource("Resource_ae3f5"), SubResource("Resource_v4std"), SubResource("Resource_3dbwk"), SubResource("Resource_2jnm4")])
 metadata/_custom_type_script = "uid://brxeu6dvx3qwg"
 
-[sub_resource type="Resource" id="Resource_xovdh"]
+[sub_resource type="Resource" id="Resource_ivtii"]
+resource_name = "Wait"
+script = ExtResource("17_uh4xs")
+interval = 2.0
+debug = true
+metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
+
+[sub_resource type="Resource" id="Resource_856mc"]
 resource_name = "Reset Stagger Counter"
 script = ExtResource("20_dmmxv")
 metadata/_custom_type_script = "uid://c5lfgijp8qrfh"
@@ -398,7 +443,7 @@ metadata/_custom_type_script = "uid://br2lag68y1sfx"
 [sub_resource type="Resource" id="Resource_8qssh"]
 resource_name = "Sequence"
 script = ExtResource("8_2jnm4")
-children = Array[ExtResource("3_ivtii")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_kd7b7"), SubResource("Resource_xovdh"), SubResource("Resource_xw67g")])
+children = Array[ExtResource("3_ivtii")]([SubResource("Resource_p57hi"), SubResource("Resource_wtyqw"), SubResource("Resource_1m0gs"), SubResource("Resource_kd7b7"), SubResource("Resource_ivtii"), SubResource("Resource_856mc"), SubResource("Resource_xw67g")])
 metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 
 [node name="Enemy" type="Node3D" unique_id=951569018 node_paths=PackedStringArray("character", "behavior_tree")]

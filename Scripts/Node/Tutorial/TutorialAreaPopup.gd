@@ -7,7 +7,7 @@ func _ready() -> void:
 	for area in area_tutorial_mapping:
 		area.body_entered.connect(show_tutorial_action.bind(area))
 
-func show_tutorial_action(entered_body : Node3D, touched_area : Area3D):
+func show_tutorial_action(_entered_body : Node3D, touched_area : Area3D):
 	#print(entered_body)
 	if already_activated_areas.has(touched_area):
 		return

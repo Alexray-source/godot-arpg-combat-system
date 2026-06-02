@@ -76,7 +76,6 @@ func get_closest_grapple_object() -> Throwable:
 	shape_cast_params.collide_with_bodies = true
 
 	var closest_body : CollisionObject3D
-	var closest_dot_result : float = -1.0
 	
 	var node_list : Array[Node3D]
 	

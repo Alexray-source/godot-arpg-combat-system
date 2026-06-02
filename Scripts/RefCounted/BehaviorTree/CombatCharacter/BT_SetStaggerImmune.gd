@@ -11,7 +11,7 @@ func tick(blackboard : Dictionary):
 	
 	var character : CombatCharacter = blackboard.get(character_bb_key)
 	character.stagger_immune = stagger_immune
-	#print("stagger immune: " + str(stagger_immune))
+	print("stagger immune: " + str(stagger_immune))
 	_finished = true
 	
 	return SUCCESS

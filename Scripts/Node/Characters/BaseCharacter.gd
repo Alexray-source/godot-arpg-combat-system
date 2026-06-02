@@ -54,8 +54,8 @@ func calculate_gravity_force(up_velocity : Vector3, delta : float):
 	return up_velocity
 
 func _physics_process(_delta: float) -> void:
-	if chr_movement_type == ChrMovementType.FLYING:
-		return
+	#if chr_movement_type == ChrMovementType.FLYING:
+		#return
 	
 	if is_on_floor() != prev_is_on_floor:
 		is_on_floor_changed.emit(is_on_floor())

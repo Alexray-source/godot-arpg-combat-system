@@ -14,7 +14,6 @@ var target_scan_range : float = 50.0
 var _target : Node3D
 var _direct_space_state  : PhysicsDirectSpaceState3D
 var _physics_shape_query_params : PhysicsShapeQueryParameters3D
-var _start_pos : Vector3
 var _follow_target : bool = false
 
 func _ready() -> void:
