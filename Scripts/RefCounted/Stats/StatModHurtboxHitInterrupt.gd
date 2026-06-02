@@ -11,6 +11,9 @@ func on_hit(atk_info : AtkInfo):
 	if allowed_atk_types.has(atk_info.atk_type):
 		hit_count -= 1
 		
+		if connected_visual != null:
+			connected_visual.updated.emit(StatModifierVisual.UpdateMode.DAMAGE)
+		
 		if hit_count <= 0:
 			hurtbox.hit.disconnect(on_hit)
 			

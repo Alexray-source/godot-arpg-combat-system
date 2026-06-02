@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://clsv8e2om47by" path="res://Assets/Textures/VFX/Muzzle/Muzzle.png" id="1_sn2u8"]
 [ext_resource type="ArrayMesh" uid="uid://3p0a6jyl00bv" path="res://Assets/Meshes/VFX/muzzle.res" id="2_tiqg5"]
-[ext_resource type="AudioStream" uid="uid://bq2it1lulr352" path="res://Assets/SFX/402789__acidsnowflake__small-pistol-gunshot-indoors.ogg" id="3_l7rne"]
+[ext_resource type="AudioStream" uid="uid://dl4fk2wpmss5n" path="res://Assets/SFX/785380__baggonotes__railgun_fire1_edit.ogg" id="3_sn2u8"]
 [ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="4_7gpkt"]
 [ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="5_mba4k"]
 [ext_resource type="Script" uid="uid://c17wdn5p60m84" path="res://Scripts/Node/Trigger/GPUParticleTrigger.gd" id="6_a8c12"]
@@ -42,11 +42,6 @@ scale_curve = SubResource("CurveXYZTexture_412hx")
 color = Color(1.4352342, 0.60300004, 2.7769997, 1)
 alpha_curve = SubResource("CurveTexture_bxl3u")
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bxl3u"]
-random_pitch = 1.0696088
-streams_count = 1
-stream_0/stream = ExtResource("3_l7rne")
-
 [node name="Muzzle" type="Node3D" unique_id=847841904]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=906888332]
@@ -62,7 +57,7 @@ process_material = SubResource("ParticleProcessMaterial_4nljn")
 draw_pass_1 = ExtResource("2_tiqg5")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GPUParticles3D" unique_id=803308115]
-stream = SubResource("AudioStreamRandomizer_bxl3u")
+stream = ExtResource("3_sn2u8")
 volume_db = 6.0
 unit_size = 25.0
 max_db = 6.0

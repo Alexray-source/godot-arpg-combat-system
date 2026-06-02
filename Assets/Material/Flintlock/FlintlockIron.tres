@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c33hww4r0v8kt"]
+
+[ext_resource type="Material" uid="uid://4mina2opc8kc" path="res://Assets/Material/outline.tres" id="1_b387p"]
+[ext_resource type="Shader" uid="uid://u85hcwww5dj3" path="res://Shaders/CelShaderV3.gdshader" id="2_1d3sx"]
+
+[resource]
+render_priority = 0
+next_pass = ExtResource("1_b387p")
+shader = ExtResource("2_1d3sx")
+shader_parameter/BaseColor = Color(0.6492615, 0.693413, 0.72265625, 1)
+shader_parameter/useAlpha = false
+shader_parameter/ShadeColor = Color(0.35754395, 0.38591957, 0.453125, 1)
+shader_parameter/alphaCutoff = 1.0
+shader_parameter/threshold = 0.0
+shader_parameter/SpecularTint = Color(0.19824219, 0.21191406, 0.21875, 1)
+shader_parameter/SpecularOffset = 0.6865
+shader_parameter/RimTint = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 0.2
+shader_parameter/RimSoftness = 0.0
+shader_parameter/UseEmission = false
+shader_parameter/EmissionStrength = 5.0
+shader_parameter/UseNormalMap = false
+shader_parameter/NormalStrength = 1.0
+shader_parameter/custom_light_dir = Vector3(0, 1, 0)
+shader_parameter/lighting_mode = 0.5
+shader_parameter/uv_div_x = 1
+shader_parameter/uv_div_y = 1
+shader_parameter/uv_offset_x = 0
+shader_parameter/uv_offset_y = 0
