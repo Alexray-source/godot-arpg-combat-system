@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 GlobalSignals="*uid://dimjk2e5vp0my"
 Sound="*uid://cf0n4p0hkejxr"
+PersistentData="*uid://cxkfnsrd0bwid"
 
 [display]
 

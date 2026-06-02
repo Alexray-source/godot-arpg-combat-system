@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://djjvpfpq6jjrw" path="res://Scripts/Node/Enemies/EnemyWaves.gd" id="1_gc3j3"]
 [ext_resource type="Script" uid="uid://dl5wooa1rix3b" path="res://Scripts/Node/Level/sub_area.gd" id="1_u0f61"]
-[ext_resource type="Resource" uid="uid://tdq55bf3qiuo" path="res://Resources/EnemyWaveCollections/test1.tres" id="2_u0f61"]
 [ext_resource type="Script" uid="uid://rcyy34dgs5d8" path="res://Scripts/Node/Tutorial/EnemyWaveInputTutorial.gd" id="3_luq7x"]
+[ext_resource type="Resource" uid="uid://tdq55bf3qiuo" path="res://Resources/EnemyWaveCollections/test1.tres" id="3_x24mm"]
 [ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="4_x24mm"]
 [ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="5_m82g8"]
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="6_1aorv"]
@@ -120,7 +120,7 @@ debug_color = Color(0, 0.85882354, 1, 1)
 [node name="EnemyWaves" type="Node" parent="." unique_id=712771738 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("1_gc3j3")
 spawn_origin = NodePath("EnemySpawnEpicenter")
-waves_collection = ExtResource("2_u0f61")
+waves_collection = ExtResource("3_x24mm")
 active_enemy_ai = true
 auto_start = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"

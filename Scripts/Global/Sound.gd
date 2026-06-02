@@ -1,7 +1,7 @@
 extends Node
 
 var bgm : AudioStreamPlayer
-var bgm_volume : float = 0.4
+var bgm_volume : float = 0.25
 
 func _ready() -> void:
 	bgm = AudioStreamPlayer.new()
@@ -28,6 +28,6 @@ func cross_fade_bgm(new_audio_stream : AudioStream, cross_fade_time : float = 1.
 		tween.tween_property(bgm, "volume_linear", 0.0, cross_fade_time*0.5)
 		tween.tween_property(bgm, "volume_linear", bgm_volume, cross_fade_time*0.5)
 		await tween.step_finished
-	print(new_audio_stream)
+	#print(new_audio_stream)
 	bgm.stream = new_audio_stream
 	bgm.play()

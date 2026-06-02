@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="10_74mp2"]
 [ext_resource type="PackedScene" uid="uid://gsqmmqm6xi2m" path="res://Scenes/UI/nearby_enemy_indicator.tscn" id="10_jhyir"]
 [ext_resource type="Script" uid="uid://dub8ou7ym2ind" path="res://Scripts/Node/UI/tutorial_spawner.gd" id="12_oikmp"]
+[ext_resource type="PackedScene" uid="uid://b1jh45y0xj7n1" path="res://Scenes/UI/boss_bar.tscn" id="13_06tpx"]
 
 [sub_resource type="Resource" id="Resource_jlvik"]
 script = ExtResource("3_0u5uq")
@@ -42,7 +43,7 @@ camera_arm = NodePath("SpringArm3D")
 target_tracking_camera = NodePath("TargetTrackingCamera")
 hud = NodePath("Hud")
 enemy_indicators = NodePath("NearbyEnemyIndicator")
-camera_arm_center_rest_offset = Vector3(0, 1.5, 0)
+camera_arm_center_rest_offset = Vector3(0, 1.4, 0)
 block_shake = SubResource("Resource_jhyir")
 hit_shake = SubResource("Resource_74mp2")
 
@@ -54,6 +55,7 @@ pos_follow_speed = 8.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1955581959 groups=["default_camera"]]
 transform = Transform3D(1, 0, 0, 0, 0.99528396, -0.09700271, 0, 0.09700271, 0.99528396, 0, 0, -1.1281606)
+fov = 65.0
 script = ExtResource("5_jlvik")
 
 [node name="PlrCharacterStateMachine" type="Node" parent="." unique_id=605118828]
@@ -76,3 +78,5 @@ camera = NodePath("../SpringArm3D/Camera3D")
 [node name="TutorialUI_Spawner" type="Node" parent="." unique_id=895293591]
 script = ExtResource("12_oikmp")
 metadata/_custom_type_script = "uid://dub8ou7ym2ind"
+
+[node name="BossBar" parent="." unique_id=1549076937 instance=ExtResource("13_06tpx")]

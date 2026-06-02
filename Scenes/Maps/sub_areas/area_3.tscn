@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://nf6oofmawgw1" path="res://Scripts/Node/Enemies/EnemyWaveEvents.gd" id="6_hewak"]
 [ext_resource type="AudioStream" uid="uid://ccrxrgg7xqh7h" path="res://Assets/Music/1444286_Rose-at-Nightfall-BLACK-RO.mp3" id="10_bgb63"]
 [ext_resource type="Script" uid="uid://dlyjlwfyr7l4v" path="res://Scripts/Node/Trigger/DelayedTrigger.gd" id="12_c0xiv"]
-[ext_resource type="Script" uid="uid://buqi4b1fvv7m" path="res://Scripts/Node/Projectiles/projectile.gd" id="13_uo4ei"]
 [ext_resource type="Script" uid="uid://d2fio8m2ew8o3" path="res://Scripts/Node/Enemies/EnemyWaveEndGame.gd" id="14_iouf8"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="15_0qhvk"]
 
@@ -135,4 +134,3 @@ metadata/_custom_type_script = "uid://dfay20msmb3cw"
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1651920791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -16)
 gizmo_extents = 6.72
-script = ExtResource("13_uo4ei")

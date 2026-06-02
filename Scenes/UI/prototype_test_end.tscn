@@ -91,9 +91,9 @@ horizontal_alignment = 1
 
 [node name="BgmChanger" type="Node" parent="." unique_id=1707203570]
 script = ExtResource("3_dswbb")
-auto_start = true
 bgm = ExtResource("4_envuh")
 crossfade_time = 0.0
+auto_trigger = true
 metadata/_custom_type_script = "uid://dfay20msmb3cw"
 
 [node name="BgmChanger2" type="Node" parent="." unique_id=939198948]

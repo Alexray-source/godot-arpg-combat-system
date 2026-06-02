@@ -49,7 +49,7 @@ shader_parameter/uv_rot_scroll = 0.0
 script = ExtResource("1_b7l44")
 target_projectile = NodePath(".")
 hitbox = SubResource("BoxShape3D_gd41t")
-speed = 75.0
+speed = 50.0
 hit_event = SubResource("Resource_mumgg")
 re_evaluate_atk_dir_on_ready = true
 

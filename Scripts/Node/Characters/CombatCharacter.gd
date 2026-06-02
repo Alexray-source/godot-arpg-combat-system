@@ -41,6 +41,7 @@ signal interupt_atks()
 signal damage_hit(atk_info : AtkInfo)
 signal received_hit()
 signal atk_blocked()
+signal chr_health_changed(new_health : int, max_health : int)
 signal chr_died()
 signal atk_debounce_ended()
 signal enemies_hit(opponent_hurtboxes : Array[HurtBox])
@@ -68,6 +69,7 @@ func _ready() -> void:
 	
 	health_component = HealthComponent.new(start_health, max_health)
 	health_component.debug = debug_health
+	health_component.health_changed.connect(chr_health_changed.emit)
 	health_component.died.connect(func():
 		chr_died.emit(),
 	CONNECT_ONE_SHOT)
@@ -244,6 +246,11 @@ func increment_stagger_count():
 func connect_stat_modifier_interruption(modifier_key : String, stat_modifier : StatModifierData):
 	var interrupt : StatModifierInterrupt = stat_modifier.get_interrupt(character_abilities)
 	_stat_mod_interrupts[modifier_key] = interrupt
+	
+	var matching_visual : StatModifierVisual = _stat_modifiers_visuals.get(modifier_key)
+	if matching_visual != null:
+		interrupt.connected_visual = matching_visual
+	
 	interrupt.setup()
 	interrupt.interrupt.connect(remove_stat_modifier.bind(modifier_key), CONNECT_ONE_SHOT)
 
@@ -252,13 +259,14 @@ func add_stat_modifier(modifier_key : String, stat_modifier : StatModifierData):
 		print("Stat modifier with this key is already assigned. Skipping.")
 		return
 	
-	_stat_modifier_stack.add_modifier(modifier_key, stat_modifier)
-	connect_stat_modifier_interruption(modifier_key, stat_modifier)
-	
 	if stat_modifier.visual_effect != null:
 		var visual_effect = stat_modifier.visual_effect.instantiate()
 		_stat_modifiers_visuals[modifier_key] = visual_effect
 		add_child(visual_effect)
+	
+	_stat_modifier_stack.add_modifier(modifier_key, stat_modifier)
+	connect_stat_modifier_interruption(modifier_key, stat_modifier)
+	
 
 func remove_stat_modifier(modifier_key : String):
 	_stat_modifier_stack.remove_modifier(modifier_key)
@@ -302,7 +310,7 @@ func knockback(atk_info : AtkInfo):
 	interupt_atks.emit()
 	
 	if atk_info.atk_type == AtkInfo.AtkType.MASSIVE_DIRECTIONAL:
-		knockback_state.knockback_speed = 74.0
+		knockback_state.knockback_speed = 35.0
 	else:
 		knockback_state.knockback_speed = 8.0
 	

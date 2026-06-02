@@ -80,6 +80,9 @@ func physics_process(delta: float) -> void:
 		if _3d_closest_indicator.visible and _closest_node != null:
 			_3d_closest_indicator.global_position = _closest_node.global_position
 			
+			if _closest_node is HurtBox:
+				_3d_closest_indicator.global_position = _closest_node.global_position + _closest_node.hurtbox_center_offset
+
 			#if target_override != null and character.move_dir.length() > 0.01:
 				#var direction_to_priority_target = character.global_position.direction_to(target_override.global_position)
 				#var priority_dot_direction_result = -character.global_basis.z.dot(direction_to_priority_target)
@@ -88,6 +91,9 @@ func physics_process(delta: float) -> void:
 					#_3d_closest_indicator.global_position = target_override.global_position
 			if target_override != null and character.move_dir.length() < 0.1:
 				_3d_closest_indicator.global_position = target_override.global_position
+				
+				if target_override is CombatCharacter:
+					_3d_closest_indicator.global_position = target_override.global_position + target_override.hurt_box.hurtbox_center_offset
 	
 	_aoe_grapple.physics_process(delta)
 

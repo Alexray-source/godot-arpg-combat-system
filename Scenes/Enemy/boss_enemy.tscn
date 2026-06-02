@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://b8a22kvt7ypwd" path="res://addons/atomai/Scripts/DataNodes/BT_RandomDecoratorData.gd" id="18_2e0mq"]
 [ext_resource type="Script" uid="uid://u5sb7r7p12ev" path="res://Scripts/Resources/BT_Data/BT_GetClosestThrowPosData.gd" id="19_hcl20"]
 [ext_resource type="Script" uid="uid://c5lfgijp8qrfh" path="res://Scripts/Resources/BT_Data/BT_ResetStaggerCountData.gd" id="20_dmmxv"]
+[ext_resource type="Script" uid="uid://01rxhysxuuc1" path="res://Scripts/Node/Enemies/BossObserver.gd" id="22_ov7s3"]
 
 [sub_resource type="Resource" id="Resource_87k5q"]
 resource_name = "Is Character Staggered"
@@ -156,6 +157,7 @@ metadata/_custom_type_script = "uid://bfvgv8bo2lpxb"
 [sub_resource type="Resource" id="Resource_rxkmm"]
 resource_name = "Wait"
 script = ExtResource("17_uh4xs")
+interval = 1.5
 metadata/_custom_type_script = "uid://dxq3xgpsnnlv8"
 
 [sub_resource type="Resource" id="Resource_ulxum"]
@@ -412,3 +414,7 @@ blackboard = Dictionary[String, Variant]({
 tree_data = SubResource("Resource_8qssh")
 
 [node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("4_1d7io")]
+
+[node name="BossObserver" type="Node" parent="." unique_id=2100652953 node_paths=PackedStringArray("character")]
+script = ExtResource("22_ov7s3")
+character = NodePath("../BaseCharacter")

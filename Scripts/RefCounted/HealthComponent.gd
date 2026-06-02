@@ -7,12 +7,12 @@ var health : int = 100:
 		return health
 	set(value):
 		health = value
-		health_changed.emit()
+		health_changed.emit(value, max_health)
 		
 var dead : bool = false
 var debug : bool = false
 
-signal health_changed
+signal health_changed(new_health : int, max_health : int)
 signal died
 
 func _init(_start_health : int, _max_health : int) -> void:

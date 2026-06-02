@@ -491,9 +491,16 @@ func _process(delta: float) -> void:
 
 	if current_target != null:
 		target_reticle.global_position = current_target.global_position
+		
+		if current_target is HurtBox:
+			target_reticle.global_position = current_target.global_position + current_target.hurtbox_center_offset
+
 	
 	if _closest_target != null:
 		inactive_target_reticle.global_position = _closest_target.global_position
+		
+		if _closest_target is HurtBox:
+			target_reticle.global_position = _closest_target.global_position + _closest_target.hurtbox_center_offset
 	
 	
 	hud.update_target_mode(current_target != null)
@@ -509,7 +516,7 @@ func _process(delta: float) -> void:
 		
 		var target_to_chr_distance = current_target.global_position.distance_to(character.global_position) * 0.9
 		
-		camera_center_offset = camera_arm_center_rest_offset + ((current_target.global_position - character.global_position) * 0.8) + (target_to_camera_dir * -target_to_chr_distance)
+		camera_center_offset = camera_arm_center_rest_offset + ((current_target.global_position - character.global_position) * 0.9) + (target_to_camera_dir * -target_to_chr_distance)
 		
 		if current_target.global_position.distance_to(character.global_position) > targeting_cancel_distance_treshold:
 			#current_target = null
