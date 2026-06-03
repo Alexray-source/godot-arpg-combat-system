@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_ecs0e"]
 [ext_resource type="PackedScene" uid="uid://drxg0tbgt6880" path="res://Scenes/Chr/mage_character.tscn" id="2_au65u"]
+[ext_resource type="PackedScene" uid="uid://dk8fmqm3xnugx" path="res://Scenes/Environment/health_pickup.tscn" id="2_ecs0e"]
 [ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="4_280eo"]
 [ext_resource type="Resource" uid="uid://cfvcf778xlknq" path="res://Resources/BehaviorTree/MageEnemyBehavior.tres" id="5_ecs0e"]
 
@@ -9,6 +10,7 @@
 script = ExtResource("1_ecs0e")
 character = NodePath("MageChr")
 behavior_tree = NodePath("BehaviorTreeRoot")
+drop = ExtResource("2_ecs0e")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("4_280eo")

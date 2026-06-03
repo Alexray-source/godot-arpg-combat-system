@@ -110,7 +110,8 @@ func _ready() -> void:
 	
 	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
 
-	character.damage_hit.connect(on_damage_hit)
+	#character.damage_hit.connect(on_damage_hit)
+	character.chr_health_changed.connect(on_health_changed)
 	character.chr_died.connect(on_died, CONNECT_ONE_SHOT)
 	character.atk_blocked.connect(on_atk_blocked)
 	
@@ -279,8 +280,11 @@ func on_atk_blocked(atk_info : AtkInfo) -> void:
 func on_block_energy_empty() -> void:
 	on_block_end()
 
-func on_damage_hit(_atk_info : AtkInfo) -> void:
-	hud.update_health_bar(character.health_component.health, character.health_component.max_health)
+#func on_damage_hit(_atk_info : AtkInfo) -> void:
+	#hud.update_health_bar(character.health_component.health, character.health_component.max_health)
+
+func on_health_changed(new_health : int, max_health : int):
+	hud.update_health_bar(new_health, max_health)
 
 func on_died() -> void:
 	block_input = true

@@ -284,6 +284,12 @@ func reset_stagger_count():
 	#print("reset stagger")
 	_stagger_count = 0
 
+func damage(amount : int):
+	health_component.take_damage(amount)
+
+func heal(amount : int):
+	health_component.heal(amount)
+
 func stagger(atk_info : AtkInfo):
 	if stagger_immune == true or state_machine.is_current_state_by_key("dead"):
 		return

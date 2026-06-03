@@ -1,12 +1,14 @@
 class_name AbilitiesUIComponent extends Control
 
 @export var icons : Array[AbilityIcon]
+@export var tween_activate_trigger : Trigger
+@export var tween_deactivate_trigger : Trigger
 
-#var _cached_pos : Vector2
-#var _shake_tween : Tween
-
-#func _ready() -> void:
-	#_cached_pos = position
+func set_special_indicator_state(is_active : bool):
+	if is_active == true:
+		tween_activate_trigger.execute({})
+	else:
+		tween_deactivate_trigger.execute({})
 
 func activate_abililty(icon_index : int):
 	var icon : AbilityIcon = icons[icon_index]

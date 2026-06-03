@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctn5w2esnxwch"]
 
 [ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_x20uq"]
+[ext_resource type="PackedScene" uid="uid://dk8fmqm3xnugx" path="res://Scenes/Environment/health_pickup.tscn" id="2_6qk6x"]
 [ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="2_mtp5r"]
 [ext_resource type="Script" uid="uid://bjag0racej2n8" path="res://addons/atomai/Scripts/DataNodes/BT_Node_Data.gd" id="3_3abfe"]
 [ext_resource type="Script" uid="uid://b4gg7ghyitmyq" path="res://Scripts/Resources/BT_Data/BT_GetClosestChrData.gd" id="4_5ny8y"]
@@ -507,6 +508,7 @@ metadata/_custom_type_script = "uid://bmfskk16f8qgu"
 script = ExtResource("1_x20uq")
 character = NodePath("BruteChr")
 behavior_tree = NodePath("BehaviorTreeRoot")
+drop = ExtResource("2_6qk6x")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("2_mtp5r")

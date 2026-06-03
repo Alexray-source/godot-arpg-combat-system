@@ -12,10 +12,11 @@ var fill_progress_factor : float:
 @export_subgroup("Nodes")
 @export var icon_rect : TextureRect
 @export var progress_bar : ProgressBar
-@export var activate_layer : Control
+@export var activate_layer : ColorRect
 
 var _cached_pos : Vector2
 var _shake_tween : Tween
+var _current_tween : Tween
 
 const NORMAL_MODULATE : Color = Color(1.0,1.0,1.0, 0.0)
 const EMPTY_MODULATE : Color = Color(0.117, 0.117, 0.117, 1.0)
@@ -28,33 +29,44 @@ func set_icon(new_icon : Texture2D) -> void:
 	icon = new_icon
 	if new_icon != null:
 		icon_rect.texture = new_icon
-		activate_layer.modulate = NORMAL_MODULATE
+		activate_layer.color = NORMAL_MODULATE
 	else:
 		icon_rect.texture = icon_empty
-		activate_layer.modulate = EMPTY_MODULATE
+		activate_layer.color = EMPTY_MODULATE
+
+func interupt_tweens():
+	if _current_tween != null and _current_tween.is_running():
+		_current_tween.stop()
+	
+	if _shake_tween != null and _shake_tween.is_running():
+		_shake_tween.stop()
 
 func activate_effect():
-	activate_layer.modulate = Color(1.0,1.0,1.0)
+	interupt_tweens()
+	
+	activate_layer.color = Color(1.0,1.0,1.0)
 	scale = Vector2(1.4,1.4)
 	
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.set_parallel(true)
-	tween.tween_property(activate_layer, "modulate", Color(1.0,1.0,1.0,0.0), 0.5)
-	tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.5)
+	_current_tween = create_tween()
+	_current_tween.set_ease(Tween.EASE_OUT)
+	_current_tween.set_trans(Tween.TRANS_QUAD)
+	_current_tween.set_parallel(true)
+	_current_tween.tween_property(activate_layer, "color", Color(1.0,1.0,1.0,0.0), 0.5)
+	_current_tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.5)
 	
 
 func insufficient_energy_notification():
-	activate_layer.modulate = Color(1.0, 0.0, 0.0, 1.0)
+	interupt_tweens()
+	
+	activate_layer.color = Color(1.0, 0.0, 0.0, 1.0)
 	scale = Vector2(1.4,1.4)
 	
-	var tween = create_tween()
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.set_parallel(true)
-	tween.tween_property(activate_layer, "modulate", Color(1.0, 0.0, 0.0, 0.0), 0.5)
-	tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.5)
+	_current_tween = create_tween()
+	_current_tween.set_ease(Tween.EASE_OUT)
+	_current_tween.set_trans(Tween.TRANS_QUAD)
+	_current_tween.set_parallel(true)
+	_current_tween.tween_property(activate_layer, "color", Color(1.0, 0.0, 0.0, 0.0), 0.5)
+	_current_tween.tween_property(self, "scale", Vector2(1.0,1.0), 0.5)
 
 	if _shake_tween != null and _shake_tween.is_running():
 		_shake_tween.stop()

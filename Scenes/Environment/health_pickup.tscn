@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dk8fmqm3xnugx"]
+
+[ext_resource type="Script" uid="uid://dsnsad6mohhqc" path="res://Scenes/Environment/character_detector.gd" id="1_tardw"]
+[ext_resource type="Script" uid="uid://cn4xm5kpwilmh" path="res://Scenes/Environment/health_pickup.gd" id="1_w1grm"]
+[ext_resource type="Script" uid="uid://cgg8sloxa71el" path="res://Scripts/Resources/CharacterLayer.gd" id="2_blbtg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1grm"]
+albedo_color = Color(0.1477356, 0.8046875, 0.21958971, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w1grm"]
+material = SubResource("StandardMaterial3D_w1grm")
+
+[sub_resource type="Resource" id="Resource_w1grm"]
+script = ExtResource("2_blbtg")
+metadata/_custom_type_script = "uid://cgg8sloxa71el"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rb3ch"]
+radius = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rb3ch"]
+
+[node name="HealthPickup" type="RigidBody3D" unique_id=1292493663 node_paths=PackedStringArray("chr_detector")]
+script = ExtResource("1_w1grm")
+chr_detector = NodePath("Area3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2089151651]
+mesh = SubResource("BoxMesh_w1grm")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1108049957]
+script = ExtResource("1_tardw")
+chr_layer = SubResource("Resource_w1grm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=676390811]
+shape = SubResource("SphereShape3D_rb3ch")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=664434972]
+shape = SubResource("BoxShape3D_rb3ch")

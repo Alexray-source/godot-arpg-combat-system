@@ -2,6 +2,7 @@ class_name Enemy extends Node3D
 
 @export var character : CombatCharacter
 @export var behavior_tree : BT_Root
+@export var drop : PackedScene
 
 var dead_state : CharacterDeadState
 
@@ -20,4 +21,9 @@ func handle_death():
 	died.emit()
 
 func cleanup():
+	if drop != null:
+		var instanced_drop : Node3D = drop.instantiate()
+		get_tree().current_scene.add_child(instanced_drop)
+		instanced_drop.global_position = character.global_position
+	
 	queue_free()

@@ -262,7 +262,6 @@ graph_offset = Vector2(-228, -184)
 
 [resource]
 resource_local_to_scene = true
-graph_offset = Vector2(-1350.37, 85.95)
 nodes/output/position = Vector2(420, -100)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_vucap")
 nodes/StateMachine/position = Vector2(-1040, -120)

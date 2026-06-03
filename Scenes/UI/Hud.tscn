@@ -6,9 +6,75 @@
 [ext_resource type="Texture2D" uid="uid://cr246ctiqobjy" path="res://Assets/Textures/UI/InputKeyboard/keyboard_1.svg" id="5_dva25"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="6_xq4qh"]
 [ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="7_45mfi"]
+[ext_resource type="Texture2D" uid="uid://csph8nyandcoi" path="res://Assets/Textures/UI/InputController/xbox_rb.svg" id="8_45mfi"]
 [ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="8_knqh6"]
+[ext_resource type="Script" uid="uid://b12m054cwtg0d" path="res://Scripts/Node/Trigger/TweenTrigger.gd" id="9_knqh6"]
 [ext_resource type="Texture2D" uid="uid://dmkycthjdi3u1" path="res://Assets/Textures/UI/InputKeyboard/flair_circle_target_a.png" id="10_knqh6"]
+[ext_resource type="Script" uid="uid://cp6ugtfy5wjnj" path="res://Scripts/Resources/FlexibleTween/FlexibleTween.gd" id="10_m7iiv"]
 [ext_resource type="Texture2D" uid="uid://bfdjijrht5u28" path="res://Assets/Textures/UI/playstation_trigger_r2.png" id="11_qwgca"]
+[ext_resource type="Script" uid="uid://dnm0egtw1jyxj" path="res://Scripts/Resources/FlexibleTween/UI_ModulateTween.gd" id="11_rcrjv"]
+[ext_resource type="Script" uid="uid://dld81ybmmeahh" path="res://Scripts/Resources/FlexibleTween/UI_ScaleTween.gd" id="12_tjqet"]
+[ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="13_awk6w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45mfi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.42352942)
+shadow_size = 23
+
+[sub_resource type="Resource" id="Resource_mauye"]
+script = ExtResource("11_rcrjv")
+target_value = Color(0.5625, 0.5625, 0.5625, 1)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_3f0d3"]
+script = ExtResource("11_rcrjv")
+target_value = Color(1, 1, 1, 1)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m7iiv"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.39999998, 0.83000004, 1, 0.7882353)
+shadow_size = 160
+
+[sub_resource type="Resource" id="Resource_m7iiv"]
+script = ExtResource("11_rcrjv")
+target_value = Color(1, 1, 1, 1)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_rcrjv"]
+script = ExtResource("11_rcrjv")
+target_value = Color(1, 1, 1, 0)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dnm0egtw1jyxj"
+
+[sub_resource type="Resource" id="Resource_aefvt"]
+script = ExtResource("12_tjqet")
+target_value = Vector2(1.1, 1.1)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dld81ybmmeahh"
+
+[sub_resource type="Resource" id="Resource_1yy8v"]
+script = ExtResource("12_tjqet")
+target_value = Vector2(1, 1)
+transition = 5
+tween_time = 0.5
+metadata/_custom_type_script = "uid://dld81ybmmeahh"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ov73"]
 bg_color = Color(0.109375, 0.109375, 0.109375, 1)
@@ -51,15 +117,6 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45mfi"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-shadow_color = Color(0, 0, 0, 0.42352942)
-shadow_size = 23
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knqh6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 corner_radius_top_left = 15
@@ -84,7 +141,7 @@ target_indicator_rect = NodePath("TextureRect")
 target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
 target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
 
-[node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons")]
+[node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons", "tween_activate_trigger", "tween_deactivate_trigger")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -97,11 +154,13 @@ offset_right = -68.0
 offset_bottom = -51.0
 grow_horizontal = 0
 grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_6d7lo")
 icons = [NodePath("AbilityIcon1"), NodePath("AbilityIcon2"), NodePath("AbilityIcon3"), NodePath("AbilityIcon4")]
+tween_activate_trigger = NodePath("MultiTriggerIn")
+tween_deactivate_trigger = NodePath("MultiTriggerOut")
 
 [node name="AbilityIcon1" parent="Control" unique_id=565308469 instance=ExtResource("1_ks3ap")]
-modulate = Color(0, 0.5058824, 1, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -114,7 +173,6 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("5_dva25")
 
 [node name="AbilityIcon2" parent="Control" unique_id=305997422 instance=ExtResource("1_ks3ap")]
-modulate = Color(1, 0.796875, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -127,7 +185,6 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("6_xq4qh")
 
 [node name="AbilityIcon3" parent="Control" unique_id=925880745 instance=ExtResource("1_ks3ap")]
-modulate = Color(0.84765625, 0.09933472, 0.09933472, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -144,7 +201,6 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("7_45mfi")
 
 [node name="AbilityIcon4" parent="Control" unique_id=202546464 instance=ExtResource("1_ks3ap")]
-modulate = Color(0.20099044, 0.83984375, 0.16403198, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -159,6 +215,102 @@ grow_horizontal = 2
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("8_knqh6")
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=2119310762]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_45mfi")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="Control/TextureRect" unique_id=1593899270]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -2.5
+offset_right = 1.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_45mfi")
+
+[node name="FadeIn" type="Node" parent="Control/TextureRect" unique_id=1590355716 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_mauye")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="FadeOut" type="Node" parent="Control/TextureRect" unique_id=1251173855 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_3f0d3")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="Panel" type="Panel" parent="Control" unique_id=1158004535]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -2.5
+offset_right = 1.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m7iiv")
+
+[node name="FadeIn" type="Node" parent="Control/Panel" unique_id=262851213 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_m7iiv")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="FadeOut" type="Node" parent="Control/Panel" unique_id=958447135 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_rcrjv")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="AbilitiesTweenIn" type="Node" parent="Control" unique_id=1111842140 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_aefvt")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="AbilitiesTweenOut" type="Node" parent="Control" unique_id=1893649715 node_paths=PackedStringArray("target_node")]
+script = ExtResource("9_knqh6")
+target_node = NodePath("..")
+tweens_data = Array[ExtResource("10_m7iiv")]([SubResource("Resource_1yy8v")])
+metadata/_custom_type_script = "uid://b12m054cwtg0d"
+
+[node name="MultiTriggerIn" type="Node" parent="Control" unique_id=1869025115 node_paths=PackedStringArray("triggers")]
+script = ExtResource("13_awk6w")
+triggers = [NodePath("../TextureRect/FadeIn"), NodePath("../Panel/FadeIn"), NodePath("../AbilitiesTweenIn")]
+metadata/_custom_type_script = "uid://bxsi8tccwwxt6"
+
+[node name="MultiTriggerOut" type="Node" parent="Control" unique_id=462241712 node_paths=PackedStringArray("triggers")]
+script = ExtResource("13_awk6w")
+triggers = [NodePath("../TextureRect/FadeOut"), NodePath("../Panel/FadeOut"), NodePath("../AbilitiesTweenOut")]
+metadata/_custom_type_script = "uid://bxsi8tccwwxt6"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1915422211]
 layout_mode = 1

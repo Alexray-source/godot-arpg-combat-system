@@ -21,6 +21,12 @@ func _process(_delta: float) -> void:
 	stamina_bar.value = _stamina/_max_stamina
 	stamina_bar.global_position = _stamina_bar_screen_pos - (stamina_bar.size * stamina_bar.pivot_offset_ratio)
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("gamepad_action_btn"):
+		abilities_ui.set_special_indicator_state(true)
+	elif event.is_action_released("gamepad_action_btn"):
+		abilities_ui.set_special_indicator_state(false)
+
 func on_hud_state_changed(new_state : bool):
 	visible = new_state
 

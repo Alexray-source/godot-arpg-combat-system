@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgxa1yrota11b" path="res://addons/atomai/Scripts/LogicNodes/BTRoot.gd" id="1_2t2r4"]
 [ext_resource type="Script" uid="uid://dym7khkusjh1p" path="res://Scripts/Node/Enemies/enemy.gd" id="1_d40jh"]
+[ext_resource type="PackedScene" uid="uid://dk8fmqm3xnugx" path="res://Scenes/Environment/health_pickup.tscn" id="2_mttwy"]
 [ext_resource type="PackedScene" uid="uid://122if28mknyj" path="res://Scenes/Chr/melee_character.tscn" id="4_8cum6"]
 [ext_resource type="Resource" uid="uid://u25vnnufdp6p" path="res://Resources/BehaviorTree/EnemyMeleeBehavior.tres" id="5_d40jh"]
 
@@ -9,6 +10,7 @@
 script = ExtResource("1_d40jh")
 character = NodePath("MeleeChr")
 behavior_tree = NodePath("BehaviorTreeRoot")
+drop = ExtResource("2_mttwy")
 
 [node name="BehaviorTreeRoot" type="Node3D" parent="." unique_id=1147936652]
 script = ExtResource("1_2t2r4")

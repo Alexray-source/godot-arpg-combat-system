@@ -434,7 +434,7 @@ tracks/60/keys = {
 "times": PackedFloat32Array(1.0416666, 1.4583333),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
-"args": [&"shoot_throwables"],
+"args": [&"primary_atk"],
 "method": &"ability_event_trigger"
 }, {
 "args": [],
