@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dhrnw8e3ta6ud"]
+
+[ext_resource type="Texture2D" uid="uid://vivhbg4o6rhk" path="res://Assets/Textures/Mat/Terrain/GrassBaseVar2.png" id="1_srixa"]
+
+[resource]
+albedo_texture = ExtResource("1_srixa")

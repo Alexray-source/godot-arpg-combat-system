@@ -30,8 +30,8 @@ void fragment() {
 	ALBEDO = albedo_tex_color.rgb * COLOR.rgb  * modulate.rgb;
 	
 	if (red_as_alpha == true) {
-		ALPHA = albedo_tex_color.r * COLOR.r * modulate.a;
+		ALPHA = albedo_tex_color.r * COLOR.a * modulate.a;
 	} else {
-		ALPHA = albedo_tex_color.a * COLOR.r * modulate.a;
+		ALPHA = albedo_tex_color.a * COLOR.a * modulate.a;
 	}
 }

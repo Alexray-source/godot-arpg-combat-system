@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c56hxjln3jfbc"]
+
+[ext_resource type="Shader" uid="uid://bjcvx6vi345gl" path="res://Shaders/forest_placeholder.gdshader" id="1_c2rei"]
+[ext_resource type="Texture2D" uid="uid://2kbxiu1y8qd8" path="res://Assets/MeshScenes/Terrain/Tree_Far_Pattern_albedo_var1.png" id="2_7yu16"]
+[ext_resource type="Texture2D" uid="uid://dngb7wkxd6qbq" path="res://Assets/MeshScenes/Terrain/BG_Forest_Tree_Far_Pattern_normal.png" id="3_npyd7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_c2rei")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_7yu16")
+shader_parameter/proximity_fade_distance = 49.3499988969288
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(0, 0, 0, 0)
+shader_parameter/specular = 0.15999999642368
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("3_npyd7")
+shader_parameter/normal_scale = 3.990000949525001
+shader_parameter/uv1_blend_sharpness = 2.000000095
+shader_parameter/uv1_scale = Vector3(0.02, 0.02, 0.02)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(0, 0, 0)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/roundness = 0.5

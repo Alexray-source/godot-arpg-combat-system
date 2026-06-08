@@ -443,7 +443,7 @@ tracks/57/keys = {
 "times": PackedFloat32Array(0.29166666),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": ["muzzle", "Hand_R"],
-"method": &"slash_vfx"
+"args": ["flintlock_muzzle_marker", "hard_bullet_ring", false],
+"method": &"block_vfx"
 }]
 }

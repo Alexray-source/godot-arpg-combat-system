@@ -25,10 +25,10 @@ seamless = true
 render_priority = 0
 shader = ExtResource("1_0kqo5")
 shader_parameter/rim_factor = 1.46
-shader_parameter/edge_factor = -0.044
+shader_parameter/edge_factor = 0.01
 shader_parameter/color = Color(2.778, 0.9738087, 0, 1)
 shader_parameter/color_mask = SubResource("NoiseTexture2D_fm3dp")
-shader_parameter/move_factor = Vector2(0.1, 0.2)
+shader_parameter/move_factor = Vector2(0.5, 0.2)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7gh6p"]
 material = SubResource("ShaderMaterial_l0oad")

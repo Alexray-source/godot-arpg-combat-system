@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://wkl2vlec81tk"]
+
+[ext_resource type="Texture2D" uid="uid://i1r7gkx8rr7e" path="res://addons/splatmapterrainmeshpainter/tex/radial.png" id="1_4t1fa"]
+
+[node name="BrushDecal" type="Decal" unique_id=821487080]
+size = Vector3(1, 1, 1)
+texture_albedo = ExtResource("1_4t1fa")
+emission_energy = 2.0

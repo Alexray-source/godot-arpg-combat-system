@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://f368rsu0it58"]
+
+[ext_resource type="Script" uid="uid://bqs3xa7rvuxo5" path="res://addons/texture_2d_array_creator/scripts/texture_array_ui_creator.gd" id="1_jqemt"]
+
+[node name="Dock" type="MarginContainer" node_paths=PackedStringArray("select_files_btn", "create_array_btn", "save_btn", "clear_btn", "preview_array_holder", "selected_filenames_holder", "open_files_dialog", "save_dialog")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+script = ExtResource("1_jqemt")
+select_files_btn = NodePath("VBoxContainer/Select")
+create_array_btn = NodePath("VBoxContainer/CreateBtn")
+save_btn = NodePath("VBoxContainer/SaveBtn")
+clear_btn = NodePath("VBoxContainer/ClearBtn")
+preview_array_holder = NodePath("VBoxContainer/HBoxContainer")
+selected_filenames_holder = NodePath("VBoxContainer/VBoxContainer")
+open_files_dialog = NodePath("VBoxContainer/SelectDialog")
+save_dialog = NodePath("VBoxContainer/SaveDialog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ClearBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Clear All
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Select" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Add Texture"
+
+[node name="CreateBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create Texture2DArray"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SaveBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Save"
+
+[node name="SelectDialog" type="FileDialog" parent="VBoxContainer"]
+oversampling_override = 1.0
+title = "Open a File"
+file_mode = 0
+display_mode = 1
+
+[node name="SaveDialog" type="FileDialog" parent="VBoxContainer"]
+oversampling_override = 1.0

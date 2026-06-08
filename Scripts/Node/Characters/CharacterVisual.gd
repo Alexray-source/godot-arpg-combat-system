@@ -165,7 +165,7 @@ func change_weapon(weapon_name : String, equip_mode : WeaponEquipMode):
 	equipped_weapon_node.visible = equip_mode == WeaponEquipMode.EQUIP
 	holstered_weapon_node.visible = not equipped_weapon_node.visible
 
-func block_vfx(weapon_name : String, vfx_preset : String):
+func block_vfx(weapon_name : String, vfx_preset : String, attached : bool = true):
 	var equipped_weapon_node : Node3D = equipped_weapons_visuals[weapon_name]
 	var target_transform : Transform3D = equipped_weapon_node.global_transform
 	
@@ -181,7 +181,11 @@ func block_vfx(weapon_name : String, vfx_preset : String):
 		
 	
 	var vfx_key = vfx_key_mapping.get(vfx_preset)
-	GlobalSignals.spawn_vfx_attached.emit(vfx_key, equipped_weapon_node)
+	
+	if attached == true:
+		GlobalSignals.spawn_vfx_attached.emit(vfx_key, equipped_weapon_node)
+	else:
+		GlobalSignals.spawn_vfx.emit(vfx_key, equipped_weapon_node.global_transform.orthonormalized())
 
 func dash_vfx():
 	#print("dash")

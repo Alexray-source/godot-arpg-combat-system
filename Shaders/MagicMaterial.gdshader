@@ -19,7 +19,7 @@ void fragment() {
 	float fresnel = dot(NORMAL, VIEW);
 	float exp_fresnel = pow(fresnel, rim_factor) + edge_factor;
 	
-	ALPHA = (1.0 - exp_fresnel) * color_mask_value.r * COLOR.a;
+	ALPHA = clamp((1.0 - exp_fresnel) * color_mask_value.r * COLOR.a, 0.0,1.0);
 }
 
 //void light() {

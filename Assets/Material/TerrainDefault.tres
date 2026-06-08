@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cpcllt8j0rhwj"]
+
+[ext_resource type="Shader" uid="uid://dh27xy0wd1re3" path="res://Shaders/TerrainMesh.gdshader" id="1_pmf3b"]
+[ext_resource type="Texture2D" uid="uid://dkkmyihdmqc3e" path="res://Assets/Textures/Mat/Terrain/stylized_rock_cliff3_albedo.png" id="2_eol4p"]
+[ext_resource type="Texture2D" uid="uid://vivhbg4o6rhk" path="res://Assets/Textures/Mat/Terrain/GrassBaseVar2.png" id="3_8jg4i"]
+[ext_resource type="Texture2D" uid="uid://cl37i3jxuk24j" path="res://Assets/Textures/Mat/Terrain/stylized_dirt_albedo.png" id="3_oilok"]
+[ext_resource type="Texture2D" uid="uid://dobdvatbm36hk" path="res://Assets/Textures/Mat/Terrain/stylized_dirt_normal.png" id="5_oilok"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_pmf3b")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("2_eol4p")
+shader_parameter/normalmap_a = ExtResource("5_oilok")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("3_8jg4i")
+shader_parameter/normalmap_b = ExtResource("5_oilok")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("3_oilok")
+shader_parameter/normalmap_c = ExtResource("5_oilok")
+shader_parameter/uv_scale_c = 0.1

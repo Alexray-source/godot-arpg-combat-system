@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dpeh0h7tf0bxm"]
+
+[ext_resource type="Shader" uid="uid://cbqqq26aedgwi" path="res://Shaders/Cloud.gdshader" id="1_esr6v"]
+
+[sub_resource type="Gradient" id="Gradient_gx7h8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.24522293, 0.27070063)
+colors = PackedColorArray(0, 0, 0, 1, 0.41796875, 0.3617175, 0.21224976, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ysxgi"]
+gradient = SubResource("Gradient_gx7h8")
+
+[sub_resource type="Gradient" id="Gradient_esr6v"]
+interpolation_mode = 2
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gx7h8"]
+gradient = SubResource("Gradient_esr6v")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_esr6v")
+shader_parameter/lighting_gradient = SubResource("GradientTexture1D_ysxgi")
+shader_parameter/softness_gradient = SubResource("GradientTexture1D_gx7h8")
+shader_parameter/rim_tint = Color(0.65625, 0.6402138, 0.123046875, 1)
+shader_parameter/rim_threshold = 0.2135
+shader_parameter/rim_spread = 0.2
+shader_parameter/rim_softness = -0.084
+shader_parameter/roundness = 0.999999977648
+shader_parameter/depth_distance = 100.0
+shader_parameter/beers_law = 7.0000001043084

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4nohlvqhmf20"]
+
+[ext_resource type="Texture2D" uid="uid://dkkmyihdmqc3e" path="res://Assets/Textures/Mat/Terrain/stylized_rock_cliff3_albedo.png" id="1_r7i6v"]
+
+[resource]
+albedo_texture = ExtResource("1_r7i6v")
+uv1_scale = Vector3(0.0365, 0.0365, 0.0365)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.3735967
+uv1_world_triplanar = true
