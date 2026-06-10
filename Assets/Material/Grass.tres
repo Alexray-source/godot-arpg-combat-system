@@ -5,8 +5,8 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_a6i5t")
-shader_parameter/grass_color = Color(0.27933347, 0.35546875, 0.20550537, 1)
-shader_parameter/grass_sec_color = Color(0.34704313, 0.44140625, 0.29312134, 1)
+shader_parameter/grass_color = Color(0.24622992, 0.33203125, 0.16471863, 1)
+shader_parameter/grass_sec_color = Color(0.26830673, 0.3515625, 0.21835327, 1)
 shader_parameter/wind_direction = Vector2(1, 0)
 shader_parameter/wind_intensity = 1.0
 shader_parameter/wind_speed = 2.0

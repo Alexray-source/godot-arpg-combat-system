@@ -52,7 +52,7 @@ vec3 get_grass_color(vec4 vert_color, vec3 node_pos) {
 	float rand_value = noise(node_pos.xz * 0.4);
 	// Hard coded color.
 	//vec3 grass_gradient = mix(grass_color, grass_sec_color, vert_color.r);
-	vec3 grass_random_color = mix(grass_color, grass_sec_color, vert_color.r);
+	vec3 grass_random_color = mix(grass_color, grass_sec_color * (1.0 + (rand_value * 0.5)), vert_color.r);
 	vec4 grass_albedo = vec4(grass_random_color,1.0);
 	//grass_albedo *= pow(vert_color, vec4(1.5));
 	return grass_albedo.rgb;
@@ -63,8 +63,8 @@ vec3 get_normal() {
 }
 
 float get_roughness(vec3 vert) {
-	return mix(1.0,0.5, vert.r);
-	//return 0.7;
+	//return mix(1.0,0.5, vert.r);
+	return 1.0;
 }
 
 float get_specular_value(vec3 vert) {
