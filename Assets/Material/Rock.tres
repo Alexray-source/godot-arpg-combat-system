@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cc45002d2plyu"]
+
+[ext_resource type="Texture2D" uid="uid://vlh0677da2qa" path="res://Assets/Textures/Mat/Ruins/ConcreteInside_albedo.png" id="1_t44fo"]
+[ext_resource type="Texture2D" uid="uid://dke6ejqb66jds" path="res://Assets/Textures/Mat/Ruins/ConcreteInside_normal.png" id="2_hesft"]
+[ext_resource type="Texture2D" uid="uid://cwbivi5c82xyi" path="res://Assets/Textures/Mat/Ruins/ConcreteInside_orm.png" id="3_j5r5f"]
+
+[resource]
+albedo_texture = ExtResource("1_t44fo")
+roughness_texture = ExtResource("3_j5r5f")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("2_hesft")
+rim_enabled = true
+rim_tint = 0.0
+rim_texture = ExtResource("1_t44fo")

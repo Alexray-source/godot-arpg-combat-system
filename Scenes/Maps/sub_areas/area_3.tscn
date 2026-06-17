@@ -106,7 +106,7 @@ active_enemy_ai = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1932032868]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.74049e-06, 25.67955, -58.044037)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 6.7895635e-06, 25.67955, -46.044037)
 
 [node name="EnemyWaveEvents" type="Node" parent="EnemyWaves" unique_id=515841360 node_paths=PackedStringArray("enemy_waves", "event_triggers")]
 script = ExtResource("6_hewak")

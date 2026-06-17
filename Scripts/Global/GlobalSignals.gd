@@ -3,6 +3,7 @@ extends Node
 @warning_ignore_start("unused_signal")
 signal restart_scene()
 signal change_scene(new_scene_path : String)
+signal scene_ready()
 signal change_bgm(audio_stream : AudioStream, crossfade_duration : float)
 signal spawn_vfx(vfx_key : String, vfx_transform : Transform3D)
 signal spawn_vfx_attached(vfx_key : String, parent : Node3D)

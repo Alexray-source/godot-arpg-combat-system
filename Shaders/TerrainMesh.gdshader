@@ -12,24 +12,24 @@ shader_type spatial;
 uniform float uv_splat_textures_scale = 0.2;
 
 uniform bool use_splat_map = false;
-uniform sampler2D splat_map : filter_linear;
+uniform sampler2D splat_map : filter_linear_mipmap;
 
 //uniform sampler2DArray textures_albedo : source_color, filter_linear;
 //uniform sampler2DArray textures_normal : filter_linear;
 
 group_uniforms Material.A;
-uniform sampler2D albedo_a : source_color, filter_linear;
-uniform sampler2D normalmap_a : filter_linear;
+uniform sampler2D albedo_a : source_color, filter_linear_mipmap;
+uniform sampler2D normalmap_a : filter_linear_mipmap;
 uniform float uv_scale_a = 0.1;
 
 group_uniforms Material.B;
-uniform sampler2D albedo_b : source_color, filter_linear;
-uniform sampler2D normalmap_b : filter_linear;
+uniform sampler2D albedo_b : source_color, filter_linear_mipmap;
+uniform sampler2D normalmap_b : filter_linear_mipmap;
 uniform float uv_scale_b = 0.1;
 
 group_uniforms Material.C;
-uniform sampler2D albedo_c : source_color, filter_linear;
-uniform sampler2D normalmap_c : filter_linear;
+uniform sampler2D albedo_c : source_color, filter_linear_mipmap;
+uniform sampler2D normalmap_c : filter_linear_mipmap;
 uniform float uv_scale_c = 0.1;
 
 instance uniform bool use_vertex_color = false;
@@ -42,7 +42,6 @@ varying vec2 ground_uv;
 void vertex() {
 	vec4 wpos = MODEL_MATRIX * vec4(VERTEX, 1);
 	ground_uv = wpos.xz;
-	ROUGHNESS = 1.0;
 }
 
 void fragment() {
@@ -67,11 +66,10 @@ void fragment() {
 			vertex_color.g * color_b +
 			vertex_color.b * color_c) / vertex_color_sum;
 	}
-	//vec3 normal_map = (
-		//vertex_color.r * normal_a +
-		//vertex_color.g * normal_b +
-		//vertex_color.b * normal_c +
-		//vertex_color.a * normal_d) / vertex_color_sum;
+	vec3 normal_map = (
+		vertex_color.r * normal_a +
+		vertex_color.g * normal_b +
+		vertex_color.b * normal_c) / vertex_color_sum;
 
 	if (use_splat_map == true) {
 		vec4 splat_data = texture(splat_map, UV);
@@ -89,18 +87,18 @@ void fragment() {
 		splat_data.g * color_b +
 		splat_data.b * color_c) / (splat_data_sum + inverse_mask);
 		
-		//vec3 splat_normal_map = (
-		//splat_data.r * normal_a +
-		//splat_data.g * normal_b +
-		//splat_data.b * normal_c +
-		//splat_data.a * normal_d) / (splat_data_sum + inverse_mask);
+		vec3 splat_normal_map = (
+		splat_data.r * normal_a +
+		splat_data.g * normal_b +
+		splat_data.b * normal_c) / (splat_data_sum + inverse_mask);
 		
 		albedo = mix(albedo, splat_albedo, splat_mask);
-		//normal_map = mix(normal_map, splat_normal_map, splat_mask);
+		normal_map = mix(normal_map, splat_normal_map, splat_mask);
 	}
 	ALBEDO = albedo;
 	SPECULAR = 0.5;
-	//NORMAL_MAP = normal_map;
+	ROUGHNESS = 0.75;
+	NORMAL_MAP = normal_map;
 }
 
 //void light() {

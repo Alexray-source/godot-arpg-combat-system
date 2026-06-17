@@ -41,6 +41,7 @@ func on_scene_loaded():
 	var loaded_packed_scene : PackedScene = ResourceLoader.load_threaded_get(scene_path)
 	current_scene = loaded_packed_scene.instantiate()
 	add_child(current_scene)
+	GlobalSignals.scene_ready.emit()
 
 func _process(_delta: float) -> void:
 	var load_progress : ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(scene_path)

@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dc8b22gsmqtk5"]
+
+[ext_resource type="Texture2D" uid="uid://bnsuj6dec58gv" path="res://Assets/Textures/Mat/Ruins/Albedo_Gate.png" id="1_24tuc"]
+[ext_resource type="Texture2D" uid="uid://cg4awkldsxmvk" path="res://Assets/Textures/Mat/Ruins/Metallic_Gate.png" id="2_tq38s"]
+[ext_resource type="Texture2D" uid="uid://dslgbdda5c25m" path="res://Assets/Textures/Mat/Ruins/Normal_Gate.png" id="3_ititi"]
+[ext_resource type="Texture2D" uid="uid://bxb8ejohvpcxm" path="res://Assets/Textures/Mat/Ruins/Roughness_Gate.png" id="4_05wio"]
+
+[resource]
+albedo_texture = ExtResource("1_24tuc")
+metallic = 1.0
+metallic_texture = ExtResource("2_tq38s")
+roughness_texture = ExtResource("4_05wio")
+normal_enabled = true
+normal_texture = ExtResource("3_ititi")
+rim_tint = 1.0
+anisotropy = 1.0
+texture_filter = 5

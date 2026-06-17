@@ -75,7 +75,7 @@ func _render_callback(_effect_callback_type: int, render_data: RenderData):
 		uniform.uniform_type = RenderingDevice.UNIFORM_TYPE_SAMPLER_WITH_TEXTURE
 		uniform.binding = 0
 		uniform.add_id(linear_sampler)
-		uniform.add_id(lens_flare_tex)
+		uniform.add_id(corelens_flare_tex)
 	
 		var core_lens_flare_texture_set : RID = UniformSetCacheRD.get_cache(shader, 1, [uniform])
 

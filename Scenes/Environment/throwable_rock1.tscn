@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://b37tiutqxvxg7"]
+
+[ext_resource type="Script" uid="uid://c0lbkv4b643w" path="res://Scripts/Node/Environment/Throwable.gd" id="1_ifau6"]
+[ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="2_fb08b"]
+[ext_resource type="ArrayMesh" uid="uid://d1445c0mqayk8" path="res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_004_cell_001.res" id="2_hjbgs"]
+[ext_resource type="Material" uid="uid://cc45002d2plyu" path="res://Assets/Material/Rock.tres" id="3_u8dk2"]
+[ext_resource type="AudioStream" uid="uid://dk4uhyegdrvma" path="res://Assets/SFX/524312__bertsz__rock-destroy.wav" id="4_oiq14"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oiq14"]
+points = PackedVector3Array(0.51041085, -0.33491528, 0.13501406, 0.4993176, -0.34502292, 0.075772285, 0.1211319, 0.10119495, -0.4346278, 0.08164424, 0.4087812, 0.43461514, -0.0029284954, 0.39571097, 0.5636386, 0.36233217, -0.2561453, 0.30607623, 0.4645115, -0.39678106, 0.13780046, 0.4731621, -0.3739517, 0.09176391, 0.22005457, -0.16953321, -0.26598862, -0.07732403, 0.41235372, -0.32728994, 0.06444472, 0.011968821, -0.47448575, -0.057681978, 0.17769942, -0.5204012, -0.061345786, 0.49330208, 0.49930865, -0.4334252, 0.39518812, 0.6948429, -0.43393406, -0.0347355, 0.60531384, -0.42945608, -0.11899495, 0.4801671, -0.39464995, 0.0426403, -0.4216649, -0.1544674, 0.025039047, -0.4904774, -0.20677835, 0.40050337, -0.43898916, -0.23456219, 0.49330208, -0.3034236, -0.3919021, 0.1968691, -0.5428137, -0.4293543, 0.49330208, 0.60919064, -0.52929467, 0.39335832, 0.6210632, -0.52542734, 0.00464949, 0.54207414, -0.49672756, 0.18580297, -0.44868106, -0.41754872, 0.4017233, -0.45728263, -0.42925254, 0.49330208, -0.31771916, -0.51667494, 0.39414254, -0.35915208)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dxvn3"]
+margin = 0.1
+points = PackedVector3Array(0.51041085, -0.33491528, 0.13501406, 0.4993176, -0.34502292, 0.075772285, 0.1211319, 0.10119495, -0.4346278, 0.08164424, 0.4087812, 0.43461514, -0.0029284954, 0.39571097, 0.5636386, 0.36233217, -0.2561453, 0.30607623, 0.4645115, -0.39678106, 0.13780046, 0.4731621, -0.3739517, 0.09176391, 0.22005457, -0.16953321, -0.26598862, -0.07732403, 0.41235372, -0.32728994, 0.06444472, 0.011968821, -0.47448575, -0.057681978, 0.17769942, -0.5204012, -0.061345786, 0.49330208, 0.49930865, -0.4334252, 0.39518812, 0.6948429, -0.43393406, -0.0347355, 0.60531384, -0.42945608, -0.11899495, 0.4801671, -0.39464995, 0.0426403, -0.4216649, -0.1544674, 0.025039047, -0.4904774, -0.20677835, 0.40050337, -0.43898916, -0.23456219, 0.49330208, -0.3034236, -0.3919021, 0.1968691, -0.5428137, -0.4293543, 0.49330208, 0.60919064, -0.52929467, 0.39335832, 0.6210632, -0.52542734, 0.00464949, 0.54207414, -0.49672756, 0.18580297, -0.44868106, -0.41754872, 0.4017233, -0.45728263, -0.42925254, 0.49330208, -0.31771916, -0.51667494, 0.39414254, -0.35915208)
+
+[node name="ThrowableCube" type="RigidBody3D" unique_id=554461063 node_paths=PackedStringArray("hurtbox", "mesh_instance", "hit_sfx_player")]
+collision_layer = 16
+collision_mask = 543
+angular_damp_mode = 1
+script = ExtResource("1_ifau6")
+hurtbox = NodePath("HurtBox")
+accepted_atk_types = Array[int]([3])
+allowed_target_hits = 10000
+mesh_instance = NodePath("MeshInstance3D")
+hit_sfx_player = NodePath("AudioStreamPlayer3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1509521494]
+mesh = ExtResource("2_hjbgs")
+surface_material_override/0 = ExtResource("3_u8dk2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1865325341]
+shape = SubResource("ConvexPolygonShape3D_oiq14")
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=1120051301]
+collision_layer = 16
+collision_mask = 15
+script = ExtResource("2_fb08b")
+metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1752552509]
+shape = SubResource("ConvexPolygonShape3D_dxvn3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=792607980]
+stream = ExtResource("4_oiq14")
+max_db = -6.0

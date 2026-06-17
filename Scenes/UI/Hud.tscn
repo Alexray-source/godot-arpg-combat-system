@@ -161,6 +161,7 @@ tween_activate_trigger = NodePath("MultiTriggerIn")
 tween_deactivate_trigger = NodePath("MultiTriggerOut")
 
 [node name="AbilityIcon1" parent="Control" unique_id=565308469 instance=ExtResource("1_ks3ap")]
+modulate = Color(0, 0.1328125, 1, 1)
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -173,6 +174,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("5_dva25")
 
 [node name="AbilityIcon2" parent="Control" unique_id=305997422 instance=ExtResource("1_ks3ap")]
+modulate = Color(1, 0.8203125, 0, 1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -185,6 +187,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("6_xq4qh")
 
 [node name="AbilityIcon3" parent="Control" unique_id=925880745 instance=ExtResource("1_ks3ap")]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -201,6 +204,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 icon = ExtResource("7_45mfi")
 
 [node name="AbilityIcon4" parent="Control" unique_id=202546464 instance=ExtResource("1_ks3ap")]
+modulate = Color(0.1953125, 1, 0, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5

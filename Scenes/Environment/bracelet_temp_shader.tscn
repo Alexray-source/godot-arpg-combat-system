@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cojxxwee003kk"]
+
+[ext_resource type="ArrayMesh" uid="uid://b28p21nrnn8my" path="res://Assets/Meshes/Weapons/Bracelet_Cube_002.res" id="1_kpctp"]
+[ext_resource type="Shader" uid="uid://dqjvmgg7uxrhd" path="res://Shaders/Jade.gdshader" id="2_3b873"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2jw5r"]
+frequency = 0.0002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ok5y1"]
+noise = SubResource("FastNoiseLite_2jw5r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2x41"]
+render_priority = 0
+shader = ExtResource("2_3b873")
+shader_parameter/baseColor = Color(0.7734375, 0, 0, 1)
+shader_parameter/rimColor = Color(0, 0, 0, 1)
+shader_parameter/shineThroughColor = Color(1.353256, 0.42672014, 0, 1)
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_ok5y1")
+shader_parameter/rimPower = 2.8555
+
+[node name="Node3D" type="Node3D" unique_id=1030467848]
+
+[node name="Cube_001" type="MeshInstance3D" parent="." unique_id=715811032]
+mesh = ExtResource("1_kpctp")
+surface_material_override/2 = SubResource("ShaderMaterial_h2x41")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101752472]
+transform = Transform3D(-0.978692, 0.034910783, -0.20234527, -0.20436709, -0.07006293, 0.9763839, 0.019909482, 0.9969317, 0.07570465, 0, 0.5497899, 0)

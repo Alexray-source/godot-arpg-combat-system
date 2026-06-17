@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://byfewp4sqidvp"]
+
+[ext_resource type="Texture2D" uid="uid://c87bbmxkss6eg" path="res://Assets/Textures/Mat/Ruins/Albedo_CircleFloor.png" id="1_3orqx"]
+[ext_resource type="Texture2D" uid="uid://cnrxbu8xv1qg8" path="res://Assets/Textures/Mat/Ruins/Metallic_CircleFloor.png" id="2_wkqlu"]
+[ext_resource type="Texture2D" uid="uid://b8nnahdst2ppx" path="res://Assets/Textures/Mat/Ruins/Normal_CircleFloor.png" id="3_o1jkp"]
+[ext_resource type="Texture2D" uid="uid://bk1foh45afixr" path="res://Assets/Textures/Mat/Ruins/Roughness_CircleFloor.png" id="4_qxqpp"]
+
+[resource]
+albedo_texture = ExtResource("1_3orqx")
+metallic = 1.0
+metallic_texture = ExtResource("2_wkqlu")
+roughness_texture = ExtResource("4_qxqpp")
+normal_enabled = true
+normal_texture = ExtResource("3_o1jkp")
+rim_tint = 1.0
+anisotropy_enabled = true
+anisotropy = 1.0

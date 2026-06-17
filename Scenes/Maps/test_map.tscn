@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_8y5mx"]
 [ext_resource type="PackedScene" uid="uid://bw0n7uqams2ij" path="res://Scenes/Player/player.tscn" id="2_o1aaj"]
-[ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="7_8y5mx"]
+[ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_rock1.tscn" id="7_8y5mx"]
 [ext_resource type="PackedScene" uid="uid://cqo6wg72vmnds" path="res://Scenes/Enemy/boss_enemy.tscn" id="9_06c0b"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="9_f4dah"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="9_jah6w"]

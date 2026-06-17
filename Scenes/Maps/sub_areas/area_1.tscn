@@ -4,18 +4,14 @@
 [ext_resource type="Script" uid="uid://dl5wooa1rix3b" path="res://Scripts/Node/Level/sub_area.gd" id="1_p6sc8"]
 [ext_resource type="Script" uid="uid://d2xqnpgj7wt8o" path="res://Scripts/Node/Combat/HurtBox.gd" id="2_p6sc8"]
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="3_2uqjv"]
+[ext_resource type="ArrayMesh" uid="uid://dajkwu0jmawos" path="res://Assets/Meshes/Misc/Chest_Cube_009.res" id="3_p6sc8"]
 [ext_resource type="Script" uid="uid://6bco6swhk10l" path="res://Scripts/Node/Trigger/DestroyTrigger.gd" id="4_8f03k"]
 [ext_resource type="Script" uid="uid://cbwskurqdqwpm" path="res://Scripts/Node/Tutorial/TutorialAreaPopup.gd" id="7_djlh2"]
 [ext_resource type="Script" uid="uid://d33j3ufbus5bg" path="res://Scripts/Node/Trigger/AreaReachedTrigger.gd" id="7_p6sc8"]
 [ext_resource type="Script" uid="uid://kylthr61qii5" path="res://Scripts/Resources/TutorialActionDisplay/TutorialActionDisplay.gd" id="8_gemq8"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_elxb5"]
-top_radius = 0.815
-bottom_radius = 1.611
-height = 3.111
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_bx8ag"]
-size = Vector3(3, 3.5256958, 3)
+size = Vector3(1.8486328, 1.5427322, 1.1657715)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd2sr"]
 size = Vector3(3.6384277, 3.7802734, 3.5957031)
@@ -68,15 +64,15 @@ dead_trigger = NodePath("../CageDeadTrigger")
 [node name="Node3D" type="StaticBody3D" parent="Node3D2" unique_id=2111664608]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2/Node3D" unique_id=1576420936]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4531524, 0)
-mesh = SubResource("CylinderMesh_elxb5")
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0.064759016, 0)
+mesh = ExtResource("3_p6sc8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D" unique_id=306292391]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2628479, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64956284, 0)
 shape = SubResource("BoxShape3D_bx8ag")
 
 [node name="HurtBox" type="Area3D" parent="Node3D2/Node3D" unique_id=735117441 groups=["targetable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72177505, 0)
 collision_layer = 10
 script = ExtResource("2_p6sc8")
 metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
@@ -84,6 +80,12 @@ metadata/_custom_type_script = "uid://d2xqnpgj7wt8o"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D/HurtBox" unique_id=2040759335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6098633, 0)
 shape = SubResource("BoxShape3D_nd2sr")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D2/Node3D" unique_id=1032647502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91913414, 0)
+light_color = Color(0.92578125, 0.78731525, 0.31462097, 1)
+light_energy = 2.0
+shadow_enabled = true
 
 [node name="CageDeadTrigger" type="Node" parent="." unique_id=950796255 node_paths=PackedStringArray("triggers")]
 script = ExtResource("3_2uqjv")

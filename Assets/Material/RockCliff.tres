@@ -1,10 +1,21 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://c4nohlvqhmf20"]
 
 [ext_resource type="Texture2D" uid="uid://dkkmyihdmqc3e" path="res://Assets/Textures/Mat/Terrain/stylized_rock_cliff3_albedo.png" id="1_r7i6v"]
+[ext_resource type="Texture2D" uid="uid://338omvmmxqn8" path="res://Assets/Textures/Mat/Terrain/RockCliff3_normal.png" id="2_7b0eu"]
+[ext_resource type="Texture2D" uid="uid://eof4upy2lkca" path="res://Assets/Textures/Mat/Terrain/RockCliff3_orm.png" id="3_da04l"]
 
 [resource]
 albedo_texture = ExtResource("1_r7i6v")
-uv1_scale = Vector3(0.0365, 0.0365, 0.0365)
+metallic_texture = ExtResource("3_da04l")
+roughness = 0.75
+roughness_texture = ExtResource("3_da04l")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("2_7b0eu")
+ao_enabled = true
+ao_light_affect = 1.0
+ao_texture = ExtResource("3_da04l")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
 uv1_triplanar = true
 uv1_triplanar_sharpness = 4.3735967
 uv1_world_triplanar = true

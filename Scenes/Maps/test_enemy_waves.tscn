@@ -6,7 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d3tpfn5h8thl2" path="res://Assets/Meshes/VFX/Clouds_Cloud2.res" id="3_dmx53"]
 [ext_resource type="Material" uid="uid://dpeh0h7tf0bxm" path="res://Assets/Material/VFX/Cloud.tres" id="3_we6ge"]
 [ext_resource type="ArrayMesh" uid="uid://caqh200vmlb54" path="res://Assets/Meshes/VFX/Clouds_Cloud3.res" id="5_141v0"]
-[ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_cube.tscn" id="6_embne"]
+[ext_resource type="PackedScene" uid="uid://b37tiutqxvxg7" path="res://Scenes/Environment/throwable_rock1.tscn" id="6_embne"]
 [ext_resource type="ArrayMesh" uid="uid://dk62tk7w1it54" path="res://Assets/Meshes/VFX/Clouds_Cloud4.res" id="6_uggj7"]
 [ext_resource type="ArrayMesh" uid="uid://cskct0rplice8" path="res://Assets/Meshes/VFX/Clouds_Cube_003.res" id="7_ln566"]
 [ext_resource type="Script" uid="uid://bjgfp4usdei5y" path="res://Scripts/Node/Environment/TeleportArea.gd" id="9_mjli6"]
@@ -17,19 +17,20 @@
 [ext_resource type="Material" uid="uid://brkpcnagvyx6s" path="res://Assets/Material/DamageOverlay.tres" id="13_38hi7"]
 [ext_resource type="ArrayMesh" uid="uid://chrfqdq84hueh" path="res://Assets/Meshes/Terrain/BG_Crater/BG_Crater_Crater.res" id="13_kiw6d"]
 [ext_resource type="PackedScene" uid="uid://bedl40a3fgecw" path="res://Scenes/Maps/sub_areas/area_2.tscn" id="13_mjli6"]
-[ext_resource type="Texture2D" uid="uid://cl37i3jxuk24j" path="res://Assets/Textures/Mat/Terrain/stylized_dirt_albedo.png" id="14_5abrp"]
 [ext_resource type="Material" uid="uid://cq20n3118u4p3" path="res://Assets/Material/TestChrBase.tres" id="14_kn14b"]
 [ext_resource type="ArrayMesh" uid="uid://bgdo5ehjucbqe" path="res://Assets/Meshes/Terrain/BG_Mountains/BG_Mountains_Mountain1.res" id="14_nnqa1"]
 [ext_resource type="PackedScene" uid="uid://ct65pc633n034" path="res://Scenes/VFX/shield_visual.tscn" id="15_2grvq"]
 [ext_resource type="ArrayMesh" uid="uid://w8xh8cae87c7" path="res://Assets/Meshes/Terrain/BG_Mountains/BG_Mountains_Mountain2.res" id="15_7b5us"]
 [ext_resource type="Material" uid="uid://cpcllt8j0rhwj" path="res://Assets/Material/TerrainDefault.tres" id="15_ln566"]
 [ext_resource type="PackedScene" uid="uid://cx1ccpdd8gpeo" path="res://Scenes/Maps/sub_areas/area_3.tscn" id="15_p0lev"]
-[ext_resource type="Texture2D" uid="uid://dobdvatbm36hk" path="res://Assets/Textures/Mat/Terrain/stylized_dirt_normal.png" id="15_vi5q5"]
 [ext_resource type="ArrayMesh" uid="uid://c33o3u2tchdu2" path="res://Assets/Meshes/Terrain/BG_Mountains/BG_Mountains_Mountain3.res" id="16_31vy0"]
 [ext_resource type="PackedScene" uid="uid://ba36xs0x6utw8" path="res://Scenes/Terrain/SkyIslands/SkyIslands6.tscn" id="16_elxb5"]
 [ext_resource type="ArrayMesh" uid="uid://bixphrrt4i8cc" path="res://Assets/Meshes/Terrain/BG_Mountains/BG_Mountains_Mountain4.res" id="17_0i20c"]
 [ext_resource type="Script" uid="uid://dfay20msmb3cw" path="res://Scripts/Node/BgmChanger/bgm_changer.gd" id="17_2grvq"]
 [ext_resource type="PackedScene" uid="uid://74t273t1gibr" path="res://Scenes/Terrain/SkyIslands/SkyIslands4.tscn" id="17_bx8ag"]
+[ext_resource type="Texture2D" uid="uid://dk8ha8sdj0i28" path="res://Assets/Textures/Mat/Terrain/Grass001_2K_Color.jpg" id="17_oasc8"]
+[ext_resource type="Texture2D" uid="uid://c3s2is13hue1d" path="res://Assets/Textures/Mat/Terrain/stylized_rock_cliff3_normal.png" id="18_5abrp"]
+[ext_resource type="Texture2D" uid="uid://b0sll2hgk1fjv" path="res://Assets/Textures/Mat/Terrain/Ground046_4K_Color.jpg" id="18_ixc71"]
 [ext_resource type="ArrayMesh" uid="uid://dxyr36bvaehl1" path="res://Assets/Meshes/Terrain/BG_Mountains/BG_Mountains_Mountain5.res" id="18_kv4ee"]
 [ext_resource type="PackedScene" uid="uid://c1ki1i77g84tr" path="res://Scenes/Terrain/SkyIslands/SkyIslands3.tscn" id="18_nd2sr"]
 [ext_resource type="Texture2D" uid="uid://vivhbg4o6rhk" path="res://Assets/Textures/Mat/Terrain/GrassBaseVar2.png" id="18_plnwn"]
@@ -37,8 +38,10 @@
 [ext_resource type="Script" uid="uid://dvv5wdkgd3ff8" path="res://Scripts/Node/VFX/VFXSpawner.gd" id="19_hjdgx"]
 [ext_resource type="ArrayMesh" uid="uid://lkr2c2g6nf5m" path="res://Assets/Meshes/Terrain/SkyIslands/SkyIslands_SkyIsland_01.res" id="20_5o27u"]
 [ext_resource type="PackedScene" uid="uid://4u1fwgcx46d5" path="res://Scenes/Terrain/SkyIslands/SkyIslands8.tscn" id="20_7rcam"]
+[ext_resource type="Texture2D" uid="uid://7exh4oujljo" path="res://Assets/Textures/Mat/Terrain/Grass001_2K_NormalGL.jpg" id="20_qps84"]
 [ext_resource type="PackedScene" uid="uid://ccya86wycmm87" path="res://Scenes/VFX/enemy_slash.tscn" id="20_yin4f"]
 [ext_resource type="PackedScene" uid="uid://cq4kc8dtljm55" path="res://Scenes/Terrain/SkyIslands/SkyIslands7.tscn" id="21_m4vf5"]
+[ext_resource type="Texture2D" uid="uid://dwjtf0mftvuae" path="res://Assets/Textures/Mat/Terrain/Ground046_4K_NormalGL.jpg" id="21_oasc8"]
 [ext_resource type="ArrayMesh" uid="uid://cdmsud2bok5o8" path="res://Assets/Meshes/Terrain/SkyIslands/SkyIslands_SkyIsland_02.res" id="21_pr4jj"]
 [ext_resource type="PackedScene" uid="uid://cmytqf6agvwbs" path="res://Scenes/VFX/general_slash.tscn" id="21_x2r5p"]
 [ext_resource type="ArrayMesh" uid="uid://ckpfwnhy73xds" path="res://Assets/Meshes/Terrain/SkyIslands/SkyIslands_SkyIsland_03.res" id="22_5ntjf"]
@@ -59,24 +62,34 @@
 [ext_resource type="ArrayMesh" uid="uid://blrmdcb677riv" path="res://Assets/Meshes/Terrain/BG_Hills/BG_Hills_Plane_004.res" id="45_dequg"]
 [ext_resource type="ArrayMesh" uid="uid://d0uf4ejrfih6y" path="res://Assets/Meshes/Terrain/BG_Hills/BG_Hills_Plane_003.res" id="46_5abrp"]
 [ext_resource type="ArrayMesh" uid="uid://dilk241437aaw" path="res://Assets/Meshes/Terrain/BG_Forests/BG_Forest1.res" id="46_ucdfb"]
-[ext_resource type="Texture2D" uid="uid://t33lrfawgab1" path="res://Assets/Textures/VFX/Ground_crack.png" id="55_11mit"]
+[ext_resource type="Texture2D" uid="uid://0iws3ts627mc" path="res://Assets/Textures/VFX/DarkMagicCrack_em.png" id="50_cenp1"]
+[ext_resource type="Texture2D" uid="uid://wx3dkh3ew1ol" path="res://Assets/Textures/VFX/DarkMagicCrack.png" id="50_vi5q5"]
+[ext_resource type="Texture2D" uid="uid://oi1c3lmplvqy" path="res://Assets/Textures/VFX/darkmagic_trail.png" id="51_1pmac"]
+[ext_resource type="Texture2D" uid="uid://chdofu7gn58aq" path="res://Assets/Textures/VFX/DarkMagicFalloutDecal.png" id="51_47yyo"]
+[ext_resource type="Texture2D" uid="uid://bwx0fxgo2mdty" path="res://Assets/Textures/VFX/darkmagic_trail_em.png" id="52_47yyo"]
+[ext_resource type="Texture2D" uid="uid://m3hnyhri43wl" path="res://Assets/Textures/VFX/DarkMagicFalloutDecal_em.png" id="52_tnyeg"]
+[ext_resource type="Texture2D" uid="uid://dm3dcxfksvsj5" path="res://Assets/Textures/VFX/GradientGlowSmall.png" id="53_tnyeg"]
+[ext_resource type="PackedScene" uid="uid://cdneiuue70mvy" path="res://Scenes/VFX/dark_magic_fallout.tscn" id="56_gakk0"]
+[ext_resource type="PackedScene" uid="uid://cl26ufykjv212" path="res://Scenes/Structures/ruins_floor.tscn" id="69_hhvid"]
+[ext_resource type="PackedScene" uid="uid://h4337fwngne4" path="res://Scenes/Structures/ruins_gate.tscn" id="70_xmuqv"]
+[ext_resource type="PackedScene" uid="uid://d14pr4ky217jd" path="res://Scenes/Structures/ruins_gate_broken1.tscn" id="71_ngwv6"]
+[ext_resource type="PackedScene" uid="uid://dhgrquvtd4jk7" path="res://Scenes/Structures/ruins_gate_broken3.tscn" id="72_ixc71"]
+[ext_resource type="PackedScene" uid="uid://cxy7tl7y5ucsq" path="res://Scenes/Structures/ruins_gate_broken2.tscn" id="73_oasc8"]
+[ext_resource type="PackedScene" uid="uid://cid84revablks" path="res://Scenes/Environment/throwable_rock2.tscn" id="74_ngwv6"]
+[ext_resource type="PackedScene" uid="uid://didb1kckxwypx" path="res://Scenes/Environment/throwable_rock3.tscn" id="75_ixc71"]
 
-[sub_resource type="Curve" id="Curve_dequg"]
-_data = [Vector2(0, 0), 0.0, 1.1877263, 0, 1, Vector2(1, 1), 0.8246389, 0.0, 1, 0]
+[sub_resource type="Curve" id="Curve_hhvid"]
+_data = [Vector2(0, 0), 0.0, 0.55031234, 0, 0, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_5abrp"]
+[sub_resource type="Curve" id="Curve_ngwv6"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_vi5q5"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cenp1"]
-curve_x = SubResource("Curve_dequg")
-curve_y = SubResource("Curve_5abrp")
-curve_z = SubResource("Curve_vi5q5")
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ixc71"]
+curve_x = SubResource("Curve_hhvid")
+curve_y = SubResource("Curve_hhvid")
+curve_z = SubResource("Curve_ngwv6")
 
 [sub_resource type="Gradient" id="Gradient_uggj7"]
 offsets = PackedFloat32Array(0.36241612, 0.37583894)
@@ -106,7 +119,7 @@ color_ramp = SubResource("Gradient_7qvvk")
 seamless = true
 
 [sub_resource type="Gradient" id="Gradient_plnwn"]
-offsets = PackedFloat32Array(0.22147651, 0.22818792)
+offsets = PackedFloat32Array(0.3275862, 0.38793105)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_11mit"]
@@ -121,12 +134,12 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nomjn"]
 shader = ExtResource("2_141v0")
-shader_parameter/GroundColor = Color(0.2890625, 0.20324707, 0.20324707, 1)
-shader_parameter/UnderHorizonColor = Color(1.007, 0.5556563, 0.43499997, 1)
-shader_parameter/HorizonColor = Color(0.111587524, 0.28604123, 0.40234375, 1)
-shader_parameter/SkyColor = Color(0.29608154, 0.32679698, 0.4921875, 1)
-shader_parameter/HorizonScale = 0.882
-shader_parameter/HorizonOffset = 0.0205
+shader_parameter/GroundColor = Color(0.109375, 0.109375, 0.109375, 1)
+shader_parameter/UnderHorizonColor = Color(0.828125, 0.63757, 0.52404785, 1)
+shader_parameter/HorizonColor = Color(0.28701782, 0.31175137, 0.4453125, 1)
+shader_parameter/SkyColor = Color(0.117385864, 0.14801499, 0.19140625, 1)
+shader_parameter/HorizonScale = 0.6995
+shader_parameter/HorizonOffset = 0.106
 shader_parameter/SunDiskScale = 0.0815
 shader_parameter/SunGlowScale = 0.5
 shader_parameter/SunGlowStrength = 1.0
@@ -141,16 +154,19 @@ sky_material = SubResource("ShaderMaterial_nomjn")
 
 [sub_resource type="Environment" id="Environment_i18pj"]
 background_mode = 2
-background_energy_multiplier = 1.5
+background_energy_multiplier = 1.25
 sky = SubResource("Sky_xcpuq")
 ambient_light_source = 2
 ambient_light_color = Color(0.546875, 0.50201416, 0.50201416, 1)
-tonemap_mode = 3
+tonemap_mode = 2
+tonemap_exposure = 1.1
 tonemap_agx_white = 2.0
 ssao_enabled = true
-ssao_radius = 3.0
+ssao_radius = 5.0
 ssao_sharpness = 1.0
-sdfgi_read_sky_light = false
+ssao_light_affect = 1.0
+ssao_ao_channel_affect = 1.0
+sdfgi_use_occlusion = true
 glow_enabled = true
 glow_levels/3 = 1.0
 glow_levels/4 = 1.0
@@ -160,17 +176,17 @@ glow_mix = 0.491
 glow_hdr_threshold = 1.5
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.60784316, 0.5176471, 0.5176471, 1)
+fog_light_color = Color(0.484375, 0.41436768, 0.41436768, 1)
 fog_sun_scatter = 0.2
 fog_density = 1.0
 fog_sky_affect = 0.0
-fog_depth_curve = 1.4142137
+fog_depth_curve = 0.933033
 fog_depth_end = 3162.8
 volumetric_fog_density = 0.015
 volumetric_fog_anisotropy = 0.9
 adjustment_enabled = true
 adjustment_saturation = 1.25
-adjustment_color_correction = SubResource("CurveXYZTexture_cenp1")
+adjustment_color_correction = SubResource("CurveXYZTexture_ixc71")
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_dequg"]
 resource_local_to_scene = false
@@ -190,7 +206,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_heyh1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jvuh"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -201,13 +217,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_pdr7q")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_dequg"]
@@ -215,7 +231,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dequg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1goo"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -226,13 +242,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_dequg")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_38kma"]
@@ -240,7 +256,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5abrp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_enf3j"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -251,399 +267,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_38kma")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vi5q5"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_plnwn"]
-_data = PackedByteArray("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")
-size_override = Vector2(256, 256)
-keep_compressed_buffer = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cenp1"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = true
-shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_plnwn")
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7u35u"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pmac"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_47yyo"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tnyeg"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gakk0"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h12os"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1juy5"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_36i8s"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cy5sp"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhvid"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmuqv"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngwv6"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ixc71"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oasc8"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qps84"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jvuh"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1goo"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_c = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_enf3j"]
-render_priority = 0
-shader = ExtResource("11_heyh1")
-shader_parameter/RimTint = Color(1, 1, 1, 1)
-shader_parameter/RimThreshold = 0.25
-shader_parameter/RimSpread = 2.5
-shader_parameter/RimSoftness = 0.01
-shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
-shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
-shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sdqrx"]
@@ -656,14 +286,19 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_plnwn"]
+_data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAEAAAAAAQAAAAEAAAAAAAAAAAAAAQAAAAkAAAACAAAAKAEAACwAAABUAQAAJAAAAAAAAAAAAAAAAAAAAAAAAAD3CQAAAAAAAH8NAAAAAAAAAAABAAAAAAA5BQAAAAAAAL4EAAAAAAAAAEAAAAAAAABXAwAAAAAAAOIBAAAAAAAAABAAAAAAAAB4AgAAAAAAAN8AAAAAAAAAAAQAAAAAAAD4AQAAAAAAAIAAAAAAAAAAAAEAAAAAAADDAQAAAAAAADUAAAAAAAAAQAAAAAAAAACqAQAAAAAAABkAAAAAAAAAEAAAAAAAAACRAQAAAAAAABkAAAAAAAAAEAAAAAAAAAB4AQAAAAAAABkAAAAAAAAAEAAAAAAAAAAsAAAAAAAAAAIAKACmAQEAAwMAAAAAAAAAAAAAAAB/AAAAAAAAAAAA/////x8AAABLVFh3cml0ZXIAQmFzaXMgVW5pdmVyc2FsIDEuNjAAACi1L/0gEIEAABcAoOGfAeAAAAAAAAAAAAAotS/9IBCBAACBABAFAACAAfD/8f/x//H/KLUv/SAQgQAAgQAAAAAAAPAeAPMA4wAIACi1L/0gQGUBABQCwRAAEAAAAPgBANACUA0ADxcAAOAfAMEB6AEPQAjAACAAAwBD4VG52AaaKLUv/WAAALUDAIJFFCGwJ40BsLVXxGOWHIAl4Eg7UYsjccBDqg5QQhauEVmEyBRdI+YzM2ZHAFwrqyriEq8gQa5x9Ne6qKKNtjM8kgb4usfJA+qblx1JIdmH039GFw4AAAMcydCYV7WYIWaKWC1DIHWmPJWrAbK4vZl9W7as4AgotS/9YAADrQYAJAkXAADgHwCBQAMQ8AABIwAItATBXlDvAPgBAYgBAAAABQAPIIgSAPMA0QBgABCBPIgCAABgAMD/cP8Q/gP3gUADCPA0YAAM9Qj1CvYJAFAAgADwgXoTBQAAIAAK4gT5EvwR/gEgGAAgAFAAwAD0gT0gASD/gP/R/+T/ASsQy2BPkC/hDYEAEAUAAMAA8P9BAXjxBRkgoAIpo3AeDRQMpmNQF3aYAY8weGh90wcxT4v3IBNG1uZoxQ88F9qbJ6Ntps2A5X7QiWPPQVbv+WQHEQ6bbLwIKLUv/WAAD8UOAPbWUUEQjzaNAcvDb08WAx4pV3JXSDtYCFZ1DesKB/yr/XWW1J36bQA2A1NAAiQHBjDQBBSVX8kFRxnlCha6HLjVugnZKT4APQBCAKF4fErDgn6ecl6bVf+GxoiGGVxdeXToDr784hCbXnaLMfAtAF7YqMQfTxHmQAh3yJqXCbxII2+hJHUDnScQuh9WaGa2mYt8CkrvZEtW283YA8CA6HJWxI5YFZX8DUi9twh3PL0Hh45gS3wljwQEjV9re+7wV5LIySbmDllkWWK0VGXta/mJ4ev2s5/tYHCeTuAyrDRIYbEFwD6D5IFuZ87GRnluOXTWtMZAdD3r2ZVF4dCkt2nWw2Z2E0UFAVTnvX9LGARNIraxi6DHFmhnvYguTolIRDYRJ0SnLbAYUoRAkYFJoCpntn4Qc8Ok0F2gePzQ1UwZgty7LaWCYoUBATIoYAKZkmBSdhGQqUICEQklkPj/Hz/tcVCdP5yez0+z77ggB6CSXXXenOsGsPMDyYNzrkjcOBEH50BVwCIToTQX0viInXEe2Bjg23NAcsLQCTv4xGSdA/dIBXhn+olnmQiAc+CIz8j8WHsHLn1igHPgmCuSouIG+mu4ecUCG/l4zFdNe2DpFTvUMFZg5EUotS/9YAA/pSUAJvnCSsCWUWObPVOWlrwQd4AHltlPwO4vAfjS5cnkYSfLVsMWUTJkCBXUQwCoLxJZso2TCkm3Efw4PHz2inIO5/imYABORsBbQFzi2lumqAC0AK4A9kf2cAuP+TiTy/us6zSH8JmzYPh/cSlz0NHnLnWHss+b3CWs4oQ9KfLH9K37vLtMV52tRFoHYXsv4mBjXOcHTmBJJuPLnu9rubl4ezvi5NmDnIeDJ8aWZfnziycFPX956Ip5mfdZHvyvuMSyXXGdL7gBGv5VXHSseSh7+5gZJNkSh3lY85/Fg18dfHICkiRBOSO+fF/y89cO/R9/7Y0P/79iiTuN7ocJo9m21Rak4WSOpWgxUAaUUWEgdX/IY5OTVhJQNOAQJaxMXFXJI5lIIhKG9EIin5BUJEZtcggTLS8ojvu5uUc51YX9yKk75Rod35PpAq+KVbL1DzZ3pf/u7t50WV1I0+hhVFKVBVsEc7RCSz51cncYWK4q4g5RhbX56jT/Ucyx+Ds3cil78/EGTr4nf75nTbMV4OG/4TifH7m8V9CFC4RVOhAHZe3it8J4WhOvufgwNXUsj/cCvD7q3IquTgA2PYnCMlJwiO3CjGsxbqUbOL3YPfFksCwHTaTr4z53zaxUp79NuUGnnXZa7ijNpHF9mzGLHOhAdomq005VbhnqvfvcxgRXLLdRG3VOSm3F5t6hXnQZ9uRgW20kK431BIBl8u81u/gX10e6SRs1SqPLkIuePj3625g7/dlCTTs/+DoKuejoz5OvKfMqtKIrugaxLtr0ss5yAh/TbHTzZzyqZcnMPdVrIrD2wq1DSPcIcL8FTGBmOX/QAHefvgbLq7N89ZNRBzrtpL2I3EfN1LuusdzCrOS9A720KCzvuqhVcUBOn39PWlgLrTlIU2OthzYdxTL3Uiu1rQpb1EFesSatMJo63Ar0UOGja/vaQN4ZIOf1wz7uh53cTSvRykKNxZS+x9CoTvsX3p7VGkQRfi7k6tARWUc/qb1rHQsnV5FO3uPmRQAbSfdoVMCNlaeu0GMvbc00cweAoajRGFUEIWPIjkpSbXACkRkJqOocEsDkMWgQIQJCBEY4EV4R/qEeA43Nt2BY5mtqB7jg4QM1HxNnQ2rTHYDXY51/SBaPuD7dhgNS6AOe72J+aMf8iT88AxLZ6uUanOz0SPR4ayR4/BimS/z3SsFx/rxuLGW65At7xXzoBvyO394BE1+/84FjNMFnflGc5gOg73yc+UWm12+C1QYqsvNNwBWPmHq+vOZ7PKBfg4k0YlLmi5s/i15IBhy6Z1RvwNgoujXn/amcLOKMLB7e4cz7DLjTZWVAj1uDYP4hQdQmzpB8UbAJU5zfb97yHUD4EV84IUrzsP6M/ZBa0UVS5wUeMGgOrD8jOaOuAwCcN8A+wJ7Nea4/lHsCw6cV/XlmjufieuO2E4TYgPoI4j2e+YfsQ6hpQobC1AQr5i8kXG4W1x8amQDP7NcTyMd7y26EEUG92/UPCZpCs81dG3F9el54AnY2hM8CaBxqMsD1vIoDFA3grb4lB9ycAawTnI9L781R/1SO3/WBz4w6yCCqgTXfz+ZgRP0ZQaVPl8v+hMedVI9zK7fcDii1L/1gAP+tawAKnyAjUjAYHjUGe5ds7j9ZgthZhFkIu1Q8+3HVhgHGmsH8evHgf/MZMPqPFhj0xTwdMedh9Ext84lRziy12jfFdyeGUOmlLVtv6BRPIXUfo+JYF+Y3JlMHAh4CLgImGBqma42cNo1evdKp+M8rRUaKDDvmdPOFXmEi8Y4QfpH3XMaODG07UGbKyB1Gk+ynNgIWgm98R8scBqVDuHcjjdJNPzGtbGFALguYhUCj173Jydaa0wLI18VeW+QuvVQWuAqCe1c6+yzehYYJVuFAbkBTDM27ki71f7EEBJ0+PVRKlgaQk+p93Me990tTZ0kwBtjGdYhUnB7KUnBeK7hBAK/+F8AcwV/3qKzUpTOdFuAv3uJf/wTd0on9XOCOxaHN7/70sjep63/g1+9kcB4/Akxwjw/wFlYqjTYyo2xeO7cJmDPUqrtoQ20lWqg++peTchYT6eMop9MjgcEZBefx2d+TkwQD+Y3D6CIEo9fHOvI8EsIujo/zEjFBRNg4wj2O0qFb7T5OGoDcIlI1yK32M++ymUyEiTQGbPYF3ILDOAGnBekqk8sGdluyQLT+Ojlj43Oqk+T0jhEe4zafCWdB8O2/zGQeG+idoHeczIGenDT4DS7kPz9+dsxU24CSgwL+wTqkhODbl86Vkzbg/zzb9YjBL7zmF5632nG1KB8l0ar+OEuK3Gr3yUYn0gOg+bfID75Tb5YxKDA9AIh//rUyVabJtOv8odVUOQjXOQ76jwPM0UxsHpYI2mEG5Mh/miVEbi+YKKb8YMSBeUL66+QQuSEz1G/PmDgTwjZNtKr6n/YHbwDxLyA9Gus2cXVRi/UYUI/LfsSd+BbcS2p97W6Zc+HTyVSYVuGoGgAzbVKbErZqWKZARAxiMVbEy4OYDioO10lRiRfPKg3hZbfiVhwLz350bgh0QzV10siXDxT5TO0np5dDOOGBq535x4MqCKSAH/jOlJ/glpFwSBiuVY9WIpjsSmeHvDBfW+T2XJz6jHnGHJOxakFqTgPX66huExfqpYIjFYKVbvzqLrlKXJ/bq8Ghj3lMXjrvX+tpNODRXd31dXqtaFxhbLzxV+9y9i1yczQmWX7KSC/6D+0v+2LZXLZwBhGIZt/lxhuxStNJVJm2uddHY0agVzPvsbdsK1vqdZphAtFS9+FZOemDuMNbaTu9SK2vRo1AI2WnTEU2k1+l9+nNsqXgwWktdAikHFq2ILTS8NWNy1xrVENs8ibH8rIs/KHtJ17WRXqpyBDmtnxeSW0PxRTnrp+FmVyC63z2RaOB/stRZ5KDI/pHn94MTpKazmunIQpeYMQBMGAMrgOpYimpUDfkJUmYsupUmeFwIqfRlUPbXnSnk9V68AiX4DdOa6pChWnYrrWhBiK4zNcfG+37VNYykz6qiq7fgJYAlJwjNBfgHMYg+PcoZtdNSQLRbAgr09e3pzYZTOSh821HymUZmZPrgW3UBgBeYIQNKDgo4ApUIjZfBmca7TXH6E3/chaTy4bc8SL2ZAfSgKd9ZbLS1iBOAs/Rg9NQ1zLBUOWNK16pEP0hgt02V7OK/VofmB0w1+KIPpOPJpctascOiwUZKZLQEjVE70YNvmDGhFE4QaLHIwQjzSzfPeMpLHT5aJlX+JymjxajRWTkh82n1hUUTA6RAedTw296q96nMSd3lWEud166oU6Ydq03GInrwmnZoLJJtOnkDev0ZduJ9gX4d8aWWqS2x4OBVqZgaBeqdRKNyV5OlslqbE8jv+xgS2mR2lI0FUmsaNlrk3QQkeiXCWZ+ncjvMxtrszX5Sx5jfjm/VA18DG3P7bW9om+GeUS/0C/zWENObb3XTWXDxtBnzCWbz0cSSg+d5p3HH0fB5fIFqp2WqYhUXBlQj0vYiHy3ikxIqC2IOBoMCdJI0nnDSF4QiYvyweX8KWqwRu6DHBFYTTBBY9vVXS0wMZdP8TKvAqfIXWYbW1/YbpgO0yusApoM50pNZ52DXCBBgmQnCYYJ44YJ4yWME42YajeKSkFa9jGfOhI2abmhTiy3TJVpEWvTU3zLr/zKe6yulS21r7aXGzPVrdGSJ5YLyzWdCDYeVfVebiNei0UpW0ZP0JlaI6gEirINySfO8fQTf3p69D37agf3lp1FI4bpljzgDebaUzZArJNAWbYoJlONp8fUqNHj6+V6ubzsDbtUxYrEirzUGq7wAqfdBaY6kx2k7JEjekSykezjNm6vt2qMqbjOWPKGNyoz6cjfaGJ2Axai0QD5GtqWjU4tnNKELxVI8PxQjsIpXQjaYfYwzJcWAjQXs7TiIJKrC0s/gSaiyf6yubxKMWb46PuCKVaBWWdEoOAuWpVwq/2qC0El0BAclCiIQJUHgNBpgUaEzBbBOfwMzrVaTDdEs7KU6qNXGvA7Yr12yYV6p9AwtVb+MpMo0oYku5UXvYdTIn1FY4VuVFGJV44HzcpKfsNXNGGrztjZzcrNfCnbaquqf5zKyQ71sM21j3illr+hrgvVMpuMaat7l7YS2JRA49znWHIWB26td+rF8rI8x2zFuRwKA7O4T67SskfD5tBlakVHjyLZvd2jqVlvFnepuNJ44j68h9crXtbFrVUiHPI70adEX1C9mVx2phy0x7bXqwWm90KYCqW93N5G/ChhRlU4JyZmfZqshpeMdNutclqLlvaJi7SVYLCpfr2KUpAwssrpeIGVNyrzdxQ3XQhvdaGzdS83mBJRmnI2ZhB5yzqZ8lCNuNNedqSzz27T0/VmuU/FlefXhaOyMZ00IXcj9xFbaba6QnjNYDXkCZpErGnXiRWQ0Wmrrbzg0abkxNXOH+292w2Fq3RjvltulJhvmEawFsFnsn56E6frXrfTFs6ubjpst/z5gKF/Nl7mksvykfDFelkenFbivkysLx25+3qlLH9dqc0KpNsksd/wFnWqRF12QtV4+ZaJjFju4656hS+Vu1Ts8axCsJk3efqM1V9YUZi6VD1gT308p/LTp2pBqkau67qzi6/XC8UYe0PULpLYLoG5qMEcQwYZYiCElMI0B3EExCBjhIpKqd0SgAN6nDKGCAghyhAJRSRWJJQYifM1rTMXlWdHx8n3hok9QartpIMHQJ76tqbPZMZXLS5nU/ObkJh7nm/WYD67zWr5UGoCiMPn5IonxSdvC61Ht9QP0auHbTy47459LlNfELfuPLlsHD2MNT8FjG79TT0MOT/q0VuM2QWfEB09v0Hzq2YCdkNOb+owP/5mf5UQuJ8yuB//PPxkzfA5vgnh0TdodBgfHto+yz1Pjlnj18+efph9IjB+Bg9gYpjduzA9aMPo4ZWZ/pwdIDvTPzS7zmH0WZ4dYXYjA0OMbsmRPB/8+E22ctoE45ldYEbHbpLHJ/r8kg4vPecXEWcH0Br+O5sAVT2eXusmIOX4pAxg7vMneY5fPHv2+PnE8QAynXQsHv4MH7QHSNnwoT99x03fqtEvMr20f54fhSds/McEd3zihgf84TuP/+Xz9O70TDRCNePjbnqgjk+UA5yzFkHw9Ch/iNwxfuWNAMmZ83urKUZQz+Nzj+NnfKGfP5Oz6/VwqzjrvD9/eYD2MIPRCTrrAEHMLs35o8vYnecv8LOzeoDuGcBkBr2t0AMwGD8YZoC4+ZGifjnZ/DuA+fXNPTYzvBzQA/QyG6F/hXwAB6w92Hiw5h9vIzCtAVA7wMXn+WnsuGZ8Lsu/z4cPqWYfonzD9nh+rDL/wwx2Z/7bAXLcPDlBi8cfWWaokdGPJ09wHsYvU/g7f2A8gGodIOmHx6LpLpYSBn3nbwxkmuFmEuEBbJtva+e/0Om3zC6Tq2+OJwg3CuhQCuGYYFuCVRPQggFy33xoTo9iPIDhGOxpDqgyBnk0iDoE3B3gkHgCSm6RIWRkfow9D3DICDWb4BNEOf/tKS7nOWyr9XU8hUx2MBiA0ElC32PQCAfI2mHv2DgewJvL0AwjQzz+FGHv+OycAES4MzSAFcw3ng/FBP7McKSKt1fGCCgAdIj2DgDHAnhrAmzZUX3HbzuIJ7hiCuN9huCYliGKOkHGIYiUM3SN59sTTCQbQEIzAN7PsOojNDZ+4nmJvuNhGWPFQRR2iATEAPwhUtoMZ/EcNB5g3lwzRb17gluMP2d+wpII7g4RBo4HkLsJDYEeU+QLE3w4gBEUcQIsHIG4OETwNR44QfIorJMxop1xJ+jcfXGCphFyY4MDoBQTmDS/cRMc7CSZ3dPIE3j5gx06RBqD++M7R5g4PRamUOcIZow6gdd4gKEjOEHMEUSCJwjQfIARFHtjonytI0/waxKHzSAnI8DZmwBcMAC7M3/tCdgeQLqlB+A3xKMhGCg/TiCGzyAXcQhcmAHv+DyBCcY4z1HXI2A/wgV4hop3gnxPbzwCTsyi6buePPIEFA9Ic2SYLCbw89Bu0QnQm/7LngNgfvYjTfzGRAzQEhM4/glynG4mHyQlMMj5HaCGczB8CmnMz4wn8CcTZMh8vJ9AhMYDME0nD9oer2cQHQgnGDM98gQqWxwAU6EJKDAInyLSCBbTHsr/+YY/OWZv4XiA9BVu1C5V0Ga8bdDfBGkmsPXHy3c9AIXZQVeBb/oeIF1CpfkUD3pRY+YbebxdAaAO")
+size_override = Vector2(256, 256)
+keep_compressed_buffer = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_37550"]
 render_priority = 0
@@ -673,15 +308,16 @@ shader_parameter/RimThreshold = 0.25
 shader_parameter/RimSpread = 2.5
 shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
-shader_parameter/use_splat_map = false
+shader_parameter/use_splat_map = true
+shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_plnwn")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p452h"]
@@ -694,13 +330,13 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hb4ss"]
@@ -713,13 +349,13 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21hgm"]
@@ -732,13 +368,13 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yax1e"]
@@ -751,13 +387,13 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkqf3"]
@@ -770,13 +406,393 @@ shader_parameter/RimSoftness = 0.01
 shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = false
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ae61q"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6iw8"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bynjp"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svvpq"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d2h2"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjs5n"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pj5c"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_142gw"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0it0t"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vafnw"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t1m4s"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n601x"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m2q5n"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xmpaa"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v1vyl"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egwbi"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6ccq"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ub2v6"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0mmx"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir2i5"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="PortableCompressedTexture2D" id="PortableCompressedTexture2D_heyh1"]
@@ -784,7 +800,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ae61q"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ab50"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -795,13 +811,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_heyh1")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_plnwn"]
@@ -812,7 +828,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6iw8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ku5m2"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -823,13 +839,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_5abrp")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_11mit"]
@@ -840,7 +856,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bynjp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gg2hp"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -851,13 +867,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_cenp1")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_38kma"]
@@ -868,7 +884,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_svvpq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21oy5"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -879,13 +895,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_1pmac")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nomjn"]
@@ -896,7 +912,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4d2h2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hos4h"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -907,13 +923,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_tnyeg")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ucdfb"]
@@ -924,7 +940,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjs5n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0885k"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -935,13 +951,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_h12os")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_heyh1"]
@@ -952,7 +968,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3pj5c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4a45c"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -963,13 +979,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_36i8s")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dequg"]
@@ -980,7 +996,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_142gw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j1h7x"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -991,13 +1007,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_hhvid")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5abrp"]
@@ -1008,7 +1024,7 @@ _data = PackedByteArray("AgAEAAQAAAAJAAAAAAEAAAABAAABAACAq0tUWCAyMLsNChoKAAAAAAE
 size_override = Vector2(256, 256)
 keep_compressed_buffer = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0it0t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rverf"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -1019,13 +1035,13 @@ shader_parameter/uv_splat_textures_scale = 0.2
 shader_parameter/use_splat_map = true
 shader_parameter/splat_map = SubResource("PortableCompressedTexture2D_ngwv6")
 shader_parameter/albedo_a = ExtResource("12_dequg")
-shader_parameter/normalmap_a = ExtResource("15_vi5q5")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
 shader_parameter/uv_scale_a = 0.1
-shader_parameter/albedo_b = ExtResource("18_plnwn")
-shader_parameter/normalmap_b = ExtResource("15_vi5q5")
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
 shader_parameter/uv_scale_b = 0.1
-shader_parameter/albedo_c = ExtResource("14_5abrp")
-shader_parameter/normalmap_c = ExtResource("15_vi5q5")
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vi5q5"]
@@ -1079,7 +1095,7 @@ metadata/_custom_type_script = "uid://dfay20msmb3cw"
 [node name="Areas" type="Node" parent="." unique_id=636129847]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1057996404]
-transform = Transform3D(-1, -1.6830803e-08, 8.578733e-08, 0, 0.98129267, 0.19252196, -8.742278e-08, 0.19252196, -0.98129267, 0, 32.608475, 0)
+transform = Transform3D(-1, -1.6830803e-08, 8.578733e-08, -8.708315e-09, 0.9955895, 0.09381639, -8.6987974e-08, 0.09381639, -0.9955895, 0, 32.608475, 0)
 light_color = Color(1, 0.8229167, 0.6666667, 1)
 shadow_enabled = true
 directional_shadow_mode = 0
@@ -1090,23 +1106,32 @@ compositor = SubResource("Compositor_5abrp")
 
 [node name="Throwables" type="Node" parent="." unique_id=1027259767]
 
+[node name="ThrowableCube3" parent="Throwables" unique_id=1729823778 instance=ExtResource("74_ngwv6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6629205, 26.16995, -30.810585)
+
+[node name="ThrowableCube4" parent="Throwables" unique_id=402758487 instance=ExtResource("74_ngwv6")]
+transform = Transform3D(1, 0, 0, 0, 0.5017538, 0.8650105, 0, -0.8650105, 0.5017538, 2.6359887, 26.548811, -23.511677)
+
+[node name="ThrowableCube5" parent="Throwables" unique_id=1013039454 instance=ExtResource("74_ngwv6")]
+transform = Transform3D(-0.94114125, 0, 0.33801353, 0, 1, 0, -0.33801353, 0, -0.94114125, -19.682732, 26.169949, -35.92053)
+
+[node name="ThrowableCube10" parent="Throwables" unique_id=1249390497 instance=ExtResource("75_ixc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1833019, 26.812681, -42.63559)
+
+[node name="ThrowableCube11" parent="Throwables" unique_id=1329781885 instance=ExtResource("75_ixc71")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.734568, 26.812681, -23.250381)
+
+[node name="ThrowableCube14" parent="Throwables" unique_id=1523531100 instance=ExtResource("75_ixc71")]
+transform = Transform3D(-0.08592813, 0.99630135, 0, -0.99630135, -0.08592813, 0, 0, 0, 1, -11.900602, 26.812681, -47.28425)
+
 [node name="ThrowableCube" parent="Throwables" unique_id=554461063 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209961, 25.849699, -50.72784)
 
 [node name="ThrowableCube2" parent="Throwables" unique_id=998535108 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660295, 25.849699, -53.8968)
 
-[node name="ThrowableCube3" parent="Throwables" unique_id=1789431283 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47536, 25.849699, -45.441746)
-
-[node name="ThrowableCube4" parent="Throwables" unique_id=954082382 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15302563, 27.849699, -45.100906)
-
 [node name="ThrowableCube6" parent="Throwables" unique_id=844239056 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355667, 25.849699, -30.70102)
-
-[node name="ThrowableCube7" parent="Throwables" unique_id=1985501722 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9818277, 25.849699, -28.341862)
 
 [node name="ThrowableCube8" parent="Throwables" unique_id=1386090068 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771568, 25.849699, -32.430573)
@@ -1114,135 +1139,170 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771568, 25.849699, -32.430
 [node name="ThrowableCube9" parent="Throwables" unique_id=1251095342 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899053, 25.849699, -41.672787)
 
-[node name="ThrowableCube10" parent="Throwables" unique_id=327985456 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.836215, 27.8497, -21.11278)
-
-[node name="ThrowableCube11" parent="Throwables" unique_id=1228922293 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355593, 25.849699, -42.11208)
-
-[node name="ThrowableCube5" parent="Throwables" unique_id=6648009 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5204, 25.849699, -19.16177)
-
 [node name="ThrowableCube12" parent="Throwables" unique_id=1528304291 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287375, 25.849699, -21.868412)
 
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
 transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, -16.673128, 27.8497, -39.630356)
 
+[node name="ThrowableCube7" parent="Throwables" unique_id=1132394137 instance=ExtResource("6_embne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.838713, 25.466087, -38.48302)
+
 [node name="Clouds" type="Node" parent="." unique_id=1553745827]
 
 [node name="CloudsCloud2" type="MeshInstance3D" parent="Clouds" unique_id=1621393565]
 transform = Transform3D(-1.0245068, 0, -6.4570284, 0, 6.5378, 0, 6.4570284, 0, -1.0245068, 970.4346, -81.312546, -2365.2341)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud7" type="MeshInstance3D" parent="Clouds" unique_id=256483978]
 transform = Transform3D(-1.5958375, 0, 6.3400416, 0, 6.5378, 0, -6.3400416, 0, -1.5958375, -1342.5388, -219.3008, -2969.5498)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud14" type="MeshInstance3D" parent="Clouds" unique_id=1986896449]
 transform = Transform3D(5.389116, 0, -3.701386, 0, 6.5378, 0, 3.701386, 0, 5.389116, -2964.0225, -219.30055, -2079.7695)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud15" type="MeshInstance3D" parent="Clouds" unique_id=2131589800]
 transform = Transform3D(5.048695, 0, 4.1537337, 0, 6.5378, 0, -4.1537337, 0, 5.048695, -2329.0303, -219.3008, 82.4086)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud8" type="MeshInstance3D" parent="Clouds" unique_id=911993684]
 transform = Transform3D(-0.55114293, 0, -5.1058855, 0, 5.135547, 0, 5.1058855, 0, -0.55114293, 95.98566, -54.641838, -13.036079)
+layers = 2
+material_override = ExtResource("3_we6ge")
+mesh = ExtResource("3_dmx53")
+
+[node name="CloudsCloud20" type="MeshInstance3D" parent="Clouds" unique_id=590277765]
+transform = Transform3D(2.9829133, 0, -0.022756865, 0, 2.983, 0, 0.022756865, 0, 2.9829133, 69.06851, -51.308662, 101.56939)
+layers = 2
+material_override = ExtResource("3_we6ge")
+mesh = ExtResource("3_dmx53")
+
+[node name="CloudsCloud24" type="MeshInstance3D" parent="Clouds" unique_id=971219048]
+transform = Transform3D(-2.5109859, 0, 1.6103541, 0, 2.9830003, 0, -1.6103541, 0, -2.5109859, -11.557568, -51.308662, 102.582245)
+layers = 2
+material_override = ExtResource("3_we6ge")
+mesh = ExtResource("3_dmx53")
+
+[node name="CloudsCloud25" type="MeshInstance3D" parent="Clouds" unique_id=177162798]
+transform = Transform3D(1.8012725, 0, 6.5870957, 0, 6.8289404, 0, -6.5870957, 0, 1.8012725, 59.18303, -102.926834, 334.68536)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud12" type="MeshInstance3D" parent="Clouds" unique_id=1107052377]
 transform = Transform3D(-3.546575, 0, -7.3885984, 0, 8.195707, 0, 7.3885984, 0, -3.546575, -1006.42773, 772.43207, 755.1495)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud10" type="MeshInstance3D" parent="Clouds" unique_id=1536045410]
 transform = Transform3D(6.1507487, 0, -2.2161043, 0, 6.5378, 0, 2.2161043, 0, 6.1507487, 1070.5638, -131.47311, 223.01077)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud13" type="MeshInstance3D" parent="Clouds" unique_id=1572246293]
 transform = Transform3D(4.3357906, 0, -1.562178, 0, 4.6086326, 0, 1.562178, 0, 4.3357906, 327.29065, 2362.4463, 223.01077)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud9" type="MeshInstance3D" parent="Clouds" unique_id=800303170]
 transform = Transform3D(20.110384, 0, 28.969233, 0, 35.265343, 0, -28.969233, 0, 20.110384, -2099.1436, -219.3008, 1841.1924)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud22" type="MeshInstance3D" parent="Clouds" unique_id=1925083298]
 transform = Transform3D(-9.777571, 0, 13.025389, 0, 16.286858, 0, -13.025389, 0, -9.777571, -567.8074, -14.542397, -1195.811)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud16" type="MeshInstance3D" parent="Clouds" unique_id=198462696]
 transform = Transform3D(-34.592373, 0, 6.8565035, 0, 35.26534, 0, -6.8565035, 0, -34.592373, 1873.3994, 898.9326, -189.53564)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud19" type="MeshInstance3D" parent="Clouds" unique_id=1813778706]
 transform = Transform3D(-18.212484, 0, 8.266267, 0, 20.000645, 0, -8.266267, 0, -18.212484, 2236.6423, 57.219482, 3169.2307)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud17" type="MeshInstance3D" parent="Clouds" unique_id=1080667022]
 transform = Transform3D(17.038536, 0, -30.876081, 0, 35.265335, 0, 30.876081, 0, 17.038536, -1111.6329, 898.93274, -2539.4785)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud23" type="MeshInstance3D" parent="Clouds" unique_id=1205320958]
 transform = Transform3D(24.1389, 0, 25.709095, 0, 35.26533, 0, -25.709095, 0, 24.1389, 1676.704, 898.93274, -4401.9316)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("3_dmx53")
 
 [node name="CloudsCloud3" type="MeshInstance3D" parent="Clouds" unique_id=876621093]
 transform = Transform3D(4.660336, 0, 4.585204, 0, 6.5378, 0, -4.585204, 0, 4.660336, -1150.5865, -167.2902, 210.52931)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud11" type="MeshInstance3D" parent="Clouds" unique_id=1458516193]
 transform = Transform3D(11.230263, 0, 11.049212, 0, 15.754488, 0, -11.049212, 0, 11.230263, -791.61743, 588.6882, -539.84283)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud6" type="MeshInstance3D" parent="Clouds" unique_id=380328561]
 transform = Transform3D(-1.5068071, 0, 6.3617887, 0, 6.5378, 0, -6.3617887, 0, -1.5068071, -390.3081, -116.7756, 197.8326)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud21" type="MeshInstance3D" parent="Clouds" unique_id=22155274]
 transform = Transform3D(-9.352891, 0, -3.1218317, 0, 9.860144, 0, 3.1218317, 0, -9.352891, -2631.6257, -62.940063, -232.04971)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud5" type="MeshInstance3D" parent="Clouds" unique_id=436811515]
 transform = Transform3D(-14.343254, 0, -1.2391589, 0, 14.396682, 0, 1.2391589, 0, -14.343254, 251.69421, -84.33467, 1550.9912)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud18" type="MeshInstance3D" parent="Clouds" unique_id=1874934690]
 transform = Transform3D(-23.585236, 0, -2.0376027, 0, 23.673088, 0, 2.0376027, 0, -23.585236, 299.13977, 77.864655, 3355.4736)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("5_141v0")
 
 [node name="CloudsCloud4" type="MeshInstance3D" parent="Clouds" unique_id=1858200339]
 transform = Transform3D(2.4786959, 0, -6.0497017, 0, 6.5378, 0, 6.0497017, 0, 2.4786959, -1835.012, -282.2287, -1857.5764)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("6_uggj7")
 
 [node name="CloudsCube003" type="MeshInstance3D" parent="Clouds" unique_id=878292045]
 transform = Transform3D(6.5378, 0, 0, 0, 6.5378, 0, 0, 0, 6.5378, -1266.8741, -117.01274, -457.4071)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("7_ln566")
 
 [node name="CloudsCube004" type="MeshInstance3D" parent="Clouds" unique_id=311704211]
 transform = Transform3D(2.6016037, 0, 5.9978733, 0, 6.5378, 0, -5.9978733, 0, 2.6016037, 325.4081, -191.66591, -485.13818)
+layers = 2
 material_override = ExtResource("3_we6ge")
 mesh = ExtResource("7_ln566")
 
@@ -1253,36 +1313,44 @@ mesh = ExtResource("7_ln566")
 [node name="ReflectionProbe7" type="ReflectionProbe" parent="Map/Reflections" unique_id=560396112]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -537.46063, 59.8882, 0)
 size = Vector3(7273.87, 2863.8457, 8164.3438)
+cull_mask = 0
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="Map/Reflections" unique_id=183223193]
 transform = Transform3D(0.6840673, 0, 0.72941893, 0, 1, 0, -0.72941893, 0, 0.6840673, 76.14872, -48.31667, 131.67044)
 size = Vector3(141.38037, 170.79846, 186.38014)
 origin_offset = Vector3(0, 55, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe2" type="ReflectionProbe" parent="Map/Reflections" unique_id=296130730]
 transform = Transform3D(0.83724666, 0, -0.54682547, 0, 1, 0, 0.54682547, 0, 0.83724666, -53.072186, -13.59848, 127.60034)
 size = Vector3(58.67206, 68.65723, 55.543945)
 origin_offset = Vector3(0, 15, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe3" type="ReflectionProbe" parent="Map/Reflections" unique_id=1839108747]
 transform = Transform3D(0.8565357, 0, 0.51608795, 0, 1, 0, -0.51608795, 0, 0.8565357, 3.3620777, -13.598478, 132.93782)
 size = Vector3(58.67206, 68.65723, 55.543945)
 origin_offset = Vector3(0, 15, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe4" type="ReflectionProbe" parent="Map/Reflections" unique_id=313298613]
 transform = Transform3D(0.9910677, 0, 0.13336006, 0, 1, 0, -0.13336006, 0, 0.9910677, -32.145832, -13.598478, 82.67387)
 size = Vector3(70.30478, 68.65723, 55.543945)
 origin_offset = Vector3(0, 25, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe5" type="ReflectionProbe" parent="Map/Reflections" unique_id=1596406288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5919724, 19.668339, -35.086502)
 size = Vector3(70.30478, 74.64111, 55.543945)
 origin_offset = Vector3(0, 15, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="ReflectionProbe6" type="ReflectionProbe" parent="Map/Reflections" unique_id=1238962402]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5919724, 13.01016, 16.557678)
 size = Vector3(70.30478, 74.64111, 73.51074)
 origin_offset = Vector3(0, 15, 0)
+ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1598966132]
 transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -0.7927331, 7.3853493, -3.2842636)
@@ -1297,10 +1365,10 @@ size = Vector3(13.926758, 35, 36.877045)
 material = ExtResource("1_rn81q")
 
 [node name="SkyIslands3" parent="Map" unique_id=1663624547 instance=ExtResource("18_nd2sr")]
-transform = Transform3D(-0.4860565, 0, 2.5547566, 0, 2.6005828, 0, -2.5547566, 0, -0.4860565, -2.7663267, -16.99379, -39.8387)
-instance_shader_parameters/instance_scale = 4.504342
+transform = Transform3D(-0.5297943, 0, 2.784646, 0, 2.834596, 0, -2.784646, 0, -0.5297943, -2.7663267, -20.940628, -39.8387)
+instance_shader_parameters/instance_scale = 4.9096646
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_heyh1")
+surface_material_override/0 = SubResource("ShaderMaterial_0jvuh")
 enable_foilage = true
 grass_count = 5000
 uniform_scale_random = 0.6
@@ -1310,7 +1378,7 @@ splatmap = SubResource("PortableCompressedTexture2D_pdr7q")
 transform = Transform3D(1.4381367, -0.09497891, 0, 0.09497891, 1.4381367, 0, 0, 0, 1.4412696, -53.590126, -21.515265, 132.6069)
 instance_shader_parameters/instance_scale = 2.4963522
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_dequg")
+surface_material_override/0 = SubResource("ShaderMaterial_t1goo")
 enable_foilage = true
 grass_count = 5000
 grass_threshold = 0.99
@@ -1320,7 +1388,7 @@ splatmap = SubResource("PortableCompressedTexture2D_dequg")
 transform = Transform3D(-0.1120834, 0.009586813, 1.4368727, 0.04483446, 1.4405591, -0.0061140964, -1.4362054, 0.044222236, -0.112326406, -3.6711402, 2.477398, 20.869934)
 instance_shader_parameters/instance_scale = 2.4963522
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_5abrp")
+surface_material_override/0 = SubResource("ShaderMaterial_enf3j")
 enable_foilage = true
 grass_count = 1000
 splatmap = SubResource("PortableCompressedTexture2D_38kma")
@@ -1329,15 +1397,15 @@ splatmap = SubResource("PortableCompressedTexture2D_38kma")
 transform = Transform3D(1.4330312, -0.043974318, 0.14746645, 0.04483446, 1.4405591, -0.0061140964, -0.14720716, 0.010666462, 1.4336923, 1.5697236, 2.477398, -2.5997963)
 instance_shader_parameters/instance_scale = 2.4963522
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_vi5q5")
+surface_material_override/0 = SubResource("ShaderMaterial_sdqrx")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands4" parent="Map" unique_id=864092367 instance=ExtResource("17_bx8ag")]
-transform = Transform3D(-0.85166776, 0, -0.16824234, 0, 0.8681264, 0, 0.16824234, 0, -0.85166776, -0.09914565, -22.364202, 133.79877)
+transform = Transform3D(-0.82374907, 0, 0.27400896, 0, 0.8681264, 0, -0.27400896, 0, -0.82374907, 2.7143023, -22.364202, 144.57715)
 instance_shader_parameters/instance_scale = 1.503639
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_cenp1")
+surface_material_override/0 = SubResource("ShaderMaterial_37550")
 enable_foilage = true
 grass_count = 1000
 splatmap = SubResource("PortableCompressedTexture2D_plnwn")
@@ -1346,7 +1414,7 @@ splatmap = SubResource("PortableCompressedTexture2D_plnwn")
 transform = Transform3D(-1.136751e-07, 0, -2.600583, 0, 2.600583, 0, 2.600583, 0, -1.136751e-07, 98.49562, -59.294037, 179.65935)
 instance_shader_parameters/instance_scale = 4.504342
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_7u35u")
+surface_material_override/0 = SubResource("ShaderMaterial_p452h")
 enable_foilage = true
 grass_count = 10000
 
@@ -1354,7 +1422,7 @@ grass_count = 10000
 transform = Transform3D(0.62928754, 0.034450017, -1.5116721, -0.08952566, 1.635337, 0, 1.5094118, 0.082631975, 0.63022983, -45.156395, -12.146942, 87.00748)
 instance_shader_parameters/instance_scale = 2.836728
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_1pmac")
+surface_material_override/0 = SubResource("ShaderMaterial_hb4ss")
 enable_foilage = true
 grass_count = 1000
 
@@ -1362,14 +1430,14 @@ grass_count = 1000
 transform = Transform3D(-1.1716521, -0.025292568, -0.19799599, 1.8626451e-09, 1.1789527, -0.15060279, 0.19960491, -0.14846374, -1.162208, -9.245495, -0.7499226, 81.17332)
 instance_shader_parameters/instance_scale = 2.0585997
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_47yyo")
+surface_material_override/0 = SubResource("ShaderMaterial_21hgm")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands7" parent="Map" unique_id=1048046556 instance=ExtResource("21_m4vf5")]
 transform = Transform3D(0.9727698, 0, 0.23177336, 0, 1, 0, -0.23177336, 0, 0.9727698, -24.60091, 2.078897, 84.96679)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_tnyeg")
+surface_material_override/0 = SubResource("ShaderMaterial_yax1e")
 enable_foilage = true
 grass_count = 1000
 
@@ -1377,21 +1445,21 @@ grass_count = 1000
 transform = Transform3D(1.0904379, 0.06514302, 0, -0.0651152, 1.0899721, 0.0319209, 0.0019035684, -0.031864095, 1.0919155, -27.997835, -4.1885767, 84.14637)
 instance_shader_parameters/instance_scale = 1.892061
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_gakk0")
+surface_material_override/0 = SubResource("ShaderMaterial_gkqf3")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands9" parent="Map" unique_id=1661722000 instance=ExtResource("23_kiw6d")]
 transform = Transform3D(-0.32600468, -0.02135319, 0.94512695, -0.065359585, 0.9978618, 0, -0.94310606, -0.06177311, -0.32670325, -38.924416, -2.911643, 87.2696)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_h12os")
+surface_material_override/0 = SubResource("ShaderMaterial_ae61q")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands2" parent="Map" unique_id=1634664349 instance=ExtResource("19_g8dp3")]
 transform = Transform3D(-0.21734557, -0.027795956, -0.9756989, -0.12685513, 0.99192125, 0, 0.9678165, 0.12377241, -0.21911572, -45.854244, -6.4471517, 85.23704)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_1juy5")
+surface_material_override/0 = SubResource("ShaderMaterial_j6iw8")
 enable_foilage = true
 grass_count = 1000
 
@@ -1399,14 +1467,14 @@ grass_count = 1000
 transform = Transform3D(0.41165859, 0, 0, 0, 0.4102874, -0.033571005, 0, 0.033571005, 0.4102874, -43.873455, -1.8195782, 91.50196)
 instance_shader_parameters/instance_scale = 0.7130136
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_36i8s")
+surface_material_override/0 = SubResource("ShaderMaterial_bynjp")
 enable_foilage = true
 
 [node name="SkyIslands11" parent="Map" unique_id=1558335972 instance=ExtResource("24_nnqa1")]
-transform = Transform3D(1.4922597, -0.048573285, 0.81264603, 0, 1.6968516, 0.10142381, -0.8140964, -0.08903609, 1.4896013, 14.961008, -24.350546, 134.83337)
-instance_shader_parameters/instance_scale = 2.9442785
+transform = Transform3D(0.6210959, -0.048573285, 1.5816045, -0.06517837, 1.6968517, 0.07770822, -1.5810072, -0.08903609, 0.61812687, 14.961008, -24.350546, 134.83337)
+instance_shader_parameters/instance_scale = 2.9442787
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_cy5sp")
+surface_material_override/0 = SubResource("ShaderMaterial_svvpq")
 enable_foilage = true
 grass_count = 1000
 
@@ -1414,14 +1482,14 @@ grass_count = 1000
 transform = Transform3D(0.12621425, 0, -1.6347066, 0, 1.6395718, 0, 1.6347066, 0, 0.12621425, 71.093254, -32.768135, 154.98842)
 instance_shader_parameters/instance_scale = 2.8398216
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_hhvid")
+surface_material_override/0 = SubResource("ShaderMaterial_4d2h2")
 enable_foilage = true
 grass_count = 10000
 
 [node name="SkyIslands14" parent="Map" unique_id=562616905 instance=ExtResource("17_bx8ag")]
 transform = Transform3D(-0.98315966, 0, -0.18274873, 0, 1, 0, 0.18274873, 0, -0.98315966, 40.70442, -9.784136, 155.9554)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_xmuqv")
+surface_material_override/0 = SubResource("ShaderMaterial_vjs5n")
 enable_foilage = true
 grass_count = 1000
 
@@ -1429,7 +1497,7 @@ grass_count = 1000
 transform = Transform3D(1.204852, 0, -0.8195361, 0, 1.4571574, 0, 0.8195361, 0, 1.204852, 62.728756, -25.005577, 148.16008)
 instance_shader_parameters/instance_scale = 2.5238707
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_ngwv6")
+surface_material_override/0 = SubResource("ShaderMaterial_3pj5c")
 enable_foilage = true
 grass_count = 1000
 
@@ -1437,7 +1505,7 @@ grass_count = 1000
 transform = Transform3D(-1.2000817, 0, 0.74276626, 0, 1.4113461, 0, -0.74276626, 0, -1.2000817, 81.125534, -21.643002, 163.06332)
 instance_shader_parameters/instance_scale = 2.444523
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_ixc71")
+surface_material_override/0 = SubResource("ShaderMaterial_142gw")
 enable_foilage = true
 grass_count = 1000
 
@@ -1445,7 +1513,7 @@ grass_count = 1000
 transform = Transform3D(1.5681413, 0.09058377, -0.21444607, -0.08974845, 1.5827366, 0.012273257, 0.21479699, 0, 1.5707076, 85.03138, -13.272281, 195.73198)
 instance_shader_parameters/instance_scale = 2.7458663
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_oasc8")
+surface_material_override/0 = SubResource("ShaderMaterial_0it0t")
 enable_foilage = true
 grass_count = 1000
 
@@ -1453,7 +1521,7 @@ grass_count = 1000
 transform = Transform3D(-2.1058898, 0.048901826, 0.7703264, 0.09962536, 2.2368836, 0.13035007, -0.7654205, 0.15660438, -2.1024208, 120.94476, -14.546443, 193.92238)
 instance_shader_parameters/instance_scale = 3.8848035
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_qps84")
+surface_material_override/0 = SubResource("ShaderMaterial_vafnw")
 enable_foilage = true
 grass_count = 1000
 
@@ -1461,14 +1529,14 @@ grass_count = 1000
 transform = Transform3D(1.9053293, -0.10123848, 0.28108752, 0.085665524, 1.9234442, 0.112084985, -0.28621846, -0.098246515, 1.9047225, 123.74271, -12.4441595, 177.45667)
 instance_shader_parameters/instance_scale = 3.340452
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_0jvuh")
+surface_material_override/0 = SubResource("ShaderMaterial_t1m4s")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands19" parent="Map" unique_id=339273320 instance=ExtResource("18_nd2sr")]
 transform = Transform3D(1, 0, 0, 0, 0.999527, 0.030756533, 0, -0.030756533, 0.999527, 28.550732, -10.797251, 87.8692)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_t1goo")
+surface_material_override/0 = SubResource("ShaderMaterial_n601x")
 enable_foilage = true
 grass_count = 1000
 uniform_scale = 0.1
@@ -1478,7 +1546,7 @@ uniform_scale_random = 1.0
 transform = Transform3D(-0.36784077, 0, 0.75804293, 0, 0.842577, 0, -0.75804293, 0, -0.36784077, 19.809906, -13.812071, 92.79352)
 instance_shader_parameters/instance_scale = 1.4593861
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_enf3j")
+surface_material_override/0 = SubResource("ShaderMaterial_m2q5n")
 enable_foilage = true
 grass_count = 1000
 
@@ -1486,7 +1554,7 @@ grass_count = 1000
 transform = Transform3D(-2.0618796, 0, 0.8861861, 0, 2.2442534, 0, -0.8861861, 0, -2.0618796, 107.07673, -13.523682, 157.70728)
 instance_shader_parameters/instance_scale = 3.887161
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_sdqrx")
+surface_material_override/0 = SubResource("ShaderMaterial_xmpaa")
 enable_foilage = true
 grass_count = 1000
 
@@ -1494,7 +1562,7 @@ grass_count = 1000
 transform = Transform3D(1.698223, 0, -1.4672124, 0, 2.2442534, 0, 1.4672124, 0, 1.698223, 84.99448, -13.523682, 136.50166)
 instance_shader_parameters/instance_scale = 3.887161
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_37550")
+surface_material_override/0 = SubResource("ShaderMaterial_v1vyl")
 enable_foilage = true
 grass_count = 1000
 
@@ -1502,21 +1570,21 @@ grass_count = 1000
 transform = Transform3D(-1.2108734, 0, 0.293158, 0, 1.2458556, 0, -0.293158, 0, -1.2108734, 54.59233, -9.762032, 167.24269)
 instance_shader_parameters/instance_scale = 2.157885
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_p452h")
+surface_material_override/0 = SubResource("ShaderMaterial_egwbi")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands24" parent="Map" unique_id=198528723 instance=ExtResource("17_bx8ag")]
 transform = Transform3D(-0.91578317, 0, 0.40167296, 0, 1, 0, -0.40167296, 0, -0.91578317, 56.20018, -3.9188986, 97.30033)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_hb4ss")
+surface_material_override/0 = SubResource("ShaderMaterial_o6ccq")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands25" parent="Map" unique_id=987398044 instance=ExtResource("17_bx8ag")]
 transform = Transform3D(0.86883456, 0, -0.4951025, 0, 1, 0, 0.4951025, 0, 0.86883456, 67.085526, -8.64081, 105.648254)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_21hgm")
+surface_material_override/0 = SubResource("ShaderMaterial_ub2v6")
 enable_foilage = true
 grass_count = 1000
 
@@ -1524,14 +1592,14 @@ grass_count = 1000
 transform = Transform3D(-0.7402287, 0, 1.0474926, 0, 1.2826455, 0, -1.0474926, 0, -0.7402287, 37.209686, -7.7613506, 85.568504)
 instance_shader_parameters/instance_scale = 2.2216072
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_yax1e")
+surface_material_override/0 = SubResource("ShaderMaterial_s0mmx")
 enable_foilage = true
 grass_count = 1000
 
 [node name="SkyIslands30" parent="Map" unique_id=738974876 instance=ExtResource("23_kiw6d")]
 transform = Transform3D(0.8196693, 0, -0.57283705, 0, 1, 0, 0.57283705, 0, 0.8196693, 70.44588, -10.311878, 179.0237)
 instance_shader_parameters/use_vertex_color = true
-surface_material_override/0 = SubResource("ShaderMaterial_gkqf3")
+surface_material_override/0 = SubResource("ShaderMaterial_ir2i5")
 
 [node name="MapBG" type="Node3D" parent="." unique_id=416332223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 227.12354, 3.4332275e-05, -85.31262)
@@ -1542,7 +1610,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 4.150868
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("13_kiw6d")
-surface_material_override/0 = SubResource("ShaderMaterial_ae61q")
+surface_material_override/0 = SubResource("ShaderMaterial_2ab50")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_heyh1")
 base_material = ExtResource("15_ln566")
@@ -1558,7 +1626,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 2.7712817
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("14_nnqa1")
-surface_material_override/0 = SubResource("ShaderMaterial_j6iw8")
+surface_material_override/0 = SubResource("ShaderMaterial_ku5m2")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_5abrp")
 base_material = ExtResource("15_ln566")
@@ -1574,7 +1642,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 3.5630639
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("15_7b5us")
-surface_material_override/0 = SubResource("ShaderMaterial_bynjp")
+surface_material_override/0 = SubResource("ShaderMaterial_gg2hp")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_cenp1")
 base_material = ExtResource("15_ln566")
@@ -1590,7 +1658,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 6.782643
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("16_31vy0")
-surface_material_override/0 = SubResource("ShaderMaterial_svvpq")
+surface_material_override/0 = SubResource("ShaderMaterial_21oy5")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_1pmac")
 base_material = ExtResource("15_ln566")
@@ -1606,7 +1674,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 6.7826424
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("17_0i20c")
-surface_material_override/0 = SubResource("ShaderMaterial_4d2h2")
+surface_material_override/0 = SubResource("ShaderMaterial_hos4h")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_tnyeg")
 base_material = ExtResource("15_ln566")
@@ -1614,6 +1682,7 @@ base_material = ExtResource("15_ln566")
 [node name="StaticBody3D" type="StaticBody3D" parent="MapBG/MeshInstance3D6" unique_id=846605560]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MapBG/MeshInstance3D6/StaticBody3D" unique_id=1960991925]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.2313385, 0)
 shape = SubResource("ConcavePolygonShape3D_ucdfb")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="MapBG" unique_id=669664007]
@@ -1622,7 +1691,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 6.7826424
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("18_kv4ee")
-surface_material_override/0 = SubResource("ShaderMaterial_vjs5n")
+surface_material_override/0 = SubResource("ShaderMaterial_0885k")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_h12os")
 base_material = ExtResource("15_ln566")
@@ -1638,7 +1707,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 5.929849
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("18_kv4ee")
-surface_material_override/0 = SubResource("ShaderMaterial_3pj5c")
+surface_material_override/0 = SubResource("ShaderMaterial_4a45c")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_36i8s")
 base_material = ExtResource("15_ln566")
@@ -1654,7 +1723,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 4.6374393
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("18_kv4ee")
-surface_material_override/0 = SubResource("ShaderMaterial_142gw")
+surface_material_override/0 = SubResource("ShaderMaterial_j1h7x")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_hhvid")
 base_material = ExtResource("15_ln566")
@@ -1670,7 +1739,7 @@ lod_bias = 0.15
 instance_shader_parameters/instance_scale = 6.782643
 instance_shader_parameters/use_vertex_color = false
 mesh = ExtResource("18_kv4ee")
-surface_material_override/0 = SubResource("ShaderMaterial_0it0t")
+surface_material_override/0 = SubResource("ShaderMaterial_rverf")
 script = ExtResource("26_plnwn")
 splatmap = SubResource("PortableCompressedTexture2D_ngwv6")
 base_material = ExtResource("15_ln566")
@@ -1901,7 +1970,7 @@ mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland28" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=564433866]
-transform = Transform3D(-0.09601773, 0, 0.87330955, 0, 0.8785722, 0, -0.87330955, 0, -0.09601773, -772.81995, -121.18558, 220.25945)
+transform = Transform3D(-0.09601773, 0, 0.87330955, 0, 0.8785722, 0, -0.87330955, 0, -0.09601773, -772.81995, -112.927246, 234.35283)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
@@ -1979,7 +2048,7 @@ mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland36" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=1776880058]
-transform = Transform3D(0.34965968, 0.5755654, 1.8212539, 0.73550016, 1.6681706, -0.6683944, -1.762748, 0.8102075, 0.08238, -250.4047, 241.33423, -1126.4744)
+transform = Transform3D(0.34965968, 0.5755654, 1.8212539, 0.73550016, 1.6681706, -0.6683944, -1.762748, 0.8102075, 0.08238, -262.67636, 241.33423, -1126.4744)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
@@ -1991,13 +2060,13 @@ mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland38" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=1161979777]
-transform = Transform3D(-1.5398211, 0.27132794, 0.42793354, 0.14559676, 1.5482438, -0.45775476, -0.48533246, -0.39638236, -1.4950347, -199.39182, 93.63385, -813.921)
+transform = Transform3D(-1.5398211, 0.27132794, 0.42793354, 0.14559676, 1.5482438, -0.45775476, -0.48533246, -0.39638236, -1.4950347, -260.75595, 92.92218, -813.921)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland39" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=642039801]
-transform = Transform3D(-3.1200347, -0.14093742, 0.38241982, -0.11146513, 3.1349342, 0.24594434, -0.3920257, 0.23032603, -3.1135175, -208.7073, 117.69412, -908.9606)
+transform = Transform3D(-3.1200347, -0.14093742, 0.38241982, -0.11146513, 3.1349342, 0.24594434, -0.3920257, 0.23032603, -3.1135175, -208.7073, 67.57321, -908.9606)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
@@ -2099,7 +2168,7 @@ mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland62" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=799785713]
-transform = Transform3D(-0.2710852, 0, 1.598221, 0, 1.6210483, 0, -1.598221, 0, -0.2710852, -876.1802, 496.69543, -282.3642)
+transform = Transform3D(-0.2710852, 0, 1.598221, 0, 1.6210483, 0, -1.598221, 0, -0.2710852, -876.1802, 499.77582, -282.3642)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
@@ -3124,7 +3193,7 @@ mesh = ExtResource("26_we6ge")
 surface_material_override/0 = ExtResource("15_ln566")
 
 [node name="SkyIslandsSkyIsland41" type="MeshInstance3D" parent="MapBG/SkyIslands" unique_id=1756364269]
-transform = Transform3D(1.5092283, -0.8740388, -5.3002563, 0.24001274, 5.510942, -0.8404387, 5.366474, -0.000665184, 1.5281925, -217.19131, 164.22894, -987.4927)
+transform = Transform3D(1.5092283, -0.8740388, -5.3002563, 0.24001274, 5.510942, -0.8404387, 5.366474, -0.000665184, 1.5281925, -94.69359, 211.3427, -987.4927)
 instance_shader_parameters/use_vertex_color = true
 mesh = ExtResource("27_141v0")
 surface_material_override/0 = ExtResource("15_ln566")
@@ -3538,16 +3607,245 @@ surface_material_override/0 = ExtResource("42_plnwn")
 [node name="Decal" type="Decal" parent="MapBG" unique_id=1239872523]
 transform = Transform3D(-0.28987718, 0, -0.9570639, 0, 1, 0, 0.9570639, 0, -0.28987718, -1335.1256, -774.11707, -607.4893)
 size = Vector3(500, 500, 500)
-texture_albedo = ExtResource("55_11mit")
-normal_fade = 0.7
+texture_albedo = ExtResource("50_vi5q5")
+texture_emission = ExtResource("50_cenp1")
+emission_energy = 2.0
 cull_mask = 1
 
-[node name="Decal2" type="Decal" parent="MapBG" unique_id=2068052858]
-transform = Transform3D(0.98798156, 0, 0.15457234, 0, 1, 0, -0.15457234, 0, 0.98798156, -1318.2688, -774.11707, -583.18524)
-size = Vector3(400, 400, 400)
-texture_albedo = ExtResource("55_11mit")
-normal_fade = 0.7
+[node name="Decal8" type="Decal" parent="MapBG" unique_id=934500932]
+transform = Transform3D(-0.91457486, 0.40441698, 2.9802322e-08, 1.8617438e-08, -2.7241228e-08, 1.0000001, 0.40441704, 0.9145748, 0, -203.56996, -7.299122, 184.25583)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
 cull_mask = 1
+
+[node name="Decal26" type="Decal" parent="MapBG" unique_id=1082952064]
+transform = Transform3D(-0.91457486, 0.40441698, 2.9802322e-08, 1.8617438e-08, -2.7241228e-08, 1.0000001, 0.40441704, 0.9145748, 0, -189.33202, -4.46628, 234.08142)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal12" type="Decal" parent="MapBG" unique_id=2127666981]
+transform = Transform3D(0.40461224, 0.86319333, -0.30197084, 0.8812797, -0.2798699, 0.3808138, 0.24420339, -0.4202026, -0.87395346, -256.20593, -13.422869, 215.03944)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal13" type="Decal" parent="MapBG" unique_id=1215679499]
+transform = Transform3D(0.40461233, 0.42795965, 0.8081707, -0.90894186, 0.091013946, 0.40686792, 0.10056805, -0.8992038, 0.4258157, -270.37323, -21.626059, 179.92068)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal14" type="Decal" parent="MapBG" unique_id=1976555214]
+transform = Transform3D(-0.42079222, 0.042049617, -0.90618217, 0.9007105, -0.09951184, -0.42286903, -0.10795754, -0.9941478, 0.0039992332, -237.12825, 3.2257295, 169.07114)
+size = Vector3(7, 10, 7)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal9" type="Decal" parent="MapBG" unique_id=2131352994]
+transform = Transform3D(0.31270835, -0.8806916, 0.35580304, 0.7511306, 2.9802322e-08, -0.66015387, 0.581392, 0.4736901, 0.66151434, -244.15356, 6.4618406, 125.07269)
+size = Vector3(10, 10, 10)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal15" type="Decal" parent="MapBG" unique_id=65505593]
+transform = Transform3D(-0.25813317, 0.5345751, -0.8047339, -0.9522116, 2.9802322e-08, 0.30543935, 0.16328037, 0.845121, 0.5090287, -207.73233, 5.5084133, 89.5597)
+size = Vector3(14.793945, 10, 14.663086)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal25" type="Decal" parent="MapBG" unique_id=1906938126]
+transform = Transform3D(0.28175145, 0.386125, 0.8783641, -0.9522116, 4.5339593e-08, 0.30543935, 0.11793765, -0.92244637, 0.3676725, -249.86469, 5.0591455, 61.96457)
+size = Vector3(26.0708, 10, 24.483398)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal10" type="Decal" parent="MapBG" unique_id=776760446]
+transform = Transform3D(0.31270835, -0.8806916, 0.35580304, 0.7511306, 2.9802322e-08, -0.66015387, 0.581392, 0.4736901, 0.66151434, -793.46277, -113.18996, 212.8522)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal17" type="Decal" parent="MapBG" unique_id=481022396]
+transform = Transform3D(0.65360844, 0.1404692, 0.743683, 0.7511305, 1.6678992e-08, -0.6601538, -0.09273127, 0.990085, -0.10551064, -533.56, -168.75322, -282.92676)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal20" type="Decal" parent="MapBG" unique_id=282193536]
+transform = Transform3D(0.65360844, 0.1404692, 0.743683, 0.7511305, 1.6678992e-08, -0.6601538, -0.09273127, 0.990085, -0.10551064, -381.8432, 39.655334, -863.3898)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal21" type="Decal" parent="MapBG" unique_id=445502837]
+transform = Transform3D(-0.80321586, -0.51531196, 0.29882818, 0.3486899, 5.9604645e-08, 0.9372381, -0.48297, 0.85700285, 0.17968416, -454.7294, 28.73397, -856.5813)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal22" type="Decal" parent="MapBG" unique_id=1576095002]
+transform = Transform3D(0.066177025, -0.90550566, -0.4191423, -0.08909442, -0.4237475, 0.90138775, -0.9938224, -0.022307994, -0.10871761, 1182.1884, 148.54237, 58.7946)
+size = Vector3(85.87903, 82.70996, 85.38074)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal23" type="Decal" parent="MapBG" unique_id=1430260149]
+transform = Transform3D(0.9309846, 0.18639691, 0.31388545, -0.28327385, -0.17349234, 0.94321585, 0.23026934, -0.9670349, -0.108717635, -310.0275, 112.760185, 531.5166)
+size = Vector3(15, 15, 15)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal24" type="Decal" parent="MapBG" unique_id=2128584879]
+transform = Transform3D(0.1128473, 0.18639693, -0.975972, 0.9815515, -0.17349234, 0.080357514, -0.1543453, -0.9670349, -0.20253652, -315.71982, 90.555435, 544.5673)
+size = Vector3(15, 15, 15)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal18" type="Decal" parent="MapBG" unique_id=1817301093]
+transform = Transform3D(-0.18717587, 0.7676911, 0.6128749, 0.95639163, 0, 0.29208785, 0.22423336, 0.64082015, -0.73421323, -1983.847, 297.99374, -714.11206)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal19" type="Decal" parent="MapBG" unique_id=1521842797]
+transform = Transform3D(0.5154815, 0.7676911, 0.38069594, 0.5940763, -2.9802322e-08, -0.8044089, -0.6175375, 0.64082015, -0.4560669, -1935.2102, 240.70062, -772.37805)
+size = Vector3(100, 50, 100)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal16" type="Decal" parent="MapBG" unique_id=1654904341]
+transform = Transform3D(0.63222945, 0.06773808, 0.77181476, 0.088809706, 0.9832689, -0.15904444, -0.7696749, 0.16909716, 0.6156355, -378.39532, -91.8181, 66.29313)
+size = Vector3(25, 3.574, 25)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal11" type="Decal" parent="MapBG" unique_id=1843051963]
+transform = Transform3D(0.80612206, -0.58617437, -0.08103591, 0.10002142, 2.9802322e-08, 0.9949853, -0.583235, -0.81018484, 0.058629915, -1092.2024, 341.8299, -652.62823)
+size = Vector3(50, 50, 50)
+texture_albedo = ExtResource("51_47yyo")
+texture_emission = ExtResource("52_tnyeg")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal2" type="Decal" parent="MapBG" unique_id=1469977195]
+transform = Transform3D(-0.6695806, 0, -0.7427394, 0, 1, 0, 0.7427394, 0, -0.6695806, -1085.4, -774.11707, -287.72556)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal3" type="Decal" parent="MapBG" unique_id=1279445731]
+transform = Transform3D(-0.0368616, 0, 0.9993204, 0, 1, 0, -0.9993204, 0, -0.0368616, -1054.0463, -774.11707, -645.16473)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal4" type="Decal" parent="MapBG" unique_id=1597080660]
+transform = Transform3D(-0.99835545, 0, -0.057326928, 0, 1, 0, 0.057326928, 0, -0.99835545, -1366.605, -774.11707, -789.23566)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal5" type="Decal" parent="MapBG" unique_id=1792808469]
+transform = Transform3D(-0.85296, 0, 0.52197623, 0, 1, 0, -0.52197623, 0, -0.85296, -1425.7694, -774.11707, -411.9079)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal6" type="Decal" parent="MapBG" unique_id=1497734850]
+transform = Transform3D(-0.8839673, 0, -0.4675486, 0, 1, 0, 0.4675486, 0, -0.8839673, -1621.267, -774.11707, -699.37634)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Decal7" type="Decal" parent="MapBG" unique_id=549867127]
+transform = Transform3D(0.5142975, 0, 0.8576118, 0, 1, 0, -0.8576118, 0, 0.5142975, -1062.9055, -774.11707, -483.71393)
+size = Vector3(212.602, 500, 325.055)
+texture_albedo = ExtResource("51_1pmac")
+texture_emission = ExtResource("52_47yyo")
+emission_energy = 2.0
+cull_mask = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="MapBG" unique_id=287069045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1335.1256, -748.362, -607.4893)
+layers = 2
+pixel_size = 2.5
+billboard = 1
+double_sided = false
+texture = ExtResource("53_tnyeg")
+
+[node name="DarkMagicFallout" parent="MapBG" unique_id=1585696472 instance=ExtResource("56_gakk0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -237.04153, 3.7971025, 172.29785)
+
+[node name="DarkMagicFallout6" parent="MapBG" unique_id=1319310344 instance=ExtResource("56_gakk0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -243.91238, 7.6906233, 125.038055)
+
+[node name="DarkMagicFallout7" parent="MapBG" unique_id=519822663 instance=ExtResource("56_gakk0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -253.4345, 5.0714765, 63.90881)
+
+[node name="DarkMagicFallout8" parent="MapBG" unique_id=836930810 instance=ExtResource("56_gakk0")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -377.06415, -91.27159, 67.1216)
+
+[node name="DarkMagicFallout9" parent="MapBG" unique_id=2037796741 instance=ExtResource("56_gakk0")]
+transform = Transform3D(256, 0, 0, 0, 256, 0, 0, 0, 256, -1335.1256, -652.11505, -607.4893)
+
+[node name="DarkMagicFallout2" parent="MapBG" unique_id=1200176753 instance=ExtResource("56_gakk0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -202.56839, -6.974525, 186.04256)
+
+[node name="DarkMagicFallout3" parent="MapBG" unique_id=1483295220 instance=ExtResource("56_gakk0")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -189.55655, -4.2498097, 232.58585)
+
+[node name="DarkMagicFallout4" parent="MapBG" unique_id=1421364484 instance=ExtResource("56_gakk0")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -254.55994, -13.552353, 215.05338)
+
+[node name="DarkMagicFallout5" parent="MapBG" unique_id=1728794323 instance=ExtResource("56_gakk0")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -268.96133, -21.27552, 178.64273)
 
 [node name="RenderCache" type="Node" parent="." unique_id=881205720]
 
@@ -3641,7 +3939,7 @@ script = ExtResource("29_m4vf5")
 shape = SubResource("SphereShape3D_m4vf5")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Interactables/Grapples" unique_id=2008304875]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.774813, 1.404696, 130.52623)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3065, 1.404696, 141.69862)
 mesh = SubResource("SphereMesh_7rcam")
 
 [node name="Area3D" type="Area3D" parent="Interactables/Grapples/MeshInstance3D2" unique_id=319400076]
@@ -3706,7 +4004,26 @@ default_area_key = "area1"
 areas_holder = NodePath("../Areas")
 metadata/_custom_type_script = "uid://b7d2dkrcftm0a"
 
-[node name="LightmapGI" type="LightmapGI" parent="." unique_id=1170437423]
-quality = 0
-shadowmask_mode = 1
-generate_probes_subdiv = 0
+[node name="RuinsGate" parent="." unique_id=640766344 instance=ExtResource("69_hhvid")]
+transform = Transform3D(2.6721172, 0, 0, 0, 2.6721172, 0, 0, 0, 2.6721172, -0.18070161, 25.069307, -35.891693)
+
+[node name="RuinsGate2" parent="." unique_id=554739690 instance=ExtResource("70_xmuqv")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.14811492, 25.287228, -7.1306753)
+
+[node name="RuinsGate3" parent="." unique_id=928712870 instance=ExtResource("71_ngwv6")]
+transform = Transform3D(1.8504194, 0, -0.7589123, 0, 2, 0, 0.7589123, 0, 1.8504194, -7.2012353, 25.368294, -8.6657)
+
+[node name="RuinsGate8" parent="." unique_id=2105229489 instance=ExtResource("71_ngwv6")]
+transform = Transform3D(-1.5909468, 0, 1.211977, 0, 2, 0, -1.211977, 0, -1.5909468, 16.604456, 25.368294, -54.02069)
+
+[node name="RuinsGate4" parent="." unique_id=1652328614 instance=ExtResource("71_ngwv6")]
+transform = Transform3D(1.8504194, 0, 0.7589123, 0, 2, 0, -0.7589123, 0, 1.8504194, 6.884457, 25.368294, -8.671469)
+
+[node name="RuinsGate5" parent="." unique_id=1058395278 instance=ExtResource("72_ixc71")]
+transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, -0.14811468, 25.11274, -57.52654)
+
+[node name="RuinsGate6" parent="." unique_id=512047726 instance=ExtResource("73_oasc8")]
+transform = Transform3D(-1.0000001, 0, -1.7320508, 0, 2, 0, 1.7320508, 0, -1.0000001, -21.34525, 25.11274, -44.423214)
+
+[node name="RuinsGate7" parent="." unique_id=233405100 instance=ExtResource("73_oasc8")]
+transform = Transform3D(0, 0, 2, 1.4142135, 1.4142135, 0, -1.4142135, 1.4142135, 0, 24.805933, 22.391216, -36.07191)

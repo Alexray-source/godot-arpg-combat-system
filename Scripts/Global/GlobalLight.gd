@@ -5,6 +5,10 @@ var sun_screen_position : Vector2 = Vector2.ZERO
 var sun : DirectionalLight3D = null
 
 func _ready():
+	on_scene_changed()
+	GlobalSignals.scene_ready.connect(on_scene_changed)
+
+func on_scene_changed(_new_scene_path = null):
 	sun = get_tree().root.find_children("", "DirectionalLight3D", true, false).pop_front()
 
 func _process(_delta):

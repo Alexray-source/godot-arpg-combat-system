@@ -1,0 +1,189 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b6afl3b51l4a7"
+path="res://.godot/imported/Ruins_Fractures.glb-d0c025f96609d24bb696e110e34597ab.scn"
+
+[deps]
+
+source_file="res://Assets/MeshScenes/Structures/Ruins_Fractures.glb"
+dest_files=["res://.godot/imported/Ruins_Fractures.glb-d0c025f96609d24bb696e110e34597ab.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"meshes": {
+"Ruins_Fractures_Cube_001_cell_003_cell_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_001.res",
+"save_to_file/path": "uid://bj2rblnhr0vyh"
+},
+"Ruins_Fractures_Cube_001_cell_003_cell_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_002.res",
+"save_to_file/path": "uid://sdeplnb00asv"
+},
+"Ruins_Fractures_Cube_001_cell_003_cell_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_003.res",
+"save_to_file/path": "uid://cjvklwow0gfxi"
+},
+"Ruins_Fractures_Cube_001_cell_003_cell_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_004.res",
+"save_to_file/path": "uid://dc4ji1nhm30bh"
+},
+"Ruins_Fractures_Cube_001_cell_003_cell_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_008.res",
+"save_to_file/path": "uid://cl1i4a78hn8lv"
+},
+"Ruins_Fractures_Cube_001_cell_003_cell_009": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_003_cell_009.res",
+"save_to_file/path": "uid://dboemk2t5r6gm"
+},
+"Ruins_Fractures_Cube_001_cell_004_cell_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_004_cell_001.res",
+"save_to_file/path": "uid://dkh0gcxqibtvm"
+},
+"Ruins_Fractures_Cube_001_cell_004_cell_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_004_cell_002.res",
+"save_to_file/path": "uid://b58jqr7jgipnr"
+},
+"Ruins_Fractures_Cube_001_cell_004_cell_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_004_cell_003.res",
+"save_to_file/path": "uid://bawlekj885k44"
+},
+"Ruins_Fractures_Cube_001_cell_004_cell_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_004_cell_008.res",
+"save_to_file/path": "uid://boc066o1c4amt"
+},
+"Ruins_Fractures_Cube_001_cell_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_008.res",
+"save_to_file/path": "uid://bw1cu6kv67jdk"
+},
+"Ruins_Fractures_Cube_001_cell_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_011.res",
+"save_to_file/path": "uid://bkbky8vfitdd0"
+},
+"Ruins_Fractures_Cube_001_cell_cell_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_cell_001.res",
+"save_to_file/path": "uid://dx73fbscgdfaa"
+},
+"Ruins_Fractures_Cube_001_cell_cell_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_cell_003.res",
+"save_to_file/path": "uid://7gpfl4mv30k6"
+},
+"Ruins_Fractures_Cube_001_cell_cell_006": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_cell_006.res",
+"save_to_file/path": "uid://bfplqg3r33nnp"
+},
+"Ruins_Fractures_Cube_001_cell_cell_007": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Assets/Meshes/Structures/Debris/Ruins_Fractures_Cube_001_cell_cell_007.res",
+"save_to_file/path": "uid://etmcl22haack"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
