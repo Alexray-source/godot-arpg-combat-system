@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://b38qdar3spbj2"]
 
-[ext_resource type="Material" uid="uid://povq5qy1a6au" path="res://Assets/Material/CheckerboardFloor.tres" id="1_rn81q"]
 [ext_resource type="Shader" uid="uid://dkbhuwnk0ntyg" path="res://Shaders/SkyShader.gdshader" id="2_141v0"]
 [ext_resource type="Script" uid="uid://csjeq6yuhmwpx" path="res://Scripts/Resources/Compositor/FlareCompositor.gd" id="3_dequg"]
 [ext_resource type="ArrayMesh" uid="uid://d3tpfn5h8thl2" path="res://Assets/Meshes/VFX/Clouds_Cloud2.res" id="3_dmx53"]
@@ -77,6 +76,9 @@
 [ext_resource type="PackedScene" uid="uid://cxy7tl7y5ucsq" path="res://Scenes/Structures/ruins_gate_broken2.tscn" id="73_oasc8"]
 [ext_resource type="PackedScene" uid="uid://cid84revablks" path="res://Scenes/Environment/throwable_rock2.tscn" id="74_ngwv6"]
 [ext_resource type="PackedScene" uid="uid://didb1kckxwypx" path="res://Scenes/Environment/throwable_rock3.tscn" id="75_ixc71"]
+[ext_resource type="PackedScene" uid="uid://b3g3bb0irbfyj" path="res://Scenes/Structures/Stairs.tscn" id="77_0jvuh"]
+[ext_resource type="PackedScene" uid="uid://d0dhgbft2b1kw" path="res://Scenes/Structures/Bridge.tscn" id="78_t1goo"]
+[ext_resource type="PackedScene" uid="uid://ct60sbcf22ovf" path="res://Scenes/Structures/StairRailing.tscn" id="79_enf3j"]
 
 [sub_resource type="Curve" id="Curve_hhvid"]
 _data = [Vector2(0, 0), 0.0, 0.55031234, 0, 0, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -168,12 +170,9 @@ ssao_light_affect = 1.0
 ssao_ao_channel_affect = 1.0
 sdfgi_use_occlusion = true
 glow_enabled = true
-glow_levels/3 = 1.0
-glow_levels/4 = 1.0
-glow_levels/5 = 0.25
-glow_levels/6 = 0.1
+glow_levels/4 = 0.2
+glow_levels/5 = 0.1
 glow_mix = 0.491
-glow_hdr_threshold = 1.5
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.484375, 0.41436768, 0.41436768, 1)
@@ -182,9 +181,15 @@ fog_density = 1.0
 fog_sky_affect = 0.0
 fog_depth_curve = 0.933033
 fog_depth_end = 3162.8
-volumetric_fog_density = 0.015
-volumetric_fog_anisotropy = 0.9
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_emission = Color(0.18359375, 0.0874939, 0.0874939, 1)
+volumetric_fog_anisotropy = 0.35
+volumetric_fog_ambient_inject = 1.0
+volumetric_fog_sky_affect = 0.0
+volumetric_fog_temporal_reprojection_enabled = false
 adjustment_enabled = true
+adjustment_contrast = 1.1
 adjustment_saturation = 1.25
 adjustment_color_correction = SubResource("CurveXYZTexture_ixc71")
 
@@ -397,6 +402,25 @@ shader_parameter/normalmap_c = ExtResource("21_oasc8")
 shader_parameter/uv_scale_c = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gkqf3"]
+render_priority = 0
+shader = ExtResource("11_heyh1")
+shader_parameter/RimTint = Color(1, 1, 1, 1)
+shader_parameter/RimThreshold = 0.25
+shader_parameter/RimSpread = 2.5
+shader_parameter/RimSoftness = 0.01
+shader_parameter/uv_splat_textures_scale = 0.2
+shader_parameter/use_splat_map = false
+shader_parameter/albedo_a = ExtResource("12_dequg")
+shader_parameter/normalmap_a = ExtResource("18_5abrp")
+shader_parameter/uv_scale_a = 0.1
+shader_parameter/albedo_b = ExtResource("17_oasc8")
+shader_parameter/normalmap_b = ExtResource("20_qps84")
+shader_parameter/uv_scale_b = 0.1
+shader_parameter/albedo_c = ExtResource("18_ixc71")
+shader_parameter/normalmap_c = ExtResource("21_oasc8")
+shader_parameter/uv_scale_c = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w82xh"]
 render_priority = 0
 shader = ExtResource("11_heyh1")
 shader_parameter/RimTint = Color(1, 1, 1, 1)
@@ -1352,18 +1376,6 @@ size = Vector3(70.30478, 74.64111, 73.51074)
 origin_offset = Vector3(0, 15, 0)
 ambient_color = Color(0.5516131, 0.5069275, 0.57421875, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1598966132]
-transform = Transform3D(-0.99707484, 0, 0.07643178, 0, 1, 0, -0.07643178, 0, -0.99707484, -0.7927331, 7.3853493, -3.2842636)
-use_collision = true
-size = Vector3(13.926758, 35, 18.294312)
-material = ExtResource("1_rn81q")
-
-[node name="CSGBox3D9" type="CSGBox3D" parent="Map" unique_id=423345473]
-transform = Transform3D(-0.99707484, -0.028379474, 0.07096775, 0, 0.9285111, 0.37130463, -0.07643179, 0.37021852, -0.9257951, -2.2988381, 1.7156422, 16.363247)
-use_collision = true
-size = Vector3(13.926758, 35, 36.877045)
-material = ExtResource("1_rn81q")
-
 [node name="SkyIslands3" parent="Map" unique_id=1663624547 instance=ExtResource("18_nd2sr")]
 transform = Transform3D(-0.5297943, 0, 2.784646, 0, 2.834596, 0, -2.784646, 0, -0.5297943, -2.7663267, -20.940628, -39.8387)
 instance_shader_parameters/instance_scale = 4.9096646
@@ -1385,8 +1397,8 @@ grass_threshold = 0.99
 splatmap = SubResource("PortableCompressedTexture2D_dequg")
 
 [node name="SkyIslands27" parent="Map" unique_id=850210699 instance=ExtResource("16_elxb5")]
-transform = Transform3D(-0.1120834, 0.009586813, 1.4368727, 0.04483446, 1.4405591, -0.0061140964, -1.4362054, 0.044222236, -0.112326406, -3.6711402, 2.477398, 20.869934)
-instance_shader_parameters/instance_scale = 2.4963522
+transform = Transform3D(-0.5065685, 0.02226546, 1.5313781, 0.018171856, 1.6129452, -0.017440291, -1.5314327, 0.011774123, -0.5067575, -3.2982268, 0.47253036, 24.96983)
+instance_shader_parameters/instance_scale = 2.7940438
 instance_shader_parameters/use_vertex_color = true
 surface_material_override/0 = SubResource("ShaderMaterial_enf3j")
 enable_foilage = true
@@ -1394,7 +1406,7 @@ grass_count = 1000
 splatmap = SubResource("PortableCompressedTexture2D_38kma")
 
 [node name="SkyIslands28" parent="Map" unique_id=1140580846 instance=ExtResource("16_elxb5")]
-transform = Transform3D(1.4330312, -0.043974318, 0.14746645, 0.04483446, 1.4405591, -0.0061140964, -0.14720716, 0.010666462, 1.4336923, 1.5697236, 2.477398, -2.5997963)
+transform = Transform3D(1.4330312, -0.043974318, 0.14746645, 0.04483446, 1.4405591, -0.0061140964, -0.14720716, 0.010666462, 1.4336923, 1.5697236, 2.096383, -8.318283)
 instance_shader_parameters/instance_scale = 2.4963522
 instance_shader_parameters/use_vertex_color = true
 surface_material_override/0 = SubResource("ShaderMaterial_sdqrx")
@@ -1446,6 +1458,14 @@ transform = Transform3D(1.0904379, 0.06514302, 0, -0.0651152, 1.0899721, 0.03192
 instance_shader_parameters/instance_scale = 1.892061
 instance_shader_parameters/use_vertex_color = true
 surface_material_override/0 = SubResource("ShaderMaterial_gkqf3")
+enable_foilage = true
+grass_count = 1000
+
+[node name="SkyIslands31" parent="Map" unique_id=295617657 instance=ExtResource("22_7555j")]
+transform = Transform3D(0.40692487, 0.062501214, -2.8160965, 0.018057838, 2.8452137, 0.06575678, 2.8167315, -0.02726976, 0.4064115, 0.27662754, -8.618965, 15.146925)
+instance_shader_parameters/instance_scale = 1.892061
+instance_shader_parameters/use_vertex_color = true
+surface_material_override/0 = SubResource("ShaderMaterial_w82xh")
 enable_foilage = true
 grass_count = 1000
 
@@ -4027,3 +4047,15 @@ transform = Transform3D(-1.0000001, 0, -1.7320508, 0, 2, 0, 1.7320508, 0, -1.000
 
 [node name="RuinsGate7" parent="." unique_id=233405100 instance=ExtResource("73_oasc8")]
 transform = Transform3D(0, 0, 2, 1.4142135, 1.4142135, 0, -1.4142135, 1.4142135, 0, 24.805933, 22.391216, -36.07191)
+
+[node name="Stairs" parent="." unique_id=1437266158 instance=ExtResource("77_0jvuh")]
+transform = Transform3D(0.9997707, 0, -0.021413554, 0, 1, 0, 0.021413554, 0, 0.9997707, -0.5562005, 19.934086, 22.355047)
+
+[node name="Bridge" parent="." unique_id=101612793 instance=ExtResource("78_t1goo")]
+transform = Transform3D(0.9997707, 0, -0.021413554, 0, 1, 0, 0.021413554, 0, 0.9997707, -0.4412861, 20.83551, 1.6761608)
+
+[node name="StairRailing" parent="." unique_id=2023672043 instance=ExtResource("79_enf3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.277857, 16.932169, 18.50912)
+
+[node name="StairRailing2" parent="." unique_id=224787595 instance=ExtResource("79_enf3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.512991, 16.932169, 18.50912)

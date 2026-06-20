@@ -13,10 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://pamywleyfruw" path="res://Assets/Textures/UI/InputController/xbox_button_color_x.svg" id="8_gba3v"]
 [ext_resource type="Texture2D" uid="uid://d33v3hbkkepnu" path="res://Assets/Textures/UI/InputController/xbox_button_color_y.svg" id="9_txcya"]
 [ext_resource type="Texture2D" uid="uid://bn1saplnd6hfl" path="res://Assets/Textures/UI/InputKeyboard/keyboard_2.svg" id="10_g6far"]
-[ext_resource type="Texture2D" uid="uid://2gd38hhffsn" path="res://Assets/Textures/UI/playstation_trigger_l1_alternative.png" id="11_g6far"]
+[ext_resource type="Texture2D" uid="uid://ijn53fmp7sye" path="res://Assets/Textures/UI/InputKeyboard/keyboard_3.svg" id="11_odoub"]
 [ext_resource type="Texture2D" uid="uid://dnnmxywylk1ju" path="res://Assets/Textures/UI/InputController/xbox_button_color_b_hold.svg" id="11_uihse"]
-[ext_resource type="Texture2D" uid="uid://ml53vujwdkrv" path="res://Assets/Textures/UI/playstation_trigger_l2.png" id="12_gw0nm"]
-[ext_resource type="Texture2D" uid="uid://bfdjijrht5u28" path="res://Assets/Textures/UI/playstation_trigger_r2.png" id="13_j1nyp"]
+[ext_resource type="Texture2D" uid="uid://c1jcqt0o43w40" path="res://Assets/Textures/UI/InputKeyboard/keyboard_4.svg" id="12_ffox4"]
+[ext_resource type="Texture2D" uid="uid://gdcyf4bfykwa" path="res://Assets/Textures/UI/playstation_trigger_l1_alternative.svg" id="14_odoub"]
+[ext_resource type="Texture2D" uid="uid://dwojnau12pxtt" path="res://Assets/Textures/UI/playstation_trigger_l2.svg" id="15_ffox4"]
 [ext_resource type="Texture2D" uid="uid://bbyr0q6j1thtc" path="res://Assets/Textures/UI/InputController/xb_x.svg" id="16_gw0nm"]
 [ext_resource type="Texture2D" uid="uid://dyujastfkmq0b" path="res://Assets/Textures/UI/InputController/playstation_stick_r_horizontal.svg" id="18_g6far"]
 [ext_resource type="Texture2D" uid="uid://dfd2wki2sot7l" path="res://Assets/Textures/UI/InputController/xb_y.svg" id="19_j1nyp"]
@@ -26,6 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://che0qim48k3v6" path="res://Assets/Textures/UI/InputController/joystick_grapple.svg" id="23_isxwp"]
 [ext_resource type="Texture2D" uid="uid://dqa42tmo5qk2p" path="res://Assets/Textures/UI/InputController/lb_hold_export.svg" id="24_s1na7"]
 [ext_resource type="Texture2D" uid="uid://3mt03d8kknp4" path="res://Assets/Textures/UI/InputController/joystick_grapple_target.svg" id="25_uihse"]
+[ext_resource type="Texture2D" uid="uid://cmhqpgx8qkrdo" path="res://Assets/Textures/UI/InputController/xbox_button_color_b.svg" id="26_gjmps"]
+[ext_resource type="Texture2D" uid="uid://8oh7601g0iwm" path="res://Assets/Textures/UI/playstation_trigger_r2.svg" id="26_usdd6"]
 
 [sub_resource type="Resource" id="Resource_hv4bh"]
 script = ExtResource("1_hv4bh")
@@ -37,6 +40,8 @@ textures = Dictionary[String, Texture2D]({
 "chr_secondary_atk": ExtResource("6_gw0nm"),
 "chr_special_atk1": ExtResource("5_f5y0i"),
 "chr_special_atk2": ExtResource("10_g6far"),
+"chr_special_atk3": ExtResource("11_odoub"),
+"chr_special_atk4": ExtResource("12_ffox4"),
 "plr_target_lock": ExtResource("5_txcya"),
 "plr_target_next": ExtResource("6_f5y0i")
 })
@@ -46,8 +51,8 @@ metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"
 script = ExtResource("1_hv4bh")
 textures = Dictionary[String, Texture2D]({
 "chr_block": ExtResource("11_uihse"),
-"chr_dash": ExtResource("11_g6far"),
-"chr_grapple": ExtResource("12_gw0nm"),
+"chr_dash": ExtResource("14_odoub"),
+"chr_grapple": ExtResource("15_ffox4"),
 "chr_grapple_object": ExtResource("23_isxwp"),
 "chr_grapple_target": ExtResource("25_uihse"),
 "chr_jump": ExtResource("20_gw0nm"),
@@ -55,10 +60,14 @@ textures = Dictionary[String, Texture2D]({
 "chr_run": ExtResource("24_s1na7"),
 "chr_secondary_atk": ExtResource("9_txcya"),
 "chr_special_atk1": ExtResource("16_gw0nm"),
+"chr_special_atk1_nomod": ExtResource("8_gba3v"),
 "chr_special_atk2": ExtResource("19_j1nyp"),
+"chr_special_atk2_nomod": ExtResource("9_txcya"),
 "chr_special_atk3": ExtResource("21_isxwp"),
+"chr_special_atk3_nomod": ExtResource("26_gjmps"),
 "chr_special_atk4": ExtResource("22_s1na7"),
-"plr_target_lock": ExtResource("13_j1nyp"),
+"chr_special_atk4_nomod": ExtResource("20_gw0nm"),
+"plr_target_lock": ExtResource("26_usdd6"),
 "plr_target_next": ExtResource("18_g6far")
 })
 metadata/_custom_type_script = "uid://c5kgl0pt3t7l4"

@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://f4h8bwf3mhgu"]
+
+[ext_resource type="Shader" uid="uid://dqjvmgg7uxrhd" path="res://Shaders/Jade.gdshader" id="1_jkr83"]
+
+[sub_resource type="Gradient" id="Gradient_xmyc0"]
+offsets = PackedFloat32Array(0, 0.16972478, 0.35321102, 0.55504584, 0.71100914, 0.8669725, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eaveg"]
+gradient = SubResource("Gradient_xmyc0")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_jkr83"]
+offsets = PackedFloat32Array(0, 0.7293578, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.7108577, 0.1330019, 0.05542605, 1, 4.415934, 0.8262239, 0.34431335, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xmyc0"]
+gradient = SubResource("Gradient_jkr83")
+use_hdr = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jkr83")
+shader_parameter/baseColor = Color(0, 0, 0, 1)
+shader_parameter/rimColor = Color(0.80859375, 0, 0, 1)
+shader_parameter/shineThroughColor = Color(1.353256, 0.42672014, 0, 1)
+shader_parameter/backlight_falloff = SubResource("GradientTexture2D_eaveg")
+shader_parameter/backlight_gradient = SubResource("GradientTexture1D_xmyc0")
+shader_parameter/rimPower = 2.8555

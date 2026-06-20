@@ -8,6 +8,8 @@ var fill_progress_factor : float:
 @export var invert_visual_progress : bool
 @export var icon : Texture2D
 @export var icon_empty : Texture2D
+@export var action_name : String
+@export var input_side : Control.LayoutPreset = Control.LayoutPreset.PRESET_CENTER_BOTTOM
 
 @export_subgroup("Nodes")
 @export var icon_rect : TextureRect
@@ -17,13 +19,17 @@ var fill_progress_factor : float:
 var _cached_pos : Vector2
 var _shake_tween : Tween
 var _current_tween : Tween
+var _input_rect : TextureRect
+var input_mode : String = "keyboard"
 
 const NORMAL_MODULATE : Color = Color(1.0,1.0,1.0, 0.0)
 const EMPTY_MODULATE : Color = Color(0.117, 0.117, 0.117, 1.0)
+const DEVICE_INPUT_TEXTURES : DeviceInputTextures = preload("res://Resources/DeviceInputTextures/DefaultInputTextures.tres")
 
 func _ready() -> void:
 	_cached_pos = icon_rect.position
 	set_icon(icon)
+	set_input_icon()
 
 func set_icon(new_icon : Texture2D) -> void:
 	icon = new_icon
@@ -33,6 +39,35 @@ func set_icon(new_icon : Texture2D) -> void:
 	else:
 		icon_rect.texture = icon_empty
 		activate_layer.color = EMPTY_MODULATE
+
+func set_input_icon() -> void:
+	var device_textures = DEVICE_INPUT_TEXTURES.input_textures.get(input_mode)
+
+	if device_textures == null:
+		return
+		
+	var result_action_string = action_name
+	if input_mode != "keyboard":
+		result_action_string += "_nomod"
+	
+	var input_texture = device_textures.textures.get(result_action_string)
+	
+	if input_texture == null:
+		return
+	
+	if _input_rect != null and is_instance_valid(_input_rect):
+		_input_rect.queue_free()
+		
+	_input_rect = TextureRect.new()
+	_input_rect.texture = input_texture
+	_input_rect.pivot_offset_ratio = Vector2(0.5,0.5)
+	_input_rect.expand_mode = TextureRect.ExpandMode.EXPAND_IGNORE_SIZE
+	
+	add_child(_input_rect)
+	_input_rect.set_anchors_preset(input_side, true)
+	_input_rect.custom_minimum_size = Vector2(32,32)
+	_input_rect.position -= _input_rect.custom_minimum_size * _input_rect.pivot_offset_ratio
+	_input_rect.z_index = 10
 
 func interupt_tweens():
 	if _current_tween != null and _current_tween.is_running():

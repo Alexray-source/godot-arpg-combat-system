@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dua3utrtgykfj"]
+
+[ext_resource type="Script" uid="uid://bqii4ee2rmngx" path="res://Scripts/Node/CutsceneControllers/cutscene_chr_controller.gd" id="1_tc8js"]
+[ext_resource type="PackedScene" uid="uid://swyqlqcucinv" path="res://Scenes/Chr/boss_character.tscn" id="1_wqxid"]
+
+[node name="BossIntro" type="Node3D" unique_id=455960824]
+script = ExtResource("1_tc8js")
+
+[node name="BaseCharacter" parent="." unique_id=1058693826 instance=ExtResource("1_wqxid")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1187482962]

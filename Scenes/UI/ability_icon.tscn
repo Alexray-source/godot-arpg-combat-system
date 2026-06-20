@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xb0as58trbt1" path="res://icon.svg" id="1_pp6aw"]
 [ext_resource type="Script" uid="uid://7fe3qnp204sw" path="res://Scripts/Node/UI/AbilityIcon.gd" id="2_7sbxa"]
+[ext_resource type="Texture2D" uid="uid://ccwedhqc2xscp" path="res://Assets/Textures/UI/ability_4.svg" id="2_d43o8"]
 [ext_resource type="Texture2D" uid="uid://b1p4pavtpaupu" path="res://Assets/Textures/UI/InputKeyboard/generic_button_square.svg" id="2_kel0v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pp6aw"]
@@ -12,11 +13,13 @@ bg_color = Color(0, 0, 0, 0.49019608)
 [node name="Control" type="Control" unique_id=1717113656 node_paths=PackedStringArray("icon_rect", "progress_bar", "activate_layer")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 54.0
+offset_bottom = 54.0
 script = ExtResource("2_7sbxa")
 invert_visual_progress = true
+icon = ExtResource("2_d43o8")
 icon_empty = ExtResource("2_kel0v")
+action_name = "chr_special_atk1"
 icon_rect = NodePath("AbilityIcon")
 progress_bar = NodePath("AbilityIcon/ProgressBar")
 activate_layer = NodePath("AbilityIcon/ColorRect")

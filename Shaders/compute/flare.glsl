@@ -47,7 +47,7 @@ void main () {
     vec2 uv = pixel / size;
     vec2 p = params.sun_screen_position / size;
     uv -= p;
-    uv *= 8.0 - flare_intensity * 1;
+    uv *= 28.0 - flare_intensity * 1;
     uv.x *= size.x / size.y;
     uv += 0.5;
     flare += texture(core_lens_flare_tex, uv).r * flare_intensity;

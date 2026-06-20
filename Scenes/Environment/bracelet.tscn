@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://cojxxwee003kk"]
+
+[ext_resource type="Material" uid="uid://4mina2opc8kc" path="res://Assets/Material/outline.tres" id="1_2jw5r"]
+[ext_resource type="ArrayMesh" uid="uid://b28p21nrnn8my" path="res://Assets/Meshes/Weapons/Bracelet_Cube_002.res" id="1_kpctp"]
+[ext_resource type="Material" uid="uid://f4h8bwf3mhgu" path="res://Assets/Material/Bracelet/BraceletBase.tres" id="2_kpctp"]
+[ext_resource type="Texture2D" uid="uid://dhu572owaic4p" path="res://Assets/MeshScenes/Weapons/Bracelet_symbol_row.png" id="3_3b873"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpctp"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+metallic = 1.0
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b873"]
+albedo_color = Color(1, 0.62060547, 0.1328125, 1)
+metallic = 1.0
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jw5r"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_3b873")
+uv1_scale = Vector3(4, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ok5y1"]
+next_pass = SubResource("StandardMaterial3D_2jw5r")
+albedo_color = Color(1, 0.62060547, 0.1328125, 1)
+metallic = 1.0
+roughness = 0.3
+
+[node name="Node3D" type="Node3D" unique_id=1030467848]
+
+[node name="Cube_001" type="MeshInstance3D" parent="." unique_id=715811032]
+transform = Transform3D(0.366637, 0.15992913, 4.069202e-09, -0.12874897, 0.2951566, 0.23728947, 0.09487374, -0.21749775, 0.32201508, 0, 0, 0)
+layers = 2
+material_overlay = ExtResource("1_2jw5r")
+mesh = ExtResource("1_kpctp")
+surface_material_override/0 = SubResource("StandardMaterial3D_kpctp")
+surface_material_override/1 = SubResource("StandardMaterial3D_3b873")
+surface_material_override/2 = ExtResource("2_kpctp")
+surface_material_override/3 = SubResource("StandardMaterial3D_ok5y1")

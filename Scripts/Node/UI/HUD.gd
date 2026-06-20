@@ -13,9 +13,20 @@ class_name PlayerHUD extends Control
 var _stamina : float = 100.0
 var _max_stamina : float = 100.0
 var _stamina_bar_screen_pos : Vector2
+var _input_mode : String = "keyboard"
+
+signal input_mode_changed(new_input_mode : String)
 
 func _ready() -> void:
+	change_input_mode(Input.get_connected_joypads().size() > 0)
+	Input.joy_connection_changed.connect(func(_device : int, is_gamepad_connected : bool):
+		change_input_mode.bind(is_gamepad_connected)
+	)
+	
 	GlobalSignals.plr_hud_state_changed.connect(on_hud_state_changed)
+	input_mode_changed.connect(on_input_mode_changed)
+	on_input_mode_changed(_input_mode)
+
 
 func _process(_delta: float) -> void:
 	stamina_bar.value = _stamina/_max_stamina
@@ -50,3 +61,14 @@ func update_target_mode(is_active : bool):
 		target_indicator_rect.self_modulate = target_active_color
 	else:
 		target_indicator_rect.self_modulate = target_inactive_color
+
+func change_input_mode(is_gamepad_connected : bool):
+	if is_gamepad_connected:
+		_input_mode = "xbox"
+	else:
+		_input_mode = "keyboard"
+	input_mode_changed.emit(_input_mode)
+
+func on_input_mode_changed(new_input_mode : String):
+	abilities_ui.set_modifier_visiblity(new_input_mode != "keyboard")
+	abilities_ui.update_device(new_input_mode)

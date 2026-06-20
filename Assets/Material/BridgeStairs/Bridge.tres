@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://3takivkxs8ju"]
+
+[ext_resource type="Texture2D" uid="uid://b1wg2k6cj1cyv" path="res://Assets/Textures/Mat/BridgeStairs/Albedo_BridgePiece.png" id="1_3fy4b"]
+[ext_resource type="Texture2D" uid="uid://cdchwg22vjt5a" path="res://Assets/Textures/Mat/BridgeStairs/Metallic_BridgePiece.png" id="2_ryc2s"]
+[ext_resource type="Texture2D" uid="uid://cismysllnrcf6" path="res://Assets/Textures/Mat/BridgeStairs/Normal_BridgePiece.png" id="3_iqqip"]
+[ext_resource type="Texture2D" uid="uid://cbfllhgcac07n" path="res://Assets/Textures/Mat/BridgeStairs/Roughness_BridgePiece.png" id="4_5c7hn"]
+
+[resource]
+albedo_texture = ExtResource("1_3fy4b")
+metallic = 1.0
+metallic_texture = ExtResource("2_ryc2s")
+roughness_texture = ExtResource("4_5c7hn")
+normal_enabled = true
+normal_texture = ExtResource("3_iqqip")
+rim_tint = 1.0
+anisotropy = 1.0
+texture_filter = 5

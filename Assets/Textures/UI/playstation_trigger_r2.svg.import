@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cel8xasa1hkr8"
-path="res://.godot/imported/playstation_trigger_r1_alternative.png-2f22eebb148dc840b9bf9d82cff3cd78.ctex"
+uid="uid://8oh7601g0iwm"
+path="res://.godot/imported/playstation_trigger_r2.svg-6761cba1b52a74712b56b1b4407d502b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/UI/playstation_trigger_r1_alternative.png"
-dest_files=["res://.godot/imported/playstation_trigger_r1_alternative.png-2f22eebb148dc840b9bf9d82cff3cd78.ctex"]
+source_file="res://Assets/Textures/UI/playstation_trigger_r2.svg"
+dest_files=["res://.godot/imported/playstation_trigger_r2.svg-6761cba1b52a74712b56b1b4407d502b.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

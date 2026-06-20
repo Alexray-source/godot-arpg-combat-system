@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dvh38ikbnxn3r"]
+
+[ext_resource type="Texture2D" uid="uid://krfimbv5w4ut" path="res://Assets/Textures/Mat/BridgeStairs/Albedo_StairRailing.png" id="1_rrwe0"]
+[ext_resource type="Texture2D" uid="uid://n8cipuhcmqha" path="res://Assets/Textures/Mat/BridgeStairs/Normal_StairRailing.png" id="2_5ur43"]
+[ext_resource type="Texture2D" uid="uid://c74rdc3rjy8ds" path="res://Assets/Textures/Mat/BridgeStairs/Roughness_StairRailing.png" id="3_nl6pi"]
+
+[resource]
+albedo_texture = ExtResource("1_rrwe0")
+roughness_texture = ExtResource("3_nl6pi")
+normal_enabled = true
+normal_texture = ExtResource("2_5ur43")
+rim_tint = 1.0
+anisotropy = 1.0

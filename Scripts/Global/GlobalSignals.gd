@@ -17,5 +17,6 @@ signal new_area_reached(new_area_name : String)
 signal boss_health_changed(new_health : int, max_health : int)
 signal boss_spawned(boss_name : String, boss_start_health : int, boss_max_health : int)
 signal boss_died()
+signal global_generic_event_fired(event_name : String)
 
 @warning_ignore_restore("unused_signal")

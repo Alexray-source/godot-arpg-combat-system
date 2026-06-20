@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ct60sbcf22ovf"]
+
+[ext_resource type="ArrayMesh" uid="uid://bdrhw3csq2m4h" path="res://Assets/Meshes/Structures/BridgeStairs_Cube_012.res" id="1_x7l62"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_v6x7b"]
+points = PackedVector3Array(-0.7568202, -1.9153731, -8.413997, -0.7568202, -1.1454997, -8.413997, 0.7568159, -1.9153731, -8.413997, -0.7568202, -1.9153731, 15.865529, -0.3489267, 9.532992, -7.9434266, 0.7568159, -1.1454997, -8.413997, -0.7568202, -1.1454997, 15.865529, 0.7568159, -1.9153731, -7.225688, 0.75666773, -1.9153731, 15.865529, 0.3487742, 9.532992, -7.9434266, -0.3489267, 9.532992, -7.225688, 0.7568159, -1.1454997, -7.225688, 0.75666773, -1.1454997, 15.865529, -0.3489267, -0.7050917, 15.012322, 0.3487742, 9.532992, -7.225688, 0.3487742, -0.7050917, 15.012322)
+
+[node name="StairRailing" type="StaticBody3D" unique_id=1437266158]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=479787951]
+mesh = ExtResource("1_x7l62")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=179685180]
+shape = SubResource("ConvexPolygonShape3D_v6x7b")
