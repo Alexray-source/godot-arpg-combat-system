@@ -120,13 +120,14 @@ debug_color = Color(0, 0.85882354, 1, 1)
 [node name="EnemyWaves" type="Node" parent="." unique_id=712771738 node_paths=PackedStringArray("spawn_origin")]
 script = ExtResource("1_gc3j3")
 spawn_origin = NodePath("EnemySpawnEpicenter")
+spawn_radius = 5.0
 waves_collection = ExtResource("3_x24mm")
 active_enemy_ai = true
 auto_start = true
 metadata/_custom_type_script = "uid://djjvpfpq6jjrw"
 
 [node name="EnemySpawnEpicenter" type="Marker3D" parent="EnemyWaves" unique_id=1932032868]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.6293945e-06, 25.67955, -36.43749)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5419716e-06, 25.67955, -37.43749)
 
 [node name="Node2" type="Node" parent="EnemyWaves" unique_id=284129127 node_paths=PackedStringArray("enemy_wave_spawner")]
 script = ExtResource("3_luq7x")

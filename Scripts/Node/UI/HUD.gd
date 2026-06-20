@@ -5,6 +5,7 @@ class_name PlayerHUD extends Control
 @export var health_bar : ProgressBar
 @export var stamina_bar : ProgressBar
 @export var target_indicator_rect : TextureRect
+@export var target_input_rect : InputTextureRect
 
 @export_subgroup("Temporary Testing")
 @export var target_inactive_color : Color
@@ -72,3 +73,5 @@ func change_input_mode(is_gamepad_connected : bool):
 func on_input_mode_changed(new_input_mode : String):
 	abilities_ui.set_modifier_visiblity(new_input_mode != "keyboard")
 	abilities_ui.update_device(new_input_mode)
+	
+	target_input_rect.set_input_icon(new_input_mode)

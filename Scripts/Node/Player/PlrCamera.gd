@@ -17,6 +17,7 @@ signal closest_target_changed(new_target : Node3D)
 
 func _ready() -> void:
 	_nearby_targets_scan_area = Area3D.new()
+	_nearby_targets_scan_area.collision_layer = 0
 	_nearby_targets_scan_area.collision_mask = layer_owner.get_enemy_layer()
 	
 	_nearby_targets_scan_shape = CollisionShape3D.new()

@@ -27,7 +27,7 @@ func get_nearby_hurtboxes_from_position(direct_space_state, hit_shape, hitbox_tr
 	var hurtboxes_found : Array[HurtBox]
 	
 	for result in results:
-		if blacklist.find(result.get("collider")) == -1 and result.get("collider") is HurtBox:
+		if result.get("collider") is HurtBox and blacklist.find(result.get("collider")) == -1:
 			hurtboxes_found.append(result.get("collider"))
 	
 	return hurtboxes_found

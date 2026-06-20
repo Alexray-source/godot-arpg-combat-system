@@ -24,7 +24,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gdg20")
 script = ExtResource("1_gdg20")
-target_scene_path = "res://Scenes/Maps/test_enemy_waves.tscn"
+target_scene_path = "res://Scenes/Maps/test_enemy_waves_blockout.tscn"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=854937166]
 layout_mode = 1

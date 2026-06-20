@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dld81ybmmeahh" path="res://Scripts/Resources/FlexibleTween/UI_ScaleTween.gd" id="12_tjqet"]
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="13_awk6w"]
 [ext_resource type="Texture2D" uid="uid://8oh7601g0iwm" path="res://Assets/Textures/UI/playstation_trigger_r2.svg" id="14_c51n0"]
+[ext_resource type="Script" uid="uid://b7dkd6f021y0s" path="res://Scripts/Node/UI/input_texture_rect.gd" id="14_m7iiv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45mfi"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -125,7 +126,7 @@ corner_radius_bottom_left = 15
 shadow_color = Color(0, 0, 0, 0.08627451)
 shadow_size = 53
 
-[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar", "stamina_bar", "target_indicator_rect")]
+[node name="Hud" type="Control" unique_id=416551460 node_paths=PackedStringArray("abilities_ui", "health_bar", "stamina_bar", "target_indicator_rect", "target_input_rect")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,12 +134,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b2arx")
+target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
+target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
 abilities_ui = NodePath("Control")
 health_bar = NodePath("ProgressBar")
 stamina_bar = NodePath("ProgressBar2")
 target_indicator_rect = NodePath("TextureRect")
-target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
-target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
+target_input_rect = NodePath("TextureRect/TextureRect2")
 
 [node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons", "modifier_icon", "tween_activate_trigger", "tween_deactivate_trigger")]
 layout_mode = 1
@@ -149,8 +151,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -237.0
 offset_top = -220.0
-offset_right = -68.0
-offset_bottom = -51.0
+offset_right = -62.0
+offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -220,17 +222,17 @@ action_name = "chr_special_atk4"
 input_side = 5
 
 [node name="TextureRect" type="TextureRect" parent="Control" unique_id=2119310762]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_c51n0")
@@ -374,6 +376,8 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("14_c51n0")
 expand_mode = 1
+script = ExtResource("14_m7iiv")
+action_name = "plr_target_lock"
 
 [node name="Panel" type="Panel" parent="TextureRect/TextureRect2" unique_id=1447531479]
 z_index = -1

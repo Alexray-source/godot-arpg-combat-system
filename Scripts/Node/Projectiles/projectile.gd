@@ -53,9 +53,9 @@ func _physics_process(delta: float) -> void:
 	var result = direct_space_state.intersect_ray(ray_params)
 	
 	var intersected_collider = result.get("collider")
+	
 	if intersected_collider != null:
 		if intersected_collider is HurtBox:
-			#print("hurtbox")
 			#intersected_collider.hit.emit(atk_info)
 			hit_event.on_hit(intersected_collider, atk_info)
 			hit.emit(intersected_collider)

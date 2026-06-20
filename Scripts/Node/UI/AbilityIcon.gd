@@ -48,8 +48,10 @@ func set_input_icon() -> void:
 		
 	var result_action_string = action_name
 	if input_mode != "keyboard":
+		print("controller")
 		result_action_string += "_nomod"
-	
+		
+	print(result_action_string)
 	var input_texture = device_textures.textures.get(result_action_string)
 	
 	if input_texture == null:
@@ -65,7 +67,7 @@ func set_input_icon() -> void:
 	
 	add_child(_input_rect)
 	_input_rect.set_anchors_preset(input_side, true)
-	_input_rect.custom_minimum_size = Vector2(32,32)
+	_input_rect.custom_minimum_size = Vector2(28,28)
 	_input_rect.position -= _input_rect.custom_minimum_size * _input_rect.pivot_offset_ratio
 	_input_rect.z_index = 10
 

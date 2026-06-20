@@ -31,6 +31,7 @@ func set_modifier_visiblity(should_be_visible : bool):
 func update_device(device : String):
 	for icon in icons:
 		icon.input_mode = device
+		icon.set_input_icon()
 
 func update_icon_fill(icon_index : int, new_value : float):
 	var icon : AbilityIcon = icons[icon_index]

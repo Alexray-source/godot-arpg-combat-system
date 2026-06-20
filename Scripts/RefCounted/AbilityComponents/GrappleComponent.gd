@@ -55,6 +55,7 @@ func setup() -> void:
 		_indicator_area.area_entered.connect(add_node_to_nearby_list)
 		_indicator_area.area_exited.connect(erase_node_from_nearby_list)
 		
+		_indicator_area.collision_layer = 0
 		_indicator_area.collision_mask = 2 + 16 + chr_layer.get_enemy_layer()
 			
 		var collision_shape : CollisionShape3D = CollisionShape3D.new()
