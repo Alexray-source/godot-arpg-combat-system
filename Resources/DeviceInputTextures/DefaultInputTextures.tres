@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cl6uh23b61ksv" path="res://Assets/Textures/UI/InputKeyboard/keyboard_grapple_target.svg" id="14_6orjw"]
 [ext_resource type="Texture2D" uid="uid://gdcyf4bfykwa" path="res://Assets/Textures/UI/playstation_trigger_l1_alternative.svg" id="14_odoub"]
 [ext_resource type="Texture2D" uid="uid://dwojnau12pxtt" path="res://Assets/Textures/UI/playstation_trigger_l2.svg" id="15_ffox4"]
+[ext_resource type="Texture2D" uid="uid://cyvo6s0ixe7rk" path="res://Assets/Textures/UI/InputKeyboard/keyboard_grapple.svg" id="16_6orjw"]
 [ext_resource type="Texture2D" uid="uid://da0t8hlevidaj" path="res://Assets/Textures/UI/InputKeyboard/keyboard_space.svg" id="16_fuesh"]
 [ext_resource type="Texture2D" uid="uid://bbyr0q6j1thtc" path="res://Assets/Textures/UI/InputController/xb_x.svg" id="16_gw0nm"]
 [ext_resource type="Texture2D" uid="uid://dyujastfkmq0b" path="res://Assets/Textures/UI/InputController/playstation_stick_r_horizontal.svg" id="18_g6far"]
@@ -31,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://3mt03d8kknp4" path="res://Assets/Textures/UI/InputController/joystick_grapple_target.svg" id="25_uihse"]
 [ext_resource type="Texture2D" uid="uid://cmhqpgx8qkrdo" path="res://Assets/Textures/UI/InputController/xbox_button_color_b.svg" id="26_gjmps"]
 [ext_resource type="Texture2D" uid="uid://8oh7601g0iwm" path="res://Assets/Textures/UI/playstation_trigger_r2.svg" id="26_usdd6"]
+[ext_resource type="Texture2D" uid="uid://che0qim48k3v6" path="res://Assets/Textures/UI/InputController/joystick_grapple.svg" id="32_fuesh"]
 
 [sub_resource type="Resource" id="Resource_hv4bh"]
 script = ExtResource("1_hv4bh")
@@ -38,6 +40,7 @@ textures = Dictionary[String, Texture2D]({
 "chr_block": ExtResource("6_f5y0i"),
 "chr_dash": ExtResource("2_rly2r"),
 "chr_grapple": ExtResource("4_7iekw"),
+"chr_grapple_object": ExtResource("16_6orjw"),
 "chr_grapple_target": ExtResource("14_6orjw"),
 "chr_jump": ExtResource("16_fuesh"),
 "chr_primary_atk": ExtResource("5_g6far"),
@@ -58,6 +61,7 @@ textures = Dictionary[String, Texture2D]({
 "chr_block": ExtResource("11_uihse"),
 "chr_dash": ExtResource("14_odoub"),
 "chr_grapple": ExtResource("15_ffox4"),
+"chr_grapple_object": ExtResource("32_fuesh"),
 "chr_grapple_target": ExtResource("25_uihse"),
 "chr_jump": ExtResource("20_gw0nm"),
 "chr_primary_atk": ExtResource("8_gba3v"),

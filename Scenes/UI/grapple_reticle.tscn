@@ -1,13 +1,25 @@
 [gd_scene format=3 uid="uid://doroy2gum1wly"]
 
+[ext_resource type="Texture2D" uid="uid://d4fvgvf3q74pq" path="res://Assets/Textures/UI/ui_shadow.png" id="1_0m38t"]
 [ext_resource type="Texture2D" uid="uid://bnklgw443xcl7" path="res://Assets/Textures/UI/enemy_indicator.svg" id="2_0m38t"]
 
 [node name="Node3D" type="Node3D" unique_id=879635403]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1797267741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82374954, 0)
+modulate = Color(0, 0, 0, 0.6392157)
+pixel_size = 0.0005
+billboard = 1
+no_depth_test = true
+fixed_size = true
+render_priority = -1
+texture = ExtResource("1_0m38t")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=165208112]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77188325, 0)
 layers = 524288
 offset = Vector2(0, 5)
+modulate = Color(0.125, 0.7949219, 1, 1)
 pixel_size = 0.0015
 billboard = 1
 double_sided = false

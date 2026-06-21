@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dp2f37ugofyqg" path="res://Scripts/Node/UI/input_tutorial.gd" id="1_miii1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miii1"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0, 0.41960785)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="TutorialUi" type="Control" unique_id=1087208815 node_paths=PackedStringArray("tutorial_panel", "input_elements_holder")]
 layout_mode = 3
 anchors_preset = 15
@@ -24,14 +35,15 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -279.0
-offset_top = -119.0
+offset_top = -31.0
 offset_right = -62.0
-offset_bottom = 119.0
+offset_bottom = 31.0
 grow_horizontal = 0
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_miii1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=196795415]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 20
 metadata/_edit_lock_ = true

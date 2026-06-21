@@ -39,4 +39,4 @@ func heal(hp : int):
 	if dead == true:
 		return
 		
-	health += hp
+	health = clampi(health + hp,  0, max_health)

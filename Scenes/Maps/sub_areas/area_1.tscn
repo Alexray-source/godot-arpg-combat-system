@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bxsi8tccwwxt6" path="res://Scripts/Node/Trigger/MultiTrigger.gd" id="3_2uqjv"]
 [ext_resource type="ArrayMesh" uid="uid://rxkqvp8uckk0" path="res://Assets/Meshes/Misc/Chest_Cube_009.res" id="3_p6sc8"]
 [ext_resource type="PackedScene" uid="uid://cojxxwee003kk" path="res://Scenes/Environment/bracelet.tscn" id="4_2uqjv"]
+[ext_resource type="ArrayMesh" uid="uid://cvrm2tj7kbs8j" path="res://Assets/Meshes/Misc/Chest_Cube_005.res" id="5_ososx"]
 [ext_resource type="PackedScene" uid="uid://eeb3go31mweg" path="res://Scenes/ChrModels/test_chr_visual.tscn" id="6_gemq8"]
 [ext_resource type="Script" uid="uid://cbwskurqdqwpm" path="res://Scripts/Node/Tutorial/TutorialAreaPopup.gd" id="7_djlh2"]
 [ext_resource type="Script" uid="uid://d33j3ufbus5bg" path="res://Scripts/Node/Trigger/AreaReachedTrigger.gd" id="7_p6sc8"]
@@ -36,14 +37,14 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("../Node3D2/Node3D/MeshInstance3D/Node3D")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.6492348, 0, 1.4, 1, 0, 1.8011777, 0, 3.5666666, 1, 0, 2.036948, 0, 5, 1, 0, 6.0018425, 0)
+tracks/0/keys = PackedFloat32Array(1.9333334, 1, 0, 0.6492348, 0, 3.3333335, 1, 0, 1.8011777, 0, 5.5, 1, 0, 2.036948, 0, 6.9333334, 1, 0, 6.0018425, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/path = NodePath("../Node3D2/Node3D/MeshInstance3D/Node3D")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.53333336, 1, 0, 0.9757096, 0, -0.21906807, 0.93333334, 1, 0, 0.7627186, 0, 0.64673036, 1.2666667, 1, 0, -0.14371455, 0, 0.9896192, 1.8, 1, 0, 0.9757096, 0, -0.21906807, 2.1666667, 1, 0, 0.7627186, 0, 0.64673036, 2.5, 1, 0, -0.14371455, 0, 0.9896192, 3.0333333, 1, 0, 0.9757096, 0, -0.21906807, 3.4333334, 1, 0, 0.7627186, 0, 0.64673036, 4.0333333, 1, 0, -0.14371455, 0, 0.9896192, 4.8333335, 1, 0, 0.9757096, 0, -0.21906807, 5.8333335, 1, 0, 0.7627186, 0, 0.64673036, 7.733333, 1, 0, -0.14371455, 0, 0.9896192, 9.5, 1, 0, 0.9757096, 0, -0.21906807)
+tracks/1/keys = PackedFloat32Array(1.9333334, 1, 0, 0, 0, 1, 2.4666667, 1, 0, 0.9757096, 0, -0.21906807, 2.8666668, 1, 0, 0.7627186, 0, 0.64673036, 3.2, 1, 0, -0.14371455, 0, 0.9896192, 3.7333333, 1, 0, 0.9757096, 0, -0.21906807, 4.1000004, 1, 0, 0.7627186, 0, 0.64673036, 4.4333334, 1, 0, -0.14371455, 0, 0.9896192, 4.9666667, 1, 0, 0.9757096, 0, -0.21906807, 5.366667, 1, 0, 0.7627186, 0, 0.64673036, 5.9666667, 1, 0, -0.14371455, 0, 0.9896192, 6.766667, 1, 0, 0.9757096, 0, -0.21906807, 7.766667, 1, 0, 0.7627186, 0, 0.64673036, 9.666666, 1, 0, -0.14371455, 0, 0.9896192, 11.433333, 1, 0, 0.9757096, 0, -0.21906807)
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
@@ -51,7 +52,7 @@ tracks/2/path = NodePath("../Node3D2/MaleBaseRigV2:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 5.7, 7.8),
+"times": PackedFloat32Array(1.9333334, 7.633333, 9.566667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -63,7 +64,7 @@ tracks/3/path = NodePath("../Node3D2/Scene3DSpawnTrigger")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(5.4666667, 7.566667),
+"times": PackedFloat32Array(7.4, 9.333334),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [{}],
@@ -81,7 +82,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": PackedStringArray("StealArtifact"),
-"times": PackedFloat32Array(5.7)
+"times": PackedFloat32Array(7.633333)
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -90,7 +91,7 @@ tracks/5/path = NodePath("../Node3D2/Node3D/MeshInstance3D/Node3D:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0333333, 6.433334),
+"times": PackedFloat32Array(1.9666667, 8.366667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -102,13 +103,27 @@ tracks/6/path = NodePath("../Node3D2/TempSlowmoTrigger")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(6.366667),
+"times": PackedFloat32Array(8.3),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [{}],
 "method": &"execute"
 }]
 }
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Node3D2/Node3D/MeshInstance3D2")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0.033333335, 1, 0, 1, 0, -7.54979e-08, 0.3, 1, -8.5894584e-08, -0.2193651, 0.97564286, -3.7857067e-08, 0.36666667, 1, -6.935809e-08, -0.39501244, 0.9186758, 2.982261e-08, 0.53333336, 1, -6.424615e-08, -0.57317466, 0.8194333, 3.986996e-08, 0.8, 1, -7.473331e-08, -0.36320245, 0.9317103, 1.6156482e-08, 0.93333334, 1, -6.440172e-08, -0.4563, 0.88982606, 3.986749e-08)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Node3D2/Node3D")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, 0.10757858, 0, 0, 0.9941966, 0.3, 1, -0.13387115, 0, 0, 0.99099874, 0.56666666, 1, 0.06735884, 0, 0, 0.9977288, 0.7, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_8f03k"]
 length = 0.001
@@ -143,6 +158,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node3D2/Node3D/MeshInstance3D2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 1, 0, -7.54979e-08)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Node3D2/Node3D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4k5lq"]
 _data = {
@@ -223,7 +252,7 @@ metadata/_custom_type_script = "uid://kylthr61qii5"
 script = ExtResource("8_gemq8")
 action_display_names = Dictionary[String, String]({
 "chr_primary_atk": "Primary Attack",
-"plr_target_lock": "Camera Target Mode"
+"plr_target_lock": "Lock To Target"
 })
 metadata/_custom_type_script = "uid://kylthr61qii5"
 
@@ -249,7 +278,7 @@ transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0
 mesh = ExtResource("3_p6sc8")
 
 [node name="Node3D" parent="Node3D2/Node3D/MeshInstance3D" unique_id=1030467848 instance=ExtResource("4_2uqjv")]
-transform = Transform3D(-0.45200917, 0, -0.21374682, 0, 0.5, 0, 0.21374682, 0, -0.45200917, 0, 0.6492348, 0)
+transform = Transform3D(0.47934613, 0, -0.14222269, 0, 0.5, 0, 0.14222269, 0, 0.47934613, 0, 0.6492348, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Node3D2/Node3D/MeshInstance3D/Node3D" unique_id=1032647502]
 transform = Transform3D(0.11753191, 0, -0.99306923, 0, 1, 0, 0.99306923, 0, 0.11753191, 0, 0, 0)
@@ -257,6 +286,10 @@ light_color = Color(0.92578125, 0.78731525, 0.31462097, 1)
 light_energy = 2.0
 light_cull_mask = 4294967293
 shadow_enabled = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D2/Node3D" unique_id=1396835231]
+transform = Transform3D(-1, 0, -1.5099582e-07, 0, 1.0000001, 0, 1.509958e-07, 0, -1.0000001, 0, 0.9204521, -0.42987442)
+mesh = ExtResource("5_ososx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Node3D" unique_id=306292391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64956284, 0)

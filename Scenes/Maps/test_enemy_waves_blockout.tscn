@@ -39,14 +39,11 @@ ambient_light_energy = 4.0
 tonemap_mode = 3
 tonemap_white = 2.0
 glow_enabled = true
-glow_levels/2 = 3.0
-glow_levels/3 = 1.0
-glow_levels/4 = 1.0
-glow_levels/5 = 1.0
-glow_levels/6 = 1.0
-glow_levels/7 = 1.0
+glow_levels/4 = 0.3
+glow_levels/5 = 0.2
+glow_levels/6 = 0.1
 glow_intensity = 1.0
-glow_hdr_threshold = 1.5
+glow_hdr_threshold = 2.0
 glow_hdr_scale = 0.5
 fog_enabled = true
 fog_light_color = Color(0.33874512, 0.4354725, 0.5859375, 1)
@@ -110,43 +107,43 @@ environment = SubResource("Environment_i18pj")
 [node name="Throwables" type="Node" parent="." unique_id=1027259767]
 
 [node name="ThrowableCube" parent="Throwables" unique_id=554461063 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.209961, 25.849699, -50.72784)
+transform = Transform3D(1, 0, 0, 0, 0.05952933, 0.9982266, 0, -0.9982266, 0.05952933, 8.209961, 25.849699, -50.72784)
 
 [node name="ThrowableCube2" parent="Throwables" unique_id=998535108 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0660295, 25.849699, -53.8968)
+transform = Transform3D(-0.91102946, 0.4123413, 0, -0.4123413, -0.91102946, 0, 0, 0, 1, -6.0660295, 25.849699, -53.8968)
 
 [node name="ThrowableCube3" parent="Throwables" unique_id=1789431283 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.47536, 25.849699, -45.441746)
+transform = Transform3D(1, 0, 0, 0, -0.759797, 0.65016043, 0, -0.65016043, -0.759797, -9.47536, 25.849699, -45.441746)
 
 [node name="ThrowableCube4" parent="Throwables" unique_id=954082382 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15302563, 27.849699, -45.100906)
 
 [node name="ThrowableCube6" parent="Throwables" unique_id=844239056 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.355667, 25.849699, -30.70102)
+transform = Transform3D(1, 0, 0, 0, -0.4354809, -0.900198, 0, 0.900198, -0.4354809, -15.355667, 25.849699, -30.70102)
 
 [node name="ThrowableCube7" parent="Throwables" unique_id=1985501722 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9818277, 25.849699, -28.341862)
+transform = Transform3D(0.27353787, -0.96186125, 0, 0.96186125, 0.27353787, 0, 0, 0, 1, -2.9818277, 25.849699, -28.341862)
 
 [node name="ThrowableCube8" parent="Throwables" unique_id=1386090068 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.771568, 25.849699, -32.430573)
+transform = Transform3D(-0.22475888, 0.9744144, 0, -0.9744144, -0.22475888, 0, 0, 0, 1, 16.771568, 25.849699, -32.430573)
 
 [node name="ThrowableCube9" parent="Throwables" unique_id=1251095342 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.899053, 25.849699, -41.672787)
+transform = Transform3D(-0.95404387, 0.29966703, 0, -0.29966703, -0.95404387, 0, 0, 0, 1, 11.012412, 26.90715, -41.672787)
 
 [node name="ThrowableCube10" parent="Throwables" unique_id=327985456 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.836215, 27.8497, -21.11278)
+transform = Transform3D(0.08602512, 0.8255136, 0.55778754, -0.12582768, 0.5643822, -0.8158677, -0.9883153, 0, 0.15242352, -7.836215, 27.8497, -21.11278)
 
 [node name="ThrowableCube11" parent="Throwables" unique_id=1228922293 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.355593, 25.849699, -42.11208)
 
 [node name="ThrowableCube5" parent="Throwables" unique_id=6648009 instance=ExtResource("6_embne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5204, 25.849699, -19.16177)
+transform = Transform3D(1, 0, 0, 0, 0.08082001, -0.9967287, 0, 0.9967287, 0.08082001, 8.5204, 25.849699, -19.16177)
 
 [node name="ThrowableCube12" parent="Throwables" unique_id=1528304291 instance=ExtResource("6_embne")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.287375, 25.849699, -21.868412)
 
 [node name="ThrowableCube13" parent="Throwables" unique_id=111861886 instance=ExtResource("6_embne")]
-transform = Transform3D(0.55299026, 0, -0.8331877, 0, 1, 0, 0.8331877, 0, 0.55299026, -16.673128, 27.8497, -39.630356)
+transform = Transform3D(0.55299026, 0.81418514, 0.17693019, 0, -0.21235336, 0.9771929, 0.83318764, -0.54037815, -0.117429316, -16.769506, 28.093765, -39.676537)
 
 [node name="Map" type="Node" parent="." unique_id=2040024117]
 

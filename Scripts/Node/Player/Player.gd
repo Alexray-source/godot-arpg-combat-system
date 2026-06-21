@@ -485,6 +485,9 @@ func handle_camera_rot(delta):
 func set_input_state(new_state : bool):
 	block_input = not new_state
 	input_events.block_all_input = block_input
+	
+	input_events.move_dir = Vector3.ZERO
+	character.move_dir = Vector3.ZERO
 
 func _process(delta: float) -> void:
 	input_events.process(delta)

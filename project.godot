@@ -27,7 +27,6 @@ GlobalLight="*uid://bb6usexcma5d8"
 
 window/stretch/aspect="expand"
 display_server/driver.linuxbsd="wayland"
-window/vsync/vsync_mode=0
 
 [editor_plugins]
 

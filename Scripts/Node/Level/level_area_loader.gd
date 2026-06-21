@@ -30,6 +30,8 @@ func load_next_area(area_name : String, save_area : bool = false) -> void:
 	var area : SubArea = areas.get(area_name).instantiate()
 	areas_holder.add_child(area)
 	
+	_current_area = area
+	
 	if _player == null:
 		_player = PLAYER_SCENE.instantiate()
 	

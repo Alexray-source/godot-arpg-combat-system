@@ -134,13 +134,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_b2arx")
-target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
-target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
 abilities_ui = NodePath("Control")
 health_bar = NodePath("ProgressBar")
 stamina_bar = NodePath("ProgressBar2")
 target_indicator_rect = NodePath("TextureRect")
 target_input_rect = NodePath("TextureRect/TextureRect2")
+target_inactive_color = Color(0.89, 0.11569999, 0.11569999, 0.62352943)
+target_active_color = Color(0.8807113, 0.88671875, 0.117767334, 1)
 
 [node name="Control" type="Control" parent="." unique_id=747815187 node_paths=PackedStringArray("icons", "modifier_icon", "tween_activate_trigger", "tween_deactivate_trigger")]
 layout_mode = 1
